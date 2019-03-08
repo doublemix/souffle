@@ -1,0 +1,15 @@
+<map id="Explain.h" name="Explain.h">
+<area shape="rect" id="node2" href="$_explain_provenance_s_l_d_8h.html" title="ExplainProvenanceSLD.h" alt="" coords="575,80,745,107"/>
+<area shape="rect" id="node36" href="$_souffle_interface_8h.html" title="SouffleInterface.h" alt="" coords="1360,304,1485,331"/>
+<area shape="rect" id="node42" href="$_write_stream_c_s_v_8h.html" title="WriteStreamCSV.h" alt="" coords="1807,229,1941,256"/>
+<area shape="rect" id="node3" href="$_binary_constraint_ops_8h.html" title="BinaryConstraintOps.h" alt="" coords="2373,453,2527,480"/>
+<area shape="rect" id="node6" href="$_explain_provenance_8h.html" title="ExplainProvenance.h" alt="" coords="986,155,1131,181"/>
+<area shape="rect" id="node8" href="$_util_8h.html" title="Util.h" alt="" coords="888,453,941,480"/>
+<area shape="rect" id="node7" href="$_explain_tree_8h.html" title="ExplainTree.h" alt="" coords="698,379,800,405"/>
+<area shape="rect" id="node9" href="$_ram_types_8h.html" title="RamTypes.h" alt="" coords="1867,528,1964,555"/>
+<area shape="rect" id="node37" href="$_symbol_table_8h.html" title="SymbolTable.h" alt="" coords="1912,379,2021,405"/>
+<area shape="rect" id="node38" href="$_parallel_utils_8h.html" title="ParallelUtils.h" alt="" coords="1826,453,1928,480"/>
+<area shape="rect" id="node43" href="$_i_o_directives_8h.html" title="IODirectives.h" alt="" coords="1269,453,1376,480"/>
+<area shape="rect" id="node44" href="$_symbol_mask_8h.html" title="SymbolMask.h" alt="" coords="1460,379,1569,405"/>
+<area shape="rect" id="node45" href="$_write_stream_8h.html" title="WriteStream.h" alt="" coords="1583,304,1689,331"/>
+</map>

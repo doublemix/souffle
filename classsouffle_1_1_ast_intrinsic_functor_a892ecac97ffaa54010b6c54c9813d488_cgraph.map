@@ -1,0 +1,5 @@
+<map id="souffle::AstIntrinsicFunctor::clone" name="souffle::AstIntrinsicFunctor::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_intrinsic_functor.html#a78fe6c22a8558fa96239c9438535b704" title="souffle::AstIntrinsicFunctor\l::AstIntrinsicFunctor" alt="" coords="236,5,415,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="232,71,419,97"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#a9280d6d38767301b7538e94edde798bf" title="Gets expected arity of functor. " alt="" coords="467,12,642,39"/>
+</map>

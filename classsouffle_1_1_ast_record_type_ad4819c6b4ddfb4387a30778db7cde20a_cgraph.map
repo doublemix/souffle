@@ -1,0 +1,5 @@
+<map id="souffle::AstRecordType::clone" name="souffle::AstRecordType::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_record_type.html#a22942c6eb711d656105b7b104cfc51a1" title="Creates a new record type. " alt="" coords="227,5,387,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_type.html#a988b286aa4acd79538540d1705483728" title="Obtains the name of this type. " alt="" coords="217,71,396,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="213,121,400,148"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="souffle::RamRelationSearch::equal" name="souffle::RamRelationSearch::equal">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_search.html#a5ff13a839d418fd0d02607ba4599c909" title="Check equality. " alt="" coords="273,69,412,110"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_relation_search.html#a9c2d131e4937c9c79b22baf52af1e7d6" title="Get search relation. " alt="" coords="249,134,436,175"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_relation_reference.html#aba4241170a1ec60793af1fe68b7fb657" title="Get relation. " alt="" coords="240,199,445,241"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_nested_operation.html#afac69b5dd9b448f10512ccbe7352d8b1" title="Check equality. " alt="" coords="493,37,688,78"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_search.html#ad38884443c4c4eff4d86c196ec9cf436" title="Get identifier. " alt="" coords="521,102,660,143"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_nested_operation.html#aecd9e1a082f7ad54bea98bd6a6825352" title="Get nested operation. " alt="" coords="736,5,931,46"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_nested_operation.html#ae6a3beff0632964944db3ffbb12fb88e" title="Get profile text. " alt="" coords="736,70,931,111"/>
+</map>

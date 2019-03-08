@@ -1,0 +1,5 @@
+<map id="souffle::RamRelationReference" name="souffle::RamRelationReference">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="719,147,847,357"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_relation.html" title="A RAM Relation in the RAM intermediate representation. " alt="" coords="507,435,664,733"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_symbol_mask.html" title="{souffle::SymbolMask\n||+ getArity()\l+ isSymbol()\l+ operator!=()\l+ operator==()\l+ print()\l+ setSymbol()\l+ SymbolMask()\l+ SymbolMask()\l}" alt="" coords="389,162,533,342"/>
+</map>

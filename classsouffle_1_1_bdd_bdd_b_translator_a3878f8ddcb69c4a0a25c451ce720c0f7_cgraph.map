@@ -1,0 +1,5 @@
+<map id="souffle::BddBddBTranslator::visitFunctor" name="souffle::BddBddBTranslator::visitFunctor">
+<area shape="rect" id="node2" href="$namespacesouffle.html#ac584420d8f1d74575e27e65a4ca2a311" title="souffle::getSymbolForFunctorOp" alt="" coords="237,5,448,32"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="285,56,400,83"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1_ast_visitor.html#ac26669114316a4b0ef0db9427b23bcac" title="The main entry for a visit process conducting the dispatching of a visit to the various sub&#45;types of ..." alt="" coords="273,107,412,163"/>
+</map>

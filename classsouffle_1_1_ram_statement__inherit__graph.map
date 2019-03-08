@@ -1,0 +1,21 @@
+<map id="souffle::RamStatement" name="souffle::RamStatement">
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_debug_info.html" title="Debug statement. " alt="" coords="5,449,163,644"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_exit.html" title="Exit statement for a loop. " alt="" coords="187,464,315,629"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_insert.html" title="A relational algebra query TODO (#541): Rename RAM statement: it is used for projection and sub&#45;routi..." alt="" coords="339,442,468,651"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_log_timer.html" title="Execution time logger for a statement. " alt="" coords="494,435,644,659"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_loop.html" title="Statement loop. " alt="" coords="669,457,797,637"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_merge.html" title="Merge tuples from a source into target relation. " alt="" coords="821,449,969,644"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ram_parallel.html" title="Parallel block. " alt="" coords="995,457,1135,637"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ram_relation_statement.html" title="RAM Statements with a single relation. " alt="" coords="1160,479,1365,615"/>
+<area shape="rect" id="node18" href="$classsouffle_1_1_ram_sequence.html" title="Sequence of RAM statements. " alt="" coords="1389,442,1543,651"/>
+<area shape="rect" id="node19" href="$classsouffle_1_1_ram_stratum.html" title="Stratum statement. " alt="" coords="1569,449,1711,644"/>
+<area shape="rect" id="node20" href="$classsouffle_1_1_ram_swap.html" title="Swap operation two relations. " alt="" coords="1736,449,1888,644"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="832,6,960,215"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ram_clear.html" title="Delete tuples of a relation. " alt="" coords="737,736,865,843"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ram_create.html" title="Create new RAM relation. " alt="" coords="889,736,1024,843"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_ram_drop.html" title="Drop relation, i.e., delete it from memory. " alt="" coords="1049,736,1175,843"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_ram_fact.html" title="Insert a fact into a relation. " alt="" coords="1199,707,1327,872"/>
+<area shape="rect" id="node15" href="$classsouffle_1_1_ram_load.html" title="Load data into a relation. " alt="" coords="1351,729,1484,850"/>
+<area shape="rect" id="node16" href="$classsouffle_1_1_ram_log_size.html" title="Log relation size and a logging message. " alt="" coords="1508,721,1652,857"/>
+<area shape="rect" id="node17" href="$classsouffle_1_1_ram_store.html" title="Store data of a relation. " alt="" coords="1676,729,1809,850"/>
+</map>

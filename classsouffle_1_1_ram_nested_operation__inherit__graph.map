@@ -1,0 +1,11 @@
+<map id="souffle::RamNestedOperation" name="souffle::RamNestedOperation">
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_filter.html" title="Filter statement. " alt="" coords="76,707,204,872"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_search.html" title="Abstract class for relation searches and lookups. " alt="" coords="228,736,367,843"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_operation.html" title="Abstract class for a relational algebra operation. " alt="" coords="142,264,295,429"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="155,6,283,215"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_aggregate.html" title="Aggregation. " alt="" coords="5,920,189,1261"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_lookup.html" title="Record lookup. " alt="" coords="214,993,380,1188"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_relation_search.html" title="Abstract class for relation searches. " alt="" coords="405,1030,592,1151"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ram_index_scan.html" title="Relation Scan with Index. " alt="" coords="337,1309,495,1475"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ram_scan.html" title="Relation Scan. " alt="" coords="519,1339,645,1445"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="souffle::LevelConditionsTransformer::transform" name="souffle::LevelConditionsTransformer::transform">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_translation_unit.html#a624f5ca466df2d9c6c2efba33c380ef6" title="souffle::RamTranslationUnit\l::getAnalysis" alt="" coords="218,5,403,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_translation_unit.html#af537996409b1095c05e624f52d8eab70" title="souffle::RamTranslationUnit\l::getProgram" alt="" coords="218,70,403,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_level_conditions_transformer.html#a19edc2fc7de4553f21114290d2f6b687" title="souffle::LevelConditions\lTransformer::levelConditions" alt="" coords="216,135,405,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_node.html#a8b93371163c782cbebc1ca966e8ff063" title="Apply the mapper to all child nodes. " alt="" coords="454,51,621,77"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_condition.html#a54f67f8136251030e958232ae1aa051a" title="Create clone. " alt="" coords="461,102,613,143"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_program.html#a700bc589281fd3f2478b074c3134d450" title="Get main program. " alt="" coords="464,167,611,209"/>
+<area shape="rect" id="node8" href="$namespacesouffle.html#ad0e8debde5608979e041dd30e044612a" title="Valid C++ identifier, note that this does not ensure the uniqueness of identifiers returned..." alt="" coords="478,233,597,260"/>
+</map>

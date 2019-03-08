@@ -1,0 +1,6 @@
+<map id="souffle::LevelConditionsTransformer::levelConditions" name="souffle::LevelConditionsTransformer::levelConditions">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_node.html#a8b93371163c782cbebc1ca966e8ff063" title="Apply the mapper to all child nodes. " alt="" coords="243,5,410,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_condition.html#a54f67f8136251030e958232ae1aa051a" title="Create clone. " alt="" coords="251,57,403,98"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_program.html#a700bc589281fd3f2478b074c3134d450" title="Get main program. " alt="" coords="253,122,400,163"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#ad0e8debde5608979e041dd30e044612a" title="Valid C++ identifier, note that this does not ensure the uniqueness of identifiers returned..." alt="" coords="267,188,386,215"/>
+</map>

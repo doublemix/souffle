@@ -1,0 +1,8 @@
+<map id="souffle::reduceSubstitution" name="souffle::reduceSubstitution">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a84a1305e2b3e62fc0dd8528201e8db14" title="Determine whether a RAM value is a constant. " alt="" coords="233,77,365,104"/>
+<area shape="rect" id="node7" href="$namespacesouffle.html#a7f93cdf21f1a24b593da6691dc892828" title="A generic factory for constraints of the form. " alt="" coords="253,128,344,155"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_intrinsic_operator.html#a2b8db64c7f681d4b55d0da887c52e9a2" title="Get argument values. " alt="" coords="427,5,621,46"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_user_defined_operator.html#a776c0ed71ad08936f68bc50613628dd8" title="Get argument values. " alt="" coords="414,70,634,111"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#a3194e440e935d0d6089f8fa6bf405086" title="A function packing a tuple of the given arity into a reference. " alt="" coords="475,136,573,163"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="683,45,818,72"/>
+</map>

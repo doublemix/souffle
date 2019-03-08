@@ -1,0 +1,5 @@
+<map id="souffle::AstUnionType::clone" name="souffle::AstUnionType::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_union_type.html#a6c4eeeecacba4e7c123478520c619fb2" title="Creates a new union type. " alt="" coords="223,5,375,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_type.html#a988b286aa4acd79538540d1705483728" title="Obtains the name of this type. " alt="" coords="209,71,388,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="205,121,392,148"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="souffle::CreateIndicesTransformer::transform" name="souffle::CreateIndicesTransformer::transform">
+<area shape="rect" id="node2" href="$classsouffle_1_1_create_indices_transformer.html#a609b9786bc7dfdfddfef7176a42527b4" title="souffle::CreateIndicesTransformer\l::createIndices" alt="" coords="275,27,495,69"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_translation_unit.html#a624f5ca466df2d9c6c2efba33c380ef6" title="souffle::RamTranslationUnit\l::getAnalysis" alt="" coords="293,93,478,134"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_translation_unit.html#af537996409b1095c05e624f52d8eab70" title="souffle::RamTranslationUnit\l::getProgram" alt="" coords="293,158,478,199"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_node.html#a8b93371163c782cbebc1ca966e8ff063" title="Apply the mapper to all child nodes. " alt="" coords="545,5,711,32"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_program.html#a700bc589281fd3f2478b074c3134d450" title="Get main program. " alt="" coords="555,57,701,98"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="souffle::RamAnalysis" name="souffle::RamAnalysis">
+<area shape="rect" id="node2" href="$classsouffle_1_1_index_set_analysis.html" title="Analysis pass computing the index sets of RAM relations. " alt="" coords="5,161,176,282"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_condition_level_analysis.html" title="{souffle::RamConditionLevel\lAnalysis\n|+ name\l&#45; rvla\l|+ getLevel()\l+ run()\l}" alt="" coords="201,161,383,282"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_const_value_analysis.html" title="{souffle::RamConstValueAnalysis\n|+ name\l|+ isConstant()\l+ run()\l}" alt="" coords="407,175,621,267"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_existence_check_analysis.html" title="{souffle::RamExistenceCheck\lAnalysis\n|+ name\l|+ getKey()\l+ isTotal()\l+ run()\l}" alt="" coords="646,161,839,282"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_index_scan_keys_analysis.html" title="{souffle::RamIndexScanKeys\lAnalysis\n|+ name\l|+ getRangeQueryColumns()\l+ run()\l}" alt="" coords="864,168,1053,275"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_operation_depth_analysis.html" title="{souffle::RamOperationDepth\lAnalysis\n|+ name\l|+ getDepth()\l+ run()\l}" alt="" coords="1078,168,1265,275"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_provenance_existence_check_analysis.html" title="{souffle::RamProvenanceExistence\lCheckAnalysis\n|+ name\l|+ getKey()\l+ isTotal()\l+ run()\l}" alt="" coords="1291,161,1513,282"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ram_value_level_analysis.html" title="{souffle::RamValueLevelAnalysis\n|+ name\l|+ getLevel()\l+ run()\l}" alt="" coords="1539,175,1748,267"/>
+</map>

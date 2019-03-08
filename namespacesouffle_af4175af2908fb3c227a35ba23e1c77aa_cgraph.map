@@ -1,0 +1,8 @@
+<map id="souffle::getLevel" name="souffle::getLevel">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_intrinsic_operator.html#a2b8db64c7f681d4b55d0da887c52e9a2" title="Get argument values. " alt="" coords="187,5,381,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_user_defined_operator.html#a776c0ed71ad08936f68bc50613628dd8" title="Get argument values. " alt="" coords="174,70,394,111"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_pack.html#a2156bff81f026325531755bba8c5bae8" title="Get arguments. " alt="" coords="176,136,392,163"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_element_access.html#a44ea48b193eff166a57ec06afd594295" title="Get identifier. " alt="" coords="189,187,379,229"/>
+<area shape="rect" id="node7" href="$namespacesouffle.html#a3194e440e935d0d6089f8fa6bf405086" title="A function packing a tuple of the given arity into a reference. " alt="" coords="235,253,333,280"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="443,77,578,104"/>
+</map>

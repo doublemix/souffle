@@ -1,0 +1,6 @@
+<map id="souffle::toLogicblox" name="souffle::toLogicblox">
+<area shape="rect" id="node2" href="$classsouffle_1_1_logicblox_converter.html#afba23f276a1204856e84716cdd699a0f" title="souffle::LogicbloxConverter\l::convert" alt="" coords="189,77,371,118"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_translation_unit.html#a7a1598acb91192e90026763b3b968653" title="get analysis: analysis is generated on the fly if not present " alt="" coords="419,5,597,46"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1_ast_visitor.html#ac26669114316a4b0ef0db9427b23bcac" title="The main entry for a visit process conducting the dispatching of a visit to the various sub&#45;types of ..." alt="" coords="439,69,577,125"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="419,149,597,190"/>
+</map>
