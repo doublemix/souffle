@@ -12,11 +12,19 @@ Soufflé is a translator of Horn clauses into parallel C++. Soufflé language ha
 *   Simple component model for Datalog specifications 
 *   Recursively defined record types (aka. constructors) for tuples 
 
+### To be added
+
+*   Lattice definition
+*   Monotone Filter Functions
+*   Monotone Functions  
+
+see paper ["From Datalog to FLIX: A Declarative Language for Fixed Points on Lattices"](https://plg.uwaterloo.ca/~olhotak/pubs/pldi16.pdf)
+
 ## How to get Soufflé
  
 Use git to obtain the source code of Soufflé. 
 
-    $ git clone git://github.com/souffle-lang/souffle.git
+    $ git clone git@github.com:QXG2/souffle.git
     
 Build instructions can be found [here](http://souffle-lang.org/docs/build).     
 
