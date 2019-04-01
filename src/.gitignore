@@ -15,9 +15,3 @@ libsouffle*
 *.output
 
 test-suite.log
-
-.vscode/*
-
-*.facts
-*.dl
-*.csv
