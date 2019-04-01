@@ -70,6 +70,8 @@
 
 %%
 ".decl"                               { return yy::parser::make_DECL(yylloc); }
+".lat"                                { return yy::parser::make_LAT(yylloc); }
+".let"                                { return yy::parser::make_LET(yylloc); }
 ".functor"                            { return yy::parser::make_FUNCTOR(yylloc); }
 ".input"                              { return yy::parser::make_INPUT_DECL(yylloc); }
 ".output"                             { return yy::parser::make_OUTPUT_DECL(yylloc); }

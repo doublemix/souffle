@@ -116,6 +116,8 @@
 %token PLAN                      "plan keyword"
 %token IF                        ":-"
 %token DECL                      "relation declaration"
+%token LAT                       "lattice declaration"
+%token LET                       "lattice components type declaration"
 %token FUNCTOR                   "functor declaration"
 %token INPUT_DECL                "input directives declaration"
 %token OUTPUT_DECL               "output directives declaration"
@@ -225,6 +227,12 @@ unit
   | unit relation_decl {
         for(const auto& cur : $2) driver.addRelation(std::unique_ptr<AstRelation>(cur));
     }
+  | unit lattice_decl {
+    std::cout << "Lattice declaration here!\n";
+  }
+  | unit lattice_type {
+    std::cout << "Lattice components bound to type here!\n";
+  }
   | unit load_head {
         for(const auto& cur : $2) driver.addLoad(std::unique_ptr<AstLoad>(cur));
     }
@@ -448,6 +456,17 @@ relation_body
         $$->setQualifier($5);
         $$->setSrcLoc(@$);
     }
+
+lattice_decl
+  : LAT relation_list {
+    std::cout<<"Relation is connected\n";
+    $$.swap($2);
+  }
+
+lattice_type
+  : LET IDENT LT GT EQUALS functor_list {
+    std::cout<<"Lattice components connected\n";
+  }
 
 non_empty_key_value_pairs
   : IDENT EQUALS STRING {
