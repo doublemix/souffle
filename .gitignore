@@ -53,3 +53,7 @@ stamp-h1
 *.facts
 *.dl
 *.csv
+
+*.Po
+*.lo
+*.Plo

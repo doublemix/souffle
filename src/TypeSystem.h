@@ -37,55 +37,55 @@ class TypeEnvironment;
  */
 class Type {
 public:
-    Type(const TypeEnvironment& environment, AstTypeIdentifier name)
-            : environment(environment), name(std::move(name)) {}
+	Type(const TypeEnvironment& environment, AstTypeIdentifier name)
+: environment(environment), name(std::move(name)) {}
 
-    Type(const Type& other) = delete;
+	Type(const Type& other) = delete;
 
-    virtual ~Type() = default;
+	virtual ~Type() = default;
 
-    const AstTypeIdentifier& getName() const {
-        return name;
-    }
+	const AstTypeIdentifier& getName() const {
+		return name;
+	}
 
-    const TypeEnvironment& getTypeEnvironment() const {
-        return environment;
-    }
+	const TypeEnvironment& getTypeEnvironment() const {
+		return environment;
+	}
 
-    bool operator==(const Type& other) const {
-        return this == &other;
-    }
+	bool operator==(const Type& other) const {
+		return this == &other;
+	}
 
-    bool operator!=(const Type& other) const {
-        return !(*this == other);
-    }
+	bool operator!=(const Type& other) const {
+		return !(*this == other);
+	}
 
-    bool operator<(const Type& other) const {
-        return name < other.name;
-    }
+	bool operator<(const Type& other) const {
+		return name < other.name;
+	}
 
-    virtual void print(std::ostream& out = std::cout) const {
-        out << name;
-    }
+	virtual void print(std::ostream& out = std::cout) const {
+		out << name;
+	}
 
-    friend std::ostream& operator<<(std::ostream& out, const Type& t) {
-        return t.print(out), out;
-    }
+	friend std::ostream& operator<<(std::ostream& out, const Type& t) {
+		return t.print(out), out;
+	}
 
-    friend std::ostream& operator<<(std::ostream& out, const Type* t) {
-        if (!t) {
-            return out << "-null-";
-        }
-        return t->print(out), out;
-    }
+	friend std::ostream& operator<<(std::ostream& out, const Type* t) {
+		if (!t) {
+			return out << "-null-";
+		}
+		return t->print(out), out;
+	}
 
 protected:
-    /** A reference to the type environment this type is associated to. */
-    const TypeEnvironment& environment;
+	/** A reference to the type environment this type is associated to. */
+	const TypeEnvironment& environment;
 
 private:
-    /** The name of this type. */
-    AstTypeIdentifier name;
+	/** The name of this type. */
+	AstTypeIdentifier name;
 };
 
 /**
@@ -93,21 +93,21 @@ private:
  */
 class PrimitiveType : public Type {
 public:
-    void print(std::ostream& out) const override;
+	void print(std::ostream& out) const override;
 
-    const Type& getBaseType() const {
-        return baseType;
-    }
+	const Type& getBaseType() const {
+		return baseType;
+	}
 
 private:
-    // only allow type environments to create instances
-    friend class TypeEnvironment;
+	// only allow type environments to create instances
+	friend class TypeEnvironment;
 
-    /** The base type -- may be symbol or numerical */
-    const Type& baseType;
+	/** The base type -- may be symbol or numerical */
+	const Type& baseType;
 
-    PrimitiveType(const TypeEnvironment& environment, const AstTypeIdentifier& name, const Type& base)
-            : Type(environment, name), baseType(base) {}
+	PrimitiveType(const TypeEnvironment& environment, const AstTypeIdentifier& name, const Type& base)
+	: Type(environment, name), baseType(base) {}
 };
 
 /**
@@ -115,22 +115,22 @@ private:
  */
 class UnionType : public Type {
 public:
-    void add(const Type& type);
+	void add(const Type& type);
 
-    const std::vector<const Type*>& getElementTypes() const {
-        return elementTypes;
-    }
+	const std::vector<const Type*>& getElementTypes() const {
+		return elementTypes;
+	}
 
-    void print(std::ostream& out) const override;
+	void print(std::ostream& out) const override;
 
 private:
-    // only allow type environments to create instances
-    friend class TypeEnvironment;
+	// only allow type environments to create instances
+	friend class TypeEnvironment;
 
-    /** The contained element types */
-    std::vector<const Type*> elementTypes;
+	/** The contained element types */
+	std::vector<const Type*> elementTypes;
 
-    UnionType(const TypeEnvironment& environment, const AstTypeIdentifier& name) : Type(environment, name) {}
+	UnionType(const TypeEnvironment& environment, const AstTypeIdentifier& name) : Type(environment, name) {}
 };
 
 /**
@@ -138,29 +138,60 @@ private:
  */
 struct RecordType : public Type {
 public:
-    /** The type to model fields */
-    struct Field {
-        std::string name;  // < the name of the field
-        const Type& type;  // < the type of the field
-    };
+	/** The type to model fields */
+	struct Field {
+		std::string name;  // < the name of the field
+		const Type& type;  // < the type of the field
+	};
 
-    /** The list of contained fields */
-    void add(const std::string& name, const Type& type);
+	/** The list of contained fields */
+	void add(const std::string& name, const Type& type);
 
-    const std::vector<Field>& getFields() const {
-        return fields;
-    }
+	const std::vector<Field>& getFields() const {
+		return fields;
+	}
 
-    void print(std::ostream& out) const override;
+	void print(std::ostream& os) const override;
 
 private:
-    // only allow type environments to create instances
-    friend class TypeEnvironment;
+	// only allow type environments to create instances
+	friend class TypeEnvironment;
 
-    std::vector<Field> fields;
+	std::vector<Field> fields;
 
-    RecordType(const TypeEnvironment& environment, const AstTypeIdentifier& name) : Type(environment, name) {}
+	RecordType(const TypeEnvironment& environment, const AstTypeIdentifier& name) : Type(environment, name) {}
 };
+
+/**
+ * A enumerator type combining a list of fields into a new, aggregated type.
+ */
+struct EnumType : public Type {
+public:
+	/** The type to model fields */
+	struct Case {
+		std::string name;        // < the case name
+		const Type& type;  // < the case type
+	};
+
+	/** The list of contained fields */
+	void add(const std::string& name, const Type& type);
+
+	/** Obtains a reference to the list element types */
+	const std::vector<Case>& getCases() const {
+		return cases;
+	}
+
+	void print(std::ostream& out) const override;
+
+private:
+	// only allow type environments to create instances
+	friend class TypeEnvironment;
+
+	std::vector<Case> cases;
+
+	EnumType(const TypeEnvironment& environment, const AstTypeIdentifier& name) : Type(environment, name) {}
+};
+
 
 /**
  * A collection to represent sets of types. In addition to ordinary set capabilities
@@ -170,132 +201,132 @@ private:
  */
 struct TypeSet {
 public:
-    using const_iterator = IterDerefWrapper<typename std::set<const Type*>::const_iterator>;
+	using const_iterator = IterDerefWrapper<typename std::set<const Type*>::const_iterator>;
 
-    // -- constructors, destructors and assignment operations --
+	// -- constructors, destructors and assignment operations --
 
-    TypeSet(bool all = false) : all(all) {}
+	TypeSet(bool all = false) : all(all) {}
 
-    TypeSet(const TypeSet& other) = default;
+	TypeSet(const TypeSet& other) = default;
 
-    TypeSet(TypeSet&& other) noexcept : all(other.all), types() {
-        types.swap(other.types);
-    }
+	TypeSet(TypeSet&& other) noexcept : all(other.all), types() {
+		types.swap(other.types);
+	}
 
-    template <typename... Types>
-    TypeSet(const Types&... types) : all(false) {
-        for (const Type* cur : toVector<const Type*>(&types...)) {
-            this->types.insert(cur);
-        }
-    }
+	template <typename... Types>
+	TypeSet(const Types&... types) : all(false) {
+		for (const Type* cur : toVector<const Type*>(&types...)) {
+			this->types.insert(cur);
+		}
+	}
 
-    TypeSet& operator=(const TypeSet& other) = default;
+	TypeSet& operator=(const TypeSet& other) = default;
 
-    /** A factory function for the all-types set */
-    static TypeSet getAllTypes() {
-        return TypeSet(true);
-    }
+	/** A factory function for the all-types set */
+	static TypeSet getAllTypes() {
+		return TypeSet(true);
+	}
 
-    /** Emptiness check */
-    bool empty() const {
-        return !all && types.empty();
-    }
+	/** Emptiness check */
+	bool empty() const {
+		return !all && types.empty();
+	}
 
-    /** Universality check */
-    bool isAll() const {
-        return all;
-    }
+	/** Universality check */
+	bool isAll() const {
+		return all;
+	}
 
-    /** Determines the size of this set unless it is the universal set */
-    std::size_t size() const {
-        assert(!all && "Unable to give size of universe.");
-        return types.size();
-    }
+	/** Determines the size of this set unless it is the universal set */
+	std::size_t size() const {
+		assert(!all && "Unable to give size of universe.");
+		return types.size();
+	}
 
-    /** Determines whether a given type is included or not */
-    bool contains(const Type& type) const {
-        return all || types.find(&type) != types.end();
-    }
+	/** Determines whether a given type is included or not */
+	bool contains(const Type& type) const {
+		return all || types.find(&type) != types.end();
+	}
 
-    /** Adds the given type to this set */
-    void insert(const Type& type) {
-        if (all) {
-            return;
-        }
-        types.insert(&type);
-    }
+	/** Adds the given type to this set */
+	void insert(const Type& type) {
+		if (all) {
+			return;
+		}
+		types.insert(&type);
+	}
 
-    /** Inserts all the types of the given set into this set */
-    void insert(const TypeSet& set) {
-        if (all) {
-            return;
-        }
+	/** Inserts all the types of the given set into this set */
+	void insert(const TypeSet& set) {
+		if (all) {
+			return;
+		}
 
-        // if the other set is universal => make this one universal
-        if (set.isAll()) {
-            all = true;
-            types.clear();
-            return;
-        }
+		// if the other set is universal => make this one universal
+		if (set.isAll()) {
+			all = true;
+			types.clear();
+			return;
+		}
 
-        // add types one by one
-        for (const auto& t : set) {
-            insert(t);
-        }
-    }
+		// add types one by one
+		for (const auto& t : set) {
+			insert(t);
+		}
+	}
 
-    /** Allows to iterate over the types contained in this set (only if not universal) */
-    const_iterator begin() const {
-        assert(!all && "Unable to enumerate universe.");
-        return derefIter(types.begin());
-    }
+	/** Allows to iterate over the types contained in this set (only if not universal) */
+	const_iterator begin() const {
+		assert(!all && "Unable to enumerate universe.");
+		return derefIter(types.begin());
+	}
 
-    /** Allows to iterate over the types contained in this set (only if not universal) */
-    const_iterator end() const {
-        assert(!all && "Unable to enumerate universe.");
-        return derefIter(types.end());
-    }
+	/** Allows to iterate over the types contained in this set (only if not universal) */
+	const_iterator end() const {
+		assert(!all && "Unable to enumerate universe.");
+		return derefIter(types.end());
+	}
 
-    /** Determines whether this set is a subset of the given set */
-    bool isSubsetOf(const TypeSet& b) const {
-        if (all) {
-            return b.isAll();
-        }
-        return all_of(*this, [&](const Type& cur) { return b.contains(cur); });
-    }
+	/** Determines whether this set is a subset of the given set */
+	bool isSubsetOf(const TypeSet& b) const {
+		if (all) {
+			return b.isAll();
+		}
+		return all_of(*this, [&](const Type& cur) { return b.contains(cur); });
+	}
 
-    /** Determines equality between type sets */
-    bool operator==(const TypeSet& other) const {
-        return all == other.all && types == other.types;
-    }
+	/** Determines equality between type sets */
+	bool operator==(const TypeSet& other) const {
+		return all == other.all && types == other.types;
+	}
 
-    /** Determines inequality between type sets */
-    bool operator!=(const TypeSet& other) const {
-        return !(*this == other);
-    }
+	/** Determines inequality between type sets */
+	bool operator!=(const TypeSet& other) const {
+		return !(*this == other);
+	}
 
-    /** Adds print support for type sets */
-    void print(std::ostream& out) const {
-        if (all) {
-            out << "{ - all types - }";
-        } else {
-            out << "{"
-                << join(types, ",", [](std::ostream& out, const Type* type) { out << type->getName(); })
-                << "}";
-        }
-    }
+	/** Adds print support for type sets */
+	void print(std::ostream& out) const {
+		if (all) {
+			out << "{ - all types - }";
+		} else {
+			out << "{"
+					<< join(types, ",", [](std::ostream& out, const Type* type) { out << type->getName(); })
+					<< "}";
+		}
+	}
 
-    friend std::ostream& operator<<(std::ostream& out, const TypeSet& set) {
-        set.print(out);
-        return out;
-    }
+	friend std::ostream& operator<<(std::ostream& out, const TypeSet& set) {
+		set.print(out);
+		return out;
+	}
 
 private:
-    /** True if it is the all-types set, false otherwise */
-    bool all;
+	/** True if it is the all-types set, false otherwise */
+	bool all;
 
-    /** The enumeration of types in case it is not the all-types set */
-    std::set<const Type*, deref_less<Type>> types;
+	/** The enumeration of types in case it is not the all-types set */
+	std::set<const Type*, deref_less<Type>> types;
 };
 
 /**
@@ -305,80 +336,84 @@ private:
  */
 class TypeEnvironment {
 public:
-    /** The type utilized for identifying types */
-    using identifier = AstTypeIdentifier;
+	/** The type utilized for identifying types */
+	using identifier = AstTypeIdentifier;
 
-    // -- constructors / destructores --
-    TypeEnvironment();
+	// -- constructors / destructores --
+	TypeEnvironment();
 
-    TypeEnvironment(const TypeEnvironment&) = delete;
+	TypeEnvironment(const TypeEnvironment&) = delete;
 
-    ~TypeEnvironment();
+	~TypeEnvironment();
 
-    // -- create types in this environment --
+	// -- create types in this environment --
 
-    template <typename T, typename... Args>
-    T& createType(const identifier& name, const Args&... args) {
-        auto* res = new T(*this, name, args...);
-        addType(*res);
-        return *res;
-    }
+	template <typename T, typename... Args>
+	T& createType(const identifier& name, const Args&... args) {
+		auto* res = new T(*this, name, args...);
+		addType(*res);
+		return *res;
+	}
 
-    PrimitiveType& createNumericType(const identifier& name) {
-        return createType<PrimitiveType>(name, getNumberType());
-    }
+	PrimitiveType& createNumericType(const identifier& name) {
+		return createType<PrimitiveType>(name, getNumberType());
+	}
 
-    PrimitiveType& createSymbolType(const identifier& name) {
-        return createType<PrimitiveType>(name, getSymbolType());
-    }
+	PrimitiveType& createSymbolType(const identifier& name) {
+		return createType<PrimitiveType>(name, getSymbolType());
+	}
 
-    UnionType& createUnionType(const identifier& name) {
-        return createType<UnionType>(name);
-    }
+	UnionType& createUnionType(const identifier& name) {
+		return createType<UnionType>(name);
+	}
 
-    RecordType& createRecordType(const identifier& name) {
-        return createType<RecordType>(name);
-    }
+	RecordType& createRecordType(const identifier& name) {
+		return createType<RecordType>(name);
+	}
 
-    // -- query type information --
+	EnumType& createEnumType(const identifier& name) {
+		return createType<EnumType>(name);
+	}
 
-    bool isType(const identifier& ident) const;
+	// -- query type information --
 
-    bool isType(const Type& type) const;
+	bool isType(const identifier& ident) const;
 
-    const Type& getType(const identifier& ident) const;
+	bool isType(const Type& type) const;
 
-    const Type& getNumberType() const {
-        return getType("number");
-    }
+	const Type& getType(const identifier& ident) const;
 
-    const Type& getSymbolType() const {
-        return getType("symbol");
-    }
+	const Type& getNumberType() const {
+		return getType("number");
+	}
 
-    TypeSet getAllTypes() const;
+	const Type& getSymbolType() const {
+		return getType("symbol");
+	}
 
-    Type* getModifiableType(const identifier& name);
+	TypeSet getAllTypes() const;
 
-    void clear();
+	Type* getModifiableType(const identifier& name);
 
-    void print(std::ostream& out) const;
+	void clear();
 
-    friend std::ostream& operator<<(std::ostream& out, const TypeEnvironment& environment) {
-        environment.print(out);
-        return out;
-    }
+	void print(std::ostream& out) const;
 
-    void swap(TypeEnvironment& env) {
-        types.swap(env.types);
-    }
+	friend std::ostream& operator<<(std::ostream& out, const TypeEnvironment& environment) {
+		environment.print(out);
+		return out;
+	}
+
+	void swap(TypeEnvironment& env) {
+		types.swap(env.types);
+	}
 
 private:
-    /** The list of covered types */
-    std::map<identifier, Type*> types;
+	/** The list of covered types */
+	std::map<identifier, Type*> types;
 
-    /** Register types created by one of the factory functions */
-    void addType(Type& type);
+	/** Register types created by one of the factory functions */
+	void addType(Type& type);
 };
 
 // ---------------------------------------------------------------
@@ -457,7 +492,7 @@ TypeSet getLeastCommonSupertypes(const TypeSet& a, const TypeSet& b);
  */
 template <typename... Types>
 TypeSet getLeastCommonSupertypes(const Types&... types) {
-    return getLeastCommonSupertypes(TypeSet(types...));
+	return getLeastCommonSupertypes(TypeSet(types...));
 }
 
 // -- Greatest Common Sub Types --------------------------------------
@@ -482,7 +517,7 @@ TypeSet getGreatestCommonSubtypes(const TypeSet& a, const TypeSet& b);
  */
 template <typename... Types>
 TypeSet getGreatestCommonSubtypes(const Types&... types) {
-    return getGreatestCommonSubtypes(TypeSet(types...));
+	return getGreatestCommonSubtypes(TypeSet(types...));
 }
 
 }  // end namespace souffle

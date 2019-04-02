@@ -72,11 +72,13 @@
 ".decl"                               { return yy::parser::make_DECL(yylloc); }
 ".lat"                                { return yy::parser::make_LAT(yylloc); }
 ".let"                                { return yy::parser::make_LET(yylloc); }
+".def"								  { return yy::parser::make_DEF(yylloc); }
 ".functor"                            { return yy::parser::make_FUNCTOR(yylloc); }
 ".input"                              { return yy::parser::make_INPUT_DECL(yylloc); }
 ".output"                             { return yy::parser::make_OUTPUT_DECL(yylloc); }
 ".printsize"                          { return yy::parser::make_PRINTSIZE_DECL(yylloc); }
 ".type"                               { return yy::parser::make_TYPE(yylloc); }
+".enum"                               { return yy::parser::make_ENUM(yylloc); }
 ".comp"                               { return yy::parser::make_COMPONENT(yylloc); }
 ".init"                               { return yy::parser::make_INSTANTIATE(yylloc); }
 ".number_type"                        { return yy::parser::make_NUMBER_TYPE(yylloc); }
@@ -87,6 +89,7 @@
 "bor"                                 { return yy::parser::make_BW_OR(yylloc); }
 "bxor"                                { return yy::parser::make_BW_XOR(yylloc); }
 "bnot"                                { return yy::parser::make_BW_NOT(yylloc); }
+"case"								  { return yy::parser::make_CASE(yylloc); }
 "land"                                { return yy::parser::make_L_AND(yylloc); }
 "lor"                                 { return yy::parser::make_L_OR(yylloc); }
 "lnot"                                { return yy::parser::make_L_NOT(yylloc); }
@@ -129,6 +132,7 @@
 ":"                                   { return yy::parser::make_COLON(yylloc); }
 ";"                                   { return yy::parser::make_SEMICOLON(yylloc); }
 "."                                   { return yy::parser::make_DOT(yylloc); }
+"=>"                                  { return yy::parser::make_ARROW(yylloc); }
 "="                                   { return yy::parser::make_EQUALS(yylloc); }
 "*"                                   { return yy::parser::make_STAR(yylloc); }
 "@"                                   { return yy::parser::make_AT(yylloc); }

@@ -27,6 +27,7 @@ namespace souffle {
 class AstClause;
 class AstComponent;
 class AstComponentInit;
+class AstLatticeBinaryFunction;
 class AstFunctorDeclaration;
 class AstLoad;
 class AstPragma;
@@ -55,6 +56,7 @@ public:
     std::unique_ptr<AstTranslationUnit> translationUnit;
 
     void addRelation(std::unique_ptr<AstRelation> r);
+    void addLatticeBinaryFunction(std::unique_ptr<AstLatticeBinaryFunction> f);
     void addFunctorDeclaration(std::unique_ptr<AstFunctorDeclaration> f);
     void addStore(std::unique_ptr<AstStore> d);
     void addLoad(std::unique_ptr<AstLoad> d);

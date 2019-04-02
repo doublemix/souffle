@@ -36,6 +36,7 @@
     #include "AstArgument.h"
     #include "AstClause.h"
     #include "AstComponent.h"
+    #include "AstLatticeBinaryFunction.h"
     #include "AstFunctorDeclaration.h"
     #include "AstIO.h"
     #include "AstNode.h"
@@ -118,12 +119,14 @@
 %token DECL                      "relation declaration"
 %token LAT                       "lattice declaration"
 %token LET                       "lattice components type declaration"
+%token DEF						 "lattice binary function definition"
 %token FUNCTOR                   "functor declaration"
 %token INPUT_DECL                "input directives declaration"
 %token OUTPUT_DECL               "output directives declaration"
 %token PRINTSIZE_DECL            "printsize directives declaration"
 %token OVERRIDE                  "override rules of super-component"
 %token TYPE                      "type declaration"
+%token ENUM						 "enum declaration"
 %token COMPONENT                 "component declaration"
 %token INSTANTIATE               "component instantiation"
 %token NUMBER_TYPE               "numeric type declaration"
@@ -146,6 +149,7 @@
 %token COLON                     ":"
 %token SEMICOLON                 ";"
 %token DOT                       "."
+%token ARROW					 "=>"
 %token EQUALS                    "="
 %token STAR                      "*"
 %token AT                        "@"
@@ -163,6 +167,7 @@
 %token L_AND                     "land"
 %token L_OR                      "lor"
 %token L_NOT                     "lnot"
+%token CASE						 "case"
 
 %type <uint32_t>                         qualifiers
 %type <AstTypeIdentifier *>              type_id
@@ -171,6 +176,14 @@
 %type <AstComponent *>                   component component_head component_body
 %type <AstComponentType *>               comp_type
 %type <AstComponentInit *>               comp_init
+
+%type <std::string>						 lattice_decl
+
+%type <std::string>						 lattice_connect
+
+%type <AstLatticeBinaryFunction *>		 lattice_def
+%type <AstLatticeBinaryFunction *>		 lattice_def_type
+
 %type <AstFunctorDeclaration *>          functor_decl
 %type <std::string>                      functor_type
 %type <std::string>                      functor_typeargs
@@ -189,6 +202,7 @@
 %type <AstUserDefinedFunctor *>          functor_list functor_args
 %type <AstRecordType *>                  recordtype
 %type <AstUnionType *>                   uniontype
+%type <AstEnumType *>				 	 enumtype
 %type <std::vector<AstTypeIdentifier>>   type_params type_param_list
 %type <std::string>                      comp_override
 %type <AstIO *>                          key_value_pairs non_empty_key_value_pairs iodirective_body
@@ -228,11 +242,15 @@ unit
         for(const auto& cur : $2) driver.addRelation(std::unique_ptr<AstRelation>(cur));
     }
   | unit lattice_decl {
-    std::cout << "Lattice declaration here!\n";
-  }
-  | unit lattice_type {
-    std::cout << "Lattice components bound to type here!\n";
-  }
+    	std::cout << ".lat Lattice declaration here!\n";
+  	}
+  | unit lattice_connect {
+    	std::cout << ".let Lattice connection here!\n";
+  	}
+  | unit lattice_def {
+  		std::cout << ".def Lattice binary function definition here!\n";
+  		driver.addLatticeBinaryFunction(std::unique_ptr<AstLatticeBinaryFunction>($2));
+  	}
   | unit load_head {
         for(const auto& cur : $2) driver.addLoad(std::unique_ptr<AstLoad>(cur));
     }
@@ -310,6 +328,12 @@ type
         $$->setName($2);
         $$->setSrcLoc(@$);
     }
+  | ENUM IDENT EQUALS LBRACE enumtype RBRACE {
+  		$$ = $5;
+  		$$->setName($2);
+        $$->setSrcLoc(@$);
+        std::cout<<"Enum type declaration here!\n";
+  	} 
 
 recordtype
   : IDENT COLON type_id {
@@ -330,6 +354,16 @@ uniontype
         $$ = $1;
         $1->add(*$3); delete $3;
     }
+
+enumtype
+  :  CASE IDENT {
+  		$$ = new AstEnumType();
+  		$$->add($2);
+  	}
+  | enumtype COMMA CASE IDENT {
+  		$$ = $1;
+  		$1->add($4);
+  	}
 
 
 /* Relation Identifier */
@@ -459,14 +493,39 @@ relation_body
 
 lattice_decl
   : LAT relation_list {
-    std::cout<<"Relation is connected\n";
-    $$.swap($2);
-  }
+    
+  	}
 
-lattice_type
+lattice_connect
   : LET IDENT LT GT EQUALS functor_list {
-    std::cout<<"Lattice components connected\n";
-  }
+    
+  	}
+
+lattice_def
+  : DEF IDENT LPAREN arg COMMA arg RPAREN COLON arg LBRACE lattice_def_type RBRACE {
+  // TODO
+  		$$ = $11;
+  		$$->setSrcLoc(@$);
+  		$$->setName($2);
+  		$$->addArg($4);
+  		$$->addArg($6);
+  		$$->setOutput($9);
+  	}
+
+lattice_def_type
+  : CASE LPAREN arg COMMA arg RPAREN ARROW arg {
+  		$$ = new AstLatticeBinaryFunction();	
+  		$$->addPairMap($3, $5, $8);
+  	}
+  | lattice_def_type COMMA CASE LPAREN arg COMMA arg RPAREN ARROW arg {
+  		$$ = $1;
+  		$$->addPairMap($5, $7, $10);
+  	}
+  | lattice_def_type COMMA CASE UNDERSCORE ARROW arg {
+  		$$ = $1;
+  		// TODO
+  	}
+
 
 non_empty_key_value_pairs
   : IDENT EQUALS STRING {

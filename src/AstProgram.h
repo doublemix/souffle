@@ -18,6 +18,7 @@
 #pragma once
 
 #include "AstComponent.h"
+#include "AstLatticeBinaryFunction.h"
 #include "AstFunctorDeclaration.h"
 #include "AstIO.h"
 #include "AstNode.h"
@@ -70,6 +71,9 @@ public:
 
     /** Find and return the relation in the program given its name */
     AstRelation* getRelation(const AstRelationIdentifier& name) const;
+
+    /** Get lattice binary function definition */
+    AstLatticeBinaryFunction* getAstLatticeBinaryFunction(const std::string& name) const;
 
     /** Get functor declaration */
     AstFunctorDeclaration* getFunctorDeclaration(const std::string& name) const;
@@ -236,6 +240,9 @@ private:
     /** Program types  */
     std::map<AstTypeIdentifier, std::unique_ptr<AstType>> types;
 
+    /** Lattice */
+    std::map<std::string, std::unique_ptr<AstLatticeBinaryFunction>> latticeBinary;
+
     /** Program relations */
     std::map<AstRelationIdentifier, std::unique_ptr<AstRelation>> relations;
 
@@ -284,6 +291,9 @@ private:
 
     /** Add a pragma to the program */
     void addPragma(std::unique_ptr<AstPragma> r);
+
+    /** Add a Lattice Binary Function to the program */
+    void addAstLatticeBinaryFunction(std::unique_ptr<souffle::AstLatticeBinaryFunction> f);
 
     /** Add a functor to the program */
     void addFunctorDeclaration(std::unique_ptr<souffle::AstFunctorDeclaration> f);
