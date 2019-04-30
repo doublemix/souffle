@@ -78,10 +78,16 @@ void AstProgram::appendRelation(std::unique_ptr<AstRelation> r) {
 }
 
 /** Add a Lattice Binary Function to the program */
-void AstProgram::addAstLatticeBinaryFunction(std::unique_ptr<souffle::AstLatticeBinaryFunction> f) {
+void AstProgram::addLatticeBinaryFunction(std::unique_ptr<souffle::AstLatticeBinaryFunction> f) {
 	const auto& name = f->getName();
 	assert(latticeBinary.find(name) == latticeBinary.end() && "Redefinition of Lattice Binary function!");
 	latticeBinary[name] = std::move(f);
+}
+
+/** Set a Lattice Association to the program */
+void AstProgram::addLatticeAssociation(std::unique_ptr<souffle::AstLatticeAssociation> f) {
+	assert(latticeAssociation.get()==nullptr && "Dual definition of Lattice Association!");
+	latticeAssociation = std::move(f);
 }
 
 /* Add a functor declaration to the program */
@@ -122,9 +128,13 @@ AstRelation* AstProgram::getRelation(const AstRelationIdentifier& name) const {
 	return (pos == relations.end()) ? nullptr : pos->second.get();
 }
 
-AstLatticeBinaryFunction* AstProgram::getAstLatticeBinaryFunction(const std::string& name) const {
+AstLatticeBinaryFunction* AstProgram::getLatticeBinaryFunction(const std::string& name) const {
 	auto pos = latticeBinary.find(name);
 	return (pos == latticeBinary.end()) ? nullptr : pos->second.get();
+}
+
+AstLatticeAssociation* AstProgram::getLatticeAssociation() const {
+	return latticeAssociation.get();
 }
 
 AstFunctorDeclaration* AstProgram::getFunctorDeclaration(const std::string& name) const {
@@ -203,6 +213,8 @@ void AstProgram::print(std::ostream& os) const {
 	}
 
 	os << "\n// ----- Lattice -----\n";
+	latticeAssociation->print(os);
+	os << "\n";
 	for (const auto& cur : latticeBinary) {
 		const std::unique_ptr<AstLatticeBinaryFunction>& f = cur.second;
 		os << "\n\n// -- " << f->getName() << " --\n";

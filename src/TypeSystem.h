@@ -456,6 +456,16 @@ bool isRecordType(const Type& type);
 bool isRecordType(const TypeSet& s);
 
 /**
+ * Determines whether the given type is a enum type.
+ */
+bool isEnumType(const Type& type);
+
+/**
+ * Determines whether all the types in the given set are enum types.
+ */
+bool isEnumType(const TypeSet& s);
+
+/**
  * Determines whether the given type is a recursive type.
  */
 bool isRecursiveType(const Type& type);

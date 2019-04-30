@@ -8,7 +8,7 @@ Grammar
     3     | unit functor_decl
     4     | unit relation_decl
     5     | unit lattice_decl
-    6     | unit lattice_connect
+    6     | unit lattice_asscoiation
     7     | unit lattice_def
     8     | unit load_head
     9     | unit store_head
@@ -78,7 +78,7 @@ Grammar
 
    57 lattice_decl: "lattice declaration" relation_list
 
-   58 lattice_connect: "lattice components type declaration" "identifier" "<" ">" "=" functor_list
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" ":" arg "{" lattice_def_type "}"
 
@@ -304,12 +304,12 @@ error (256)
 "+" (311) 92
 "-" (312) 93 107
 "!" (313) 146
-"(" (314) 48 49 56 59 60 61 78 86 98 99 100 101 102 103 104 105 121
-    122 123 132 138 139 147 155
-")" (315) 48 49 56 59 60 61 78 86 98 99 100 101 102 103 104 105 121
-    122 123 132 138 139 147 155
-"," (316) 28 32 36 51 55 59 60 61 62 64 66 68 70 77 98 99 100 105 125
-    127 129 138 139 144 149 154 157 164 170
+"(" (314) 48 49 56 58 59 60 61 78 86 98 99 100 101 102 103 104 105
+    121 122 123 132 138 139 147 155
+")" (315) 48 49 56 58 59 60 61 78 86 98 99 100 101 102 103 104 105
+    121 122 123 132 138 139 147 155
+"," (316) 28 32 36 51 55 58 59 60 61 62 64 66 68 70 77 98 99 100 105
+    125 127 129 138 139 144 149 154 157 164 170
 ":" (317) 27 28 35 36 48 49 59 113 114 115 116 117 118 119 120 156
     157 169
 ";" (318) 151
@@ -380,7 +380,7 @@ relation_body (103)
     on left: 56, on right: 54
 lattice_decl (104)
     on left: 57, on right: 5
-lattice_connect (105)
+lattice_asscoiation (105)
     on left: 58, on right: 6
 lattice_def (106)
     on left: 59, on right: 7
@@ -406,7 +406,7 @@ arg (114)
     109 115 116 117 118 119 120 121 124 125 126 127 128 129 133 134
     135 136 138 139
 functor_list (115)
-    on left: 122 123, on right: 58 83
+    on left: 122 123, on right: 83
 functor_args (116)
     on left: 124 125, on right: 123 125
 recordlist (117)
@@ -486,7 +486,7 @@ State 2
     3     | unit . functor_decl
     4     | unit . relation_decl
     5     | unit . lattice_decl
-    6     | unit . lattice_connect
+    6     | unit . lattice_asscoiation
     7     | unit . lattice_def
     8     | unit . load_head
     9     | unit . store_head
@@ -515,24 +515,24 @@ State 2
 
     $default  reduce using rule 1 (program)
 
-    pragma           go to state 20
-    type             go to state 21
-    rel_id           go to state 22
-    functor_decl     go to state 23
-    relation_decl    go to state 24
-    lattice_decl     go to state 25
-    lattice_connect  go to state 26
-    lattice_def      go to state 27
-    load_head        go to state 28
-    store_head       go to state 29
-    atom             go to state 30
-    fact             go to state 31
-    head             go to state 32
-    rule_def         go to state 33
-    rule             go to state 34
-    component_head   go to state 35
-    component        go to state 36
-    comp_init        go to state 37
+    pragma               go to state 20
+    type                 go to state 21
+    rel_id               go to state 22
+    functor_decl         go to state 23
+    relation_decl        go to state 24
+    lattice_decl         go to state 25
+    lattice_asscoiation  go to state 26
+    lattice_def          go to state 27
+    load_head            go to state 28
+    store_head           go to state 29
+    atom                 go to state 30
+    fact                 go to state 31
+    head                 go to state 32
+    rule_def             go to state 33
+    rule                 go to state 34
+    component_head       go to state 35
+    component            go to state 36
+    comp_init            go to state 37
 
 
 State 3
@@ -579,7 +579,7 @@ State 7
 
 State 8
 
-   58 lattice_connect: "lattice components type declaration" . "identifier" "<" ">" "=" functor_list
+   58 lattice_asscoiation: "lattice components type declaration" . "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
 
     "identifier"  shift, and go to state 43
 
@@ -725,7 +725,7 @@ State 25
 
 State 26
 
-    6 unit: unit lattice_connect .
+    6 unit: unit lattice_asscoiation .
 
     $default  reduce using rule 6 (unit)
 
@@ -865,7 +865,7 @@ State 42
 
 State 43
 
-   58 lattice_connect: "lattice components type declaration" "identifier" . "<" ">" "=" functor_list
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" . "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
 
     "<"  shift, and go to state 73
 
@@ -1176,7 +1176,7 @@ State 72
 
 State 73
 
-   58 lattice_connect: "lattice components type declaration" "identifier" "<" . ">" "=" functor_list
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" . ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
 
     ">"  shift, and go to state 134
 
@@ -2028,7 +2028,7 @@ State 133
 
 State 134
 
-   58 lattice_connect: "lattice components type declaration" "identifier" "<" ">" . "=" functor_list
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" . "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
 
     "="  shift, and go to state 215
 
@@ -3583,11 +3583,9 @@ State 214
 
 State 215
 
-   58 lattice_connect: "lattice components type declaration" "identifier" "<" ">" "=" . functor_list
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" . "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
 
-    "("  shift, and go to state 249
-
-    functor_list  go to state 280
+    "("  shift, and go to state 280
 
 
 State 216
@@ -4801,9 +4799,9 @@ State 279
 
 State 280
 
-   58 lattice_connect: "lattice components type declaration" "identifier" "<" ">" "=" functor_list .
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" . "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
 
-    $default  reduce using rule 58 (lattice_connect)
+    "identifier"  shift, and go to state 333
 
 
 State 281
@@ -4825,7 +4823,7 @@ State 281
     "type cast"  shift, and go to state 173
     "+"          shift, and go to state 174
     "-"          shift, and go to state 175
-    ")"          shift, and go to state 333
+    ")"          shift, and go to state 334
     "*"          shift, and go to state 176
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
@@ -4857,7 +4855,7 @@ State 284
 
     "identifier"  shift, and go to state 136
 
-    functor_type  go to state 334
+    functor_type  go to state 335
 
 
 State 285
@@ -4895,7 +4893,7 @@ State 289
    68                          | key_value_pairs "," "identifier" . "=" "true literal constraint"
    70                          | key_value_pairs "," "identifier" . "=" "false literal constraint"
 
-    "="  shift, and go to state 335
+    "="  shift, and go to state 336
 
 
 State 290
@@ -4904,7 +4902,7 @@ State 290
 
     "identifier"  shift, and go to state 144
 
-    type_id  go to state 336
+    type_id  go to state 337
 
 
 State 291
@@ -4918,7 +4916,7 @@ State 292
 
    28 recordtype: recordtype "," . "identifier" ":" type_id
 
-    "identifier"  shift, and go to state 337
+    "identifier"  shift, and go to state 338
 
 
 State 293
@@ -4949,7 +4947,7 @@ State 296
 
    32 enumtype: enumtype "," . "case" "identifier"
 
-    "case"  shift, and go to state 338
+    "case"  shift, and go to state 339
 
 
 State 297
@@ -5004,7 +5002,7 @@ State 300
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 339
+    arg  go to state 340
 
 
 State 301
@@ -5049,7 +5047,7 @@ State 303
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 340
+    arg  go to state 341
 
 
 State 304
@@ -5080,7 +5078,7 @@ State 304
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 341
+    arg  go to state 342
 
 
 State 305
@@ -5123,7 +5121,7 @@ State 305
     term         go to state 120
     conjunction  go to state 121
     disjunction  go to state 122
-    body         go to state 342
+    body         go to state 343
 
 
 State 306
@@ -5161,7 +5159,7 @@ State 307
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 343
+    arg  go to state 344
 
 
 State 308
@@ -5204,7 +5202,7 @@ State 308
     term         go to state 120
     conjunction  go to state 121
     disjunction  go to state 122
-    body         go to state 344
+    body         go to state 345
 
 
 State 309
@@ -5218,7 +5216,7 @@ State 310
 
   114 arg: "count aggregator" ":" "{" body . "}"
 
-    "}"  shift, and go to state 345
+    "}"  shift, and go to state 346
 
 
 State 311
@@ -5261,7 +5259,7 @@ State 311
     term         go to state 120
     conjunction  go to state 121
     disjunction  go to state 122
-    body         go to state 346
+    body         go to state 347
 
 
 State 312
@@ -5361,8 +5359,8 @@ State 318
   123 functor_list: "(" functor_args . ")"
   125 functor_args: functor_args . "," arg
 
-    ")"  shift, and go to state 347
-    ","  shift, and go to state 348
+    ")"  shift, and go to state 348
+    ","  shift, and go to state 349
 
 
 State 319
@@ -5393,7 +5391,7 @@ State 319
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 349
+    arg  go to state 350
 
 
 State 320
@@ -5424,7 +5422,7 @@ State 320
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 350
+    arg  go to state 351
 
 
 State 321
@@ -5439,8 +5437,8 @@ State 322
   154 exec_order_list: exec_order_list . "," "number"
   155 exec_order: "(" exec_order_list . ")"
 
-    ")"  shift, and go to state 351
-    ","  shift, and go to state 352
+    ")"  shift, and go to state 352
+    ","  shift, and go to state 353
 
 
 State 323
@@ -5449,7 +5447,7 @@ State 323
 
     "("  shift, and go to state 273
 
-    exec_order  go to state 353
+    exec_order  go to state 354
 
 
 State 324
@@ -5514,37 +5512,44 @@ State 332
 
     "identifier"  shift, and go to state 144
 
-    type_id  go to state 354
+    type_id  go to state 355
 
 
 State 333
 
-   59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" . ":" arg "{" lattice_def_type "}"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" . "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
 
-    ":"  shift, and go to state 355
+    ","  shift, and go to state 356
 
 
 State 334
+
+   59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" . ":" arg "{" lattice_def_type "}"
+
+    ":"  shift, and go to state 357
+
+
+State 335
 
    48 functor_decl: "functor declaration" "identifier" "(" functor_typeargs ")" ":" functor_type .
 
     $default  reduce using rule 48 (functor_decl)
 
 
-State 335
+State 336
 
    64 non_empty_key_value_pairs: key_value_pairs "," "identifier" "=" . "symbol"
    66                          | key_value_pairs "," "identifier" "=" . "identifier"
    68                          | key_value_pairs "," "identifier" "=" . "true literal constraint"
    70                          | key_value_pairs "," "identifier" "=" . "false literal constraint"
 
-    "symbol"                    shift, and go to state 356
-    "identifier"                shift, and go to state 357
-    "true literal constraint"   shift, and go to state 358
-    "false literal constraint"  shift, and go to state 359
+    "symbol"                    shift, and go to state 358
+    "identifier"                shift, and go to state 359
+    "true literal constraint"   shift, and go to state 360
+    "false literal constraint"  shift, and go to state 361
 
 
-State 336
+State 337
 
    19 type_id: type_id . "." "identifier"
    27 recordtype: "identifier" ":" type_id .
@@ -5554,21 +5559,21 @@ State 336
     $default  reduce using rule 27 (recordtype)
 
 
-State 337
+State 338
 
    28 recordtype: recordtype "," "identifier" . ":" type_id
 
-    ":"  shift, and go to state 360
-
-
-State 338
-
-   32 enumtype: enumtype "," "case" . "identifier"
-
-    "identifier"  shift, and go to state 361
+    ":"  shift, and go to state 362
 
 
 State 339
+
+   32 enumtype: enumtype "," "case" . "identifier"
+
+    "identifier"  shift, and go to state 363
+
+
+State 340
 
    87 arg: arg . "bor" arg
    88    | arg . "bxor" arg
@@ -5587,38 +5592,7 @@ State 339
     "type cast"  shift, and go to state 173
     "+"          shift, and go to state 174
     "-"          shift, and go to state 175
-    ")"          shift, and go to state 362
-    "*"          shift, and go to state 176
-    "/"          shift, and go to state 177
-    "^"          shift, and go to state 178
-    "%"          shift, and go to state 179
-    "band"       shift, and go to state 180
-    "bor"        shift, and go to state 181
-    "bxor"       shift, and go to state 182
-    "land"       shift, and go to state 183
-    "lor"        shift, and go to state 184
-
-
-State 340
-
-   87 arg: arg . "bor" arg
-   88    | arg . "bxor" arg
-   89    | arg . "band" arg
-   90    | arg . "lor" arg
-   91    | arg . "land" arg
-   92    | arg . "+" arg
-   93    | arg . "-" arg
-   94    | arg . "*" arg
-   95    | arg . "/" arg
-   96    | arg . "%" arg
-   97    | arg . "^" arg
-  105    | "sub-string of a string" "(" arg "," arg . "," arg ")"
-  106    | arg . "type cast" "identifier"
-
-    "type cast"  shift, and go to state 173
-    "+"          shift, and go to state 174
-    "-"          shift, and go to state 175
-    ","          shift, and go to state 363
+    ")"          shift, and go to state 364
     "*"          shift, and go to state 176
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
@@ -5643,13 +5617,13 @@ State 341
    95    | arg . "/" arg
    96    | arg . "%" arg
    97    | arg . "^" arg
-   99    | "min aggregator" "(" arg "," arg . ")"
+  105    | "sub-string of a string" "(" arg "," arg . "," arg ")"
   106    | arg . "type cast" "identifier"
 
     "type cast"  shift, and go to state 173
     "+"          shift, and go to state 174
     "-"          shift, and go to state 175
-    ")"          shift, and go to state 364
+    ","          shift, and go to state 365
     "*"          shift, and go to state 176
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
@@ -5663,12 +5637,43 @@ State 341
 
 State 342
 
-  118 arg: "min aggregator" arg ":" "{" body . "}"
+   87 arg: arg . "bor" arg
+   88    | arg . "bxor" arg
+   89    | arg . "band" arg
+   90    | arg . "lor" arg
+   91    | arg . "land" arg
+   92    | arg . "+" arg
+   93    | arg . "-" arg
+   94    | arg . "*" arg
+   95    | arg . "/" arg
+   96    | arg . "%" arg
+   97    | arg . "^" arg
+   99    | "min aggregator" "(" arg "," arg . ")"
+  106    | arg . "type cast" "identifier"
 
-    "}"  shift, and go to state 365
+    "type cast"  shift, and go to state 173
+    "+"          shift, and go to state 174
+    "-"          shift, and go to state 175
+    ")"          shift, and go to state 366
+    "*"          shift, and go to state 176
+    "/"          shift, and go to state 177
+    "^"          shift, and go to state 178
+    "%"          shift, and go to state 179
+    "band"       shift, and go to state 180
+    "bor"        shift, and go to state 181
+    "bxor"       shift, and go to state 182
+    "land"       shift, and go to state 183
+    "lor"        shift, and go to state 184
 
 
 State 343
+
+  118 arg: "min aggregator" arg ":" "{" body . "}"
+
+    "}"  shift, and go to state 367
+
+
+State 344
 
    87 arg: arg . "bor" arg
    88    | arg . "bxor" arg
@@ -5687,7 +5692,7 @@ State 343
     "type cast"  shift, and go to state 173
     "+"          shift, and go to state 174
     "-"          shift, and go to state 175
-    ")"          shift, and go to state 366
+    ")"          shift, and go to state 368
     "*"          shift, and go to state 176
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
@@ -5699,35 +5704,35 @@ State 343
     "lor"        shift, and go to state 184
 
 
-State 344
+State 345
 
   120 arg: "max aggregator" arg ":" "{" body . "}"
 
-    "}"  shift, and go to state 367
+    "}"  shift, and go to state 369
 
 
-State 345
+State 346
 
   114 arg: "count aggregator" ":" "{" body "}" .
 
     $default  reduce using rule 114 (arg)
 
 
-State 346
+State 347
 
   116 arg: "sum aggregator" arg ":" "{" body . "}"
 
-    "}"  shift, and go to state 368
+    "}"  shift, and go to state 370
 
 
-State 347
+State 348
 
   123 functor_list: "(" functor_args ")" .
 
     $default  reduce using rule 123 (functor_list)
 
 
-State 348
+State 349
 
   125 functor_args: functor_args "," . arg
 
@@ -5755,10 +5760,10 @@ State 348
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 369
+    arg  go to state 371
 
 
-State 349
+State 350
 
    87 arg: arg . "bor" arg
    88    | arg . "bxor" arg
@@ -5777,7 +5782,7 @@ State 349
     "type cast"  shift, and go to state 173
     "+"          shift, and go to state 174
     "-"          shift, and go to state 175
-    ")"          shift, and go to state 370
+    ")"          shift, and go to state 372
     "*"          shift, and go to state 176
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
@@ -5789,7 +5794,7 @@ State 349
     "lor"        shift, and go to state 184
 
 
-State 350
+State 351
 
    87 arg: arg . "bor" arg
    88    | arg . "bxor" arg
@@ -5808,7 +5813,7 @@ State 350
     "type cast"  shift, and go to state 173
     "+"          shift, and go to state 174
     "-"          shift, and go to state 175
-    ")"          shift, and go to state 371
+    ")"          shift, and go to state 373
     "*"          shift, and go to state 176
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
@@ -5820,28 +5825,28 @@ State 350
     "lor"        shift, and go to state 184
 
 
-State 351
+State 352
 
   155 exec_order: "(" exec_order_list ")" .
 
     $default  reduce using rule 155 (exec_order)
 
 
-State 352
+State 353
 
   154 exec_order_list: exec_order_list "," . "number"
 
-    "number"  shift, and go to state 372
+    "number"  shift, and go to state 374
 
 
-State 353
+State 354
 
   157 exec_plan_list: exec_plan_list "," "number" ":" exec_order .
 
     $default  reduce using rule 157 (exec_plan_list)
 
 
-State 354
+State 355
 
    19 type_id: type_id . "." "identifier"
    36 non_empty_attributes: attributes "," "identifier" ":" type_id .
@@ -5851,7 +5856,14 @@ State 354
     $default  reduce using rule 36 (non_empty_attributes)
 
 
-State 355
+State 356
+
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," . "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+
+    "identifier"  shift, and go to state 375
+
+
+State 357
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" ":" . arg "{" lattice_def_type "}"
 
@@ -5879,61 +5891,61 @@ State 355
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 373
+    arg  go to state 376
 
 
-State 356
+State 358
 
    64 non_empty_key_value_pairs: key_value_pairs "," "identifier" "=" "symbol" .
 
     $default  reduce using rule 64 (non_empty_key_value_pairs)
 
 
-State 357
+State 359
 
    66 non_empty_key_value_pairs: key_value_pairs "," "identifier" "=" "identifier" .
 
     $default  reduce using rule 66 (non_empty_key_value_pairs)
 
 
-State 358
+State 360
 
    68 non_empty_key_value_pairs: key_value_pairs "," "identifier" "=" "true literal constraint" .
 
     $default  reduce using rule 68 (non_empty_key_value_pairs)
 
 
-State 359
+State 361
 
    70 non_empty_key_value_pairs: key_value_pairs "," "identifier" "=" "false literal constraint" .
 
     $default  reduce using rule 70 (non_empty_key_value_pairs)
 
 
-State 360
+State 362
 
    28 recordtype: recordtype "," "identifier" ":" . type_id
 
     "identifier"  shift, and go to state 144
 
-    type_id  go to state 374
+    type_id  go to state 377
 
 
-State 361
+State 363
 
    32 enumtype: enumtype "," "case" "identifier" .
 
     $default  reduce using rule 32 (enumtype)
 
 
-State 362
+State 364
 
   100 arg: "concatenation of two strings" "(" arg "," arg ")" .
 
     $default  reduce using rule 100 (arg)
 
 
-State 363
+State 365
 
   105 arg: "sub-string of a string" "(" arg "," arg "," . arg ")"
 
@@ -5961,45 +5973,45 @@ State 363
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 375
+    arg  go to state 378
 
 
-State 364
+State 366
 
    99 arg: "min aggregator" "(" arg "," arg ")" .
 
     $default  reduce using rule 99 (arg)
 
 
-State 365
+State 367
 
   118 arg: "min aggregator" arg ":" "{" body "}" .
 
     $default  reduce using rule 118 (arg)
 
 
-State 366
+State 368
 
    98 arg: "max aggregator" "(" arg "," arg ")" .
 
     $default  reduce using rule 98 (arg)
 
 
-State 367
+State 369
 
   120 arg: "max aggregator" arg ":" "{" body "}" .
 
     $default  reduce using rule 120 (arg)
 
 
-State 368
+State 370
 
   116 arg: "sum aggregator" arg ":" "{" body "}" .
 
     $default  reduce using rule 116 (arg)
 
 
-State 369
+State 371
 
    87 arg: arg . "bor" arg
    88    | arg . "bxor" arg
@@ -6031,28 +6043,35 @@ State 369
     $default  reduce using rule 125 (functor_args)
 
 
-State 370
+State 372
 
   138 literal: "match predicate" "(" arg "," arg ")" .
 
     $default  reduce using rule 138 (literal)
 
 
-State 371
+State 373
 
   139 literal: "checks whether substring is contained in a string" "(" arg "," arg ")" .
 
     $default  reduce using rule 139 (literal)
 
 
-State 372
+State 374
 
   154 exec_order_list: exec_order_list "," "number" .
 
     $default  reduce using rule 154 (exec_order_list)
 
 
-State 373
+State 375
+
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" . "," "identifier" "," "identifier" "," "identifier" ")"
+
+    ","  shift, and go to state 379
+
+
+State 376
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" ":" arg . "{" lattice_def_type "}"
    87 arg: arg . "bor" arg
@@ -6075,7 +6094,7 @@ State 373
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
     "%"          shift, and go to state 179
-    "{"          shift, and go to state 376
+    "{"          shift, and go to state 380
     "band"       shift, and go to state 180
     "bor"        shift, and go to state 181
     "bxor"       shift, and go to state 182
@@ -6083,7 +6102,7 @@ State 373
     "lor"        shift, and go to state 184
 
 
-State 374
+State 377
 
    19 type_id: type_id . "." "identifier"
    28 recordtype: recordtype "," "identifier" ":" type_id .
@@ -6093,7 +6112,7 @@ State 374
     $default  reduce using rule 28 (recordtype)
 
 
-State 375
+State 378
 
    87 arg: arg . "bor" arg
    88    | arg . "bxor" arg
@@ -6112,7 +6131,7 @@ State 375
     "type cast"  shift, and go to state 173
     "+"          shift, and go to state 174
     "-"          shift, and go to state 175
-    ")"          shift, and go to state 377
+    ")"          shift, and go to state 381
     "*"          shift, and go to state 176
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
@@ -6124,166 +6143,63 @@ State 375
     "lor"        shift, and go to state 184
 
 
-State 376
+State 379
+
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," . "identifier" "," "identifier" "," "identifier" ")"
+
+    "identifier"  shift, and go to state 382
+
+
+State 380
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" ":" arg "{" . lattice_def_type "}"
 
-    "case"  shift, and go to state 378
+    "case"  shift, and go to state 383
 
-    lattice_def_type  go to state 379
+    lattice_def_type  go to state 384
 
 
-State 377
+State 381
 
   105 arg: "sub-string of a string" "(" arg "," arg "," arg ")" .
 
     $default  reduce using rule 105 (arg)
 
 
-State 378
+State 382
+
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" . "," "identifier" "," "identifier" ")"
+
+    ","  shift, and go to state 385
+
+
+State 383
 
    60 lattice_def_type: "case" . "(" arg "," arg ")" "=>" arg
 
-    "("  shift, and go to state 380
+    "("  shift, and go to state 386
 
 
-State 379
+State 384
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" ":" arg "{" lattice_def_type . "}"
    61 lattice_def_type: lattice_def_type . "," "case" "(" arg "," arg ")" "=>" arg
    62                 | lattice_def_type . "," "case" "_" "=>" arg
 
-    ","  shift, and go to state 381
-    "}"  shift, and go to state 382
-
-
-State 380
-
-   60 lattice_def_type: "case" "(" . arg "," arg ")" "=>" arg
-
-    "reserved keyword"              shift, and go to state 83
-    "symbol"                        shift, and go to state 84
-    "identifier"                    shift, and go to state 85
-    "number"                        shift, and go to state 86
-    "concatenation of two strings"  shift, and go to state 87
-    "ordinal number of a string"    shift, and go to state 88
-    "length of a string"            shift, and go to state 89
-    "sub-string of a string"        shift, and go to state 90
-    "min aggregator"                shift, and go to state 91
-    "max aggregator"                shift, and go to state 92
-    "count aggregator"              shift, and go to state 93
-    "sum aggregator"                shift, and go to state 94
-    "convert string to number"      shift, and go to state 95
-    "convert number to string"      shift, and go to state 96
-    "nil reference"                 shift, and go to state 97
-    "["                             shift, and go to state 98
-    "_"                             shift, and go to state 99
-    "$"                             shift, and go to state 100
-    "-"                             shift, and go to state 101
-    "("                             shift, and go to state 102
-    "@"                             shift, and go to state 103
-    "bnot"                          shift, and go to state 104
-    "lnot"                          shift, and go to state 105
-
-    arg  go to state 383
-
-
-State 381
-
-   61 lattice_def_type: lattice_def_type "," . "case" "(" arg "," arg ")" "=>" arg
-   62                 | lattice_def_type "," . "case" "_" "=>" arg
-
-    "case"  shift, and go to state 384
-
-
-State 382
-
-   59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" ":" arg "{" lattice_def_type "}" .
-
-    $default  reduce using rule 59 (lattice_def)
-
-
-State 383
-
-   60 lattice_def_type: "case" "(" arg . "," arg ")" "=>" arg
-   87 arg: arg . "bor" arg
-   88    | arg . "bxor" arg
-   89    | arg . "band" arg
-   90    | arg . "lor" arg
-   91    | arg . "land" arg
-   92    | arg . "+" arg
-   93    | arg . "-" arg
-   94    | arg . "*" arg
-   95    | arg . "/" arg
-   96    | arg . "%" arg
-   97    | arg . "^" arg
-  106    | arg . "type cast" "identifier"
-
-    "type cast"  shift, and go to state 173
-    "+"          shift, and go to state 174
-    "-"          shift, and go to state 175
-    ","          shift, and go to state 385
-    "*"          shift, and go to state 176
-    "/"          shift, and go to state 177
-    "^"          shift, and go to state 178
-    "%"          shift, and go to state 179
-    "band"       shift, and go to state 180
-    "bor"        shift, and go to state 181
-    "bxor"       shift, and go to state 182
-    "land"       shift, and go to state 183
-    "lor"        shift, and go to state 184
-
-
-State 384
-
-   61 lattice_def_type: lattice_def_type "," "case" . "(" arg "," arg ")" "=>" arg
-   62                 | lattice_def_type "," "case" . "_" "=>" arg
-
-    "_"  shift, and go to state 386
-    "("  shift, and go to state 387
+    ","  shift, and go to state 387
+    "}"  shift, and go to state 388
 
 
 State 385
 
-   60 lattice_def_type: "case" "(" arg "," . arg ")" "=>" arg
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," . "identifier" "," "identifier" ")"
 
-    "reserved keyword"              shift, and go to state 83
-    "symbol"                        shift, and go to state 84
-    "identifier"                    shift, and go to state 85
-    "number"                        shift, and go to state 86
-    "concatenation of two strings"  shift, and go to state 87
-    "ordinal number of a string"    shift, and go to state 88
-    "length of a string"            shift, and go to state 89
-    "sub-string of a string"        shift, and go to state 90
-    "min aggregator"                shift, and go to state 91
-    "max aggregator"                shift, and go to state 92
-    "count aggregator"              shift, and go to state 93
-    "sum aggregator"                shift, and go to state 94
-    "convert string to number"      shift, and go to state 95
-    "convert number to string"      shift, and go to state 96
-    "nil reference"                 shift, and go to state 97
-    "["                             shift, and go to state 98
-    "_"                             shift, and go to state 99
-    "$"                             shift, and go to state 100
-    "-"                             shift, and go to state 101
-    "("                             shift, and go to state 102
-    "@"                             shift, and go to state 103
-    "bnot"                          shift, and go to state 104
-    "lnot"                          shift, and go to state 105
-
-    arg  go to state 388
+    "identifier"  shift, and go to state 389
 
 
 State 386
 
-   62 lattice_def_type: lattice_def_type "," "case" "_" . "=>" arg
-
-    "=>"  shift, and go to state 389
-
-
-State 387
-
-   61 lattice_def_type: lattice_def_type "," "case" "(" . arg "," arg ")" "=>" arg
+   60 lattice_def_type: "case" "(" . arg "," arg ")" "=>" arg
 
     "reserved keyword"              shift, and go to state 83
     "symbol"                        shift, and go to state 84
@@ -6312,71 +6228,31 @@ State 387
     arg  go to state 390
 
 
+State 387
+
+   61 lattice_def_type: lattice_def_type "," . "case" "(" arg "," arg ")" "=>" arg
+   62                 | lattice_def_type "," . "case" "_" "=>" arg
+
+    "case"  shift, and go to state 391
+
+
 State 388
 
-   60 lattice_def_type: "case" "(" arg "," arg . ")" "=>" arg
-   87 arg: arg . "bor" arg
-   88    | arg . "bxor" arg
-   89    | arg . "band" arg
-   90    | arg . "lor" arg
-   91    | arg . "land" arg
-   92    | arg . "+" arg
-   93    | arg . "-" arg
-   94    | arg . "*" arg
-   95    | arg . "/" arg
-   96    | arg . "%" arg
-   97    | arg . "^" arg
-  106    | arg . "type cast" "identifier"
+   59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" ":" arg "{" lattice_def_type "}" .
 
-    "type cast"  shift, and go to state 173
-    "+"          shift, and go to state 174
-    "-"          shift, and go to state 175
-    ")"          shift, and go to state 391
-    "*"          shift, and go to state 176
-    "/"          shift, and go to state 177
-    "^"          shift, and go to state 178
-    "%"          shift, and go to state 179
-    "band"       shift, and go to state 180
-    "bor"        shift, and go to state 181
-    "bxor"       shift, and go to state 182
-    "land"       shift, and go to state 183
-    "lor"        shift, and go to state 184
+    $default  reduce using rule 59 (lattice_def)
 
 
 State 389
 
-   62 lattice_def_type: lattice_def_type "," "case" "_" "=>" . arg
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" . "," "identifier" ")"
 
-    "reserved keyword"              shift, and go to state 83
-    "symbol"                        shift, and go to state 84
-    "identifier"                    shift, and go to state 85
-    "number"                        shift, and go to state 86
-    "concatenation of two strings"  shift, and go to state 87
-    "ordinal number of a string"    shift, and go to state 88
-    "length of a string"            shift, and go to state 89
-    "sub-string of a string"        shift, and go to state 90
-    "min aggregator"                shift, and go to state 91
-    "max aggregator"                shift, and go to state 92
-    "count aggregator"              shift, and go to state 93
-    "sum aggregator"                shift, and go to state 94
-    "convert string to number"      shift, and go to state 95
-    "convert number to string"      shift, and go to state 96
-    "nil reference"                 shift, and go to state 97
-    "["                             shift, and go to state 98
-    "_"                             shift, and go to state 99
-    "$"                             shift, and go to state 100
-    "-"                             shift, and go to state 101
-    "("                             shift, and go to state 102
-    "@"                             shift, and go to state 103
-    "bnot"                          shift, and go to state 104
-    "lnot"                          shift, and go to state 105
-
-    arg  go to state 392
+    ","  shift, and go to state 392
 
 
 State 390
 
-   61 lattice_def_type: lattice_def_type "," "case" "(" arg . "," arg ")" "=>" arg
+   60 lattice_def_type: "case" "(" arg . "," arg ")" "=>" arg
    87 arg: arg . "bor" arg
    88    | arg . "bxor" arg
    89    | arg . "band" arg
@@ -6407,12 +6283,204 @@ State 390
 
 State 391
 
-   60 lattice_def_type: "case" "(" arg "," arg ")" . "=>" arg
+   61 lattice_def_type: lattice_def_type "," "case" . "(" arg "," arg ")" "=>" arg
+   62                 | lattice_def_type "," "case" . "_" "=>" arg
 
-    "=>"  shift, and go to state 394
+    "_"  shift, and go to state 394
+    "("  shift, and go to state 395
 
 
 State 392
+
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," . "identifier" ")"
+
+    "identifier"  shift, and go to state 396
+
+
+State 393
+
+   60 lattice_def_type: "case" "(" arg "," . arg ")" "=>" arg
+
+    "reserved keyword"              shift, and go to state 83
+    "symbol"                        shift, and go to state 84
+    "identifier"                    shift, and go to state 85
+    "number"                        shift, and go to state 86
+    "concatenation of two strings"  shift, and go to state 87
+    "ordinal number of a string"    shift, and go to state 88
+    "length of a string"            shift, and go to state 89
+    "sub-string of a string"        shift, and go to state 90
+    "min aggregator"                shift, and go to state 91
+    "max aggregator"                shift, and go to state 92
+    "count aggregator"              shift, and go to state 93
+    "sum aggregator"                shift, and go to state 94
+    "convert string to number"      shift, and go to state 95
+    "convert number to string"      shift, and go to state 96
+    "nil reference"                 shift, and go to state 97
+    "["                             shift, and go to state 98
+    "_"                             shift, and go to state 99
+    "$"                             shift, and go to state 100
+    "-"                             shift, and go to state 101
+    "("                             shift, and go to state 102
+    "@"                             shift, and go to state 103
+    "bnot"                          shift, and go to state 104
+    "lnot"                          shift, and go to state 105
+
+    arg  go to state 397
+
+
+State 394
+
+   62 lattice_def_type: lattice_def_type "," "case" "_" . "=>" arg
+
+    "=>"  shift, and go to state 398
+
+
+State 395
+
+   61 lattice_def_type: lattice_def_type "," "case" "(" . arg "," arg ")" "=>" arg
+
+    "reserved keyword"              shift, and go to state 83
+    "symbol"                        shift, and go to state 84
+    "identifier"                    shift, and go to state 85
+    "number"                        shift, and go to state 86
+    "concatenation of two strings"  shift, and go to state 87
+    "ordinal number of a string"    shift, and go to state 88
+    "length of a string"            shift, and go to state 89
+    "sub-string of a string"        shift, and go to state 90
+    "min aggregator"                shift, and go to state 91
+    "max aggregator"                shift, and go to state 92
+    "count aggregator"              shift, and go to state 93
+    "sum aggregator"                shift, and go to state 94
+    "convert string to number"      shift, and go to state 95
+    "convert number to string"      shift, and go to state 96
+    "nil reference"                 shift, and go to state 97
+    "["                             shift, and go to state 98
+    "_"                             shift, and go to state 99
+    "$"                             shift, and go to state 100
+    "-"                             shift, and go to state 101
+    "("                             shift, and go to state 102
+    "@"                             shift, and go to state 103
+    "bnot"                          shift, and go to state 104
+    "lnot"                          shift, and go to state 105
+
+    arg  go to state 399
+
+
+State 396
+
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" . ")"
+
+    ")"  shift, and go to state 400
+
+
+State 397
+
+   60 lattice_def_type: "case" "(" arg "," arg . ")" "=>" arg
+   87 arg: arg . "bor" arg
+   88    | arg . "bxor" arg
+   89    | arg . "band" arg
+   90    | arg . "lor" arg
+   91    | arg . "land" arg
+   92    | arg . "+" arg
+   93    | arg . "-" arg
+   94    | arg . "*" arg
+   95    | arg . "/" arg
+   96    | arg . "%" arg
+   97    | arg . "^" arg
+  106    | arg . "type cast" "identifier"
+
+    "type cast"  shift, and go to state 173
+    "+"          shift, and go to state 174
+    "-"          shift, and go to state 175
+    ")"          shift, and go to state 401
+    "*"          shift, and go to state 176
+    "/"          shift, and go to state 177
+    "^"          shift, and go to state 178
+    "%"          shift, and go to state 179
+    "band"       shift, and go to state 180
+    "bor"        shift, and go to state 181
+    "bxor"       shift, and go to state 182
+    "land"       shift, and go to state 183
+    "lor"        shift, and go to state 184
+
+
+State 398
+
+   62 lattice_def_type: lattice_def_type "," "case" "_" "=>" . arg
+
+    "reserved keyword"              shift, and go to state 83
+    "symbol"                        shift, and go to state 84
+    "identifier"                    shift, and go to state 85
+    "number"                        shift, and go to state 86
+    "concatenation of two strings"  shift, and go to state 87
+    "ordinal number of a string"    shift, and go to state 88
+    "length of a string"            shift, and go to state 89
+    "sub-string of a string"        shift, and go to state 90
+    "min aggregator"                shift, and go to state 91
+    "max aggregator"                shift, and go to state 92
+    "count aggregator"              shift, and go to state 93
+    "sum aggregator"                shift, and go to state 94
+    "convert string to number"      shift, and go to state 95
+    "convert number to string"      shift, and go to state 96
+    "nil reference"                 shift, and go to state 97
+    "["                             shift, and go to state 98
+    "_"                             shift, and go to state 99
+    "$"                             shift, and go to state 100
+    "-"                             shift, and go to state 101
+    "("                             shift, and go to state 102
+    "@"                             shift, and go to state 103
+    "bnot"                          shift, and go to state 104
+    "lnot"                          shift, and go to state 105
+
+    arg  go to state 402
+
+
+State 399
+
+   61 lattice_def_type: lattice_def_type "," "case" "(" arg . "," arg ")" "=>" arg
+   87 arg: arg . "bor" arg
+   88    | arg . "bxor" arg
+   89    | arg . "band" arg
+   90    | arg . "lor" arg
+   91    | arg . "land" arg
+   92    | arg . "+" arg
+   93    | arg . "-" arg
+   94    | arg . "*" arg
+   95    | arg . "/" arg
+   96    | arg . "%" arg
+   97    | arg . "^" arg
+  106    | arg . "type cast" "identifier"
+
+    "type cast"  shift, and go to state 173
+    "+"          shift, and go to state 174
+    "-"          shift, and go to state 175
+    ","          shift, and go to state 403
+    "*"          shift, and go to state 176
+    "/"          shift, and go to state 177
+    "^"          shift, and go to state 178
+    "%"          shift, and go to state 179
+    "band"       shift, and go to state 180
+    "bor"        shift, and go to state 181
+    "bxor"       shift, and go to state 182
+    "land"       shift, and go to state 183
+    "lor"        shift, and go to state 184
+
+
+State 400
+
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")" .
+
+    $default  reduce using rule 58 (lattice_asscoiation)
+
+
+State 401
+
+   60 lattice_def_type: "case" "(" arg "," arg ")" . "=>" arg
+
+    "=>"  shift, and go to state 404
+
+
+State 402
 
    62 lattice_def_type: lattice_def_type "," "case" "_" "=>" arg .
    87 arg: arg . "bor" arg
@@ -6444,7 +6512,7 @@ State 392
     $default  reduce using rule 62 (lattice_def_type)
 
 
-State 393
+State 403
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," . arg ")" "=>" arg
 
@@ -6472,10 +6540,10 @@ State 393
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 395
+    arg  go to state 405
 
 
-State 394
+State 404
 
    60 lattice_def_type: "case" "(" arg "," arg ")" "=>" . arg
 
@@ -6503,10 +6571,10 @@ State 394
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 396
+    arg  go to state 406
 
 
-State 395
+State 405
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," arg . ")" "=>" arg
    87 arg: arg . "bor" arg
@@ -6525,7 +6593,7 @@ State 395
     "type cast"  shift, and go to state 173
     "+"          shift, and go to state 174
     "-"          shift, and go to state 175
-    ")"          shift, and go to state 397
+    ")"          shift, and go to state 407
     "*"          shift, and go to state 176
     "/"          shift, and go to state 177
     "^"          shift, and go to state 178
@@ -6537,7 +6605,7 @@ State 395
     "lor"        shift, and go to state 184
 
 
-State 396
+State 406
 
    60 lattice_def_type: "case" "(" arg "," arg ")" "=>" arg .
    87 arg: arg . "bor" arg
@@ -6569,14 +6637,14 @@ State 396
     $default  reduce using rule 60 (lattice_def_type)
 
 
-State 397
+State 407
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," arg ")" . "=>" arg
 
-    "=>"  shift, and go to state 398
+    "=>"  shift, and go to state 408
 
 
-State 398
+State 408
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," arg ")" "=>" . arg
 
@@ -6604,10 +6672,10 @@ State 398
     "bnot"                          shift, and go to state 104
     "lnot"                          shift, and go to state 105
 
-    arg  go to state 399
+    arg  go to state 409
 
 
-State 399
+State 409
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," arg ")" "=>" arg .
    87 arg: arg . "bor" arg

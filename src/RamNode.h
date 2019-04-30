@@ -34,6 +34,7 @@ enum RamNodeType {
 
     // Values
     RN_ElementAccess,
+	RN_LatticeGLB,
     RN_Number,
     RN_IntrinsicOperator,
     RN_UserDefinedOperator,

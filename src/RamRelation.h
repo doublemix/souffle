@@ -38,127 +38,136 @@ namespace souffle {
  */
 class RamRelation : public RamNode {
 protected:
-    /** Name of relation */
-    const std::string name;
+	/** Name of relation */
+	const std::string name;
 
-    /** Arity, i.e., number of attributes */
-    const size_t arity;
+	/** Arity, i.e., number of attributes */
+	const size_t arity;
 
-    /** Name of attributes */
-    const std::vector<std::string> attributeNames;
+	/** Name of attributes */
+	const std::vector<std::string> attributeNames;
 
-    /** Type of attributes */
-    const std::vector<std::string> attributeTypeQualifiers;
+	/** Type of attributes */
+	const std::vector<std::string> attributeTypeQualifiers;
 
-    /** TODO (#541): legacy, i.e., duplicated information */
-    const SymbolMask mask;
+	/** TODO (#541): legacy, i.e., duplicated information */
+	const SymbolMask mask;
 
-    const RelationRepresentation representation;
+	const RelationRepresentation representation;
+
+	/** If the relation is a lattice relation **/
+	bool LatticeFlag;
 
 public:
-    RamRelation(const std::string name, const size_t arity, const std::vector<std::string> attributeNames,
-            const std::vector<std::string> attributeTypeQualifiers, const SymbolMask mask,
-            const RelationRepresentation representation)
-            : RamNode(RN_Relation), name(std::move(name)), arity(arity),
-              attributeNames(std::move(attributeNames)),
-              attributeTypeQualifiers(std::move(attributeTypeQualifiers)), mask(std::move(mask)),
-              representation(representation) {
-        assert(this->attributeNames.size() == arity || this->attributeNames.empty());
-        assert(this->attributeTypeQualifiers.size() == arity || this->attributeTypeQualifiers.empty());
-    }
+	RamRelation(const std::string name, const size_t arity, const std::vector<std::string> attributeNames,
+			const std::vector<std::string> attributeTypeQualifiers, const SymbolMask mask,
+			const RelationRepresentation representation, const bool latticeFlag = false)
+: RamNode(RN_Relation), name(std::move(name)), arity(arity),
+  attributeNames(std::move(attributeNames)),
+  attributeTypeQualifiers(std::move(attributeTypeQualifiers)), mask(std::move(mask)),
+  representation(representation), LatticeFlag(latticeFlag) {
+		assert(this->attributeNames.size() == arity || this->attributeNames.empty());
+		assert(this->attributeTypeQualifiers.size() == arity || this->attributeTypeQualifiers.empty());
+	}
 
-    /** Get name */
-    const std::string& getName() const {
-        return name;
-    }
+	/** Get name */
+	const std::string& getName() const {
+		return name;
+	}
 
-    /** Get argument */
-    const std::string getArg(uint32_t i) const {
-        if (!attributeNames.empty()) {
-            return attributeNames[i];
-        }
-        if (arity == 0) {
-            return "";
-        }
-        return "c" + std::to_string(i);
-    }
+	/** Get argument */
+	const std::string getArg(uint32_t i) const {
+		if (!attributeNames.empty()) {
+			return attributeNames[i];
+		}
+		if (arity == 0) {
+			return "";
+		}
+		return "c" + std::to_string(i);
+	}
 
-    const std::string getArgTypeQualifier(uint32_t i) const {
-        return (i < attributeTypeQualifiers.size()) ? attributeTypeQualifiers[i] : "";
-    }
+	const std::string getArgTypeQualifier(uint32_t i) const {
+		return (i < attributeTypeQualifiers.size()) ? attributeTypeQualifiers[i] : "";
+	}
 
-    /** Get symbol mask */
-    const SymbolMask& getSymbolMask() const {
-        return mask;
-    }
 
-    /** Is nullary relation */
-    const bool isNullary() const {
-        return arity == 0;
-    }
+	/** Get symbol mask */
+	const SymbolMask& getSymbolMask() const {
+		return mask;
+	}
 
-    /** Relation representation type */
-    const RelationRepresentation getRepresentation() const {
-        return representation;
-    }
+	/** Is nullary relation */
+	const bool isNullary() const {
+		return arity == 0;
+	}
 
-    // Flag to check whether the data-structure
-    const bool isCoverable() const {
-        return true;
-    }
+	/** Relation representation type */
+	const RelationRepresentation getRepresentation() const {
+		return representation;
+	}
 
-    /** Is temporary relation (for semi-naive evaluation) */
-    const bool isTemp() const {
-        return name.at(0) == '@';
-    }
+	// Flag to check whether the data-structure
+	const bool isCoverable() const {
+		return true;
+	}
 
-    /* Get arity of relation */
-    unsigned getArity() const {
-        return arity;
-    }
+	/** Is temporary relation (for semi-naive evaluation) */
+	const bool isTemp() const {
+		return name.at(0) == '@';
+	}
 
-    /* Compare two relations via their name */
-    bool operator<(const RamRelation& other) const {
-        return name < other.name;
-    }
+	/* Get arity of relation */
+	unsigned getArity() const {
+		return arity;
+	}
 
-    /* Print */
-    void print(std::ostream& out) const override {
-        out << name << "(";
-        out << getArg(0);
-        for (unsigned i = 1; i < arity; i++) {
-            out << ",";
-            out << getArg(i);
-        }
-        out << ")";
+	/** Return the lattice flag of this relation */
+	const bool isLattice() const {
+		return LatticeFlag;
+	}
 
-        out << " " << representation;
-    }
+	/* Compare two relations via their name */
+	bool operator<(const RamRelation& other) const {
+		return name < other.name;
+	}
 
-    /** Obtain list of child nodes */
-    std::vector<const RamNode*> getChildNodes() const override {
-        return std::vector<const RamNode*>();  // no child nodes
-    }
+	/* Print */
+	void print(std::ostream& out) const override {
+		out << name << "(";
+		out << getArg(0);
+		for (unsigned i = 1; i < arity; i++) {
+			out << ",";
+			out << getArg(i);
+		}
+		out << ")";
 
-    /** Create clone */
-    RamRelation* clone() const override {
-        RamRelation* res =
-                new RamRelation(name, arity, attributeNames, attributeTypeQualifiers, mask, representation);
-        return res;
-    }
+		out << " " << representation;
+	}
 
-    /** Apply mapper */
-    void apply(const RamNodeMapper& map) override {}
+	/** Obtain list of child nodes */
+	std::vector<const RamNode*> getChildNodes() const override {
+		return std::vector<const RamNode*>();  // no child nodes
+	}
+
+	/** Create clone */
+	RamRelation* clone() const override {
+		RamRelation* res =
+				new RamRelation(name, arity, attributeNames, attributeTypeQualifiers, mask, representation, LatticeFlag);
+		return res;
+	}
+
+	/** Apply mapper */
+	void apply(const RamNodeMapper& map) override {}
 
 protected:
-    /** Check equality */
-    bool equal(const RamNode& node) const override {
-        assert(nullptr != dynamic_cast<const RamRelation*>(&node));
-        const auto& other = static_cast<const RamRelation&>(node);
-        return name == other.name && arity == other.arity && attributeNames == other.attributeNames &&
-               attributeTypeQualifiers == other.attributeTypeQualifiers && mask == other.mask &&
-               representation == other.representation && isTemp() == other.isTemp();
-    }
+	/** Check equality */
+	bool equal(const RamNode& node) const override {
+		assert(nullptr != dynamic_cast<const RamRelation*>(&node));
+		const auto& other = static_cast<const RamRelation&>(node);
+		return name == other.name && arity == other.arity && attributeNames == other.attributeNames &&
+				attributeTypeQualifiers == other.attributeTypeQualifiers && mask == other.mask &&
+				representation == other.representation && isTemp() == other.isTemp();
+	}
 };
 
 /**
@@ -166,88 +175,88 @@ protected:
  */
 class RamRelationReference : public RamNode {
 protected:
-    /** Name of relation */
-    const RamRelation* relation;
+	/** Name of relation */
+	const RamRelation* relation;
 
 public:
-    RamRelationReference(const RamRelation* relation) : RamNode(RN_RelationReference), relation(relation) {}
+	RamRelationReference(const RamRelation* relation) : RamNode(RN_RelationReference), relation(relation) {}
 
-    /** Get name */
-    const std::string& getName() const {
-        return relation->getName();
-    }
+	/** Get name */
+	const std::string& getName() const {
+		return relation->getName();
+	}
 
-    /** Get relation */
-    const RamRelation* getRelation() const {
-        return relation;
-    }
+	/** Get relation */
+	const RamRelation* getRelation() const {
+		return relation;
+	}
 
-    /** Get arity */
-    unsigned getArity() const {
-        return relation->getArity();
-    }
+	/** Get arity */
+	unsigned getArity() const {
+		return relation->getArity();
+	}
 
-    /** Is nullary relation */
-    const bool isNullary() const {
-        return relation->isNullary();
-    }
+	/** Is nullary relation */
+	const bool isNullary() const {
+		return relation->isNullary();
+	}
 
-    /** Relation representation type */
-    const RelationRepresentation getRepresentation() const {
-        return relation->getRepresentation();
-    }
+	/** Relation representation type */
+	const RelationRepresentation getRepresentation() const {
+		return relation->getRepresentation();
+	}
 
-    /** Is temp relation */
-    const bool isTemp() const {
-        return relation->isTemp();
-    }
+	/** Is temp relation */
+	const bool isTemp() const {
+		return relation->isTemp();
+	}
 
-    /** Get symbol mask */
-    const SymbolMask& getSymbolMask() const {
-        return relation->getSymbolMask();
-    }
+	/** Get symbol mask */
+	const SymbolMask& getSymbolMask() const {
+		return relation->getSymbolMask();
+	}
 
-    /** Get argument */
-    const std::string getArg(uint32_t i) const {
-        return relation->getArg(i);
-    }
+	/** Get argument */
+	const std::string getArg(uint32_t i) const {
+		return relation->getArg(i);
+	}
 
-    /** Get argument qualifier */
-    const std::string getArgTypeQualifier(uint32_t i) const {
-        return relation->getArgTypeQualifier(i);
-    }
+	/** Get argument qualifier */
+	const std::string getArgTypeQualifier(uint32_t i) const {
+		return relation->getArgTypeQualifier(i);
+	}
 
-    /** Comparator */
-    bool operator<(const RamRelationReference& other) const {
-        return relation->operator<(*other.getRelation());
-    }
+	/** Comparator */
+	bool operator<(const RamRelationReference& other) const {
+		return relation->operator<(*other.getRelation());
+	}
 
-    /* Print */
-    void print(std::ostream& out) const override {
-        out << getName();
-    }
+	/* Print */
+	void print(std::ostream& out) const override {
+		out << getName();
+	}
 
-    /** Obtain list of child nodes */
-    std::vector<const RamNode*> getChildNodes() const override {
-        return std::vector<const RamNode*>();  // no child nodes
-    }
+	/** Obtain list of child nodes */
+	std::vector<const RamNode*> getChildNodes() const override {
+		return std::vector<const RamNode*>();  // no child nodes
+	}
 
-    /** Create clone */
-    RamRelationReference* clone() const override {
-        auto* res = new RamRelationReference(relation);
-        return res;
-    }
+	/** Create clone */
+	RamRelationReference* clone() const override {
+		auto* res = new RamRelationReference(relation);
+		return res;
+	}
 
-    /** Apply mapper */
-    void apply(const RamNodeMapper& map) override {}
+	/** Apply mapper */
+	void apply(const RamNodeMapper& map) override {}
 
 protected:
-    /** Check equality */
-    bool equal(const RamNode& node) const override {
-        assert(nullptr != dynamic_cast<const RamRelationReference*>(&node));
-        const auto& other = static_cast<const RamRelationReference&>(node);
-        return relation == other.relation;
-    }
+	/** Check equality */
+	bool equal(const RamNode& node) const override {
+		assert(nullptr != dynamic_cast<const RamRelationReference*>(&node));
+		const auto& other = static_cast<const RamRelationReference&>(node);
+		return relation == other.relation;
+	}
 };
 
 }  // end of namespace souffle

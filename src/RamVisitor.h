@@ -79,6 +79,7 @@ struct RamVisitor : public ram_visitor_tag {
             FORWARD(RelationReference);
 
             // values
+            FORWARD(LatticeGLB);
             FORWARD(ElementAccess);
             FORWARD(Number);
             FORWARD(IntrinsicOperator);
@@ -206,6 +207,7 @@ protected:
 
     // -- values --
     LINK(Number, Value)
+	LINK(LatticeGLB, Value)
     LINK(ElementAccess, Value)
     LINK(IntrinsicOperator, Value)
     LINK(UserDefinedOperator, Value)

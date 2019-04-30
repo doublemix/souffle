@@ -175,14 +175,14 @@
 %type <AstType *>                        type
 %type <AstComponent *>                   component component_head component_body
 %type <AstComponentType *>               comp_type
-%type <AstComponentInit *>               comp_init
+%type <AstComponentInit *>               comp_init			 
 
-%type <std::string>						 lattice_decl
-
-%type <std::string>						 lattice_connect
+%type <AstLatticeAssociation *>			 lattice_asscoiation
 
 %type <AstLatticeBinaryFunction *>		 lattice_def
 %type <AstLatticeBinaryFunction *>		 lattice_def_type
+
+%type <std::vector<AstRelation *>>		 lattice_decl
 
 %type <AstFunctorDeclaration *>          functor_decl
 %type <std::string>                      functor_type
@@ -243,9 +243,11 @@ unit
     }
   | unit lattice_decl {
     	std::cout << ".lat Lattice declaration here!\n";
+    	for(const auto& cur : $2) driver.addRelation(std::unique_ptr<AstRelation>(cur));
   	}
-  | unit lattice_connect {
-    	std::cout << ".let Lattice connection here!\n";
+  | unit lattice_asscoiation {
+    	std::cout << ".let Lattice Asscoiation here!\n";
+    	driver.addLatticeAssociation(std::unique_ptr<AstLatticeAssociation>($2));
   	}
   | unit lattice_def {
   		std::cout << ".def Lattice binary function definition here!\n";
@@ -493,12 +495,16 @@ relation_body
 
 lattice_decl
   : LAT relation_list {
-    
+    	$$.swap($2);
+    	for (auto* cur : $$) {
+          cur->setLattice();
+      	}
   	}
 
-lattice_connect
-  : LET IDENT LT GT EQUALS functor_list {
-    
+lattice_asscoiation
+  : LET IDENT LT GT EQUALS LPAREN IDENT COMMA IDENT COMMA IDENT COMMA IDENT COMMA IDENT RPAREN {
+    	$$ = new AstLatticeAssociation($2);
+    	$$->setALL($7, $9, $11, $13, $15);
   	}
 
 lattice_def

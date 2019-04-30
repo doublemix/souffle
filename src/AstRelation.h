@@ -88,10 +88,20 @@ public:
         name = n;
     }
 
+    /** Set lattice flag for this relation **/
+    void setLattice() {
+    	LatticeFlag = true;
+    }
+
     /** Add a new used type to this relation */
     void addAttribute(std::unique_ptr<AstAttribute> attr) {
         assert(attr && "Undefined attribute");
         attributes.push_back(std::move(attr));
+    }
+
+    /** Return the lattice flag of this relation */
+    bool isLattice() const {
+    	return LatticeFlag;
     }
 
     /** Return the arity of this relation */
@@ -318,6 +328,9 @@ public:
     }
 
 protected:
+    /** If the relation contains lattice element, it is a lattice relation **/
+    bool LatticeFlag = false;
+
     /** Name of relation */
     AstRelationIdentifier name;
 

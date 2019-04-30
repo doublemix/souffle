@@ -17,7 +17,7 @@
 #include "ParserDriver.h"
 #include "AstClause.h"
 #include "AstComponent.h"
-#include "AstLatticeBinaryFunction.h"
+#include "AstLatticeAssociation.h"
 #include "AstFunctorDeclaration.h"
 #include "AstIO.h"
 #include "AstPragma.h"
@@ -105,13 +105,25 @@ void ParserDriver::addPragma(std::unique_ptr<AstPragma> p) {
 
 void ParserDriver::addLatticeBinaryFunction(std::unique_ptr<AstLatticeBinaryFunction> f) {
 	const std::string& name = f->getName();
-	if (AstLatticeBinaryFunction* prev = translationUnit->getProgram()->getAstLatticeBinaryFunction(name)) {
+	if (AstLatticeBinaryFunction* prev = translationUnit->getProgram()->getLatticeBinaryFunction(name)) {
 		Diagnostic err(Diagnostic::ERROR,
 				DiagnosticMessage("Redefinition of Lattice Binary Function: " + toString(name), f->getSrcLoc()),
 				{DiagnosticMessage("Previous definition", prev->getSrcLoc())});
 		translationUnit->getErrorReport().addDiagnostic(err);
 	} else {
-		translationUnit->getProgram()->addAstLatticeBinaryFunction(std::move(f));
+		translationUnit->getProgram()->addLatticeBinaryFunction(std::move(f));
+	}
+}
+
+void ParserDriver::addLatticeAssociation(std::unique_ptr<AstLatticeAssociation> f) {
+	const auto pt = translationUnit->getProgram()->getLatticeAssociation();
+	if (pt != nullptr) {
+		Diagnostic err(Diagnostic::ERROR,
+				DiagnosticMessage("Dual definition of Lattice Association ", f->getSrcLoc()),
+				{DiagnosticMessage("Previous definition", pt->getSrcLoc())});
+		translationUnit->getErrorReport().addDiagnostic(err);
+	} else {
+		translationUnit->getProgram()->addLatticeAssociation(std::move(f));
 	}
 }
 

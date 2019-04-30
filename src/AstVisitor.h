@@ -70,6 +70,7 @@ struct AstVisitor : public ast_visitor_tag {
     if (const auto* n = dynamic_cast<const Ast##Kind*>(&node)) return visit##Kind(*n, args...);
 
         // types
+    	FORWARD(EnumType);
         FORWARD(PrimitiveType);
         FORWARD(UnionType);
         FORWARD(RecordType);
@@ -125,6 +126,7 @@ protected:
     }
 
     // -- types --
+    LINK(EnumType, Type);
     LINK(PrimitiveType, Type);
     LINK(RecordType, Type);
     LINK(UnionType, Type);

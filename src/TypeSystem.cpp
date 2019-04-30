@@ -313,6 +313,24 @@ std::string getTypeQualifier(const Type& type) {
 			return str;
 		}
 
+		std::string visitEnumType(const EnumType& type) const override {
+			std::string str = visitType(type);
+			str += "{";
+			bool first = true;
+			for (auto Case : type.getCases()) {
+				if (first) {
+					first = false;
+				} else {
+					str += ",";
+				}
+				str += Case.name;
+				str += ":";
+				str += visit(Case.type);
+			}
+			str += "}";
+			return str;
+		}
+
 		std::string visitType(const Type& type) const override {
 			std::string str;
 			if (isNumberType(type)) {
@@ -321,6 +339,8 @@ std::string getTypeQualifier(const Type& type) {
 				str = "s:" + toString(type.getName());
 			} else if (isRecordType(type)) {
 				str = "r:" + toString(type.getName());
+			} else if (isEnumType(type)) {
+				str = "e:" + toString(type.getName());
 			} else {
 				assert(false && "unknown type class");
 			}
@@ -354,6 +374,14 @@ bool isRecordType(const Type& type) {
 
 bool isRecordType(const TypeSet& s) {
 	return !s.empty() && !s.isAll() && all_of(s, (bool (*)(const Type&)) & isRecordType);
+}
+
+bool isEnumType(const Type& type) {
+	return dynamic_cast<const EnumType*>(&type);
+}
+
+bool isEnumType(const TypeSet& s) {
+	return !s.empty() && !s.isAll() && all_of(s, (bool (*)(const Type&)) & isEnumType);
 }
 
 bool isRecursiveType(const Type& type) {

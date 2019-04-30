@@ -380,46 +380,49 @@ namespace yy {
       // iodirective_body
       char dummy12[sizeof(AstIO *)];
 
+      // lattice_asscoiation
+      char dummy13[sizeof(AstLatticeAssociation *)];
+
       // lattice_def
       // lattice_def_type
-      char dummy13[sizeof(AstLatticeBinaryFunction *)];
+      char dummy14[sizeof(AstLatticeBinaryFunction *)];
 
       // pragma
-      char dummy14[sizeof(AstPragma *)];
+      char dummy15[sizeof(AstPragma *)];
 
       // recordlist
-      char dummy15[sizeof(AstRecordInit *)];
+      char dummy16[sizeof(AstRecordInit *)];
 
       // recordtype
-      char dummy16[sizeof(AstRecordType *)];
+      char dummy17[sizeof(AstRecordType *)];
 
       // non_empty_attributes
       // attributes
       // relation_body
-      char dummy17[sizeof(AstRelation *)];
+      char dummy18[sizeof(AstRelation *)];
 
       // rel_id
-      char dummy18[sizeof(AstRelationIdentifier *)];
+      char dummy19[sizeof(AstRelationIdentifier *)];
 
       // type
-      char dummy19[sizeof(AstType *)];
+      char dummy20[sizeof(AstType *)];
 
       // type_id
-      char dummy20[sizeof(AstTypeIdentifier *)];
+      char dummy21[sizeof(AstTypeIdentifier *)];
 
       // uniontype
-      char dummy21[sizeof(AstUnionType *)];
+      char dummy22[sizeof(AstUnionType *)];
 
       // functor_list
       // functor_args
-      char dummy22[sizeof(AstUserDefinedFunctor *)];
+      char dummy23[sizeof(AstUserDefinedFunctor *)];
 
       // literal
       // term
       // conjunction
       // disjunction
       // body
-      char dummy23[sizeof(RuleBody *)];
+      char dummy24[sizeof(RuleBody *)];
 
       // "reserved keyword"
       // "symbol"
@@ -427,37 +430,36 @@ namespace yy {
       // "relational operator"
       // functor_type
       // functor_typeargs
-      // lattice_decl
-      // lattice_connect
       // comp_override
-      char dummy24[sizeof(std::string)];
+      char dummy25[sizeof(std::string)];
 
       // head
-      char dummy25[sizeof(std::vector<AstAtom*>)];
+      char dummy26[sizeof(std::vector<AstAtom*>)];
 
       // rule_def
       // rule
-      char dummy26[sizeof(std::vector<AstClause*>)];
+      char dummy27[sizeof(std::vector<AstClause*>)];
 
       // iodirective_list
-      char dummy27[sizeof(std::vector<AstIO *>)];
+      char dummy28[sizeof(std::vector<AstIO *>)];
 
       // load_head
-      char dummy28[sizeof(std::vector<AstLoad *>)];
+      char dummy29[sizeof(std::vector<AstLoad *>)];
 
       // relation_decl
       // relation_list
-      char dummy29[sizeof(std::vector<AstRelation *>)];
+      // lattice_decl
+      char dummy30[sizeof(std::vector<AstRelation *>)];
 
       // store_head
-      char dummy30[sizeof(std::vector<AstStore *>)];
+      char dummy31[sizeof(std::vector<AstStore *>)];
 
       // type_param_list
       // type_params
-      char dummy31[sizeof(std::vector<AstTypeIdentifier>)];
+      char dummy32[sizeof(std::vector<AstTypeIdentifier>)];
 
       // qualifiers
-      char dummy32[sizeof(uint32_t)];
+      char dummy33[sizeof(uint32_t)];
 };
 
     /// Symbol semantic values.
@@ -623,6 +625,8 @@ namespace yy {
   basic_symbol (typename Base::kind_type t, const AstFunctorDeclaration * v, const location_type& l);
 
   basic_symbol (typename Base::kind_type t, const AstIO * v, const location_type& l);
+
+  basic_symbol (typename Base::kind_type t, const AstLatticeAssociation * v, const location_type& l);
 
   basic_symbol (typename Base::kind_type t, const AstLatticeBinaryFunction * v, const location_type& l);
 
@@ -1268,7 +1272,7 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 1350,     ///< Last index in yytable_.
+      yylast_ = 1330,     ///< Last index in yytable_.
       yynnts_ = 57,  ///< Number of nonterminal symbols.
       yyfinal_ = 3, ///< Termination state number.
       yyterror_ = 1,
@@ -1415,6 +1419,10 @@ namespace yy {
         value.copy< AstIO * > (other.value);
         break;
 
+      case 105: // lattice_asscoiation
+        value.copy< AstLatticeAssociation * > (other.value);
+        break;
+
       case 106: // lattice_def
       case 107: // lattice_def_type
         value.copy< AstLatticeBinaryFunction * > (other.value);
@@ -1473,8 +1481,6 @@ namespace yy {
       case 7: // "relational operator"
       case 99: // functor_type
       case 100: // functor_typeargs
-      case 104: // lattice_decl
-      case 105: // lattice_connect
       case 141: // comp_override
         value.copy< std::string > (other.value);
         break;
@@ -1498,6 +1504,7 @@ namespace yy {
 
       case 101: // relation_decl
       case 102: // relation_list
+      case 104: // lattice_decl
         value.copy< std::vector<AstRelation *> > (other.value);
         break;
 
@@ -1587,6 +1594,10 @@ namespace yy {
         value.copy< AstIO * > (v);
         break;
 
+      case 105: // lattice_asscoiation
+        value.copy< AstLatticeAssociation * > (v);
+        break;
+
       case 106: // lattice_def
       case 107: // lattice_def_type
         value.copy< AstLatticeBinaryFunction * > (v);
@@ -1645,8 +1656,6 @@ namespace yy {
       case 7: // "relational operator"
       case 99: // functor_type
       case 100: // functor_typeargs
-      case 104: // lattice_decl
-      case 105: // lattice_connect
       case 141: // comp_override
         value.copy< std::string > (v);
         break;
@@ -1670,6 +1679,7 @@ namespace yy {
 
       case 101: // relation_decl
       case 102: // relation_list
+      case 104: // lattice_decl
         value.copy< std::vector<AstRelation *> > (v);
         break;
 
@@ -1780,6 +1790,13 @@ namespace yy {
 
   template <typename Base>
   parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const AstIO * v, const location_type& l)
+    : Base (t)
+    , value (v)
+    , location (l)
+  {}
+
+  template <typename Base>
+  parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const AstLatticeAssociation * v, const location_type& l)
     : Base (t)
     , value (v)
     , location (l)
@@ -2007,6 +2024,10 @@ namespace yy {
         value.template destroy< AstIO * > ();
         break;
 
+      case 105: // lattice_asscoiation
+        value.template destroy< AstLatticeAssociation * > ();
+        break;
+
       case 106: // lattice_def
       case 107: // lattice_def_type
         value.template destroy< AstLatticeBinaryFunction * > ();
@@ -2065,8 +2086,6 @@ namespace yy {
       case 7: // "relational operator"
       case 99: // functor_type
       case 100: // functor_typeargs
-      case 104: // lattice_decl
-      case 105: // lattice_connect
       case 141: // comp_override
         value.template destroy< std::string > ();
         break;
@@ -2090,6 +2109,7 @@ namespace yy {
 
       case 101: // relation_decl
       case 102: // relation_list
+      case 104: // lattice_decl
         value.template destroy< std::vector<AstRelation *> > ();
         break;
 
@@ -2185,6 +2205,10 @@ namespace yy {
         value.move< AstIO * > (s.value);
         break;
 
+      case 105: // lattice_asscoiation
+        value.move< AstLatticeAssociation * > (s.value);
+        break;
+
       case 106: // lattice_def
       case 107: // lattice_def_type
         value.move< AstLatticeBinaryFunction * > (s.value);
@@ -2243,8 +2267,6 @@ namespace yy {
       case 7: // "relational operator"
       case 99: // functor_type
       case 100: // functor_typeargs
-      case 104: // lattice_decl
-      case 105: // lattice_connect
       case 141: // comp_override
         value.move< std::string > (s.value);
         break;
@@ -2268,6 +2290,7 @@ namespace yy {
 
       case 101: // relation_decl
       case 102: // relation_list
+      case 104: // lattice_decl
         value.move< std::vector<AstRelation *> > (s.value);
         break;
 
@@ -2853,7 +2876,7 @@ namespace yy {
 
 
 } // yy
-#line 2857 "parser.hh" // lalr1.cc:377
+#line 2880 "parser.hh" // lalr1.cc:377
 
 
 

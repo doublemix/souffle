@@ -474,13 +474,13 @@ int main(int argc, char** argv) {
 
     // Apply all the transformations
     pipeline->apply(*astTranslationUnit);
-
+    std::cout << "AST construction completed.\n";
     // ------- execution -------------
 
     /* translate AST to RAM */
     std::unique_ptr<RamTranslationUnit> ramTranslationUnit =
             AstTranslator().translateUnit(*astTranslationUnit);
-
+    std::cout << "RAM construction -- phase 1 completed.\n";
     std::vector<std::unique_ptr<RamTransformer>> ramTransforms;
     ramTransforms.push_back(std::make_unique<LevelConditionsTransformer>());
     ramTransforms.push_back(std::make_unique<CreateIndicesTransformer>());
@@ -506,14 +506,14 @@ int main(int argc, char** argv) {
     if (!ramTranslationUnit->getProgram()->getMain()) {
         return 0;
     };
-
+    std::cout << "RAM construction -- phase 2 completed.\n";
     if (!Global::config().has("compile") && !Global::config().has("dl-program") &&
             !Global::config().has("generate")) {
         // ------- interpreter -------------
 
         // configure interpreter
         std::unique_ptr<Interpreter> interpreter = std::make_unique<Interpreter>(*ramTranslationUnit);
-
+        std::cout << "RAM interpreter generated.\n";
         std::thread profiler;
         // Start up profiler if needed
         if (Global::config().has("live-profile") && !Global::config().has("compile")) {
@@ -521,7 +521,7 @@ int main(int argc, char** argv) {
         }
         // execute translation unit
         interpreter->executeMain();
-
+        std::cout << "RAM interpreter completed.\n";
         // If the profiler was started, join back here once it exits.
         if (profiler.joinable()) {
             profiler.join();
