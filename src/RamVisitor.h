@@ -24,6 +24,7 @@
 #include "RamRelation.h"
 #include "RamStatement.h"
 #include "RamValue.h"
+#include "RamLatticeAssociation.h"
 
 #include <functional>
 #include <typeinfo>
@@ -77,6 +78,9 @@ struct RamVisitor : public ram_visitor_tag {
             // Relation
             FORWARD(Relation);
             FORWARD(RelationReference);
+
+            // Lattice Association
+            FORWARD(LatticeAssociation);
 
             // values
             FORWARD(LatticeGLB);
@@ -204,6 +208,9 @@ protected:
     LINK(EmptinessCheck, Condition)
 
     LINK(Condition, Node)
+
+	// Lattice Association
+	LINK(LatticeAssociation, Node);
 
     // -- values --
     LINK(Number, Value)

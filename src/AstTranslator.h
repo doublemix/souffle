@@ -19,6 +19,7 @@
 #include "AstArgument.h"
 #include "AstRelationIdentifier.h"
 #include "RamRelation.h"
+#include "RamLatticeAssociation.h"
 #include "RelationRepresentation.h"
 #include "SymbolMask.h"
 #include "TypeSystem.h"
@@ -340,6 +341,9 @@ private:
 
 	/** translate an AST constraint to a RAM condition */
 	std::unique_ptr<RamCondition> translateConstraint(const AstLiteral* arg, const ValueIndex& index);
+
+	/** translate an AST lattice association with lattice binary functions into a RAM lattice **/
+	std::unique_ptr<RamLatticeAssociation> translateLatticeAssoc();
 
 	/** translate AST clause to RAM code */
 	class ClauseTranslator {

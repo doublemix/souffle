@@ -361,10 +361,14 @@ enumtype
   :  CASE IDENT {
   		$$ = new AstEnumType();
   		$$->add($2);
+  		// regard lattice enum as symbol
+  		driver.getSymbolTable().lookup($2);
   	}
   | enumtype COMMA CASE IDENT {
   		$$ = $1;
   		$1->add($4);
+  		// regard lattice enum as symbol
+  		driver.getSymbolTable().lookup($4);
   	}
 
 
@@ -529,7 +533,7 @@ lattice_def_type
   	}
   | lattice_def_type COMMA CASE UNDERSCORE ARROW arg {
   		$$ = $1;
-  		// TODO
+  		$$->addPairMap(new AstUnnamedVariable(), new AstUnnamedVariable(), $6);
   	}
 
 

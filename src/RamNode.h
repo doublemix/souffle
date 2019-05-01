@@ -32,6 +32,9 @@ enum RamNodeType {
     RN_Relation,
     RN_RelationReference,
 
+	// Lattice Association
+	RN_LatticeAssociation,
+
     // Values
     RN_ElementAccess,
 	RN_LatticeGLB,

@@ -61,23 +61,23 @@ public:
 		glb = GLB;
 	}
 
-	std::string& getTop() {
+	const std::string& getTop() const {
 		return top;
 	}
 
-	std::string& getBottom() {
+	const std::string& getBottom() const {
 		return bottom;
 	}
 
-	std::string& getLeq() {
+	const std::string& getLeq() const {
 		return leq;
 	}
 
-	std::string& getLub() {
+	const std::string& getLub() const {
 		return lub;
 	}
 
-	std::string& getGlb() {
+	const std::string& getGlb() const {
 		return glb;
 	}
 

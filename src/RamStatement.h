@@ -21,6 +21,7 @@
 #include "RamOperation.h"
 #include "RamRelation.h"
 #include "RamValue.h"
+#include "RamLatticeAssociation.h"
 #include "Util.h"
 
 #include <algorithm>

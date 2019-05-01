@@ -24,6 +24,8 @@
 #include "AstNode.h"
 #include "AstProgram.h"
 #include "AstRelation.h"
+#include "AstLatticeBinaryFunction.h"
+#include "AstLatticeAssociation.h"
 #include "AstTranslationUnit.h"
 #include "AstTypeEnvironmentAnalysis.h"
 #include "AstUtils.h"
@@ -42,6 +44,7 @@
 #include "RamStatement.h"
 #include "RamTranslationUnit.h"
 #include "RamValue.h"
+#include "RamTypes.h"
 #include "SrcLocation.h"
 #include "SymbolMask.h"
 #include "TypeSystem.h"
@@ -87,7 +90,11 @@ SymbolMask AstTranslator::getSymbolMask(const AstRelation& rel) {
 	auto arity = rel.getArity();
 	SymbolMask res(arity);
 	for (size_t i = 0; i < arity; i++) {
-		res.setSymbol(i, isSymbolType(typeEnv->getType(rel.getAttribute(i)->getTypeName())));
+		/* changed to see Enum type as symbol type,
+		not consider other type of lattice elements like set of integers */
+		const Type& t = typeEnv->getType(rel.getAttribute(i)->getTypeName());
+		bool isSymbol = isSymbolType(t) || isEnumType(t);
+		res.setSymbol(i, isSymbol);
 	}
 	return res;
 }
@@ -424,6 +431,67 @@ std::unique_ptr<RamCondition> AstTranslator::translateConstraint(
 	};
 
 	return ConstraintTranslator(*this, index)(*lit);
+}
+
+std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc() {
+	//TODO: not finished, RamLatticeAssociation need to change, RamDomain is not suitable
+	class LatticeBinarytranslator {
+		const AstLatticeBinaryFunction* AstBinary;
+		RamLatticeAssociation* RamLat;
+		int FunctionUse = 0; // 1-leq, 2-lub, 3-glb
+	public:
+		LatticeBinarytranslator(const AstLatticeBinaryFunction* AstB, RamLatticeAssociation* RamL, int Use)
+	: AstBinary(AstB), RamLat(RamL), FunctionUse(Use) {}
+
+		void translate() {
+			RamDomain *first, *second, *output;
+
+			const std::vector<AstLatticeBinaryFunction::PairMap>& pairmap = AstBinary->getPairMap();
+			for (const auto& pair : pairmap) {
+				first = nullptr, second = nullptr, output = nullptr;
+
+				if (dynamic_cast<const AstConstant*>(pair.first) != nullptr) {
+					const auto& first_str = static_cast<const AstConstant*>(pair.first);
+					first = new RamDomain(first_str->getIndex());
+				}
+				if (dynamic_cast<const AstConstant*>(pair.second) != nullptr) {
+					const auto& second_str = static_cast<const AstConstant*>(pair.second);
+					second = new RamDomain(second_str->getIndex());
+				}
+				if (dynamic_cast<const AstConstant*>(pair.output) != nullptr) {
+					const auto& output_str = static_cast<const AstConstant*>(pair.output);
+					output = new RamDomain(output_str->getIndex());
+				}
+
+				switch (FunctionUse) {
+				case 1:
+					RamLat->addLeq(first, second, output); break;
+				case 2:
+					RamLat->addLub(first, second, output); break;
+				case 3:
+					RamLat->addGlb(first, second, output); break;
+				default:
+					assert(0 && "Not supported lattice function!");
+				}
+			}
+		}
+	};
+
+	const AstLatticeAssociation* AstLatAssoc = program->getLatticeAssociation();
+	const AstLatticeBinaryFunction* AstLEQ = program->getLatticeBinaryFunction(AstLatAssoc->getLeq());
+	const AstLatticeBinaryFunction* AstLUB = program->getLatticeBinaryFunction(AstLatAssoc->getLub());
+	const AstLatticeBinaryFunction* AstGLB = program->getLatticeBinaryFunction(AstLatAssoc->getGlb());
+
+	RamLatticeAssociation* RamLat = new RamLatticeAssociation();
+
+	LatticeBinarytranslator LEQtranslator(AstLEQ, RamLat, 1);
+	LEQtranslator.translate();
+	LatticeBinarytranslator LUBtranslator(AstLUB, RamLat, 2);
+	LUBtranslator.translate();
+	LatticeBinarytranslator GLBtranslator(AstGLB, RamLat, 3);
+	GLBtranslator.translate();
+
+	return std::unique_ptr<RamLatticeAssociation>(RamLat);
 }
 
 std::unique_ptr<AstClause> AstTranslator::ClauseTranslator::getReorderedClause(
@@ -1284,7 +1352,7 @@ void AstTranslator::translateProgram(const AstTranslationUnit& translationUnit) 
 	};
 #endif
 
-// maintain the index of the SCC within the topological order
+	// maintain the index of the SCC within the topological order
 	size_t indexOfScc = 0;
 
 	// iterate over each SCC according to the topological order
@@ -1505,6 +1573,9 @@ void AstTranslator::translateProgram(const AstTranslationUnit& translationUnit) 
 			ramProg->addSubroutine(subroutineLabel, makeSubproofSubroutine(clause));
 		});
 	}
+
+	// add lattice association into ramprogram
+	ramProg->setLattice(translateLatticeAssoc());
 }
 
 std::unique_ptr<RamTranslationUnit> AstTranslator::translateUnit(AstTranslationUnit& tu) {

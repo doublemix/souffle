@@ -95,6 +95,10 @@ public:
 		pairmaps.push_back({first, second, output});
 	}
 
+	const std::vector<PairMap>& getPairMap() const {
+		return pairmaps;
+	}
+
 	/** print user-defined functor */
 	void print(std::ostream& os) const override {
 		os << "LatticeBinaryFunction: @" << name << " (";

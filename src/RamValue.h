@@ -20,6 +20,7 @@
 #include "RamNode.h"
 #include "RamRelation.h"
 #include "SymbolTable.h"
+#include "RamLatticeAssociation.h"
 
 #include <algorithm>
 #include <array>
@@ -336,6 +337,8 @@ private:
 	/** pair of identifier and element number for referenced lattice elements **/
 	std::vector<Ref_st> references;
 
+	/** Lattice Definition **/
+	std::unique_ptr<RamLatticeAssociation> lattice;
 	/** Relation */
 	//std::unique_ptr<RamRelationReference> relation;
 
@@ -364,6 +367,10 @@ public:
 
 	std::vector<Ref_st> getRefs() const {
 		return references;
+	}
+
+	const RamLatticeAssociation* getLatticeAssociation() const {
+		return lattice.get();
 	}
 
 	/** Obtain list of child nodes */

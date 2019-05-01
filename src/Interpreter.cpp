@@ -76,6 +76,11 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
             return ctxt[access.getIdentifier()][access.getElement()];
         }
 
+        RamDomain visitLatticeGLB(const RamLatticeGLB& latGLB) override {
+        	std::cout << "visit RamLatticeGLB here!\n";
+        	return 0;
+        }
+
         RamDomain visitAutoIncrement(const RamAutoIncrement&) override {
             return interpreter.incCounter();
         }
@@ -639,11 +644,13 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
         void visitProject(const RamProject& project) override {
             // create a tuple of the proper arity (also supports arity 0)
+        	std::cout << "visitProject here.\n";
             auto arity = project.getRelation().getArity();
             const auto& values = project.getValues();
             RamDomain tuple[arity];
             for (size_t i = 0; i < arity; i++) {
                 assert(values[i]);
+                std::cout << "visitProject -- evalVal here, arity = " << arity << ".\n";
                 tuple[i] = interpreter.evalVal(*values[i], ctxt);
             }
 
@@ -806,6 +813,12 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
                                     ioDirectives, Global::config().has("provenance"))
                             ->readAll(relation);
                 } catch (std::exception& e) {
+                	std::cout << "symbolmask:\n";
+                	load.getRelation().getSymbolMask().print(std::cout);
+                	std::cout << "\n";
+                	std::cout << "symboltable:\n";
+                	interpreter.getSymbolTable().print(std::cout);
+                	std::cout << "\n";
                     std::cerr << "Error loading data: " << e.what() << "\n";
                 }
             }
@@ -841,7 +854,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
         bool visitInsert(const RamInsert& insert) override {
             // run generic query executor
-
+        	std::cout << "visitInsert here.\n";
             const RamCondition* c = insert.getCondition();
             if (c != nullptr) {
                 if (interpreter.evalCond(*insert.getCondition())) {

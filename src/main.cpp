@@ -475,12 +475,16 @@ int main(int argc, char** argv) {
     // Apply all the transformations
     pipeline->apply(*astTranslationUnit);
     std::cout << "AST construction completed.\n";
+    astTranslationUnit->getSymbolTable().print(std::cout);
+    std::cout << "\n";
     // ------- execution -------------
 
     /* translate AST to RAM */
     std::unique_ptr<RamTranslationUnit> ramTranslationUnit =
             AstTranslator().translateUnit(*astTranslationUnit);
     std::cout << "RAM construction -- phase 1 completed.\n";
+    //ramTranslationUnit->getProgram()->getLattice()->print(std::cout);
+
     std::vector<std::unique_ptr<RamTransformer>> ramTransforms;
     ramTransforms.push_back(std::make_unique<LevelConditionsTransformer>());
     ramTransforms.push_back(std::make_unique<CreateIndicesTransformer>());
@@ -507,6 +511,7 @@ int main(int argc, char** argv) {
         return 0;
     };
     std::cout << "RAM construction -- phase 2 completed.\n";
+
     if (!Global::config().has("compile") && !Global::config().has("dl-program") &&
             !Global::config().has("generate")) {
         // ------- interpreter -------------
