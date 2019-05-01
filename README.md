@@ -18,6 +18,12 @@ Soufflé is a translator of Horn clauses into parallel C++. Soufflé language ha
 *   Monotone Filter Functions
 *   Monotone Functions  
 
+### Progress
+
+*   ParseDriver, Ast Nodes (done)
+*   Ast to Ram translation (almost done, except lattice association)
+*   Ram Interpreter and/or Synthesiser (in progress)
+
 see paper ["From Datalog to FLIX: A Declarative Language for Fixed Points on Lattices"](https://plg.uwaterloo.ca/~olhotak/pubs/pldi16.pdf)
 
 ## How to get Soufflé
@@ -27,6 +33,10 @@ Use git to obtain the source code of Soufflé.
     $ git clone git@github.com:QXG2/souffle.git
     
 Build instructions can be found [here](http://souffle-lang.org/docs/build).     
+basic: 
+*   use "make -j8" for faster build. 
+*   use "make doxygen-doc" to create the directory doc/html which will contain the file index.html to view the documentation.
+*   In folder "souffle/src/dataflowTest/lattice", try "make" to test the lattice feature.
 
 ## [Home Page](http://souffle-lang.org)
 
