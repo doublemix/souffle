@@ -1,0 +1,34 @@
+// available expression analysis
+
+#include <prog.dl>
+
+// e is in the kill set of block l
+.decl killAE(l:Label, e:Exp)
+killAE(l,e) :- assignStmt(l,x,_), isComplexExp(e), freeVar(e,x).
+
+// e is in the gen set of block l
+.decl genAE(l:Label, e:Exp)
+genAE(l,e) :- assignStmt(l,x,a), subExp(a,e), !freeVar(e,x).
+genAE(l,e) :- testCond(l,_,a1,a2), (subExp(a1,e); subExp(a2,e)).
+
+// First compute mayNotBeAvailable, whose computation is monotonic
+
+// e may not be available at the entry of block l
+.decl mayNotBeAvailableEntry (l:Label, e:Exp)
+// e may not be available at the exit of block l
+.decl mayNotBeAvailableExit (l:Label, e:Exp)
+
+// at the entry, no expression is available
+mayNotBeAvailableEntry(l,e) :- initLabel(l), isComplexExp(e).
+// MNAE_e(l) := union {MNAE_x(l') | (l',l) in flow}
+mayNotBeAvailableEntry(l2,e) :- mayNotBeAvailableExit(l1,e), flow(l1,l2).
+
+// Since AE_x(l) = (AE_e(l) \ kill(l)) union gen(l), we have
+// MNAE_x(l) = (MNAE_e(l) union kill(l)) \ gen(l)
+mayNotBeAvailableExit(l,e) :- mayNotBeAvailableEntry(l,e), !genAE(l,e).
+mayNotBeAvailableExit(l,e) :- killAE(l,e), !genAE(l,e).
+
+// e must be available at the exit of block l
+.decl availableExpExit (l:Label, e:OpExp)
+.output availableExpExit
+availableExpExit(l,e) :- isLabel(l), isComplexExp(e), !mayNotBeAvailableExit(l,e).

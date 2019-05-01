@@ -1,0 +1,100 @@
+/* representing programs */
+
+// syntax: e ::= n | x | e1 op e2
+//        op ::= + | *
+
+// subtyping important here; otherwise the rules for Eval
+// would not type check
+.type Exp = ConstExp | VarExp | OpExp
+.type ConstExp 
+.type VarExp 
+.type OpExp
+.type Var
+.type Op
+
+// relations for representing expressions
+.decl constExp(id:ConstExp, n:number)
+.decl varExp(id:VarExp, x:Var)
+.decl opExp(id:OpExp, op:Op, e1:Exp, e2:Exp)
+.input constExp, varExp, opExp
+
+/* Consistency checking rules for expressions; good for debugging */
+.decl Error (errmsg:symbol)
+.output Error
+
+// ids for constExp are unique
+Error(cat("constExp's ids must be unique: ",e)) :- 
+  constExp(e,n1), constExp(e,n2), n1!=n2.
+Error(cat("opExp's ids must be unique: ", e)) :- 
+  opExp(e,op,e1,e2), opExp(e,op,e3,e4), (e1!=e3; e2!=e4).
+
+// an exp cannot be both an constExp and a plusExp, e.g.
+.decl expType(e:Exp, tp:symbol)
+expType(e,"const") :- constExp(e,_).
+expType(e,"plus") :- opExp(e,"+",_,_).
+expType(e,"times") :- opExp(e,"*",_,_).
+Error(cat(e, " has two types")) :- 
+  expType(e, t1), expType (e,t2), t1!=t2.
+
+// the operator in an opExp must be either "+" and "*"
+Error(cat("Op must be either + or * in ", e)) :- 
+  opExp(e,op,_,_), op!="+", op!="*".
+
+/* Representing the program */
+.type CmpOp
+.number_type Label
+
+.decl flow(l1:Label, l2:Label)
+.decl assignStmt(l:Label, x:Var, e:Exp)
+.decl testCond(l:Label, c:CmpOp, e1:Exp, e2:Exp)
+.decl initLabel(l:Label)
+.decl finalLabel(l:Label)
+.input flow, assignStmt, testCond, initLabel, finalLabel
+
+/* Some utility relations */
+
+// collect all labels
+.decl isLabel (l:Label)
+isLabel(l) :- flow(l,_); flow(_,l).
+
+/* First compute mayNotBeAvailable, whose computation is monotonic */
+// collect all variables
+.decl isVar (x:Var)
+isVar(x) :- varExp(_,x).
+
+// collect all complex arith expressions (non-constant and non-single-var)
+.decl isComplexExp (e: Exp)
+isComplexExp(e) :- opExp(e,_,_,_).
+
+// e is an exp that with free var x
+.decl freeVar (e:Exp, x:Var)
+freeVar(e,x) :- varExp(e,x).
+freeVar(e,x) :- opExp(e,_,e1,e2), (freeVar(e1,x); freeVar(e2,x)).
+
+// e2 is a subexp of e1
+.decl subExp (e1:Exp, e2:Exp)
+subExp(e,e) :- constExp(e,_); varExp(e,_); opExp(e,_,_,_).
+subExp(e,e11) :- opExp(e,_,e1,_), subExp(e1,e11).
+subExp(e,e21) :- opExp(e,_,_,e2), subExp(e2,e21).
+
+// give a linear order to the precedssors of a block; useful in a must
+// analysis when we need forall emulation
+
+// l1's first predecessor is l2
+.decl firstPred (l1:Label, l2:Label)
+
+firstPred(l1,l2) :- 
+  flow(_,l1), l2 = min l : flow(l,l1).
+
+// l2 and l3 are pred of l1; and l3 is a larger label
+.decl largerPredOfSameLabel (l1:Label, l2:Label, l3:Label)
+
+largerPredOfSameLabel(l1,l2,l3) :-
+  flow(l2,l1), flow(l3,l1), l3>l2.
+
+// l3 is the pred of l1, next to l2
+.decl nextPred (l1:Label, l2:Label, l3:Label)
+
+nextPred(l1,l2,l3) :-
+  flow(l2,l1), l3=min l : largerPredOfSameLabel(l1,l2,l).
+

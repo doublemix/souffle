@@ -1,0 +1,60 @@
+.enum Sign = {
+	case Top,
+case Neg, case Zer, case Pos,
+	case Bot
+}
+
+.def leq(Sign, Sign): number {
+    case (Bot, _)   => 1,
+    case (Neg, Neg) => 1,
+    case (Zer, Zer) => 1,
+    case (Pos, Pos) => 1,
+    case (_, Top)   => 1,
+    case _          => 0
+}
+
+.def lub(Sign, Sign): Sign {
+    case (Bot, x)   => x,
+    case (x, Bot)   => x,
+    case (Neg, Neg) => Neg,
+    case (Zer, Zer) => Zer,
+    case (Pos, Pos) => Pos,
+    case _          => Top
+}
+
+.def glb(Sign, Sign): Sign {
+    case (Top, x)   => x,
+    case (x, Top)   => x,
+    case (Neg, Neg) => Neg,
+    case (Zer, Zer) => Zer,
+    case (Pos, Pos) => Pos,
+    case _          => Bot
+}
+
+.let Sign<> = (Bot, Top, leq, lub, glb)
+
+.type Connection = [
+  from : symbol,
+  to : symbol
+]
+
+// lattice relation
+.lat A(x: symbol, s: Sign)
+.input A
+
+.lat B(x: symbol, s: Sign)
+.input B
+
+.lat R(x: symbol, s: Sign)
+.output R
+
+R(x, s) :- A(x, s), B(x, s).
+
+// normal relation
+.decl P(x: symbol, s: symbol)
+.input P
+.decl Q(x: symbol, s: symbol)
+.input Q
+.decl S(x: symbol, s: symbol)
+.output S
+S(x, s) :- P(x, s), Q(x, s).

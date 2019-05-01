@@ -1,0 +1,24 @@
+// reaching def analysis
+
+#include <progSimpl.dl>
+
+.decl isVar(x:Var)
+// collect all variables in assign and read relations
+isVar(x) :- assign (_,x).
+isVar(x) :- read (_,x).
+
+// var x is live at the entry of block l
+.decl liveEntry(l:Label, x:Var)
+// var x is live at the exit of block l
+.decl liveExit(l:Label, x:Var)
+.output liveEntry, liveExit
+
+// liveExit of l1 is the union of {liveEntry(l2) | flow(l1,l2)}
+liveExit(l1,x) :- liveEntry(l2,x), flow(l1,l2).
+
+// (Assign) Var x can reach the entry of block l, if l doesn't assign x
+liveEntry(l,x) :- liveExit(l,x), !assign(l,x).
+// (Read) Var a can reach the entry of block l
+liveEntry(l,x) :- read(l,x).
+
+

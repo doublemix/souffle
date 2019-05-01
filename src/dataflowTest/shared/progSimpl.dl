@@ -1,0 +1,12 @@
+// simplified program representation (not representing expressions)
+
+.number_type Label
+.type Var
+
+.decl flow(l1:Label, l2:Label)
+.decl assign(l:Label, x:Var)
+.decl read(l:Label, x:Var)
+.decl initLabel(l:Label)
+.decl finalLabel(l:Label)
+.input flow, assign, read, initLabel, finalLabel
+

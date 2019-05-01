@@ -1,0 +1,31 @@
+// reaching def analysis
+
+#include <progSimpl.dl>
+
+.decl initLabelDef(l:Label)
+// assume at entry every var is initialized at a special label
+// (question mark in PPA slides)
+initLabelDef(999).
+
+.decl isVar(x:Var)
+// collect all variables in assign and read relations
+isVar(x) :- assign (_,x).
+isVar(x) :- read (_,x).
+
+// definition of x at label def can reach the point before block with label l
+.decl rdEntry(l:Label, x:Var, def:Label)
+// definition of x at label def can reach the point after block with label l
+.decl rdExit(l:Label, x:Var, def:Label)
+.output rdEntry, rdExit
+
+// at entry, every var is assigned at site ?
+rdEntry(l,x,def) :- initLabel(l), isVar(x), initLabelDef(def).
+// rdEntry of l2 is the union of {rdExit(l1) | flow(l1,l2)}
+rdEntry(l2,x,def) :- rdExit(l1,x,def), flow(l1,l2).
+
+// def (x,l) can reach the end of block l
+rdExit(l,x,l) :- assign(l,x).
+// def (x,def) can reach the end of block l, if l doesn't assign x
+rdExit(l,x,def) :- rdEntry(l,x,def), !assign(l,x).
+
+

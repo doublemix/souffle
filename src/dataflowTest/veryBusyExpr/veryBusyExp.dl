@@ -1,0 +1,38 @@
+// very busy expression analysis
+
+#include <prog.dl>
+
+// e is in the kill set of block l
+.decl killVBE(l:Label, e:Exp)
+killVBE(l,e) :- assignStmt(l,x,_), isComplexExp(e), freeVar(e,x).
+
+// e is in the gen set of block l
+.decl genVBE(l:Label, e:Exp)
+genVBE(l,e) :- assignStmt(l,_,a), subExp(a,e), isComplexExp(e).
+genVBE(l,e) :- testCond(l,_,a1,a2), (subExp(a1,e); subExp(a2,e)), isComplexExp(e).
+
+// First compute mayNotBeVeryBusy, whose computation is monotonic
+
+// e may not be very-busy at the entry of block l
+.decl mayNotBeVeryBusyEntry (l:Label, e:Exp)
+// e may not be very-busy at the exit of block l
+.decl mayNotBeVeryBusyExit (l:Label, e:Exp)
+
+// at the exit of program, no expression is very-busy
+mayNotBeVeryBusyExit(l,e) :- finalLabel(l), isComplexExp(e).
+// MNVBE_x(l) := union {MNVBE_e(l') | (l,l') in flow}
+mayNotBeVeryBusyExit(l1,e) :- mayNotBeVeryBusyEntry(l2,e), flow(l1,l2).
+
+// Since VBE_e(l) = (VBE_x(l) \ kill(l)) union gen(l), we have
+// MNVBE_e(l) = (MNVBE_x(l) union kill(l)) \ gen(l) -- notice A\B = A intersect !B
+mayNotBeVeryBusyEntry(l,e) :- mayNotBeVeryBusyExit(l,e), !genVBE(l,e).
+mayNotBeVeryBusyEntry(l,e) :- killVBE(l,e), !genVBE(l,e).
+
+// e must be available at the exit of block l
+.decl veryBusyExpEntry (l:Label, e:OpExp)
+.decl veryBusyExpExit (l:Label, e:OpExp)
+.output veryBusyExpEntry
+.output veryBusyExpExit
+
+veryBusyExpEntry(l,e) :- isLabel(l), isComplexExp(e), !mayNotBeVeryBusyEntry(l,e).
+veryBusyExpExit(l,e) :- isLabel(l), isComplexExp(e), !mayNotBeVeryBusyExit(l,e).
