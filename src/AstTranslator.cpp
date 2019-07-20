@@ -478,6 +478,7 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc() {
 	};
 
 	const AstLatticeAssociation* AstLatAssoc = program->getLatticeAssociation();
+	if (AstLatAssoc==nullptr) return nullptr;
 	const AstLatticeBinaryFunction* AstLEQ = program->getLatticeBinaryFunction(AstLatAssoc->getLeq());
 	const AstLatticeBinaryFunction* AstLUB = program->getLatticeBinaryFunction(AstLatAssoc->getLub());
 	const AstLatticeBinaryFunction* AstGLB = program->getLatticeBinaryFunction(AstLatAssoc->getGlb());

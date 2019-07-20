@@ -213,13 +213,15 @@ void AstProgram::print(std::ostream& os) const {
 	}
 
 	os << "\n// ----- Lattice -----\n";
-	latticeAssociation->print(os);
-	os << "\n";
-	for (const auto& cur : latticeBinary) {
-		const std::unique_ptr<AstLatticeBinaryFunction>& f = cur.second;
-		os << "\n\n// -- " << f->getName() << " --\n";
-		f->print(os);
+	if (getLatticeAssociation()!=nullptr) {
+		latticeAssociation->print(os);
 		os << "\n";
+		for (const auto& cur : latticeBinary) {
+			const std::unique_ptr<AstLatticeBinaryFunction>& f = cur.second;
+			os << "\n\n// -- " << f->getName() << " --\n";
+			f->print(os);
+			os << "\n";
+		}
 	}
 
 	/* Print functors */
