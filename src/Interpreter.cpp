@@ -77,8 +77,17 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
         }
 
         RamDomain visitLatticeGLB(const RamLatticeGLB& latGLB) override {
+        	auto refs = latGLB.getRefs();
+        	auto it = refs.begin();
+        	RamDomain res = ctxt[it->identifier][it->element];
+        	it ++;
+        	while (it != refs.end()) {
+        		RamDomain it_r = ctxt[it->identifier][it->element];
+        		res = translationUnit.getProgram()->getLattice()->applyGlb(res, it_r);
+        		it ++;
+        	}
         	std::cout << "visit RamLatticeGLB here!\n";
-        	return 0;
+        	return res;
         }
 
         RamDomain visitAutoIncrement(const RamAutoIncrement&) override {

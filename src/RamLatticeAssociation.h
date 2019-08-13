@@ -63,17 +63,17 @@ public:
 		out << "leq, size: " << leq.size() << std::endl;
 		for (auto& cur : leq) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-				<< ",output:" << PrintLatCase(cur.output) << std::endl;
+						<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
 		out << "lub size: " << lub.size() << std::endl;
 		for (auto& cur : lub) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-				<< ",output:" << PrintLatCase(cur.output) << std::endl;
+						<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
 		out << "glb size: " << glb.size() << std::endl;
 		for (auto& cur : glb) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-				<< ",output:" << PrintLatCase(cur.output) << std::endl;
+						<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
 	}
 
@@ -90,6 +90,36 @@ public:
 	/** Add to glb function */
 	void addGlb(RamDomain* first, RamDomain* second, RamDomain* output) {
 		glb.push_back({first, second, output});
+	}
+
+	RamDomain applyLeq(RamDomain arg1, RamDomain arg2) {
+		for (auto& cur : leq) {
+			if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
+				return *cur.output;
+			}
+		}
+		std::cerr << "error: apply LEQ fail.\n";
+		throw(0);
+	}
+
+	RamDomain applyLub(RamDomain arg1, RamDomain arg2) {
+		for (auto& cur : lub) {
+			if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
+				return *cur.output;
+			}
+		}
+		std::cerr << "error: apply LUB fail.\n";
+		throw(0);
+	}
+
+	RamDomain applyGlb(RamDomain arg1, RamDomain arg2) {
+		for (auto& cur : glb) {
+			if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
+				return *cur.output;
+			}
+		}
+		std::cerr << "error: apply GLB fail.\n";
+		throw(0);
 	}
 
 	/** Get relation */
