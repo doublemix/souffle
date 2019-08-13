@@ -33,18 +33,11 @@ case Neg, case Zer, case Pos,
 
 .let Sign<> = (Bot, Top, leq, lub, glb)
 
-.type Connection = [
-  from : symbol,
-  to : symbol
-]
-
 // lattice relation
 .lat A(x: symbol, s: Sign)
 .input A
-
 .lat B(x: symbol, s: Sign)
 .input B
-
 .lat R(x: symbol, s: Sign)
 .output R
 
