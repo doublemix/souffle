@@ -83,7 +83,7 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
         	it ++;
         	while (it != refs.end()) {
         		RamDomain it_r = ctxt[it->identifier][it->element];
-        		res = translationUnit.getProgram()->getLattice()->applyGlb(res, it_r);
+        		res = interpreter.getTranslationUnit().getProgram()->getLattice()->applyGlb(res, it_r);
         		it ++;
         	}
         	std::cout << "visit RamLatticeGLB here!\n";
