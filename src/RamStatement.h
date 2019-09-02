@@ -281,6 +281,67 @@ protected:
 };
 
 /**
+ * Normalize two relations on the lattice element
+ */
+class RamLatNorm : public RamStatement {
+protected:
+    std::unique_ptr<RamRelationReference> first;
+    std::unique_ptr<RamRelationReference> second;
+
+public:
+    RamLatNorm(std::unique_ptr<RamRelationReference> t, std::unique_ptr<RamRelationReference> s)
+            : RamStatement(RN_LatNorm), first(std::move(t)), second(std::move(s)) {
+        // TODO (#541): check not just for arity also for correct type!!
+        // Introduce an equivalence type-check for two ram relations
+        assert(first->getArity() == second->getArity());
+        assert(first->isLattice());
+    }
+
+    /** Get source relation */
+    const RamRelationReference& getFirstRelation() const {
+        return *first;
+    }
+
+    /** Get target relation */
+    const RamRelationReference& getSecondRelation() const {
+        return *second;
+    }
+
+    /** Pretty print */
+    void print(std::ostream& os, int tabpos) const override {
+        os << std::string(tabpos, '\t');
+        os << "LATNORM " << first->getName() << " AND " << second->getName();
+    }
+
+    /** Obtain list of child nodes */
+    std::vector<const RamNode*> getChildNodes() const override {
+        return std::vector<const RamNode*>({first.get(), second.get()});
+    }
+
+    /** Create clone */
+    RamLatNorm* clone() const override {
+    	RamLatNorm* res = new RamLatNorm(std::unique_ptr<RamRelationReference>(first->clone()),
+                std::unique_ptr<RamRelationReference>(second->clone()));
+        return res;
+    }
+
+    /** Apply mapper */
+    void apply(const RamNodeMapper& map) override {
+        first = map(std::move(first));
+        second = map(std::move(second));
+    }
+
+protected:
+    /** Check equality */
+    bool equal(const RamNode& node) const override {
+        assert(nullptr != dynamic_cast<const RamLatNorm*>(&node));
+        const auto& other = static_cast<const RamLatNorm&>(node);
+        return getFirstRelation() == other.getFirstRelation() &&
+        		getSecondRelation() == other.getSecondRelation();
+    }
+};
+
+/**
  * Swap operation two relations
  */
 class RamSwap : public RamStatement {

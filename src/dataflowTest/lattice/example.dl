@@ -42,6 +42,8 @@ case Neg, case Zer, case Pos,
 .output R
 
 R(x, s) :- A(x, s), B(x, s).
+A(x, s) :- R(x, s), B(x, s).
+
 
 // normal relation
 .decl P(x: symbol, s: symbol)

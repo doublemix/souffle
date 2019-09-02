@@ -1056,14 +1056,24 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 
 		/* create update statements for fixpoint (even iteration) */
 		appendStmt(updateRelTable,
-				std::make_unique<RamSequence>(
-						std::make_unique<RamMerge>(std::unique_ptr<RamRelationReference>(rrel[rel]->clone()),
-								std::unique_ptr<RamRelationReference>(relNew[rel]->clone())),
-								std::make_unique<RamSwap>(
-										std::unique_ptr<RamRelationReference>(relDelta[rel]->clone()),
-										std::unique_ptr<RamRelationReference>(relNew[rel]->clone())),
-										std::make_unique<RamClear>(
-												std::unique_ptr<RamRelationReference>(relNew[rel]->clone()))));
+				std::make_unique<RamMerge>(std::unique_ptr<RamRelationReference>(rrel[rel]->clone()),
+						std::unique_ptr<RamRelationReference>(relNew[rel]->clone())));
+
+		// if there is relation with lattice, need to normalize it.
+		if (rrel[rel]->isLattice()) {
+			appendStmt(updateRelTable,
+					std::make_unique<RamLatNorm>(std::unique_ptr<RamRelationReference>(rrel[rel]->clone()),
+							std::unique_ptr<RamRelationReference>(relNew[rel]->clone())));
+		}
+
+		appendStmt(updateRelTable,
+				std::make_unique<RamSwap>(
+						std::unique_ptr<RamRelationReference>(relDelta[rel]->clone()),
+						std::unique_ptr<RamRelationReference>(relNew[rel]->clone())));
+
+		appendStmt(updateRelTable,
+				std::make_unique<RamClear>(
+						std::unique_ptr<RamRelationReference>(relNew[rel]->clone())));
 
 		/* measure update time for each relation */
 		if (Global::config().has("profile")) {

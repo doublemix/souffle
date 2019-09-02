@@ -196,6 +196,11 @@ public:
 		return relation->getArity();
 	}
 
+	/** Return the lattice flag of this relation */
+	const bool isLattice() const {
+		return relation->isLattice();
+	}
+
 	/** Is nullary relation */
 	const bool isNullary() const {
 		return relation->isNullary();

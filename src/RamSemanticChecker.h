@@ -29,7 +29,7 @@ class RamSemanticChecker : public RamTransformer {
 private:
     bool transform(RamTranslationUnit& translationUnit) override {
         // TODO (#541): implementation missing
-        return true;
+        return false;
     }
 
 public:

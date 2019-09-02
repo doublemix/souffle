@@ -120,6 +120,7 @@ struct RamVisitor : public ram_visitor_tag {
             FORWARD(LogSize);
 
             FORWARD(Merge);
+            FORWARD(LatNorm);
             FORWARD(Swap);
 
             // control flow
@@ -173,6 +174,7 @@ protected:
     LINK(RelationStatement, Statement);
 
     LINK(Merge, Statement);
+    LINK(LatNorm, Statement);
     LINK(Swap, Statement);
 
     LINK(Sequence, Statement);
