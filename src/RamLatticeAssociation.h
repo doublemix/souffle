@@ -39,6 +39,12 @@ private:
 		}
 	};
 
+	/** top element for the lattice **/
+	RamDomain* top;
+
+	/** bottom element for the lattice **/
+	RamDomain* bottom;
+
 	/** LEQ relation of the lattice */
 	std::vector<LatCase> leq;
 
@@ -63,18 +69,32 @@ public:
 		out << "leq, size: " << leq.size() << std::endl;
 		for (auto& cur : leq) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-						<< ",output:" << PrintLatCase(cur.output) << std::endl;
+										<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
 		out << "lub size: " << lub.size() << std::endl;
 		for (auto& cur : lub) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-						<< ",output:" << PrintLatCase(cur.output) << std::endl;
+										<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
 		out << "glb size: " << glb.size() << std::endl;
 		for (auto& cur : glb) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-						<< ",output:" << PrintLatCase(cur.output) << std::endl;
+										<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
+	}
+
+	void addBotTop(RamDomain *b, RamDomain *t) {
+		assert(b != nullptr && t != nullptr);
+		bottom = b;
+		top = t;
+	}
+
+	RamDomain getBot() const {
+		return *bottom;
+	}
+
+	RamDomain getTop() const {
+		return *top;
 	}
 
 	/** Add to leq function */

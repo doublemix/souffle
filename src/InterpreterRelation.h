@@ -20,6 +20,8 @@
 #include "ParallelUtils.h"
 #include "RamTypes.h"
 
+#include "RamLatticeAssociation.h"
+
 #include <deque>
 #include <map>
 #include <memory>
@@ -32,270 +34,304 @@ namespace souffle {
  */
 class InterpreterRelation {
 public:
-    InterpreterRelation(size_t relArity) : arity(relArity), num_tuples(0), totalIndex(nullptr) {}
+	InterpreterRelation(size_t relArity) : arity(relArity), num_tuples(0), totalIndex(nullptr) {}
 
-    InterpreterRelation(const InterpreterRelation& other) = delete;
+	InterpreterRelation(const InterpreterRelation& other) = delete;
 
-    virtual ~InterpreterRelation() = default;
+	virtual ~InterpreterRelation() = default;
 
-    /** Get arity of relation */
-    size_t getArity() const {
-        return arity;
-    }
+	/** Get arity of relation */
+	size_t getArity() const {
+		return arity;
+	}
 
-    /** Check whether relation is empty */
-    bool empty() const {
-        return num_tuples == 0;
-    }
+	/** Check whether relation is empty */
+	bool empty() const {
+		return num_tuples == 0;
+	}
 
-    /** Gets the number of contained tuples */
-    size_t size() const {
-        return num_tuples;
-    }
+	/** Gets the number of contained tuples */
+	size_t size() const {
+		return num_tuples;
+	}
 
-    /** Insert tuple */
-    virtual void insert(const RamDomain* tuple) {
-        // check for null-arity
-        if (arity == 0) {
-            // set number of tuples to one -- that's it
-            num_tuples = 1;
-            return;
-        }
+	/** Insert tuple */
+	virtual void insert(const RamDomain* tuple) {
+		// check for null-arity
+		if (arity == 0) {
+			// set number of tuples to one -- that's it
+			num_tuples = 1;
+			return;
+		}
 
-        assert(tuple);
+		assert(tuple);
 
-        // make existence check
-        if (exists(tuple)) {
-            return;
-        }
+		// make existence check
+		if (exists(tuple)) {
+			return;
+		}
 
-        int blockIndex = num_tuples / (BLOCK_SIZE / arity);
-        int tupleIndex = (num_tuples % (BLOCK_SIZE / arity)) * arity;
+		int blockIndex = num_tuples / (BLOCK_SIZE / arity);
+		int tupleIndex = (num_tuples % (BLOCK_SIZE / arity)) * arity;
 
-        if (tupleIndex == 0) {
-            blockList.push_back(std::make_unique<RamDomain[]>(BLOCK_SIZE));
-        }
+		if (tupleIndex == 0) {
+			blockList.push_back(std::make_unique<RamDomain[]>(BLOCK_SIZE));
+		}
 
-        RamDomain* newTuple = &blockList[blockIndex][tupleIndex];
-        for (size_t i = 0; i < arity; ++i) {
-            newTuple[i] = tuple[i];
-        }
+		RamDomain* newTuple = &blockList[blockIndex][tupleIndex];
+		for (size_t i = 0; i < arity; ++i) {
+			newTuple[i] = tuple[i];
+		}
 
-        // update all indexes with new tuple
-        for (const auto& cur : indices) {
-            cur.second->insert(newTuple);
-        }
+		// update all indexes with new tuple
+		for (const auto& cur : indices) {
+			cur.second->insert(newTuple);
+		}
 
-        // increment relation size
-        num_tuples++;
-    }
+		// increment relation size
+		num_tuples++;
+	}
 
-    /** Merge another relation into this relation */
-    void insert(const InterpreterRelation& other) {
-        assert(getArity() == other.getArity());
-        for (const auto& cur : other) {
-            insert(cur);
-        }
-    }
+	/** Merge another relation into this relation */
+	void insert(const InterpreterRelation& other) {
+		assert(getArity() == other.getArity());
+		for (const auto& cur : other) {
+			insert(cur);
+		}
+	}
 
-    /** Purge table */
-    void purge() {
-        blockList.clear();
-        for (const auto& cur : indices) {
-            cur.second->purge();
-        }
-        num_tuples = 0;
-    }
+	/** Find the biggest lattice element for each cell, and insert to both itself and the other relation **/
+	/*latnorm is visided after merge, eg:
+     MERGE R WITH @new_R;
+     LATNORM R AND @new_R;
+     so we traverse R and find the biggest lattice*/
+	void latnorm(InterpreterRelation& other, RamLatticeAssociation* latAssoc) {
+		assert(arity == other.getArity());
+		RamDomain high[arity];
+		if (!totalIndex) {
+			totalIndex = getIndex(getTotalIndexKey());
+		}
+		auto it = totalIndex->begin();
+		auto itend = totalIndex->end();
+		while (it != itend) {
+			const RamDomain* data = *(it);
+			for (size_t i = 0; i < arity-1; i++) {
+				high[i] = data[i];
+			}
+			high[arity-1] = MAX_RAM_DOMAIN;
+			// get iterator range
+			auto range_end = totalIndex->UpperBound(high);
+			auto biggestLat = latAssoc->getBot();
+			for (; it != range_end; ++it) {
+				const RamDomain* data = *(it);
+				auto curlat = data[arity-1];
+				biggestLat = latAssoc->applyLub(biggestLat, curlat);
+			}
+			high[arity-1] = biggestLat;
 
-    /** get index for a given set of keys using a cached index as a helper. Keys are encoded as bits for each
-     * column */
-    InterpreterIndex* getIndex(const SearchColumns& key, InterpreterIndex* cachedIndex) const {
-        if (!cachedIndex) {
-            return getIndex(key);
-        }
-        return getIndex(cachedIndex->order());
-    }
+			insert(high);
+			other.insert(high);
+		}
+	}
 
-    /** get index for a given set of keys. Keys are encoded as bits for each column */
-    InterpreterIndex* getIndex(const SearchColumns& key) const {
-        // suffix for order, if no matching prefix exists
-        std::vector<unsigned char> suffix;
-        suffix.reserve(getArity());
+	/** Purge table */
+	void purge() {
+		blockList.clear();
+		for (const auto& cur : indices) {
+			cur.second->purge();
+		}
+		num_tuples = 0;
+	}
 
-        // convert to order
-        InterpreterIndexOrder order;
-        for (size_t k = 1, i = 0; i < getArity(); i++, k *= 2) {
-            if (key & k) {
-                order.append(i);
-            } else {
-                suffix.push_back(i);
-            }
-        }
+	/** get index for a given set of keys using a cached index as a helper. Keys are encoded as bits for each
+	 * column */
+	InterpreterIndex* getIndex(const SearchColumns& key, InterpreterIndex* cachedIndex) const {
+		if (!cachedIndex) {
+			return getIndex(key);
+		}
+		return getIndex(cachedIndex->order());
+	}
 
-        // see whether there is an order with a matching prefix
-        InterpreterIndex* res = nullptr;
-        {
-            auto lease = lock.acquire();
-            (void)lease;
+	/** get index for a given set of keys. Keys are encoded as bits for each column */
+	InterpreterIndex* getIndex(const SearchColumns& key) const {
+		// suffix for order, if no matching prefix exists
+		std::vector<unsigned char> suffix;
+		suffix.reserve(getArity());
 
-            for (auto it = indices.begin(); !res && it != indices.end(); ++it) {
-                if (order.isCompatible(it->first)) {
-                    res = it->second.get();
-                }
-            }
-        }
-        // if found, use compatible index
-        if (res) {
-            return res;
-        }
+		// convert to order
+		InterpreterIndexOrder order;
+		for (size_t k = 1, i = 0; i < getArity(); i++, k *= 2) {
+			if (key & k) {
+				order.append(i);
+			} else {
+				suffix.push_back(i);
+			}
+		}
 
-        // extend index to full index
-        for (auto cur : suffix) {
-            order.append(cur);
-        }
-        assert(order.isComplete());
+		// see whether there is an order with a matching prefix
+		InterpreterIndex* res = nullptr;
+		{
+			auto lease = lock.acquire();
+			(void)lease;
 
-        // get a new index
-        return getIndex(order);
-    }
+			for (auto it = indices.begin(); !res && it != indices.end(); ++it) {
+				if (order.isCompatible(it->first)) {
+					res = it->second.get();
+				}
+			}
+		}
+		// if found, use compatible index
+		if (res) {
+			return res;
+		}
 
-    /** get index for a given order. Keys are encoded as bits for each column */
-    InterpreterIndex* getIndex(const InterpreterIndexOrder& order) const {
-        // TODO: improve index usage by re-using indices with common prefix
-        InterpreterIndex* res = nullptr;
-        {
-            auto lease = lock.acquire();
-            (void)lease;
-            auto pos = indices.find(order);
-            if (pos == indices.end()) {
-                std::unique_ptr<InterpreterIndex>& newIndex = indices[order];
-                newIndex = std::make_unique<InterpreterIndex>(order);
-                newIndex->insert(this->begin(), this->end());
-                res = newIndex.get();
-            } else {
-                res = pos->second.get();
-            }
-        }
-        return res;
-    }
+		// extend index to full index
+		for (auto cur : suffix) {
+			order.append(cur);
+		}
+		assert(order.isComplete());
 
-    /** Obtains a full index-key for this relation */
-    SearchColumns getTotalIndexKey() const {
-        return (1 << (getArity())) - 1;
-    }
+		// get a new index
+		return getIndex(order);
+	}
 
-    /** check whether a tuple exists in the relation */
-    bool exists(const RamDomain* tuple) const {
-        // handle arity 0
-        if (getArity() == 0) {
-            return !empty();
-        }
+	/** get index for a given order. Keys are encoded as bits for each column */
+	InterpreterIndex* getIndex(const InterpreterIndexOrder& order) const {
+		// TODO: improve index usage by re-using indices with common prefix
+		InterpreterIndex* res = nullptr;
+		{
+			auto lease = lock.acquire();
+			(void)lease;
+			auto pos = indices.find(order);
+			if (pos == indices.end()) {
+				std::unique_ptr<InterpreterIndex>& newIndex = indices[order];
+				newIndex = std::make_unique<InterpreterIndex>(order);
+				newIndex->insert(this->begin(), this->end());
+				res = newIndex.get();
+			} else {
+				res = pos->second.get();
+			}
+		}
+		return res;
+	}
 
-        // handle all other arities
-        if (!totalIndex) {
-            totalIndex = getIndex(getTotalIndexKey());
-        }
-        return totalIndex->exists(tuple);
-    }
+	/** Obtains a full index-key for this relation */
+	SearchColumns getTotalIndexKey() const {
+		return (1 << (getArity())) - 1;
+	}
 
-    // --- iterator ---
+	/** check whether a tuple exists in the relation */
+	bool exists(const RamDomain* tuple) const {
+		// handle arity 0
+		if (getArity() == 0) {
+			return !empty();
+		}
 
-    /** Iterator for relation */
-    class iterator : public std::iterator<std::forward_iterator_tag, RamDomain*> {
-    public:
-        iterator() = default;
+		// handle all other arities
+		if (!totalIndex) {
+			totalIndex = getIndex(getTotalIndexKey());
+		}
+		return totalIndex->exists(tuple);
+	}
 
-        iterator(const InterpreterRelation* const relation)
-                : relation(relation), tuple(relation->arity == 0 ? reinterpret_cast<RamDomain*>(this)
-                                                                 : &relation->blockList[0][0]) {}
+	// --- iterator ---
 
-        const RamDomain* operator*() {
-            return tuple;
-        }
+	/** Iterator for relation */
+	class iterator : public std::iterator<std::forward_iterator_tag, RamDomain*> {
+	public:
+		iterator() = default;
 
-        bool operator==(const iterator& other) const {
-            return tuple == other.tuple;
-        }
+		iterator(const InterpreterRelation* const relation)
+		: relation(relation), tuple(relation->arity == 0 ? reinterpret_cast<RamDomain*>(this)
+				: &relation->blockList[0][0]) {}
 
-        bool operator!=(const iterator& other) const {
-            return (tuple != other.tuple);
-        }
+		const RamDomain* operator*() {
+			return tuple;
+		}
 
-        iterator& operator++() {
-            // support 0-arity
-            if (relation->arity == 0) {
-                tuple = nullptr;
-                return *this;
-            }
+		bool operator==(const iterator& other) const {
+			return tuple == other.tuple;
+		}
 
-            // support all other arities
-            ++index;
-            if (index == relation->num_tuples) {
-                tuple = nullptr;
-                return *this;
-            }
+		bool operator!=(const iterator& other) const {
+			return (tuple != other.tuple);
+		}
 
-            int blockIndex = index / (BLOCK_SIZE / relation->arity);
-            int tupleIndex = (index % (BLOCK_SIZE / relation->arity)) * relation->arity;
+		iterator& operator++() {
+			// support 0-arity
+			if (relation->arity == 0) {
+				tuple = nullptr;
+				return *this;
+			}
 
-            tuple = &relation->blockList[blockIndex][tupleIndex];
-            return *this;
-        }
+			// support all other arities
+			++index;
+			if (index == relation->num_tuples) {
+				tuple = nullptr;
+				return *this;
+			}
 
-    private:
-        const InterpreterRelation* const relation = nullptr;
-        size_t index = 0;
-        RamDomain* tuple = nullptr;
-    };
+			int blockIndex = index / (BLOCK_SIZE / relation->arity);
+			int tupleIndex = (index % (BLOCK_SIZE / relation->arity)) * relation->arity;
 
-    /** get iterator begin of relation */
-    inline iterator begin() const {
-        // check for emptiness
-        if (empty()) {
-            return end();
-        }
+			tuple = &relation->blockList[blockIndex][tupleIndex];
+			return *this;
+		}
 
-        return iterator(this);
-    }
+	private:
+		const InterpreterRelation* const relation = nullptr;
+		size_t index = 0;
+		RamDomain* tuple = nullptr;
+	};
 
-    /** get iterator begin of relation */
-    inline iterator end() const {
-        return iterator();
-    }
+	/** get iterator begin of relation */
+	inline iterator begin() const {
+		// check for emptiness
+		if (empty()) {
+			return end();
+		}
 
-    /** Extend tuple */
-    virtual std::vector<RamDomain*> extend(const RamDomain* tuple) {
-        std::vector<RamDomain*> newTuples;
+		return iterator(this);
+	}
 
-        // A standard relation does not generate extra new knowledge on insertion.
-        newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
+	/** get iterator begin of relation */
+	inline iterator end() const {
+		return iterator();
+	}
 
-        return newTuples;
-    }
+	/** Extend tuple */
+	virtual std::vector<RamDomain*> extend(const RamDomain* tuple) {
+		std::vector<RamDomain*> newTuples;
 
-    /** Extend relation */
-    virtual void extend(const InterpreterRelation& rel) {}
+		// A standard relation does not generate extra new knowledge on insertion.
+		newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
 
-private:
-    /** Arity of relation */
-    const size_t arity;
+		return newTuples;
+	}
 
-    /** Size of blocks containing tuples */
-    static const int BLOCK_SIZE = 1024;
+	/** Extend relation */
+	virtual void extend(const InterpreterRelation& rel) {}
 
-    /** Number of tuples in relation */
-    size_t num_tuples;
+	private:
+	/** Arity of relation */
+	const size_t arity;
 
-    std::deque<std::unique_ptr<RamDomain[]>> blockList;
+	/** Size of blocks containing tuples */
+	static const int BLOCK_SIZE = 1024;
 
-    /** List of indices */
-    mutable std::map<InterpreterIndexOrder, std::unique_ptr<InterpreterIndex>> indices;
+	/** Number of tuples in relation */
+	size_t num_tuples;
 
-    /** Total index for existence checks */
-    mutable InterpreterIndex* totalIndex;
+	std::deque<std::unique_ptr<RamDomain[]>> blockList;
 
-    /** Lock for parallel execution */
-    mutable Lock lock;
+	/** List of indices */
+	mutable std::map<InterpreterIndexOrder, std::unique_ptr<InterpreterIndex>> indices;
+
+	/** Total index for existence checks */
+	mutable InterpreterIndex* totalIndex;
+
+	/** Lock for parallel execution */
+	mutable Lock lock;
 };
 
 /**
@@ -304,71 +340,71 @@ private:
 
 class InterpreterEqRelation : public InterpreterRelation {
 public:
-    InterpreterEqRelation(size_t relArity) : InterpreterRelation(relArity) {}
+	InterpreterEqRelation(size_t relArity) : InterpreterRelation(relArity) {}
 
-    /** Insert tuple */
-    void insert(const RamDomain* tuple) override {
-        // TODO: (pnappa) an eqrel check here is all that appears to be needed for implicit additions
-        // TODO: future optimisation would require this as a member datatype
-        // brave soul required to pass this quest
-        // // specialisation for eqrel defs
-        // std::unique_ptr<binaryrelation> eqreltuples;
-        // in addition, it requires insert functions to insert into that, and functions
-        // which allow reading of stored values must be changed to accommodate.
-        // e.g. insert =>  eqRelTuples->insert(tuple[0], tuple[1]);
+	/** Insert tuple */
+	void insert(const RamDomain* tuple) override {
+		// TODO: (pnappa) an eqrel check here is all that appears to be needed for implicit additions
+		// TODO: future optimisation would require this as a member datatype
+		// brave soul required to pass this quest
+		// // specialisation for eqrel defs
+		// std::unique_ptr<binaryrelation> eqreltuples;
+		// in addition, it requires insert functions to insert into that, and functions
+		// which allow reading of stored values must be changed to accommodate.
+		// e.g. insert =>  eqRelTuples->insert(tuple[0], tuple[1]);
 
-        // for now, we just have a naive & extremely slow version, otherwise known as a O(n^2) insertion
-        // ):
+		// for now, we just have a naive & extremely slow version, otherwise known as a O(n^2) insertion
+		// ):
 
-        for (auto* newTuple : extend(tuple)) {
-            InterpreterRelation::insert(newTuple);
-            delete[] newTuple;
-        }
-    }
+		for (auto* newTuple : extend(tuple)) {
+			InterpreterRelation::insert(newTuple);
+			delete[] newTuple;
+		}
+	}
 
-    /** Find the new knowledge generated by inserting a tuple */
-    std::vector<RamDomain*> extend(const RamDomain* tuple) override {
-        std::vector<RamDomain*> newTuples;
+	/** Find the new knowledge generated by inserting a tuple */
+	std::vector<RamDomain*> extend(const RamDomain* tuple) override {
+		std::vector<RamDomain*> newTuples;
 
-        newTuples.push_back(new RamDomain[2]{tuple[0], tuple[0]});
-        newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
-        newTuples.push_back(new RamDomain[2]{tuple[1], tuple[0]});
-        newTuples.push_back(new RamDomain[2]{tuple[1], tuple[1]});
+		newTuples.push_back(new RamDomain[2]{tuple[0], tuple[0]});
+		newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
+		newTuples.push_back(new RamDomain[2]{tuple[1], tuple[0]});
+		newTuples.push_back(new RamDomain[2]{tuple[1], tuple[1]});
 
-        std::vector<const RamDomain*> relevantStored;
-        for (const RamDomain* vals : *this) {
-            if (vals[0] == tuple[0] || vals[0] == tuple[1] || vals[1] == tuple[0] || vals[1] == tuple[1]) {
-                relevantStored.push_back(vals);
-            }
-        }
+		std::vector<const RamDomain*> relevantStored;
+		for (const RamDomain* vals : *this) {
+			if (vals[0] == tuple[0] || vals[0] == tuple[1] || vals[1] == tuple[0] || vals[1] == tuple[1]) {
+				relevantStored.push_back(vals);
+			}
+		}
 
-        for (const auto vals : relevantStored) {
-            newTuples.push_back(new RamDomain[2]{vals[0], tuple[0]});
-            newTuples.push_back(new RamDomain[2]{vals[0], tuple[1]});
-            newTuples.push_back(new RamDomain[2]{vals[1], tuple[0]});
-            newTuples.push_back(new RamDomain[2]{vals[1], tuple[1]});
-            newTuples.push_back(new RamDomain[2]{tuple[0], vals[0]});
-            newTuples.push_back(new RamDomain[2]{tuple[0], vals[1]});
-            newTuples.push_back(new RamDomain[2]{tuple[1], vals[0]});
-            newTuples.push_back(new RamDomain[2]{tuple[1], vals[1]});
-        }
+		for (const auto vals : relevantStored) {
+			newTuples.push_back(new RamDomain[2]{vals[0], tuple[0]});
+			newTuples.push_back(new RamDomain[2]{vals[0], tuple[1]});
+			newTuples.push_back(new RamDomain[2]{vals[1], tuple[0]});
+			newTuples.push_back(new RamDomain[2]{vals[1], tuple[1]});
+			newTuples.push_back(new RamDomain[2]{tuple[0], vals[0]});
+			newTuples.push_back(new RamDomain[2]{tuple[0], vals[1]});
+			newTuples.push_back(new RamDomain[2]{tuple[1], vals[0]});
+			newTuples.push_back(new RamDomain[2]{tuple[1], vals[1]});
+		}
 
-        return newTuples;
-    }
-    /** Extend this relation with new knowledge generated by inserting all tuples from a relation */
-    void extend(const InterpreterRelation& rel) override {
-        std::vector<RamDomain*> newTuples;
-        // store all values that will be implicitly relevant to the those that we will insert
-        for (const auto* tuple : rel) {
-            for (auto* newTuple : extend(tuple)) {
-                newTuples.push_back(newTuple);
-            }
-        }
-        for (const auto* newTuple : newTuples) {
-            InterpreterRelation::insert(newTuple);
-            delete[] newTuple;
-        }
-    }
+		return newTuples;
+	}
+	/** Extend this relation with new knowledge generated by inserting all tuples from a relation */
+	void extend(const InterpreterRelation& rel) override {
+		std::vector<RamDomain*> newTuples;
+		// store all values that will be implicitly relevant to the those that we will insert
+		for (const auto* tuple : rel) {
+			for (auto* newTuple : extend(tuple)) {
+				newTuples.push_back(newTuple);
+			}
+		}
+		for (const auto* newTuple : newTuples) {
+			InterpreterRelation::insert(newTuple);
+			delete[] newTuple;
+		}
+	}
 };
 
 }  // end of namespace souffle

@@ -78,7 +78,7 @@ Grammar
 
    57 lattice_decl: "lattice declaration" relation_list
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg "," "identifier" "," "identifier" "," "identifier" ")"
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" arg "," arg ")" ":" arg "{" lattice_def_type "}"
 
@@ -401,10 +401,10 @@ iodirective_body (113)
 arg (114)
     on left: 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97
     98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114
-    115 116 117 118 119 120 121, on right: 59 60 61 62 86 87 88 89
-    90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108
-    109 115 116 117 118 119 120 121 124 125 126 127 128 129 133 134
-    135 136 138 139
+    115 116 117 118 119 120 121, on right: 58 59 60 61 62 86 87 88
+    89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107
+    108 109 115 116 117 118 119 120 121 124 125 126 127 128 129 133
+    134 135 136 138 139
 functor_list (115)
     on left: 122 123, on right: 83
 functor_args (116)
@@ -579,7 +579,7 @@ State 7
 
 State 8
 
-   58 lattice_asscoiation: "lattice components type declaration" . "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" . "identifier" "<" ">" "=" "(" arg "," arg "," "identifier" "," "identifier" "," "identifier" ")"
 
     "identifier"  shift, and go to state 43
 
@@ -865,7 +865,7 @@ State 42
 
 State 43
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" . "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" . "<" ">" "=" "(" arg "," arg "," "identifier" "," "identifier" "," "identifier" ")"
 
     "<"  shift, and go to state 73
 
@@ -1176,7 +1176,7 @@ State 72
 
 State 73
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" . ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" . ">" "=" "(" arg "," arg "," "identifier" "," "identifier" "," "identifier" ")"
 
     ">"  shift, and go to state 134
 
@@ -2028,7 +2028,7 @@ State 133
 
 State 134
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" . "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" . "=" "(" arg "," arg "," "identifier" "," "identifier" "," "identifier" ")"
 
     "="  shift, and go to state 215
 
@@ -3583,7 +3583,7 @@ State 214
 
 State 215
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" . "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" . "(" arg "," arg "," "identifier" "," "identifier" "," "identifier" ")"
 
     "("  shift, and go to state 280
 
@@ -4799,9 +4799,33 @@ State 279
 
 State 280
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" . "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" . arg "," arg "," "identifier" "," "identifier" "," "identifier" ")"
 
-    "identifier"  shift, and go to state 333
+    "reserved keyword"              shift, and go to state 83
+    "symbol"                        shift, and go to state 84
+    "identifier"                    shift, and go to state 85
+    "number"                        shift, and go to state 86
+    "concatenation of two strings"  shift, and go to state 87
+    "ordinal number of a string"    shift, and go to state 88
+    "length of a string"            shift, and go to state 89
+    "sub-string of a string"        shift, and go to state 90
+    "min aggregator"                shift, and go to state 91
+    "max aggregator"                shift, and go to state 92
+    "count aggregator"              shift, and go to state 93
+    "sum aggregator"                shift, and go to state 94
+    "convert string to number"      shift, and go to state 95
+    "convert number to string"      shift, and go to state 96
+    "nil reference"                 shift, and go to state 97
+    "["                             shift, and go to state 98
+    "_"                             shift, and go to state 99
+    "$"                             shift, and go to state 100
+    "-"                             shift, and go to state 101
+    "("                             shift, and go to state 102
+    "@"                             shift, and go to state 103
+    "bnot"                          shift, and go to state 104
+    "lnot"                          shift, and go to state 105
+
+    arg  go to state 333
 
 
 State 281
@@ -5517,9 +5541,33 @@ State 332
 
 State 333
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" . "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg . "," arg "," "identifier" "," "identifier" "," "identifier" ")"
+   87 arg: arg . "bor" arg
+   88    | arg . "bxor" arg
+   89    | arg . "band" arg
+   90    | arg . "lor" arg
+   91    | arg . "land" arg
+   92    | arg . "+" arg
+   93    | arg . "-" arg
+   94    | arg . "*" arg
+   95    | arg . "/" arg
+   96    | arg . "%" arg
+   97    | arg . "^" arg
+  106    | arg . "type cast" "identifier"
 
-    ","  shift, and go to state 356
+    "type cast"  shift, and go to state 173
+    "+"          shift, and go to state 174
+    "-"          shift, and go to state 175
+    ","          shift, and go to state 356
+    "*"          shift, and go to state 176
+    "/"          shift, and go to state 177
+    "^"          shift, and go to state 178
+    "%"          shift, and go to state 179
+    "band"       shift, and go to state 180
+    "bor"        shift, and go to state 181
+    "bxor"       shift, and go to state 182
+    "land"       shift, and go to state 183
+    "lor"        shift, and go to state 184
 
 
 State 334
@@ -5858,9 +5906,33 @@ State 355
 
 State 356
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," . "identifier" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," . arg "," "identifier" "," "identifier" "," "identifier" ")"
 
-    "identifier"  shift, and go to state 375
+    "reserved keyword"              shift, and go to state 83
+    "symbol"                        shift, and go to state 84
+    "identifier"                    shift, and go to state 85
+    "number"                        shift, and go to state 86
+    "concatenation of two strings"  shift, and go to state 87
+    "ordinal number of a string"    shift, and go to state 88
+    "length of a string"            shift, and go to state 89
+    "sub-string of a string"        shift, and go to state 90
+    "min aggregator"                shift, and go to state 91
+    "max aggregator"                shift, and go to state 92
+    "count aggregator"              shift, and go to state 93
+    "sum aggregator"                shift, and go to state 94
+    "convert string to number"      shift, and go to state 95
+    "convert number to string"      shift, and go to state 96
+    "nil reference"                 shift, and go to state 97
+    "["                             shift, and go to state 98
+    "_"                             shift, and go to state 99
+    "$"                             shift, and go to state 100
+    "-"                             shift, and go to state 101
+    "("                             shift, and go to state 102
+    "@"                             shift, and go to state 103
+    "bnot"                          shift, and go to state 104
+    "lnot"                          shift, and go to state 105
+
+    arg  go to state 375
 
 
 State 357
@@ -6066,9 +6138,33 @@ State 374
 
 State 375
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" . "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg . "," "identifier" "," "identifier" "," "identifier" ")"
+   87 arg: arg . "bor" arg
+   88    | arg . "bxor" arg
+   89    | arg . "band" arg
+   90    | arg . "lor" arg
+   91    | arg . "land" arg
+   92    | arg . "+" arg
+   93    | arg . "-" arg
+   94    | arg . "*" arg
+   95    | arg . "/" arg
+   96    | arg . "%" arg
+   97    | arg . "^" arg
+  106    | arg . "type cast" "identifier"
 
-    ","  shift, and go to state 379
+    "type cast"  shift, and go to state 173
+    "+"          shift, and go to state 174
+    "-"          shift, and go to state 175
+    ","          shift, and go to state 379
+    "*"          shift, and go to state 176
+    "/"          shift, and go to state 177
+    "^"          shift, and go to state 178
+    "%"          shift, and go to state 179
+    "band"       shift, and go to state 180
+    "bor"        shift, and go to state 181
+    "bxor"       shift, and go to state 182
+    "land"       shift, and go to state 183
+    "lor"        shift, and go to state 184
 
 
 State 376
@@ -6145,7 +6241,7 @@ State 378
 
 State 379
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," . "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg "," . "identifier" "," "identifier" "," "identifier" ")"
 
     "identifier"  shift, and go to state 382
 
@@ -6168,7 +6264,7 @@ State 381
 
 State 382
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" . "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg "," "identifier" . "," "identifier" "," "identifier" ")"
 
     ","  shift, and go to state 385
 
@@ -6192,7 +6288,7 @@ State 384
 
 State 385
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," . "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg "," "identifier" "," . "identifier" "," "identifier" ")"
 
     "identifier"  shift, and go to state 389
 
@@ -6245,7 +6341,7 @@ State 388
 
 State 389
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" . "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg "," "identifier" "," "identifier" . "," "identifier" ")"
 
     ","  shift, and go to state 392
 
@@ -6292,7 +6388,7 @@ State 391
 
 State 392
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," . "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg "," "identifier" "," "identifier" "," . "identifier" ")"
 
     "identifier"  shift, and go to state 396
 
@@ -6368,7 +6464,7 @@ State 395
 
 State 396
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" . ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg "," "identifier" "," "identifier" "," "identifier" . ")"
 
     ")"  shift, and go to state 400
 
@@ -6468,7 +6564,7 @@ State 399
 
 State 400
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "identifier" "," "identifier" "," "identifier" "," "identifier" "," "identifier" ")" .
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" arg "," arg "," "identifier" "," "identifier" "," "identifier" ")" .
 
     $default  reduce using rule 58 (lattice_asscoiation)
 

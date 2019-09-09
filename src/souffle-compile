@@ -49,7 +49,7 @@ test -z "$CXX" && CXX=g++
 CPPFLAGS="$(printenv CPPFLAGS || true) "
 CXXFLAGS="$(printenv CXXFLAGS || true)  -Wall -std=c++11 -DUSE_PROVENANCE  -O3 -DUSE_LIBZ  -DUSE_SQLITE  -fopenmp  -march=native"
 LDFLAGS="$(printenv LDFLAGS || true) "
-LIBS="$(printenv LIBS || true) -ldl -lpthread -lsqlite3 -lz -lncurses"
+LIBS="$(printenv LIBS || true) -ldl -lpthread -lffi -lsqlite3 -lz -lncurses"
 
 # set by command flags
 WARNINGS=""

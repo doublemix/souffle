@@ -506,7 +506,7 @@ lattice_decl
   	}
 
 lattice_asscoiation
-  : LET IDENT LT GT EQUALS LPAREN IDENT COMMA IDENT COMMA IDENT COMMA IDENT COMMA IDENT RPAREN {
+  : LET IDENT LT GT EQUALS LPAREN arg COMMA arg COMMA IDENT COMMA IDENT COMMA IDENT RPAREN {
     	$$ = new AstLatticeAssociation($2);
     	$$->setALL($7, $9, $11, $13, $15);
   	}

@@ -896,7 +896,9 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			InterpreterRelation& fst = interpreter.getRelation(latnorm.getFirstRelation());
 			InterpreterRelation& scd = interpreter.getRelation(latnorm.getSecondRelation());
 
-			//TODO: insert biggest lattice element into both relations
+			// insert biggest lattice element into both relations
+			auto latticeAssoc = interpreter.getTranslationUnit().getProgram()->getLattice();
+			fst.latnorm(scd, latticeAssoc);
 
 			return true;
 		}

@@ -492,6 +492,18 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc() {
 	LatticeBinarytranslator GLBtranslator(AstGLB, RamLat, 3);
 	GLBtranslator.translate();
 
+	RamDomain *bot = nullptr, *top = nullptr;
+	if (dynamic_cast<const AstConstant*>(AstLatAssoc->getBottom()) != nullptr) {
+		const auto& bot_str = static_cast<const AstConstant*>(AstLatAssoc->getBottom());
+		bot = new RamDomain(bot_str->getIndex());
+	}
+	if (dynamic_cast<const AstConstant*>(AstLatAssoc->getTop()) != nullptr) {
+		const auto& top_str = static_cast<const AstConstant*>(AstLatAssoc->getTop());
+		top = new RamDomain(top_str->getIndex());
+	}
+
+	RamLat->addBotTop(bot, top);
+
 	return std::unique_ptr<RamLatticeAssociation>(RamLat);
 }
 
