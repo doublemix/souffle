@@ -281,6 +281,14 @@ public:
         }
     }
 
+    bool exist(const std::string& symbol) const {
+    	// TODO: MPI
+    	auto lease = access.acquire();
+    	(void)lease;  // avoid warning;
+    	auto result = strToNum.find(symbol);
+    	return result != strToNum.end();
+    }
+
     /** Find the index of a symbol in the table, inserting a new symbol if it does not exist there
      * already. */
     RamDomain unsafeLookup(const std::string& symbol) {

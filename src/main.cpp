@@ -474,8 +474,8 @@ int main(int argc, char** argv) {
 
     // Apply all the transformations
     pipeline->apply(*astTranslationUnit);
-    std::cout << "AST construction completed.\n";
     astTranslationUnit->getSymbolTable().print(std::cout);
+    std::cout << "AST construction completed.\n";
     std::cout << "\n";
     // ------- execution -------------
 

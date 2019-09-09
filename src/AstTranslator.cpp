@@ -433,15 +433,17 @@ std::unique_ptr<RamCondition> AstTranslator::translateConstraint(
 	return ConstraintTranslator(*this, index)(*lit);
 }
 
-std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc() {
+std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(const AstTranslationUnit& tu) {
+	const SymbolTable& symTab = tu.getSymbolTable();
 	//TODO: not finished, RamLatticeAssociation need to change, RamDomain is not suitable
 	class LatticeBinarytranslator {
+		const SymbolTable& symTab;
 		const AstLatticeBinaryFunction* AstBinary;
 		RamLatticeAssociation* RamLat;
 		int FunctionUse = 0; // 1-leq, 2-lub, 3-glb
 	public:
-		LatticeBinarytranslator(const AstLatticeBinaryFunction* AstB, RamLatticeAssociation* RamL, int Use)
-	: AstBinary(AstB), RamLat(RamL), FunctionUse(Use) {}
+		LatticeBinarytranslator(const SymbolTable& st, const AstLatticeBinaryFunction* AstB, RamLatticeAssociation* RamL, int Use)
+	: symTab(st), AstBinary(AstB), RamLat(RamL), FunctionUse(Use) {}
 
 		void translate() {
 			RamDomain *first, *second, *output;
@@ -450,18 +452,28 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc() {
 			for (const auto& pair : pairmap) {
 				first = nullptr, second = nullptr, output = nullptr;
 
-				if (dynamic_cast<const AstConstant*>(pair.first) != nullptr) {
-					const auto& first_str = static_cast<const AstConstant*>(pair.first);
-					first = new RamDomain(first_str->getIndex());
+				if (symTab.exist(pair.first)) {
+					first = new RamDomain(symTab.lookupExisting(pair.first));
+				}
+				if (symTab.exist(pair.second)) {
+					second = new RamDomain(symTab.lookupExisting(pair.second));
+				}
+				if (symTab.exist(pair.output)) {
+					output = new RamDomain(symTab.lookupExisting(pair.output));
+				}
+				/*if (dynamic_cast<const AstConstant*>(pair.first) != nullptr) {
+					const auto& first_str = static_cast<const AstConstant&>(*pair.first);
+					std::cout << "first_str:" << first_str << std::endl;
+					first = new RamDomain(first_str.getIndex());
 				}
 				if (dynamic_cast<const AstConstant*>(pair.second) != nullptr) {
-					const auto& second_str = static_cast<const AstConstant*>(pair.second);
-					second = new RamDomain(second_str->getIndex());
+					const auto& second_str = static_cast<const AstConstant&>(*pair.second);
+					second = new RamDomain(second_str.getIndex());
 				}
 				if (dynamic_cast<const AstConstant*>(pair.output) != nullptr) {
-					const auto& output_str = static_cast<const AstConstant*>(pair.output);
-					output = new RamDomain(output_str->getIndex());
-				}
+					const auto& output_str = static_cast<const AstConstant&>(*pair.output);
+					output = new RamDomain(output_str.getIndex());
+				}*/
 
 				switch (FunctionUse) {
 				case 1:
@@ -485,22 +497,20 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc() {
 
 	RamLatticeAssociation* RamLat = new RamLatticeAssociation();
 
-	LatticeBinarytranslator LEQtranslator(AstLEQ, RamLat, 1);
+	LatticeBinarytranslator LEQtranslator(symTab, AstLEQ, RamLat, 1);
 	LEQtranslator.translate();
-	LatticeBinarytranslator LUBtranslator(AstLUB, RamLat, 2);
+	LatticeBinarytranslator LUBtranslator(symTab, AstLUB, RamLat, 2);
 	LUBtranslator.translate();
-	LatticeBinarytranslator GLBtranslator(AstGLB, RamLat, 3);
+	LatticeBinarytranslator GLBtranslator(symTab, AstGLB, RamLat, 3);
 	GLBtranslator.translate();
 
 	RamDomain *bot = nullptr, *top = nullptr;
-	if (dynamic_cast<const AstConstant*>(AstLatAssoc->getBottom()) != nullptr) {
-		const auto& bot_str = static_cast<const AstConstant*>(AstLatAssoc->getBottom());
-		bot = new RamDomain(bot_str->getIndex());
-	}
-	if (dynamic_cast<const AstConstant*>(AstLatAssoc->getTop()) != nullptr) {
-		const auto& top_str = static_cast<const AstConstant*>(AstLatAssoc->getTop());
-		top = new RamDomain(top_str->getIndex());
-	}
+
+	assert(symTab.exist(AstLatAssoc->getBottom()));
+	bot = new RamDomain(symTab.lookupExisting(AstLatAssoc->getBottom()));
+
+	assert(symTab.exist(AstLatAssoc->getTop()));
+	top = new RamDomain(symTab.lookupExisting(AstLatAssoc->getTop()));
 
 	RamLat->addBotTop(bot, top);
 
@@ -1598,7 +1608,7 @@ void AstTranslator::translateProgram(const AstTranslationUnit& translationUnit) 
 	}
 
 	// add lattice association into ramprogram
-	ramProg->setLattice(translateLatticeAssoc());
+	ramProg->setLattice(translateLatticeAssoc(translationUnit));
 }
 
 std::unique_ptr<RamTranslationUnit> AstTranslator::translateUnit(AstTranslationUnit& tu) {

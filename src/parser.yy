@@ -506,13 +506,13 @@ lattice_decl
   	}
 
 lattice_asscoiation
-  : LET IDENT LT GT EQUALS LPAREN arg COMMA arg COMMA IDENT COMMA IDENT COMMA IDENT RPAREN {
+  : LET IDENT LT GT EQUALS LPAREN IDENT COMMA IDENT COMMA IDENT COMMA IDENT COMMA IDENT RPAREN {
     	$$ = new AstLatticeAssociation($2);
     	$$->setALL($7, $9, $11, $13, $15);
   	}
 
 lattice_def
-  : DEF IDENT LPAREN arg COMMA arg RPAREN COLON arg LBRACE lattice_def_type RBRACE {
+  : DEF IDENT LPAREN IDENT COMMA IDENT RPAREN COLON IDENT LBRACE lattice_def_type RBRACE {
   // TODO
   		$$ = $11;
   		$$->setSrcLoc(@$);
@@ -523,17 +523,17 @@ lattice_def
   	}
 
 lattice_def_type
-  : CASE LPAREN arg COMMA arg RPAREN ARROW arg {
+  : CASE LPAREN IDENT COMMA IDENT RPAREN ARROW IDENT {
   		$$ = new AstLatticeBinaryFunction();	
   		$$->addPairMap($3, $5, $8);
   	}
-  | lattice_def_type COMMA CASE LPAREN arg COMMA arg RPAREN ARROW arg {
+  | lattice_def_type COMMA CASE LPAREN IDENT COMMA IDENT RPAREN ARROW IDENT {
   		$$ = $1;
   		$$->addPairMap($5, $7, $10);
   	}
-  | lattice_def_type COMMA CASE UNDERSCORE ARROW arg {
+  | lattice_def_type COMMA CASE UNDERSCORE ARROW IDENT {
   		$$ = $1;
-  		$$->addPairMap(new AstUnnamedVariable(), new AstUnnamedVariable(), $6);
+  		$$->addPairMap("", "", $6);
   	}
 
 

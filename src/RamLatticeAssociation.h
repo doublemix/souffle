@@ -22,6 +22,8 @@
 #include "RamTypes.h"
 #include <string>
 
+#include <iostream>
+
 namespace souffle {
 
 class RamLatticeAssociation : public RamNode {
@@ -69,17 +71,17 @@ public:
 		out << "leq, size: " << leq.size() << std::endl;
 		for (auto& cur : leq) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-										<< ",output:" << PrintLatCase(cur.output) << std::endl;
+																<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
 		out << "lub size: " << lub.size() << std::endl;
 		for (auto& cur : lub) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-										<< ",output:" << PrintLatCase(cur.output) << std::endl;
+																<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
 		out << "glb size: " << glb.size() << std::endl;
 		for (auto& cur : glb) {
 			out << "first:" << PrintLatCase(cur.first) << ",second:" << PrintLatCase(cur.second)
-										<< ",output:" << PrintLatCase(cur.output) << std::endl;
+																<< ",output:" << PrintLatCase(cur.output) << std::endl;
 		}
 	}
 
@@ -87,6 +89,7 @@ public:
 		assert(b != nullptr && t != nullptr);
 		bottom = b;
 		top = t;
+		std::cout << *b << " "<< *t << std::endl;
 	}
 
 	RamDomain getBot() const {
@@ -99,20 +102,34 @@ public:
 
 	/** Add to leq function */
 	void addLeq(RamDomain* first, RamDomain* second, RamDomain* output) {
+		std::cout << "print LEQ:" << (first ? std::to_string(*first) : "_") << ","
+				<< (second ? std::to_string(*second) : "_")
+				<< ","	<< (output ? std::to_string(*output) : "_")
+				<< "\n";
 		leq.push_back({first, second, output});
 	}
 
 	/** Add to lub function */
 	void addLub(RamDomain* first, RamDomain* second, RamDomain* output) {
+		std::cout << "print LUB:" << (first ? std::to_string(*first) : "_") << ","
+				<< (second ? std::to_string(*second) : "_")
+				<< ","	<< (output ? std::to_string(*output) : "_")
+				<< "\n";
+
 		lub.push_back({first, second, output});
 	}
 
 	/** Add to glb function */
 	void addGlb(RamDomain* first, RamDomain* second, RamDomain* output) {
+		std::cout << "print GLB:" << (first ? std::to_string(*first) : "_") << ","
+				<< (second ? std::to_string(*second) : "_")
+				<< ","	<< (output ? std::to_string(*output) : "_")
+				<< "\n";
 		glb.push_back({first, second, output});
 	}
 
 	RamDomain applyLeq(RamDomain arg1, RamDomain arg2) {
+		// TODO: LEQ not finished, the output should be bool
 		for (auto& cur : leq) {
 			if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
 				return *cur.output;
@@ -124,9 +141,25 @@ public:
 
 	RamDomain applyLub(RamDomain arg1, RamDomain arg2) {
 		for (auto& cur : lub) {
-			if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
-				return *cur.output;
+			if (cur.first==nullptr) {
+				if (cur.second==nullptr)
+					return *cur.output;
+				else if (*cur.second==arg2) {
+					assert(cur.output==nullptr);
+					return arg1;
+				}
+			} else if (*cur.first==arg1) {
+				if (cur.second==nullptr) {
+					assert(cur.output==nullptr);
+					return arg2;
+				} else if (*cur.second==arg2) {
+					return *cur.output;
+				}
 			}
+
+			/*if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
+				return *cur.output;
+			}*/
 		}
 		std::cerr << "error: apply LUB fail.\n";
 		throw(0);
@@ -134,9 +167,25 @@ public:
 
 	RamDomain applyGlb(RamDomain arg1, RamDomain arg2) {
 		for (auto& cur : glb) {
-			if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
-				return *cur.output;
+			if (cur.first==nullptr) {
+				if (cur.second==nullptr)
+					return *cur.output;
+				else if (*cur.second==arg2) {
+					assert(cur.output==nullptr);
+					return arg1;
+				}
+			} else if (*cur.first==arg1) {
+				if (cur.second==nullptr) {
+					assert(cur.output==nullptr);
+					return arg2;
+				} else if (*cur.second==arg2) {
+					return *cur.output;
+				}
 			}
+
+			/*if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
+				return *cur.output;
+			}*/
 		}
 		std::cerr << "error: apply GLB fail.\n";
 		throw(0);

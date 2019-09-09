@@ -343,7 +343,7 @@ private:
 	std::unique_ptr<RamCondition> translateConstraint(const AstLiteral* arg, const ValueIndex& index);
 
 	/** translate an AST lattice association with lattice binary functions into a RAM lattice **/
-	std::unique_ptr<RamLatticeAssociation> translateLatticeAssoc();
+	std::unique_ptr<RamLatticeAssociation> translateLatticeAssoc(const AstTranslationUnit& tu);
 
 	/** translate AST clause to RAM code */
 	class ClauseTranslator {

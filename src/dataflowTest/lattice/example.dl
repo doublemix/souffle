@@ -5,12 +5,12 @@ case Neg, case Zer, case Pos,
 }
 
 .def leq(Sign, Sign): number {
-    case (Bot, _)   => 1,
-    case (Neg, Neg) => 1,
-    case (Zer, Zer) => 1,
-    case (Pos, Pos) => 1,
-    case (_, Top)   => 1,
-    case _          => 0
+    case (Bot, x)   => Bot,
+    case (Neg, Neg) => Bot,
+    case (Zer, Zer) => Bot,
+    case (Pos, Pos) => Bot,
+    case (x, Top)   => Bot,
+    case _          => Top
 }
 
 .def lub(Sign, Sign): Sign {

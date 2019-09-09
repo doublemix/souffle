@@ -53,7 +53,8 @@ public:
 		name = n;
 	}
 
-	void setALL(AstArgument* B, AstArgument* T, const std::string& LEQ, const std::string& LUB, const std::string& GLB) {
+	void setALL(const std::string& B, const std::string& T, const std::string& LEQ, const std::string& LUB, const std::string& GLB) {
+		assert(B!="" && T!="" && LEQ!="" && LUB!="" && GLB!="");
 		bottom = B;
 		top = T;
 		leq = LEQ;
@@ -61,11 +62,11 @@ public:
 		glb = GLB;
 	}
 
-	const AstArgument* getTop() const {
+	const std::string& getTop() const {
 		return top;
 	}
 
-	const AstArgument* getBottom() const {
+	const std::string& getBottom() const {
 		return bottom;
 	}
 
@@ -119,11 +120,11 @@ protected:
 
 	/** top element for the lattice **/
 	//std::unique_ptr<AstArgument> top;
-	AstArgument* top;
+	std::string top;
 
 	/** bottom element for the lattice **/
 	//std::unique_ptr<AstArgument> bottom;
-	AstArgument* bottom;
+	std::string bottom;
 
 	/** less or equal to **/
 	//std::unique_ptr<AstLatticeBinaryFunction> leq;

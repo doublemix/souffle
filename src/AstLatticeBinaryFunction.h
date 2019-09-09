@@ -40,9 +40,9 @@ class AstLatticeBinaryFunction : public AstNode {
 public:
 	/** The type utilized to model a field */
 	struct PairMap {
-		AstArgument* first;        // < the first of the pair
-		AstArgument* second;  		// < the second of the pair
-		AstArgument* output;		// < the output of the pair
+		std::string first;        // < the first of the pair
+		std::string second;  		// < the second of the pair
+		std::string output;		// < the output of the pair
 
 		bool operator==(const PairMap& other) const {
 			return this == &other || (first == other.first && second == other.second && output == other.output);
@@ -66,12 +66,12 @@ public:
 	}
 
 	/** get output */
-	const AstArgument* getOutput() const {
+	const std::string& getOutput() const {
 		return func_output;
 	}
 
 	/** set output **/
-	void setOutput(AstArgument* output) {
+	void setOutput(const std::string& output) {
 		func_output = output;
 	}
 
@@ -81,17 +81,17 @@ public:
 	}
 
 	/** get arguments */
-	std::vector<AstArgument*> getArguments() const {
+	std::vector<std::string> getArguments() const {
 		return args;
 	}
 
 	/** add argument to argument list */
-	void addArg(AstArgument* arg) {
+	void addArg(const std::string& arg) {
 		args.push_back(arg);
 	}
 
 	/** add argument to argument list */
-	void addPairMap(AstArgument* first, AstArgument* second, AstArgument* output) {
+	void addPairMap(const std::string& first, const std::string& second, const std::string& output) {
 		pairmaps.push_back({first, second, output});
 	}
 
@@ -102,15 +102,15 @@ public:
 	/** print user-defined functor */
 	void print(std::ostream& os) const override {
 		os << "LatticeBinaryFunction: @" << name << " (";
-		os << *args[0];
+		os << args[0];
 		for (size_t i=1; i<args.size(); i++) {
-			os << "," << *args[i];
+			os << "," << args[i];
 		}
 		os << "):";
-		os << *func_output;
+		os << func_output;
 		os << "{\n";
 		for (auto& pm : pairmaps) {
-			os << "(" << *pm.first << "," << *pm.second << ")=>" << *pm.output;
+			os << "(" << pm.first << "," << pm.second << ")=>" << pm.output;
 			os << "\n";
 		}
 		os << "}";
@@ -139,10 +139,10 @@ protected:
 	std::string name;
 
 	/** arguments of lattice binary function */
-	std::vector<AstArgument*> args;
+	std::vector<std::string> args;
 
 	/** output of lattice binary function **/
-	AstArgument* func_output;
+	std::string func_output;
 
 	/** lattice pair map **/
 	std::vector<PairMap> pairmaps;
