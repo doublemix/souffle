@@ -38,12 +38,16 @@ case Neg, case Zer, case Pos,
 .input A
 .lat B(x: symbol, s: Sign)
 .input B
+.lat C(x: symbol, s: Sign)
+.input C
+.lat D(x: symbol, s: Sign)
+.input D
 .lat R(x: symbol, s: Sign)
 .output R
 
-R(x, s) :- A(x, s), B(x, s).
+R(x, s) :- A(x, s), B(x, s), C(x, s).
 A(x, s) :- R(x, s), B(x, s).
-
+R(x, s) :- A(x, s), D(x, s).
 
 // normal relation
 .decl P(x: symbol, s: symbol)
