@@ -1,12 +1,14 @@
-.enum Sign = {
-	case Top,
-case Neg, case Zer, case Pos,
-	case Bot
-}
+.symbol_type Sign
+
+//.enum Sign = {
+//	case Top,
+//case Neg, case Zer, case Pos,
+//	case Bot
+//}
 
 .def leq(Sign, Sign): number {
-    case (Bot, x)   => Bot,
-    case (Neg, Neg) => Bot,
+    case ("Bot", x)   => Bot,
+    case ("Neg", "Neg") => Bot,
     case (Zer, Zer) => Bot,
     case (Pos, Pos) => Bot,
     case (x, Top)   => Bot,

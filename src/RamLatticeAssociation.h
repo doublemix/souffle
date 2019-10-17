@@ -89,7 +89,7 @@ public:
 		assert(b != nullptr && t != nullptr);
 		bottom = b;
 		top = t;
-		std::cout << *b << " "<< *t << std::endl;
+		//std::cout << "bottom: "<<*b << " top:"<< *t << std::endl;
 	}
 
 	RamDomain getBot() const {

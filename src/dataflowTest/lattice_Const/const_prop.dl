@@ -1,19 +1,19 @@
-.enum Sign = {
+.enum Constant = {
 	case Top,
-case Neg, case Zer, case Pos,
+	case .number_type,
 	case Bot
 }
 
-.def leq(Sign, Sign): number {
-    case (Bot, x)   => Bot,
-    case (Neg, Neg) => Bot,
-    case (Zer, Zer) => Bot,
-    case (Pos, Pos) => Bot,
-    case (x, Top)   => Bot,
+.number_type Top
+.number_type Bot
+.type Const = Top | Bot | number_type
+
+.def leq(Constant, Constant): number {
     case _          => Top
 }
 
-.def lub(Sign, Sign): Sign {
+//TODO
+.def lub(Constant, Constant): Constant {
     case (Bot, x)   => x,
     case (x, Bot)   => x,
     case (Neg, Neg) => Neg,
@@ -22,7 +22,7 @@ case Neg, case Zer, case Pos,
     case _          => Top
 }
 
-.def glb(Sign, Sign): Sign {
+.def glb(Constant, Constant): Constant {
     case (Top, x)   => x,
     case (x, Top)   => x,
     case (Neg, Neg) => Neg,

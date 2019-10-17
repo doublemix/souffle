@@ -77,22 +77,22 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 		}
 
 		RamDomain visitLatticeGLB(const RamLatticeGLB& latGLB) override {
-			std::cout << "visit RamLatticeGLB here! ";
+			//std::cout << "visit RamLatticeGLB here! ";
 			auto refs = latGLB.getRefs();
 			auto it = refs.begin();
 			RamDomain res = ctxt[it->identifier][it->element];
-			std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
-			std::cout << "res: " << res << "\n";
+			//std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
+			//std::cout << "res: " << res << "\n";
 			it ++;
-			std::cout << "refs size:" << refs.size() << "\n";
+			//std::cout << "refs size:" << refs.size() << "\n";
 			while (it != refs.end()) {
-				std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
+				//std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
 				RamDomain it_r = ctxt[it->identifier][it->element];
-				std::cout << "last_res: " << res <<" ,it_r: " << it_r << "\n";
+				//std::cout << "last_res: " << res <<" ,it_r: " << it_r << "\n";
 				res = interpreter.getTranslationUnit().getProgram()->getLattice()->applyGlb(res, it_r);
 				it ++;
 			}
-			std::cout << "visit RamLatticeGLB finish, res:" << res << "\n";
+			//std::cout << "visit RamLatticeGLB finish, res:" << res << "\n";
 			return res;
 		}
 
@@ -488,7 +488,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 		}
 
 		void visitScan(const RamScan& scan) override {
-			std::cout << "visitScan here!\n";
+			//std::cout << "visitScan here!\n";
 			// get the targeted relation
 			const InterpreterRelation& rel = interpreter.getRelation(scan.getRelation());
 
@@ -500,7 +500,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 		}
 
 		void visitIndexScan(const RamIndexScan& scan) override {
-			std::cout << "visitIndexScan here!\n";
+			//std::cout << "visitIndexScan here!\n";
 			// get the targeted relation
 			const InterpreterRelation& rel = interpreter.getRelation(scan.getRelation());
 
@@ -528,7 +528,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 			// conduct range query
 			for (auto ip = range.first; ip != range.second; ++ip) {
 				const RamDomain* data = *(ip);
-				std::cout << "scan.getIdentifier():" <<scan.getIdentifier()<<"\n";
+				//std::cout << "scan.getIdentifier():" <<scan.getIdentifier()<<"\n";
 				ctxt[scan.getIdentifier()] = data;
 				visitSearch(scan);
 			}
@@ -649,7 +649,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 		}
 
 		void visitFilter(const RamFilter& filter) override {
-			std::cout << "visitFilter here!\n";
+			//std::cout << "visitFilter here!\n";
 			// check condition
 			if (interpreter.evalCond(filter.getCondition(), ctxt)) {
 				// process nested
@@ -663,13 +663,13 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
 		void visitProject(const RamProject& project) override {
 			// create a tuple of the proper arity (also supports arity 0)
-			std::cout << "visitProject here.\n";
+			//std::cout << "visitProject here.\n";
 			auto arity = project.getRelation().getArity();
 			const auto& values = project.getValues();
 			RamDomain tuple[arity];
 			for (size_t i = 0; i < arity; i++) {
 				assert(values[i]);
-				std::cout << "visitProject -- evalVal here, arity = " << arity << ".\n";
+				//std::cout << "visitProject -- evalVal here, arity = " << arity << ".\n";
 				tuple[i] = interpreter.evalVal(*values[i], ctxt);
 			}
 
@@ -729,7 +729,11 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		bool visitParallel(const RamParallel& parallel) override {
 			// get statements to be processed in parallel
 			const auto& stmts = parallel.getStatements();
-
+			std::cout << "PARALLEL size: " << stmts.size() << std::endl;
+			for (size_t i = 0; i < stmts.size(); i++) {
+				stmts[i]->print(std::cout);
+				std::cout<<"\nEnd of a stmt.\n";
+			}
 			// special case: empty
 			if (stmts.empty()) {
 				return true;
@@ -873,7 +877,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 		bool visitInsert(const RamInsert& insert) override {
 			// run generic query executor
-			std::cout << "visitInsert here.\n";
+			//std::cout << "visitInsert here.\n";
 			const RamCondition* c = insert.getCondition();
 			if (c != nullptr) {
 				if (interpreter.evalCond(*insert.getCondition())) {
@@ -882,7 +886,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			} else {
 				interpreter.evalOp(insert.getOperation());
 			}
-			std::cout << "visitInsert finish.\n";
+			//std::cout << "visitInsert finish.\n";
 			return true;
 		}
 
@@ -897,7 +901,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			}
 			// merge in all elements
 			trg.insert(src);
-			std::cout << "visitMerge finish.\n";
+			//std::cout << "visitMerge finish.\n";
 			// done
 			return true;
 		}
@@ -909,9 +913,9 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 			// insert biggest lattice element into both relations
 			auto latticeAssoc = interpreter.getTranslationUnit().getProgram()->getLattice();
-			std::cout << "visitLatNorm now.\n";
+			//std::cout << "visitLatNorm now.\n";
 			fst.latnorm(scd, latticeAssoc);
-			std::cout << "visitLatNorm finish.\n";
+			//std::cout << "visitLatNorm finish.\n";
 			return true;
 		}
 
