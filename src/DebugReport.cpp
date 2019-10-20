@@ -214,6 +214,7 @@ bool DebugReporter::transform(AstTranslationUnit& translationUnit) {
 void DebugReporter::generateDebugReport(
         AstTranslationUnit& translationUnit, const std::string& id, std::string title) {
     std::stringstream datalogSpec;
+
     translationUnit.getProgram()->print(datalogSpec);
 
     DebugReportSection datalogSection = getCodeSection(id + "-dl", "Datalog", datalogSpec.str());

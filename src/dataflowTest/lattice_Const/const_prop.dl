@@ -24,15 +24,15 @@
 .let Sign<> = (Bot, Top, leq, lub, glb)
 
 // lattice relation
-.lat A(x: symbol, s: Sign)
+.lat A(x: symbol, s: Constant)
 .input A
-.lat B(x: symbol, s: Sign)
+.lat B(x: symbol, s: Constant)
 .input B
-.lat C(x: symbol, s: Sign)
+.lat C(x: symbol, s: Constant)
 .input C
-.lat D(x: symbol, s: Sign)
+.lat D(x: symbol, s: Constant)
 .input D
-.lat R(x: symbol, s: Sign)
+.lat R(x: symbol, s: Constant)
 .output R
 
 R(x, s) :- A(x, s), B(x, s), C(x, s).

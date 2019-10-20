@@ -747,9 +747,8 @@ arg
         $$->setSrcLoc(@$);
     }
   | condition QUESTION arg COLON arg {
-  		$$ = new AstUnnamedVariable();
-  		//$$ = $1;
-  		//$$->setReturns(std::unique_ptr<AstArgument>($3), std::unique_ptr<AstArgument>($5));
+  		$1->setReturns(std::unique_ptr<AstArgument>($3), std::unique_ptr<AstArgument>($5));
+  		$$ = $1;
     }
   | arg AS IDENT {
         $$ = new AstTypeCast(std::unique_ptr<AstArgument>($1), $3);

@@ -373,7 +373,7 @@ int main(int argc, char** argv) {
     DebugReport debugReport;
     std::unique_ptr<AstTranslationUnit> astTranslationUnit =
             ParserDriver::parseTranslationUnit("<stdin>", in, symTab, errReport, debugReport);
-
+    std::cout << "AST parseTranslationUnit completed.\n";
     // close input pipe
     int preprocessor_status = pclose(in);
     if (preprocessor_status == -1) {

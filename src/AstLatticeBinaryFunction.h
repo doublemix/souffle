@@ -36,7 +36,7 @@ namespace souffle {
 /**
  * Subclass of AstArgument that represents an Lattice Binary function/operation
  */
-class AstLatticeBinaryFunction : public AstNode {
+class AstLatticeBinaryFunction: public AstNode {
 public:
 	/** The type utilized to model a field */
 	struct PairMap {
@@ -49,13 +49,17 @@ public:
 //		std::string output;		// < the output of the pair
 
 		bool operator==(const PairMap& other) const {
-			return this == &other || (first == other.first && second == other.second && output == other.output);
+			return this == &other
+					|| (first == other.first && second == other.second
+							&& output == other.output);
 		}
 	};
 
 	AstLatticeBinaryFunction() = default;
 
-	AstLatticeBinaryFunction(std::string name) : name(std::move(name)) {}
+	AstLatticeBinaryFunction(std::string name) :
+			name(std::move(name)) {
+	}
 
 	~AstLatticeBinaryFunction() override = default;
 
@@ -95,8 +99,9 @@ public:
 	}
 
 	/** add argument to argument list */
-	void addPairMap(AstArgument* first, AstArgument* second, AstArgument* output) {
-		pairmaps.push_back({first, second, output});
+	void addPairMap(AstArgument* first, AstArgument* second,
+			AstArgument* output) {
+		pairmaps.push_back( { first, second, output });
 	}
 
 	const std::vector<PairMap>& getPairMap() const {
@@ -107,24 +112,37 @@ public:
 	void print(std::ostream& os) const override {
 		os << "LatticeBinaryFunction: @" << name << " (";
 		os << args[0];
-		for (size_t i=1; i<args.size(); i++) {
+		for (size_t i = 1; i < args.size(); i++) {
 			os << "," << args[i];
 		}
 		os << "):";
 		os << func_output;
 		os << "{\n";
 		for (auto& pm : pairmaps) {
-			os << "(" << *pm.first << "," << *pm.second << ")=>" << *pm.output;
+			os << "(";
+			if (pm.first != nullptr) {
+				pm.first->print(os);
+			} else {
+				os << "_";
+			}
+			os << ",";
+			if (pm.second != nullptr) {
+				pm.second->print(os);
+			} else {
+				os << "_";
+			}
+			os << ")=>";
+			pm.output->print(os);
 			os << "\n";
 		}
 		os << "}";
 	}
 
 	std::vector<const AstNode*> getChildNodes() const override {
-			auto res = std::vector<const AstNode*>();
-			// TODO
-			return res;
-		}
+		auto res = std::vector<const AstNode*>();
+		// TODO
+		return res;
+	}
 
 	AstLatticeBinaryFunction* clone() const override {
 		// TODO
@@ -155,7 +173,7 @@ protected:
 	bool equal(const AstNode& node) const override {
 		assert(nullptr != dynamic_cast<const AstLatticeBinaryFunction*>(&node));
 		const auto& other = static_cast<const AstLatticeBinaryFunction&>(node);
-		return name==other.getName() && pairmaps==other.pairmaps;
+		return name == other.getName() && pairmaps == other.pairmaps;
 	}
 };
 
