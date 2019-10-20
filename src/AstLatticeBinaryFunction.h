@@ -40,9 +40,13 @@ class AstLatticeBinaryFunction : public AstNode {
 public:
 	/** The type utilized to model a field */
 	struct PairMap {
-		std::string first;        // < the first of the pair
-		std::string second;  		// < the second of the pair
-		std::string output;		// < the output of the pair
+		AstArgument* first;		// < the first of the pair
+		AstArgument* second;	// < the second of the pair
+		AstArgument* output;	// < the output of the pair
+
+//		std::string first;        // < the first of the pair
+//		std::string second;  		// < the second of the pair
+//		std::string output;		// < the output of the pair
 
 		bool operator==(const PairMap& other) const {
 			return this == &other || (first == other.first && second == other.second && output == other.output);
@@ -91,7 +95,7 @@ public:
 	}
 
 	/** add argument to argument list */
-	void addPairMap(const std::string& first, const std::string& second, const std::string& output) {
+	void addPairMap(AstArgument* first, AstArgument* second, AstArgument* output) {
 		pairmaps.push_back({first, second, output});
 	}
 
@@ -110,7 +114,7 @@ public:
 		os << func_output;
 		os << "{\n";
 		for (auto& pm : pairmaps) {
-			os << "(" << pm.first << "," << pm.second << ")=>" << pm.output;
+			os << "(" << *pm.first << "," << *pm.second << ")=>" << *pm.output;
 			os << "\n";
 		}
 		os << "}";

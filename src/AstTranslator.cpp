@@ -449,43 +449,47 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(cons
 			RamDomain *first, *second, *output;
 
 			const std::vector<AstLatticeBinaryFunction::PairMap>& pairmap = AstBinary->getPairMap();
-			for (const auto& pair : pairmap) {
-				first = nullptr, second = nullptr, output = nullptr;
 
-				if (symTab.exist(pair.first)) {
-					first = new RamDomain(symTab.lookupExisting(pair.first));
-				}
-				if (symTab.exist(pair.second)) {
-					second = new RamDomain(symTab.lookupExisting(pair.second));
-				}
-				if (symTab.exist(pair.output)) {
-					output = new RamDomain(symTab.lookupExisting(pair.output));
-				}
-				/*if (dynamic_cast<const AstConstant*>(pair.first) != nullptr) {
-					const auto& first_str = static_cast<const AstConstant&>(*pair.first);
-					std::cout << "first_str:" << first_str << std::endl;
-					first = new RamDomain(first_str.getIndex());
-				}
-				if (dynamic_cast<const AstConstant*>(pair.second) != nullptr) {
-					const auto& second_str = static_cast<const AstConstant&>(*pair.second);
-					second = new RamDomain(second_str.getIndex());
-				}
-				if (dynamic_cast<const AstConstant*>(pair.output) != nullptr) {
-					const auto& output_str = static_cast<const AstConstant&>(*pair.output);
-					output = new RamDomain(output_str.getIndex());
-				}*/
 
-				switch (FunctionUse) {
-				case 1:
-					RamLat->addLeq(first, second, output); break;
-				case 2:
-					RamLat->addLub(first, second, output); break;
-				case 3:
-					RamLat->addGlb(first, second, output); break;
-				default:
-					assert(0 && "Not supported lattice function!");
-				}
-			}
+//			for (const auto& pair : pairmap) {
+//				first = nullptr, second = nullptr, output = nullptr;
+//
+//				if (symTab.exist(pair.first)) {
+//					first = new RamDomain(symTab.lookupExisting(pair.first));
+//				}
+//				if (symTab.exist(pair.second)) {
+//					second = new RamDomain(symTab.lookupExisting(pair.second));
+//				}
+//				if (symTab.exist(pair.output)) {
+//					output = new RamDomain(symTab.lookupExisting(pair.output));
+//				}
+//
+//
+//				/*if (dynamic_cast<const AstConstant*>(pair.first) != nullptr) {
+//					const auto& first_str = static_cast<const AstConstant&>(*pair.first);
+//					std::cout << "first_str:" << first_str << std::endl;
+//					first = new RamDomain(first_str.getIndex());
+//				}
+//				if (dynamic_cast<const AstConstant*>(pair.second) != nullptr) {
+//					const auto& second_str = static_cast<const AstConstant&>(*pair.second);
+//					second = new RamDomain(second_str.getIndex());
+//				}
+//				if (dynamic_cast<const AstConstant*>(pair.output) != nullptr) {
+//					const auto& output_str = static_cast<const AstConstant&>(*pair.output);
+//					output = new RamDomain(output_str.getIndex());
+//				}*/
+//
+//				switch (FunctionUse) {
+//				case 1:
+//					RamLat->addLeq(first, second, output); break;
+//				case 2:
+//					RamLat->addLub(first, second, output); break;
+//				case 3:
+//					RamLat->addGlb(first, second, output); break;
+//				default:
+//					assert(0 && "Not supported lattice function!");
+//				}
+//			}
 		}
 	};
 

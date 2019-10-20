@@ -143,6 +143,7 @@
 %token PLUS                      "+"
 %token MINUS                     "-"
 %token EXCLAMATION               "!"
+%token QUESTION					 "?"
 %token LPAREN                    "("
 %token RPAREN                    ")"
 %token COMMA                     ","
@@ -176,6 +177,8 @@
 %type <AstComponent *>                   component component_head component_body
 %type <AstComponentType *>               comp_type
 %type <AstComponentInit *>               comp_init			 
+
+%type <AstQuestionMark *>				 condition
 
 %type <AstLatticeAssociation *>			 lattice_asscoiation
 
@@ -211,6 +214,8 @@
 %type <std::vector<AstStore *>>          store_head
 %printer { yyoutput << $$; } <*>;
 
+
+
 %precedence AS
 %left L_OR
 %left L_AND
@@ -222,6 +227,11 @@
 %precedence BW_NOT L_NOT
 %precedence NEG
 %right CARET
+%precedence COLON
+%precedence GT
+%precedence LT
+%precedence EQUALS
+%precedence EXCLAMATION
 
 %%
 %start program;
@@ -523,17 +533,17 @@ lattice_def
   	}
 
 lattice_def_type
-  : CASE LPAREN IDENT COMMA IDENT RPAREN ARROW IDENT {
+  : CASE LPAREN arg COMMA arg RPAREN ARROW arg {
   		$$ = new AstLatticeBinaryFunction();	
   		$$->addPairMap($3, $5, $8);
   	}
-  | lattice_def_type COMMA CASE LPAREN IDENT COMMA IDENT RPAREN ARROW IDENT {
+  | lattice_def_type COMMA CASE LPAREN arg COMMA arg RPAREN ARROW arg {
   		$$ = $1;
   		$$->addPairMap($5, $7, $10);
   	}
-  | lattice_def_type COMMA CASE UNDERSCORE ARROW IDENT {
+  | lattice_def_type COMMA CASE UNDERSCORE ARROW arg {
   		$$ = $1;
-  		$$->addPairMap("", "", $6);
+  		$$->addPairMap(NULL, NULL, $6);
   	}
 
 
@@ -736,6 +746,11 @@ arg
                 std::unique_ptr<AstArgument>($7));
         $$->setSrcLoc(@$);
     }
+  | condition QUESTION arg COLON arg {
+  		$$ = new AstUnnamedVariable();
+  		//$$ = $1;
+  		//$$->setReturns(std::unique_ptr<AstArgument>($3), std::unique_ptr<AstArgument>($5));
+    }
   | arg AS IDENT {
         $$ = new AstTypeCast(std::unique_ptr<AstArgument>($1), $3);
         $$->setSrcLoc(@$);
@@ -865,6 +880,34 @@ arg
         std::cerr << "ERROR: '" << $1 << "' is a keyword reserved for future implementation!" << std::endl;
         exit(1);
     }
+
+condition
+  : arg EQUALS arg {
+        $$ = new AstQuestionMark(AstQuestionMark::CompOp::EQ, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
+        $$->setSrcLoc(@$);
+    }
+  | arg EXCLAMATION EQUALS arg {
+  		$$ = new AstQuestionMark(AstQuestionMark::CompOp::NE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
+        $$->setSrcLoc(@$);
+    }
+  | arg LT arg {
+        $$ = new AstQuestionMark(AstQuestionMark::CompOp::LT, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
+        $$->setSrcLoc(@$);
+    }
+  | arg LT EQUALS arg {
+        $$ = new AstQuestionMark(AstQuestionMark::CompOp::LE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
+        $$->setSrcLoc(@$);
+    }
+  | arg GT arg {
+        $$ = new AstQuestionMark(AstQuestionMark::CompOp::GT, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
+        $$->setSrcLoc(@$);
+    }
+  | arg GT EQUALS arg {
+        $$ = new AstQuestionMark(AstQuestionMark::CompOp::GE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
+        $$->setSrcLoc(@$);
+    }
+  ;
+
 
 functor_list
   : LPAREN RPAREN {

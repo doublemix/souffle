@@ -1,14 +1,10 @@
 .enum Constant = {
 	case Top,
-	case .number_type,
 	case Bot
 }
 
-.number_type Top
-.number_type Bot
-.type Const = Top | Bot | number_type
-
 .def leq(Constant, Constant): number {
+    case (Bot, x)   => x,
     case _          => Top
 }
 
@@ -16,19 +12,13 @@
 .def lub(Constant, Constant): Constant {
     case (Bot, x)   => x,
     case (x, Bot)   => x,
-    case (Neg, Neg) => Neg,
-    case (Zer, Zer) => Zer,
-    case (Pos, Pos) => Pos,
-    case _          => Top
+    case (x, y)	    => x=y ? x : Top
 }
 
 .def glb(Constant, Constant): Constant {
     case (Top, x)   => x,
     case (x, Top)   => x,
-    case (Neg, Neg) => Neg,
-    case (Zer, Zer) => Zer,
-    case (Pos, Pos) => Pos,
-    case _          => Bot
+    case (x, y)	    => x=y ? x : Bot
 }
 
 .let Sign<> = (Bot, Top, leq, lub, glb)
