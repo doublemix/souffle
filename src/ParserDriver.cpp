@@ -45,10 +45,12 @@ ParserDriver::ParserDriver() = default;
 
 ParserDriver::~ParserDriver() = default;
 
-std::unique_ptr<AstTranslationUnit> ParserDriver::parse(const std::string& filename, FILE* in,
-		SymbolTable& symbolTable, ErrorReport& errorReport, DebugReport& debugReport) {
+std::unique_ptr<AstTranslationUnit> ParserDriver::parse(
+		const std::string& filename, FILE* in, SymbolTable& symbolTable,
+		ErrorReport& errorReport, DebugReport& debugReport) {
 	translationUnit = std::make_unique<AstTranslationUnit>(
-			std::unique_ptr<AstProgram>(new AstProgram()), symbolTable, errorReport, debugReport);
+			std::unique_ptr<AstProgram>(new AstProgram()), symbolTable,
+			errorReport, debugReport);
 	yyscan_t scanner;
 	scanner_data data;
 	data.yyfilename = filename.c_str();
@@ -63,13 +65,26 @@ std::unique_ptr<AstTranslationUnit> ParserDriver::parse(const std::string& filen
 
 	translationUnit->getProgram()->finishParsing();
 
+	// added by Qing Gong: change symbol table of all lattice elements, eg: Top, Bot
+	for (const auto* cur : translationUnit->getProgram()->getTypes()) {
+		if (const auto* enum_ptr = dynamic_cast<const AstEnumType *>(cur)) {
+			const auto& cases = enum_ptr->getCases();
+			// assume all symbol types in the .enum
+			for (const auto& cas : cases) {
+				symbolTable.moveToEnd(cas.name);
+			}
+		}
+	}
+
 	return std::move(translationUnit);
 }
 
-std::unique_ptr<AstTranslationUnit> ParserDriver::parse(const std::string& code, SymbolTable& symbolTable,
-		ErrorReport& errorReport, DebugReport& debugReport) {
+std::unique_ptr<AstTranslationUnit> ParserDriver::parse(const std::string& code,
+		SymbolTable& symbolTable, ErrorReport& errorReport,
+		DebugReport& debugReport) {
 	translationUnit = std::make_unique<AstTranslationUnit>(
-			std::unique_ptr<AstProgram>(new AstProgram()), symbolTable, errorReport, debugReport);
+			std::unique_ptr<AstProgram>(new AstProgram()), symbolTable,
+			errorReport, debugReport);
 
 	scanner_data data;
 	data.yyfilename = "<in-memory>";
@@ -87,14 +102,16 @@ std::unique_ptr<AstTranslationUnit> ParserDriver::parse(const std::string& code,
 	return std::move(translationUnit);
 }
 
-std::unique_ptr<AstTranslationUnit> ParserDriver::parseTranslationUnit(const std::string& filename, FILE* in,
-		SymbolTable& symbolTable, ErrorReport& errorReport, DebugReport& debugReport) {
+std::unique_ptr<AstTranslationUnit> ParserDriver::parseTranslationUnit(
+		const std::string& filename, FILE* in, SymbolTable& symbolTable,
+		ErrorReport& errorReport, DebugReport& debugReport) {
 	ParserDriver parser;
 	return parser.parse(filename, in, symbolTable, errorReport, debugReport);
 }
 
-std::unique_ptr<AstTranslationUnit> ParserDriver::parseTranslationUnit(const std::string& code,
-		SymbolTable& symbolTable, ErrorReport& errorReport, DebugReport& debugReport) {
+std::unique_ptr<AstTranslationUnit> ParserDriver::parseTranslationUnit(
+		const std::string& code, SymbolTable& symbolTable,
+		ErrorReport& errorReport, DebugReport& debugReport) {
 	ParserDriver parser;
 	return parser.parse(code, symbolTable, errorReport, debugReport);
 }
@@ -103,36 +120,45 @@ void ParserDriver::addPragma(std::unique_ptr<AstPragma> p) {
 	translationUnit->getProgram()->addPragma(std::move(p));
 }
 
-void ParserDriver::addLatticeBinaryFunction(std::unique_ptr<AstLatticeBinaryFunction> f) {
+void ParserDriver::addLatticeBinaryFunction(
+		std::unique_ptr<AstLatticeBinaryFunction> f) {
 	const std::string& name = f->getName();
-	if (AstLatticeBinaryFunction* prev = translationUnit->getProgram()->getLatticeBinaryFunction(name)) {
+	if (AstLatticeBinaryFunction* prev =
+			translationUnit->getProgram()->getLatticeBinaryFunction(name)) {
 		Diagnostic err(Diagnostic::ERROR,
-				DiagnosticMessage("Redefinition of Lattice Binary Function: " + toString(name), f->getSrcLoc()),
-				{DiagnosticMessage("Previous definition", prev->getSrcLoc())});
+				DiagnosticMessage(
+						"Redefinition of Lattice Binary Function: "
+								+ toString(name), f->getSrcLoc()),
+				{ DiagnosticMessage("Previous definition", prev->getSrcLoc()) });
 		translationUnit->getErrorReport().addDiagnostic(err);
 	} else {
 		translationUnit->getProgram()->addLatticeBinaryFunction(std::move(f));
 	}
 }
 
-void ParserDriver::addLatticeAssociation(std::unique_ptr<AstLatticeAssociation> f) {
+void ParserDriver::addLatticeAssociation(
+		std::unique_ptr<AstLatticeAssociation> f) {
 	const auto pt = translationUnit->getProgram()->getLatticeAssociation();
 	if (pt != nullptr) {
 		Diagnostic err(Diagnostic::ERROR,
-				DiagnosticMessage("Dual definition of Lattice Association ", f->getSrcLoc()),
-				{DiagnosticMessage("Previous definition", pt->getSrcLoc())});
+				DiagnosticMessage("Dual definition of Lattice Association ",
+						f->getSrcLoc()),
+				{ DiagnosticMessage("Previous definition", pt->getSrcLoc()) });
 		translationUnit->getErrorReport().addDiagnostic(err);
 	} else {
 		translationUnit->getProgram()->addLatticeAssociation(std::move(f));
 	}
 }
 
-void ParserDriver::addFunctorDeclaration(std::unique_ptr<AstFunctorDeclaration> f) {
+void ParserDriver::addFunctorDeclaration(
+		std::unique_ptr<AstFunctorDeclaration> f) {
 	const std::string& name = f->getName();
-	if (AstFunctorDeclaration* prev = translationUnit->getProgram()->getFunctorDeclaration(name)) {
+	if (AstFunctorDeclaration* prev =
+			translationUnit->getProgram()->getFunctorDeclaration(name)) {
 		Diagnostic err(Diagnostic::ERROR,
-				DiagnosticMessage("Redefinition of functor " + toString(name), f->getSrcLoc()),
-				{DiagnosticMessage("Previous definition", prev->getSrcLoc())});
+				DiagnosticMessage("Redefinition of functor " + toString(name),
+						f->getSrcLoc()),
+				{ DiagnosticMessage("Previous definition", prev->getSrcLoc()) });
 		translationUnit->getErrorReport().addDiagnostic(err);
 	} else {
 		translationUnit->getProgram()->addFunctorDeclaration(std::move(f));
@@ -143,13 +169,15 @@ void ParserDriver::addRelation(std::unique_ptr<AstRelation> r) {
 	const auto& name = r->getName();
 	if (AstRelation* prev = translationUnit->getProgram()->getRelation(name)) {
 		Diagnostic err(Diagnostic::ERROR,
-				DiagnosticMessage("Redefinition of relation " + toString(name), r->getSrcLoc()),
-				{DiagnosticMessage("Previous definition", prev->getSrcLoc())});
+				DiagnosticMessage("Redefinition of relation " + toString(name),
+						r->getSrcLoc()),
+				{ DiagnosticMessage("Previous definition", prev->getSrcLoc()) });
 		translationUnit->getErrorReport().addDiagnostic(err);
 	} else {
 		if (!r->getStores().empty() || !r->getLoads().empty()) {
 			translationUnit->getErrorReport().addWarning(
-					"Deprecated io qualifier was used in relation " + toString(name), r->getSrcLoc());
+					"Deprecated io qualifier was used in relation "
+							+ toString(name), r->getSrcLoc());
 		}
 		translationUnit->getProgram()->addRelation(std::move(r));
 	}
@@ -158,12 +186,15 @@ void ParserDriver::addRelation(std::unique_ptr<AstRelation> r) {
 void ParserDriver::addStore(std::unique_ptr<AstStore> d) {
 	if (dynamic_cast<AstPrintSize*>(d.get()) != nullptr) {
 		for (const auto& cur : translationUnit->getProgram()->getStores()) {
-			if (cur->getName() == d->getName() && dynamic_cast<AstPrintSize*>(cur.get()) != nullptr) {
+			if (cur->getName() == d->getName()
+					&& dynamic_cast<AstPrintSize*>(cur.get()) != nullptr) {
 				Diagnostic err(Diagnostic::ERROR,
 						DiagnosticMessage(
-								"Redefinition of printsize directives for relation " + toString(d->getName()),
+								"Redefinition of printsize directives for relation "
+										+ toString(d->getName()),
 								d->getSrcLoc()),
-								{DiagnosticMessage("Previous definition", cur->getSrcLoc())});
+						{ DiagnosticMessage("Previous definition",
+								cur->getSrcLoc()) });
 				translationUnit->getErrorReport().addDiagnostic(err);
 				return;
 			}
@@ -180,8 +211,9 @@ void ParserDriver::addType(std::unique_ptr<AstType> type) {
 	const auto& name = type->getName();
 	if (const AstType* prev = translationUnit->getProgram()->getType(name)) {
 		Diagnostic err(Diagnostic::ERROR,
-				DiagnosticMessage("Redefinition of type " + toString(name), type->getSrcLoc()),
-				{DiagnosticMessage("Previous definition", prev->getSrcLoc())});
+				DiagnosticMessage("Redefinition of type " + toString(name),
+						type->getSrcLoc()),
+				{ DiagnosticMessage("Previous definition", prev->getSrcLoc()) });
 		translationUnit->getErrorReport().addDiagnostic(err);
 	} else {
 		translationUnit->getProgram()->addType(std::move(type));
@@ -206,7 +238,8 @@ void ParserDriver::error(const SrcLocation& loc, const std::string& msg) {
 	translationUnit->getErrorReport().addError(msg, loc);
 }
 void ParserDriver::error(const std::string& msg) {
-	translationUnit->getErrorReport().addDiagnostic(Diagnostic(Diagnostic::ERROR, DiagnosticMessage(msg)));
+	translationUnit->getErrorReport().addDiagnostic(
+			Diagnostic(Diagnostic::ERROR, DiagnosticMessage(msg)));
 }
 
 }  // end of namespace souffle

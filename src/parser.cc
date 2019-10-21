@@ -2381,28 +2381,23 @@ namespace yy {
   case 107:
 #line 749 "./parser.yy" // lalr1.cc:859
     {
-  		//auto res = new AstQuestionMark($1->getOperator(), std::unique_ptr<AstArgument>($1->getArg(0)->clone()), std::unique_ptr<AstArgument>($1->getArg(1)->clone()));
-  		//delete $1;
-  		//res->setReturns(std::unique_ptr<AstArgument>($3), std::unique_ptr<AstArgument>($5));
-  		//$$ = res;
-  		
   		yystack_[4].value.as< AstQuestionMark * > ()->setReturns(std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
   		yylhs.value.as< AstArgument * > () = yystack_[4].value.as< AstQuestionMark * > ();
     }
-#line 2393 "parser.cc" // lalr1.cc:859
+#line 2388 "parser.cc" // lalr1.cc:859
     break;
 
   case 108:
-#line 758 "./parser.yy" // lalr1.cc:859
+#line 753 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstArgument * > () = new AstTypeCast(std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), yystack_[0].value.as< std::string > ());
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2402 "parser.cc" // lalr1.cc:859
+#line 2397 "parser.cc" // lalr1.cc:859
     break;
 
   case 109:
-#line 762 "./parser.yy" // lalr1.cc:859
+#line 757 "./parser.yy" // lalr1.cc:859
     {
         std::unique_ptr<AstArgument> arg;
         if (const AstNumberConstant* original = dynamic_cast<const AstNumberConstant*>(yystack_[0].value.as< AstArgument * > ())) {
@@ -2414,67 +2409,67 @@ namespace yy {
             yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
         }
     }
-#line 2418 "parser.cc" // lalr1.cc:859
+#line 2413 "parser.cc" // lalr1.cc:859
     break;
 
   case 110:
-#line 773 "./parser.yy" // lalr1.cc:859
+#line 768 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstArgument * > () = new AstIntrinsicFunctor(FunctorOp::BNOT, std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2427 "parser.cc" // lalr1.cc:859
+#line 2422 "parser.cc" // lalr1.cc:859
     break;
 
   case 111:
-#line 777 "./parser.yy" // lalr1.cc:859
+#line 772 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstArgument * > () = new AstIntrinsicFunctor(FunctorOp::LNOT, std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2436 "parser.cc" // lalr1.cc:859
+#line 2431 "parser.cc" // lalr1.cc:859
     break;
 
   case 112:
-#line 781 "./parser.yy" // lalr1.cc:859
+#line 776 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstArgument * > () = new AstRecordInit();
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2445 "parser.cc" // lalr1.cc:859
+#line 2440 "parser.cc" // lalr1.cc:859
     break;
 
   case 113:
-#line 785 "./parser.yy" // lalr1.cc:859
+#line 780 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstArgument * > () = yystack_[1].value.as< AstRecordInit * > ();
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2454 "parser.cc" // lalr1.cc:859
+#line 2449 "parser.cc" // lalr1.cc:859
     break;
 
   case 114:
-#line 789 "./parser.yy" // lalr1.cc:859
+#line 784 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstArgument * > () = new AstNullConstant();
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2463 "parser.cc" // lalr1.cc:859
+#line 2458 "parser.cc" // lalr1.cc:859
     break;
 
   case 115:
-#line 793 "./parser.yy" // lalr1.cc:859
+#line 788 "./parser.yy" // lalr1.cc:859
     {
         auto res = new AstAggregator(AstAggregator::count);
         res->addBodyLiteral(std::unique_ptr<AstLiteral>(yystack_[0].value.as< AstAtom * > ()));
         yylhs.value.as< AstArgument * > () = res;
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2474 "parser.cc" // lalr1.cc:859
+#line 2469 "parser.cc" // lalr1.cc:859
     break;
 
   case 116:
-#line 799 "./parser.yy" // lalr1.cc:859
+#line 794 "./parser.yy" // lalr1.cc:859
     {
         auto res = new AstAggregator(AstAggregator::count);
         auto bodies = yystack_[1].value.as< RuleBody * > ()->toClauseBodies();
@@ -2490,11 +2485,11 @@ namespace yy {
         yylhs.value.as< AstArgument * > () = res;
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2494 "parser.cc" // lalr1.cc:859
+#line 2489 "parser.cc" // lalr1.cc:859
     break;
 
   case 117:
-#line 814 "./parser.yy" // lalr1.cc:859
+#line 809 "./parser.yy" // lalr1.cc:859
     {
         auto res = new AstAggregator(AstAggregator::sum);
         res->setTargetExpression(std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()));
@@ -2502,11 +2497,11 @@ namespace yy {
         yylhs.value.as< AstArgument * > () = res;
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2506 "parser.cc" // lalr1.cc:859
+#line 2501 "parser.cc" // lalr1.cc:859
     break;
 
   case 118:
-#line 821 "./parser.yy" // lalr1.cc:859
+#line 816 "./parser.yy" // lalr1.cc:859
     {
         auto res = new AstAggregator(AstAggregator::sum);
         res->setTargetExpression(std::unique_ptr<AstArgument>(yystack_[4].value.as< AstArgument * > ()));
@@ -2523,11 +2518,11 @@ namespace yy {
         yylhs.value.as< AstArgument * > () = res;
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2527 "parser.cc" // lalr1.cc:859
+#line 2522 "parser.cc" // lalr1.cc:859
     break;
 
   case 119:
-#line 837 "./parser.yy" // lalr1.cc:859
+#line 832 "./parser.yy" // lalr1.cc:859
     {
         auto res = new AstAggregator(AstAggregator::min);
         res->setTargetExpression(std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()));
@@ -2535,11 +2530,11 @@ namespace yy {
         yylhs.value.as< AstArgument * > () = res;
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2539 "parser.cc" // lalr1.cc:859
+#line 2534 "parser.cc" // lalr1.cc:859
     break;
 
   case 120:
-#line 844 "./parser.yy" // lalr1.cc:859
+#line 839 "./parser.yy" // lalr1.cc:859
     {
         auto res = new AstAggregator(AstAggregator::min);
         res->setTargetExpression(std::unique_ptr<AstArgument>(yystack_[4].value.as< AstArgument * > ()));
@@ -2556,11 +2551,11 @@ namespace yy {
         yylhs.value.as< AstArgument * > () = res;
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2560 "parser.cc" // lalr1.cc:859
+#line 2555 "parser.cc" // lalr1.cc:859
     break;
 
   case 121:
-#line 860 "./parser.yy" // lalr1.cc:859
+#line 855 "./parser.yy" // lalr1.cc:859
     {
         auto res = new AstAggregator(AstAggregator::max);
         res->setTargetExpression(std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()));
@@ -2568,11 +2563,11 @@ namespace yy {
         yylhs.value.as< AstArgument * > () = res;
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2572 "parser.cc" // lalr1.cc:859
+#line 2567 "parser.cc" // lalr1.cc:859
     break;
 
   case 122:
-#line 867 "./parser.yy" // lalr1.cc:859
+#line 862 "./parser.yy" // lalr1.cc:859
     {
         auto res = new AstAggregator(AstAggregator::max);
         res->setTargetExpression(std::unique_ptr<AstArgument>(yystack_[4].value.as< AstArgument * > ()));
@@ -2589,409 +2584,409 @@ namespace yy {
         yylhs.value.as< AstArgument * > () = res;
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
-#line 2593 "parser.cc" // lalr1.cc:859
+#line 2588 "parser.cc" // lalr1.cc:859
     break;
 
   case 123:
-#line 883 "./parser.yy" // lalr1.cc:859
+#line 878 "./parser.yy" // lalr1.cc:859
     {
         std::cerr << "ERROR: '" << yystack_[3].value.as< std::string > () << "' is a keyword reserved for future implementation!" << std::endl;
         exit(1);
     }
-#line 2602 "parser.cc" // lalr1.cc:859
+#line 2597 "parser.cc" // lalr1.cc:859
     break;
 
   case 124:
-#line 889 "./parser.yy" // lalr1.cc:859
+#line 884 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstQuestionMark * > () = new AstQuestionMark(AstQuestionMark::CompOp::EQ, std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         yylhs.value.as< AstQuestionMark * > ()->setSrcLoc(yylhs.location);
     }
-#line 2611 "parser.cc" // lalr1.cc:859
+#line 2606 "parser.cc" // lalr1.cc:859
     break;
 
   case 125:
-#line 893 "./parser.yy" // lalr1.cc:859
+#line 888 "./parser.yy" // lalr1.cc:859
     {
   		yylhs.value.as< AstQuestionMark * > () = new AstQuestionMark(AstQuestionMark::CompOp::NE, std::unique_ptr<AstArgument>(yystack_[3].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         yylhs.value.as< AstQuestionMark * > ()->setSrcLoc(yylhs.location);
     }
-#line 2620 "parser.cc" // lalr1.cc:859
+#line 2615 "parser.cc" // lalr1.cc:859
     break;
 
   case 126:
-#line 897 "./parser.yy" // lalr1.cc:859
+#line 892 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstQuestionMark * > () = new AstQuestionMark(AstQuestionMark::CompOp::LT, std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         yylhs.value.as< AstQuestionMark * > ()->setSrcLoc(yylhs.location);
     }
-#line 2629 "parser.cc" // lalr1.cc:859
+#line 2624 "parser.cc" // lalr1.cc:859
     break;
 
   case 127:
-#line 901 "./parser.yy" // lalr1.cc:859
+#line 896 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstQuestionMark * > () = new AstQuestionMark(AstQuestionMark::CompOp::LE, std::unique_ptr<AstArgument>(yystack_[3].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         yylhs.value.as< AstQuestionMark * > ()->setSrcLoc(yylhs.location);
     }
-#line 2638 "parser.cc" // lalr1.cc:859
+#line 2633 "parser.cc" // lalr1.cc:859
     break;
 
   case 128:
-#line 905 "./parser.yy" // lalr1.cc:859
+#line 900 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstQuestionMark * > () = new AstQuestionMark(AstQuestionMark::CompOp::GT, std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         yylhs.value.as< AstQuestionMark * > ()->setSrcLoc(yylhs.location);
     }
-#line 2647 "parser.cc" // lalr1.cc:859
+#line 2642 "parser.cc" // lalr1.cc:859
     break;
 
   case 129:
-#line 909 "./parser.yy" // lalr1.cc:859
+#line 904 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstQuestionMark * > () = new AstQuestionMark(AstQuestionMark::CompOp::GE, std::unique_ptr<AstArgument>(yystack_[3].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         yylhs.value.as< AstQuestionMark * > ()->setSrcLoc(yylhs.location);
     }
-#line 2656 "parser.cc" // lalr1.cc:859
+#line 2651 "parser.cc" // lalr1.cc:859
     break;
 
   case 130:
-#line 917 "./parser.yy" // lalr1.cc:859
+#line 912 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstUserDefinedFunctor * > () = new AstUserDefinedFunctor();
     }
-#line 2664 "parser.cc" // lalr1.cc:859
+#line 2659 "parser.cc" // lalr1.cc:859
     break;
 
   case 131:
-#line 920 "./parser.yy" // lalr1.cc:859
+#line 915 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstUserDefinedFunctor * > () = yystack_[1].value.as< AstUserDefinedFunctor * > ();
     }
-#line 2672 "parser.cc" // lalr1.cc:859
+#line 2667 "parser.cc" // lalr1.cc:859
     break;
 
   case 132:
-#line 926 "./parser.yy" // lalr1.cc:859
+#line 921 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstUserDefinedFunctor * > () = new AstUserDefinedFunctor();
         yylhs.value.as< AstUserDefinedFunctor * > ()->add(std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
     }
-#line 2681 "parser.cc" // lalr1.cc:859
+#line 2676 "parser.cc" // lalr1.cc:859
     break;
 
   case 133:
-#line 930 "./parser.yy" // lalr1.cc:859
+#line 925 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstUserDefinedFunctor * > () = yystack_[2].value.as< AstUserDefinedFunctor * > ();
         yylhs.value.as< AstUserDefinedFunctor * > ()->add(std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
     }
-#line 2690 "parser.cc" // lalr1.cc:859
+#line 2685 "parser.cc" // lalr1.cc:859
     break;
 
   case 134:
-#line 937 "./parser.yy" // lalr1.cc:859
+#line 932 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstRecordInit * > () = new AstRecordInit();
         yylhs.value.as< AstRecordInit * > ()->add(std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
     }
-#line 2699 "parser.cc" // lalr1.cc:859
+#line 2694 "parser.cc" // lalr1.cc:859
     break;
 
   case 135:
-#line 941 "./parser.yy" // lalr1.cc:859
+#line 936 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstRecordInit * > () = yystack_[2].value.as< AstRecordInit * > ();
         yylhs.value.as< AstRecordInit * > ()->add(std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
     }
-#line 2708 "parser.cc" // lalr1.cc:859
+#line 2703 "parser.cc" // lalr1.cc:859
     break;
 
   case 136:
-#line 947 "./parser.yy" // lalr1.cc:859
+#line 942 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstAtom * > () = new AstAtom();
         yylhs.value.as< AstAtom * > ()->addArgument(std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
     }
-#line 2717 "parser.cc" // lalr1.cc:859
+#line 2712 "parser.cc" // lalr1.cc:859
     break;
 
   case 137:
-#line 951 "./parser.yy" // lalr1.cc:859
+#line 946 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstAtom * > () = yystack_[2].value.as< AstAtom * > ();
         yylhs.value.as< AstAtom * > ()->addArgument(std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
     }
-#line 2726 "parser.cc" // lalr1.cc:859
+#line 2721 "parser.cc" // lalr1.cc:859
     break;
 
   case 138:
-#line 957 "./parser.yy" // lalr1.cc:859
+#line 952 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstAtom * > () = yystack_[0].value.as< AstAtom * > ();
     }
-#line 2734 "parser.cc" // lalr1.cc:859
+#line 2729 "parser.cc" // lalr1.cc:859
     break;
 
   case 139:
-#line 960 "./parser.yy" // lalr1.cc:859
+#line 955 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstAtom * > () = new AstAtom();
     }
-#line 2742 "parser.cc" // lalr1.cc:859
+#line 2737 "parser.cc" // lalr1.cc:859
     break;
 
   case 140:
-#line 965 "./parser.yy" // lalr1.cc:859
+#line 960 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstAtom * > () = yystack_[1].value.as< AstAtom * > ();
         yystack_[1].value.as< AstAtom * > ()->setName(*yystack_[3].value.as< AstRelationIdentifier * > ());
         delete yystack_[3].value.as< AstRelationIdentifier * > ();
         yylhs.value.as< AstAtom * > ()->setSrcLoc(yylhs.location);
     }
-#line 2753 "parser.cc" // lalr1.cc:859
+#line 2748 "parser.cc" // lalr1.cc:859
     break;
 
   case 141:
-#line 974 "./parser.yy" // lalr1.cc:859
+#line 969 "./parser.yy" // lalr1.cc:859
     {
         auto* res = new AstBinaryConstraint(yystack_[1].value.as< std::string > (), std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         res->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::constraint(res));
     }
-#line 2763 "parser.cc" // lalr1.cc:859
+#line 2758 "parser.cc" // lalr1.cc:859
     break;
 
   case 142:
-#line 979 "./parser.yy" // lalr1.cc:859
+#line 974 "./parser.yy" // lalr1.cc:859
     {
         auto* res = new AstBinaryConstraint(BinaryConstraintOp::LT, std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         res->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::constraint(res));
     }
-#line 2773 "parser.cc" // lalr1.cc:859
+#line 2768 "parser.cc" // lalr1.cc:859
     break;
 
   case 143:
-#line 984 "./parser.yy" // lalr1.cc:859
+#line 979 "./parser.yy" // lalr1.cc:859
     {
         auto* res = new AstBinaryConstraint(BinaryConstraintOp::GT, std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         res->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::constraint(res));
     }
-#line 2783 "parser.cc" // lalr1.cc:859
+#line 2778 "parser.cc" // lalr1.cc:859
     break;
 
   case 144:
-#line 989 "./parser.yy" // lalr1.cc:859
+#line 984 "./parser.yy" // lalr1.cc:859
     {
         auto* res = new AstBinaryConstraint(BinaryConstraintOp::EQ, std::unique_ptr<AstArgument>(yystack_[2].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[0].value.as< AstArgument * > ()));
         res->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::constraint(res));
     }
-#line 2793 "parser.cc" // lalr1.cc:859
+#line 2788 "parser.cc" // lalr1.cc:859
     break;
 
   case 145:
-#line 994 "./parser.yy" // lalr1.cc:859
+#line 989 "./parser.yy" // lalr1.cc:859
     {
         yystack_[0].value.as< AstAtom * > ()->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::atom(yystack_[0].value.as< AstAtom * > ()));
     }
-#line 2802 "parser.cc" // lalr1.cc:859
+#line 2797 "parser.cc" // lalr1.cc:859
     break;
 
   case 146:
-#line 998 "./parser.yy" // lalr1.cc:859
+#line 993 "./parser.yy" // lalr1.cc:859
     {
         auto* res = new AstBinaryConstraint(BinaryConstraintOp::MATCH, std::unique_ptr<AstArgument>(yystack_[3].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[1].value.as< AstArgument * > ()));
         res->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::constraint(res));
     }
-#line 2812 "parser.cc" // lalr1.cc:859
+#line 2807 "parser.cc" // lalr1.cc:859
     break;
 
   case 147:
-#line 1003 "./parser.yy" // lalr1.cc:859
+#line 998 "./parser.yy" // lalr1.cc:859
     {
         auto* res = new AstBinaryConstraint(BinaryConstraintOp::CONTAINS, std::unique_ptr<AstArgument>(yystack_[3].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[1].value.as< AstArgument * > ()));
         res->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::constraint(res));
     }
-#line 2822 "parser.cc" // lalr1.cc:859
+#line 2817 "parser.cc" // lalr1.cc:859
     break;
 
   case 148:
-#line 1008 "./parser.yy" // lalr1.cc:859
+#line 1003 "./parser.yy" // lalr1.cc:859
     {
         auto* res = new AstBooleanConstraint(true);
         res->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::constraint(res));
     }
-#line 2832 "parser.cc" // lalr1.cc:859
+#line 2827 "parser.cc" // lalr1.cc:859
     break;
 
   case 149:
-#line 1013 "./parser.yy" // lalr1.cc:859
+#line 1008 "./parser.yy" // lalr1.cc:859
     {
         auto* res = new AstBooleanConstraint(false);
         res->setSrcLoc(yylhs.location);
         yylhs.value.as< RuleBody * > () = new RuleBody(RuleBody::constraint(res));
     }
-#line 2842 "parser.cc" // lalr1.cc:859
+#line 2837 "parser.cc" // lalr1.cc:859
     break;
 
   case 150:
-#line 1021 "./parser.yy" // lalr1.cc:859
+#line 1016 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstClause * > () = new AstClause();
         yylhs.value.as< AstClause * > ()->setHead(std::unique_ptr<AstAtom>(yystack_[1].value.as< AstAtom * > ()));
         yylhs.value.as< AstClause * > ()->setSrcLoc(yylhs.location);
     }
-#line 2852 "parser.cc" // lalr1.cc:859
+#line 2847 "parser.cc" // lalr1.cc:859
     break;
 
   case 151:
-#line 1029 "./parser.yy" // lalr1.cc:859
+#line 1024 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::vector<AstAtom*> > ().push_back(yystack_[0].value.as< AstAtom * > ());
     }
-#line 2860 "parser.cc" // lalr1.cc:859
+#line 2855 "parser.cc" // lalr1.cc:859
     break;
 
   case 152:
-#line 1032 "./parser.yy" // lalr1.cc:859
+#line 1027 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::vector<AstAtom*> > ().swap(yystack_[2].value.as< std::vector<AstAtom*> > ());
         yylhs.value.as< std::vector<AstAtom*> > ().push_back(yystack_[0].value.as< AstAtom * > ());
     }
-#line 2869 "parser.cc" // lalr1.cc:859
+#line 2864 "parser.cc" // lalr1.cc:859
     break;
 
   case 153:
-#line 1039 "./parser.yy" // lalr1.cc:859
+#line 1034 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< RuleBody * > () = yystack_[0].value.as< RuleBody * > ();
     }
-#line 2877 "parser.cc" // lalr1.cc:859
+#line 2872 "parser.cc" // lalr1.cc:859
     break;
 
   case 154:
-#line 1042 "./parser.yy" // lalr1.cc:859
+#line 1037 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< RuleBody * > () = yystack_[0].value.as< RuleBody * > ();
         yylhs.value.as< RuleBody * > ()->negate();
     }
-#line 2886 "parser.cc" // lalr1.cc:859
+#line 2881 "parser.cc" // lalr1.cc:859
     break;
 
   case 155:
-#line 1046 "./parser.yy" // lalr1.cc:859
+#line 1041 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< RuleBody * > () = yystack_[1].value.as< RuleBody * > ();
     }
-#line 2894 "parser.cc" // lalr1.cc:859
+#line 2889 "parser.cc" // lalr1.cc:859
     break;
 
   case 156:
-#line 1052 "./parser.yy" // lalr1.cc:859
+#line 1047 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< RuleBody * > () = yystack_[0].value.as< RuleBody * > ();
     }
-#line 2902 "parser.cc" // lalr1.cc:859
+#line 2897 "parser.cc" // lalr1.cc:859
     break;
 
   case 157:
-#line 1055 "./parser.yy" // lalr1.cc:859
+#line 1050 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< RuleBody * > () = yystack_[2].value.as< RuleBody * > ();
         yylhs.value.as< RuleBody * > ()->conjunct(std::move(*yystack_[0].value.as< RuleBody * > ()));
         delete yystack_[0].value.as< RuleBody * > ();
     }
-#line 2912 "parser.cc" // lalr1.cc:859
+#line 2907 "parser.cc" // lalr1.cc:859
     break;
 
   case 158:
-#line 1063 "./parser.yy" // lalr1.cc:859
+#line 1058 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< RuleBody * > () = yystack_[0].value.as< RuleBody * > ();
     }
-#line 2920 "parser.cc" // lalr1.cc:859
+#line 2915 "parser.cc" // lalr1.cc:859
     break;
 
   case 159:
-#line 1066 "./parser.yy" // lalr1.cc:859
+#line 1061 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< RuleBody * > () = yystack_[2].value.as< RuleBody * > ();
         yylhs.value.as< RuleBody * > ()->disjunct(std::move(*yystack_[0].value.as< RuleBody * > ()));
         delete yystack_[0].value.as< RuleBody * > ();
     }
-#line 2930 "parser.cc" // lalr1.cc:859
+#line 2925 "parser.cc" // lalr1.cc:859
     break;
 
   case 160:
-#line 1074 "./parser.yy" // lalr1.cc:859
+#line 1069 "./parser.yy" // lalr1.cc:859
     { yylhs.value.as< RuleBody * > () = yystack_[0].value.as< RuleBody * > ();
     }
-#line 2937 "parser.cc" // lalr1.cc:859
+#line 2932 "parser.cc" // lalr1.cc:859
     break;
 
   case 161:
-#line 1079 "./parser.yy" // lalr1.cc:859
+#line 1074 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstExecutionOrder * > () = new AstExecutionOrder();
         yylhs.value.as< AstExecutionOrder * > ()->appendAtomIndex(yystack_[0].value.as< AstDomain > ());
     }
-#line 2946 "parser.cc" // lalr1.cc:859
+#line 2941 "parser.cc" // lalr1.cc:859
     break;
 
   case 162:
-#line 1083 "./parser.yy" // lalr1.cc:859
+#line 1078 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstExecutionOrder * > () = yystack_[2].value.as< AstExecutionOrder * > ();
         yylhs.value.as< AstExecutionOrder * > ()->appendAtomIndex(yystack_[0].value.as< AstDomain > ());
     }
-#line 2955 "parser.cc" // lalr1.cc:859
+#line 2950 "parser.cc" // lalr1.cc:859
     break;
 
   case 163:
-#line 1090 "./parser.yy" // lalr1.cc:859
+#line 1085 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstExecutionOrder * > () = yystack_[1].value.as< AstExecutionOrder * > ();
         yylhs.value.as< AstExecutionOrder * > ()->setSrcLoc(yylhs.location);
     }
-#line 2964 "parser.cc" // lalr1.cc:859
+#line 2959 "parser.cc" // lalr1.cc:859
     break;
 
   case 164:
-#line 1097 "./parser.yy" // lalr1.cc:859
+#line 1092 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstExecutionPlan * > () = new AstExecutionPlan();
         yylhs.value.as< AstExecutionPlan * > ()->setOrderFor(yystack_[2].value.as< AstDomain > (), std::unique_ptr<AstExecutionOrder>(yystack_[0].value.as< AstExecutionOrder * > ()));
     }
-#line 2973 "parser.cc" // lalr1.cc:859
+#line 2968 "parser.cc" // lalr1.cc:859
     break;
 
   case 165:
-#line 1101 "./parser.yy" // lalr1.cc:859
+#line 1096 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstExecutionPlan * > () = yystack_[4].value.as< AstExecutionPlan * > ();
         yylhs.value.as< AstExecutionPlan * > ()->setOrderFor(yystack_[2].value.as< AstDomain > (), std::unique_ptr<AstExecutionOrder>(yystack_[0].value.as< AstExecutionOrder * > ()));
     }
-#line 2982 "parser.cc" // lalr1.cc:859
+#line 2977 "parser.cc" // lalr1.cc:859
     break;
 
   case 166:
-#line 1108 "./parser.yy" // lalr1.cc:859
+#line 1103 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstExecutionPlan * > () = yystack_[0].value.as< AstExecutionPlan * > ();
         yylhs.value.as< AstExecutionPlan * > ()->setSrcLoc(yylhs.location);
     }
-#line 2991 "parser.cc" // lalr1.cc:859
+#line 2986 "parser.cc" // lalr1.cc:859
     break;
 
   case 167:
-#line 1115 "./parser.yy" // lalr1.cc:859
+#line 1110 "./parser.yy" // lalr1.cc:859
     {
         auto bodies = yystack_[1].value.as< RuleBody * > ()->toClauseBodies();
         for(const auto& head : yystack_[3].value.as< std::vector<AstAtom*> > ()) {
@@ -3011,196 +3006,196 @@ namespace yy {
         }
         delete yystack_[1].value.as< RuleBody * > ();
     }
-#line 3015 "parser.cc" // lalr1.cc:859
+#line 3010 "parser.cc" // lalr1.cc:859
     break;
 
   case 168:
-#line 1137 "./parser.yy" // lalr1.cc:859
+#line 1132 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::vector<AstClause*> > () = yystack_[0].value.as< std::vector<AstClause*> > ();
     }
-#line 3023 "parser.cc" // lalr1.cc:859
+#line 3018 "parser.cc" // lalr1.cc:859
     break;
 
   case 169:
-#line 1140 "./parser.yy" // lalr1.cc:859
+#line 1135 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::vector<AstClause*> > () = yystack_[1].value.as< std::vector<AstClause*> > ();
         for(const auto& cur : yylhs.value.as< std::vector<AstClause*> > ()) cur->setFixedExecutionPlan();
     }
-#line 3032 "parser.cc" // lalr1.cc:859
+#line 3027 "parser.cc" // lalr1.cc:859
     break;
 
   case 170:
-#line 1144 "./parser.yy" // lalr1.cc:859
+#line 1139 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::vector<AstClause*> > () = yystack_[1].value.as< std::vector<AstClause*> > ();
         for(const auto& cur : yylhs.value.as< std::vector<AstClause*> > ()) cur->setExecutionPlan(std::unique_ptr<AstExecutionPlan>(yystack_[0].value.as< AstExecutionPlan * > ()->clone()));
     }
-#line 3041 "parser.cc" // lalr1.cc:859
+#line 3036 "parser.cc" // lalr1.cc:859
     break;
 
   case 171:
-#line 1152 "./parser.yy" // lalr1.cc:859
+#line 1147 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::vector<AstTypeIdentifier> > ().push_back(yystack_[0].value.as< std::string > ());
     }
-#line 3049 "parser.cc" // lalr1.cc:859
+#line 3044 "parser.cc" // lalr1.cc:859
     break;
 
   case 172:
-#line 1155 "./parser.yy" // lalr1.cc:859
+#line 1150 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::vector<AstTypeIdentifier> > () = yystack_[2].value.as< std::vector<AstTypeIdentifier> > ();
         yylhs.value.as< std::vector<AstTypeIdentifier> > ().push_back(*yystack_[0].value.as< AstTypeIdentifier * > ());
         delete yystack_[0].value.as< AstTypeIdentifier * > ();
     }
-#line 3059 "parser.cc" // lalr1.cc:859
+#line 3054 "parser.cc" // lalr1.cc:859
     break;
 
   case 173:
-#line 1162 "./parser.yy" // lalr1.cc:859
+#line 1157 "./parser.yy" // lalr1.cc:859
     {
     }
-#line 3066 "parser.cc" // lalr1.cc:859
+#line 3061 "parser.cc" // lalr1.cc:859
     break;
 
   case 174:
-#line 1164 "./parser.yy" // lalr1.cc:859
+#line 1159 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::vector<AstTypeIdentifier> > () = yystack_[1].value.as< std::vector<AstTypeIdentifier> > ();
     }
-#line 3074 "parser.cc" // lalr1.cc:859
+#line 3069 "parser.cc" // lalr1.cc:859
     break;
 
   case 175:
-#line 1171 "./parser.yy" // lalr1.cc:859
+#line 1166 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponentType * > () = new AstComponentType(yystack_[1].value.as< std::string > (),yystack_[0].value.as< std::vector<AstTypeIdentifier> > ());
     }
-#line 3082 "parser.cc" // lalr1.cc:859
+#line 3077 "parser.cc" // lalr1.cc:859
     break;
 
   case 176:
-#line 1178 "./parser.yy" // lalr1.cc:859
+#line 1173 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = new AstComponent();
         yylhs.value.as< AstComponent * > ()->setComponentType(std::unique_ptr<AstComponentType>(yystack_[0].value.as< AstComponentType * > ()));
     }
-#line 3091 "parser.cc" // lalr1.cc:859
+#line 3086 "parser.cc" // lalr1.cc:859
     break;
 
   case 177:
-#line 1182 "./parser.yy" // lalr1.cc:859
+#line 1177 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[2].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->addBaseComponent(std::unique_ptr<AstComponentType>(yystack_[0].value.as< AstComponentType * > ()));
     }
-#line 3100 "parser.cc" // lalr1.cc:859
+#line 3095 "parser.cc" // lalr1.cc:859
     break;
 
   case 178:
-#line 1186 "./parser.yy" // lalr1.cc:859
+#line 1181 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[2].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->addBaseComponent(std::unique_ptr<AstComponentType>(yystack_[0].value.as< AstComponentType * > ()));
     }
-#line 3109 "parser.cc" // lalr1.cc:859
+#line 3104 "parser.cc" // lalr1.cc:859
     break;
 
   case 179:
-#line 1192 "./parser.yy" // lalr1.cc:859
+#line 1187 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->addType(std::unique_ptr<AstType>(yystack_[0].value.as< AstType * > ()));
     }
-#line 3118 "parser.cc" // lalr1.cc:859
+#line 3113 "parser.cc" // lalr1.cc:859
     break;
 
   case 180:
-#line 1196 "./parser.yy" // lalr1.cc:859
+#line 1191 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         for(const auto& cur : yystack_[0].value.as< std::vector<AstRelation *> > ()) yylhs.value.as< AstComponent * > ()->addRelation(std::unique_ptr<AstRelation>(cur));
     }
-#line 3127 "parser.cc" // lalr1.cc:859
+#line 3122 "parser.cc" // lalr1.cc:859
     break;
 
   case 181:
-#line 1200 "./parser.yy" // lalr1.cc:859
+#line 1195 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         for(const auto& cur : yystack_[0].value.as< std::vector<AstLoad *> > ()) yylhs.value.as< AstComponent * > ()->addLoad(std::unique_ptr<AstLoad>(cur));
     }
-#line 3136 "parser.cc" // lalr1.cc:859
+#line 3131 "parser.cc" // lalr1.cc:859
     break;
 
   case 182:
-#line 1204 "./parser.yy" // lalr1.cc:859
+#line 1199 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         for(const auto& cur : yystack_[0].value.as< std::vector<AstStore *> > ()) yylhs.value.as< AstComponent * > ()->addStore(std::unique_ptr<AstStore>(cur));
     }
-#line 3145 "parser.cc" // lalr1.cc:859
+#line 3140 "parser.cc" // lalr1.cc:859
     break;
 
   case 183:
-#line 1208 "./parser.yy" // lalr1.cc:859
+#line 1203 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->addClause(std::unique_ptr<AstClause>(yystack_[0].value.as< AstClause * > ()));
     }
-#line 3154 "parser.cc" // lalr1.cc:859
+#line 3149 "parser.cc" // lalr1.cc:859
     break;
 
   case 184:
-#line 1212 "./parser.yy" // lalr1.cc:859
+#line 1207 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         for(const auto& cur : yystack_[0].value.as< std::vector<AstClause*> > ()) {
             yylhs.value.as< AstComponent * > ()->addClause(std::unique_ptr<AstClause>(cur));
         }
     }
-#line 3165 "parser.cc" // lalr1.cc:859
+#line 3160 "parser.cc" // lalr1.cc:859
     break;
 
   case 185:
-#line 1218 "./parser.yy" // lalr1.cc:859
+#line 1213 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->addOverride(yystack_[0].value.as< std::string > ());
     }
-#line 3174 "parser.cc" // lalr1.cc:859
+#line 3169 "parser.cc" // lalr1.cc:859
     break;
 
   case 186:
-#line 1222 "./parser.yy" // lalr1.cc:859
+#line 1217 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->addComponent(std::unique_ptr<AstComponent>(yystack_[0].value.as< AstComponent * > ()));
     }
-#line 3183 "parser.cc" // lalr1.cc:859
+#line 3178 "parser.cc" // lalr1.cc:859
     break;
 
   case 187:
-#line 1226 "./parser.yy" // lalr1.cc:859
+#line 1221 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->addInstantiation(std::unique_ptr<AstComponentInit>(yystack_[0].value.as< AstComponentInit * > ()));
     }
-#line 3192 "parser.cc" // lalr1.cc:859
+#line 3187 "parser.cc" // lalr1.cc:859
     break;
 
   case 188:
-#line 1230 "./parser.yy" // lalr1.cc:859
+#line 1225 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = new AstComponent();
     }
-#line 3200 "parser.cc" // lalr1.cc:859
+#line 3195 "parser.cc" // lalr1.cc:859
     break;
 
   case 189:
-#line 1235 "./parser.yy" // lalr1.cc:859
+#line 1230 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponent * > () = yystack_[1].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->setComponentType(std::unique_ptr<AstComponentType>(yystack_[3].value.as< AstComponent * > ()->getComponentType()->clone()));
@@ -3208,30 +3203,30 @@ namespace yy {
         delete yystack_[3].value.as< AstComponent * > ();
         yylhs.value.as< AstComponent * > ()->setSrcLoc(yylhs.location);
     }
-#line 3212 "parser.cc" // lalr1.cc:859
+#line 3207 "parser.cc" // lalr1.cc:859
     break;
 
   case 190:
-#line 1245 "./parser.yy" // lalr1.cc:859
+#line 1240 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< AstComponentInit * > () = new AstComponentInit();
         yylhs.value.as< AstComponentInit * > ()->setInstanceName(yystack_[2].value.as< std::string > ());
         yylhs.value.as< AstComponentInit * > ()->setComponentType(std::unique_ptr<AstComponentType>(yystack_[0].value.as< AstComponentType * > ()));
         yylhs.value.as< AstComponentInit * > ()->setSrcLoc(yylhs.location);
     }
-#line 3223 "parser.cc" // lalr1.cc:859
+#line 3218 "parser.cc" // lalr1.cc:859
     break;
 
   case 191:
-#line 1254 "./parser.yy" // lalr1.cc:859
+#line 1249 "./parser.yy" // lalr1.cc:859
     {
         yylhs.value.as< std::string > () = yystack_[0].value.as< std::string > ();
 }
-#line 3231 "parser.cc" // lalr1.cc:859
+#line 3226 "parser.cc" // lalr1.cc:859
     break;
 
 
-#line 3235 "parser.cc" // lalr1.cc:859
+#line 3230 "parser.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -4157,16 +4152,16 @@ namespace yy {
      575,   579,   585,   588,   594,   601,   607,   615,   618,   627,
      633,   642,   646,   650,   654,   659,   663,   667,   670,   674,
      678,   682,   686,   690,   694,   698,   702,   706,   710,   714,
-     718,   722,   726,   730,   734,   738,   742,   749,   758,   762,
-     773,   777,   781,   785,   789,   793,   799,   814,   821,   837,
-     844,   860,   867,   883,   889,   893,   897,   901,   905,   909,
-     917,   920,   926,   930,   937,   941,   947,   951,   957,   960,
-     965,   974,   979,   984,   989,   994,   998,  1003,  1008,  1013,
-    1021,  1029,  1032,  1039,  1042,  1046,  1052,  1055,  1063,  1066,
-    1074,  1079,  1083,  1090,  1097,  1101,  1108,  1115,  1137,  1140,
-    1144,  1152,  1155,  1162,  1164,  1171,  1178,  1182,  1186,  1192,
-    1196,  1200,  1204,  1208,  1212,  1218,  1222,  1226,  1230,  1235,
-    1245,  1254
+     718,   722,   726,   730,   734,   738,   742,   749,   753,   757,
+     768,   772,   776,   780,   784,   788,   794,   809,   816,   832,
+     839,   855,   862,   878,   884,   888,   892,   896,   900,   904,
+     912,   915,   921,   925,   932,   936,   942,   946,   952,   955,
+     960,   969,   974,   979,   984,   989,   993,   998,  1003,  1008,
+    1016,  1024,  1027,  1034,  1037,  1041,  1047,  1050,  1058,  1061,
+    1069,  1074,  1078,  1085,  1092,  1096,  1103,  1110,  1132,  1135,
+    1139,  1147,  1150,  1157,  1159,  1166,  1173,  1177,  1181,  1187,
+    1191,  1195,  1199,  1203,  1207,  1213,  1217,  1221,  1225,  1230,
+    1240,  1249
   };
 
   // Print the state stack on the debug stream.
@@ -4201,8 +4196,8 @@ namespace yy {
 
 
 } // yy
-#line 4205 "parser.cc" // lalr1.cc:1167
-#line 1258 "./parser.yy" // lalr1.cc:1168
+#line 4200 "parser.cc" // lalr1.cc:1167
+#line 1253 "./parser.yy" // lalr1.cc:1168
 
 void yy::parser::error(const location_type &l, const std::string &m) {
     driver.error(l, m);
