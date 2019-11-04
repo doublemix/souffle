@@ -397,7 +397,8 @@ public:
 		auto it = strToNum.find(symbol);
 		assert(it != strToNum.end() && "It's not in the symbol table when moving to the end!");
 		size_t org_index = it->second;
-		it->second = MAX_AST_DOMAIN - org_index;
+		// move to the end, and avoid using the maximum value, which may be used in numeric variable
+		it->second = MAX_AST_DOMAIN - 1024 - org_index;
 
 		auto it2 = numToStr.find(org_index);
 		assert(it2 != numToStr.end() && "Fail to locate the original index when moving to the end!");
