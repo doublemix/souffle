@@ -519,6 +519,8 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 
 				pair.first;
 
+				// how to link to the first or second value ?
+				// create another valueIndex? or use the existed valueIndex ?
 				translator.translateValue(pair.first, valueIndex);
 				std::vector<std::unique_ptr<RamValue>> values;
 				for (AstArgument* arg : head->getArguments()) {
