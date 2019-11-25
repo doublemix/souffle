@@ -20,7 +20,7 @@
 #include "RamNode.h"
 #include "RamRelation.h"
 #include "SymbolTable.h"
-#include "RamLatticeAssociation.h"
+//#include "RamLatticeAssociation.h"
 
 #include <algorithm>
 #include <array>
@@ -365,8 +365,8 @@ public:
 		references.push_back({identifier, element, std::move(relation)});
 	}
 
-	std::vector<Ref_st> getRefs() const {
-		return references;
+	const std::vector<Ref_st>* getRefs() const {
+		return &references;
 	}
 
 //	const RamLatticeAssociation* getLatticeAssociation() const {

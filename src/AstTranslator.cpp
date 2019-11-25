@@ -495,13 +495,13 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 	const SymbolTable& symTab = tu.getSymbolTable();
 	//TODO: not finished, RamLatticeAssociation need to change, RamDomain is not suitable
 	class LatticeBinarytranslator {
-		AstTranslator& translator;
+		AstTranslator* translator;
 		const SymbolTable& symTab;
 		const AstLatticeBinaryFunction* AstBinary;
 		RamLatticeAssociation* RamLat;
 		int FunctionUse = 0; // 1-leq, 2-lub, 3-glb
 	public:
-		LatticeBinarytranslator(AstTranslator& translator,
+		LatticeBinarytranslator(AstTranslator* translator,
 				const SymbolTable& st, const AstLatticeBinaryFunction* AstB,
 				RamLatticeAssociation* RamL, int Use) :
 				translator(translator), symTab(st), AstBinary(AstB), RamLat(
@@ -517,37 +517,37 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 				std::unique_ptr<RamValue> first = nullptr, second = nullptr,
 						output = nullptr;
 
-				pair.first;
-
-				// how to link to the first or second value ?
-				// create another valueIndex? or use the existed valueIndex ?
-				translator.translateValue(pair.first, valueIndex);
-				std::vector<std::unique_ptr<RamValue>> values;
-				for (AstArgument* arg : head->getArguments()) {
-					values.push_back(
-							translator.translateValue(arg, valueIndex));
-				}
-
-				if (auto var = dynamic_cast<AstVariable*>(arg)) {
-					intermediateClause->addToBody(
-							std::make_unique<AstBinaryConstraint>(
-									BinaryConstraintOp::EQ,
-									std::unique_ptr<AstArgument>(var->clone()),
-									std::make_unique<AstSubroutineArgument>(
-											i)));
-				}
-
-				RamLat->addLeq(first, second, output);
-
-				if (symTab.exist(pair.first)) {
-					first = new RamDomain(symTab.lookupExisting(pair.first));
-				}
-				if (symTab.exist(pair.second)) {
-					second = new RamDomain(symTab.lookupExisting(pair.second));
-				}
-				if (symTab.exist(pair.output)) {
-					output = new RamDomain(symTab.lookupExisting(pair.output));
-				}
+//				pair.first;
+//
+//				// how to link to the first or second value ?
+//				// create another valueIndex? or use the existed valueIndex ?
+//				translator.translateValue(pair.first, valueIndex);
+//				std::vector<std::unique_ptr<RamValue>> values;
+//				for (AstArgument* arg : head->getArguments()) {
+//					values.push_back(
+//							translator.translateValue(arg, valueIndex));
+//				}
+//
+//				if (auto var = dynamic_cast<AstVariable*>(arg)) {
+//					intermediateClause->addToBody(
+//							std::make_unique<AstBinaryConstraint>(
+//									BinaryConstraintOp::EQ,
+//									std::unique_ptr<AstArgument>(var->clone()),
+//									std::make_unique<AstSubroutineArgument>(
+//											i)));
+//				}
+//
+//				RamLat->addLeq(first, second, output);
+//
+//				if (symTab.exist(pair.first)) {
+//					first = new RamDomain(symTab.lookupExisting(pair.first));
+//				}
+//				if (symTab.exist(pair.second)) {
+//					second = new RamDomain(symTab.lookupExisting(pair.second));
+//				}
+//				if (symTab.exist(pair.output)) {
+//					output = new RamDomain(symTab.lookupExisting(pair.output));
+//				}
 
 				/*if (dynamic_cast<const AstConstant*>(pair.first) != nullptr) {
 				 const auto& first_str = static_cast<const AstConstant&>(*pair.first);
@@ -565,13 +565,13 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 
 				switch (FunctionUse) {
 				case 1:
-					RamLat->addLeq(first, second, output);
+					RamLat->addLeq(move(first), move(second), move(output));
 					break;
 				case 2:
-					RamLat->addLub(first, second, output);
+					RamLat->addLub(move(first), move(second), move(output));
 					break;
 				case 3:
-					RamLat->addGlb(first, second, output);
+					RamLat->addGlb(move(first), move(second), move(output));
 					break;
 				default:
 					assert(0 && "Not supported lattice function!");

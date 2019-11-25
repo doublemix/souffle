@@ -19,6 +19,7 @@
 #pragma once
 
 #include "RamNode.h"
+#include "RamValue.h"
 #include "RamTypes.h"
 #include <string>
 
@@ -242,15 +243,7 @@ public:
 	/** Create clone */
 	RamLatticeAssociation* clone() const override {
 		RamLatticeAssociation* res = new RamLatticeAssociation();
-		for (auto& cur : leq) {
-			res->addLeq(cur.first, cur.second, cur.output);
-		}
-		for (auto& cur : lub) {
-			res->addLub(cur.first, cur.second, cur.output);
-		}
-		for (auto& cur : glb) {
-			res->addGlb(cur.first, cur.second, cur.output);
-		}
+		//TODO
 		return res;
 	}
 

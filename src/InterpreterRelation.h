@@ -125,7 +125,8 @@ public:
 			for (; it != range_end; ++it) {
 				const RamDomain* data = *(it);
 				auto curlat = data[arity-1];
-				biggestLat = latAssoc->applyLub(biggestLat, curlat);
+				// TODO
+//				biggestLat = latAssoc->applyLub(biggestLat, curlat);
 			}
 			high[arity-1] = biggestLat;
 

@@ -3,22 +3,23 @@
 	case Bot
 }
 
-.def leq(Constant, Constant): number {
-    case (Bot, x)   => x,
+//TODO
+.def leq(x: Constant, y: Constant): number {
+    case (Bot, _)   => x,
     case _          => Top
 }
 
 //TODO
-.def lub(Constant, Constant): Constant {
-    case (Bot, x)   => x,
-    case (x, Bot)   => x,
-    case (x, y)	    => x=y ? x : Top
+.def lub(x: Constant, y: Constant): Constant {
+    case (Bot, _)   => x,
+    case (_, Bot)   => x,
+    case (_, _)	    => x=y ? x : Top
 }
 
-.def glb(Constant, Constant): Constant {
-    case (Top, x)   => x,
-    case (x, Top)   => x,
-    case (x, y)	    => x=y ? x : Bot
+.def glb(x: Constant, y: Constant): Constant {
+    case (Top, _)   => x,
+    case (_, Top)   => x,
+    case (_, _)	    => x=y ? x : Bot
 }
 
 .let Sign<> = (Bot, Top, leq, lub, glb)

@@ -120,17 +120,9 @@ public:
 		os << "{\n";
 		for (auto& pm : pairmaps) {
 			os << "(";
-			if (pm.first != nullptr) {
-				pm.first->print(os);
-			} else {
-				os << "_";
-			}
+			pm.first->print(os);
 			os << ",";
-			if (pm.second != nullptr) {
-				pm.second->print(os);
-			} else {
-				os << "_";
-			}
+			pm.second->print(os);
 			os << ")=>";
 			pm.output->print(os);
 			os << "\n";

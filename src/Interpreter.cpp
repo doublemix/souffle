@@ -78,18 +78,19 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 
 		RamDomain visitLatticeGLB(const RamLatticeGLB& latGLB) override {
 			//std::cout << "visit RamLatticeGLB here! ";
-			auto refs = latGLB.getRefs();
-			auto it = refs.begin();
+			const auto* refs = latGLB.getRefs();
+			auto it = refs->begin();
 			RamDomain res = ctxt[it->identifier][it->element];
 			//std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
 			//std::cout << "res: " << res << "\n";
 			it ++;
 			//std::cout << "refs size:" << refs.size() << "\n";
-			while (it != refs.end()) {
+			while (it != refs->end()) {
 				//std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
 				RamDomain it_r = ctxt[it->identifier][it->element];
 				//std::cout << "last_res: " << res <<" ,it_r: " << it_r << "\n";
-				res = interpreter.getTranslationUnit().getProgram()->getLattice()->applyGlb(res, it_r);
+				// TODO
+//				res = interpreter.getTranslationUnit().getProgram()->getLattice()->applyGlb(res, it_r);
 				it ++;
 			}
 			//std::cout << "visit RamLatticeGLB finish, res:" << res << "\n";

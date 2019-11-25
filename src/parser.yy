@@ -522,14 +522,14 @@ lattice_asscoiation
   	}
 
 lattice_def
-  : DEF IDENT LPAREN IDENT COMMA IDENT RPAREN COLON IDENT LBRACE lattice_def_type RBRACE {
+  : DEF IDENT LPAREN IDENT COLON IDENT COMMA IDENT COLON IDENT RPAREN COLON IDENT LBRACE lattice_def_type RBRACE {
   // TODO
-  		$$ = $11;
+  		$$ = $15;
   		$$->setSrcLoc(@$);
   		$$->setName($2);
   		$$->addArg($4);
-  		$$->addArg($6);
-  		$$->setOutput($9);
+  		$$->addArg($8);
+  		$$->setOutput($13);
   	}
 
 lattice_def_type
@@ -543,7 +543,7 @@ lattice_def_type
   	}
   | lattice_def_type COMMA CASE UNDERSCORE ARROW arg {
   		$$ = $1;
-  		$$->addPairMap(NULL, NULL, $6);
+  		$$->addPairMap(new AstUnnamedVariable(), new AstUnnamedVariable(), $6);
   	}
 
 
