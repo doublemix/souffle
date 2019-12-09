@@ -531,37 +531,45 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 			for (const auto& pair : pairmap) {
 //				std::unique_ptr<RamValue> first = nullptr, second = nullptr,
 //						output = nullptr;
-				AstArgument* first = pair.first;
-				AstArgument* second = pair.second;
+//				AstArgument* first = pair.first;
+				const AstStringConstant* first_const;
+				const AstStringConstant* second_const;
+//				AstArgument* second = pair.second;
 				AstArgument* out = pair.output;
-				bool matchFirst = !(first == nullptr
-						|| dynamic_cast<const AstUnnamedVariable*>(first)
-								!= nullptr);
-				bool matchSecond = !(second == nullptr
-						|| dynamic_cast<const AstUnnamedVariable*>(second)
-								!= nullptr);
-				std::unique_ptr<RamConstraint> match = nullptr;
+				bool matchFirst = dynamic_cast<const AstStringConstant*>(pair.first)
+						!= nullptr;
+				if (matchFirst) {
+					first_const =
+							static_cast<const AstStringConstant*>(pair.first);
+				}
+				bool matchSecond = dynamic_cast<const AstStringConstant*>(pair.second)
+						!= nullptr;
+				if (matchSecond) {
+					second_const =
+							static_cast<const AstStringConstant*>(pair.second);
+				}
+				std::unique_ptr<RamCondition> match = nullptr;
 				if (matchFirst && !matchSecond) {
 					match = std::make_unique<RamConstraint>(
 							BinaryConstraintOp::EQ,
 							std::make_unique<RamArgument>(0),
-							translator.translateValue(first, index));
+							translator.translateValue(first_const, index));
 				} else if (!matchFirst && matchSecond) {
 					match = std::make_unique<RamConstraint>(
 							BinaryConstraintOp::EQ,
 							std::make_unique<RamArgument>(1),
-							translator.translateValue(second, index));
+							translator.translateValue(second_const, index));
 				} else if (matchFirst && matchSecond) {
 					std::unique_ptr<RamConstraint> c1 = std::make_unique<
 							RamConstraint>(BinaryConstraintOp::EQ,
 							std::make_unique<RamArgument>(0),
-							translator.translateValue(first, index));
+							translator.translateValue(first_const, index));
 					std::unique_ptr<RamConstraint> c2 = std::make_unique<
 							RamConstraint>(BinaryConstraintOp::EQ,
 							std::make_unique<RamArgument>(1),
-							translator.translateValue(second, index));
-					match = std::make_unique<RamConjunction>(move(c1),
-							move(c2));
+							translator.translateValue(second_const, index));
+					match = std::make_unique<RamConjunction>(std::move(c1),
+							std::move(c2));
 				}
 
 				std::unique_ptr<RamValue> output = translator.translateValue(

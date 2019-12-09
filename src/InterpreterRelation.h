@@ -107,32 +107,33 @@ public:
      so we traverse R and find the biggest lattice*/
 	void latnorm(InterpreterRelation& other, RamLatticeAssociation* latAssoc) {
 		assert(arity == other.getArity());
-		RamDomain high[arity];
-		if (!totalIndex) {
-			totalIndex = getIndex(getTotalIndexKey());
-		}
-		auto it = totalIndex->begin();
-		auto itend = totalIndex->end();
-		while (it != itend) {
-			const RamDomain* data = *(it);
-			for (size_t i = 0; i < arity-1; i++) {
-				high[i] = data[i];
-			}
-			high[arity-1] = MAX_RAM_DOMAIN;
-			// get iterator range
-			auto range_end = totalIndex->UpperBound(high);
-			auto biggestLat = latAssoc->getBot();
-			for (; it != range_end; ++it) {
-				const RamDomain* data = *(it);
-				auto curlat = data[arity-1];
-				// TODO
-//				biggestLat = latAssoc->applyLub(biggestLat, curlat);
-			}
-			high[arity-1] = biggestLat;
-
-			insert(high);
-			other.insert(high);
-		}
+		//TODO
+//		RamDomain high[arity];
+//		if (!totalIndex) {
+//			totalIndex = getIndex(getTotalIndexKey());
+//		}
+//		auto it = totalIndex->begin();
+//		auto itend = totalIndex->end();
+//		while (it != itend) {
+//			const RamDomain* data = *(it);
+//			for (size_t i = 0; i < arity-1; i++) {
+//				high[i] = data[i];
+//			}
+//			high[arity-1] = MAX_RAM_DOMAIN;
+//			// get iterator range
+//			auto range_end = totalIndex->UpperBound(high);
+//			auto biggestLat = latAssoc->getBot();
+//			for (; it != range_end; ++it) {
+//				const RamDomain* data = *(it);
+//				auto curlat = data[arity-1];
+//				// TODO
+////				biggestLat = latAssoc->applyLub(biggestLat, curlat);
+//			}
+//			high[arity-1] = biggestLat;
+//
+//			insert(high);
+//			other.insert(high);
+//		}
 	}
 
 	/** Purge table */

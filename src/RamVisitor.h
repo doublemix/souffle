@@ -81,6 +81,7 @@ struct RamVisitor : public ram_visitor_tag {
 
             // Lattice Association
             FORWARD(LatticeAssociation);
+            FORWARD(LatticeBinaryFunction);
 
             // values
             FORWARD(LatticeGLB);
@@ -213,6 +214,7 @@ protected:
 
 	// Lattice Association
 	LINK(LatticeAssociation, Node);
+    LINK(LatticeBinaryFunction, Node);
 
     // -- values --
     LINK(Number, Value)

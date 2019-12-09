@@ -33,9 +33,9 @@ private:
 	/** The type utilized to model a field */
 	// Example: "case (Bot,x)=>x>2 ? y*2 : x"
 	struct LatCase {
-		std::unique_ptr<RamConstraint> match = nullptr;
+		std::unique_ptr<RamCondition> match = nullptr;
 		std::unique_ptr<RamValue> output = nullptr;
-		LatCase(std::unique_ptr<RamConstraint> m, std::unique_ptr<RamValue> o) :
+		LatCase(std::unique_ptr<RamCondition> m, std::unique_ptr<RamValue> o) :
 				match(move(m)), output(move(o)) {
 		}
 		bool operator==(const LatCase& other) const {
@@ -75,7 +75,7 @@ public:
 	}
 
 	/** Add to cases of function */
-	void addCase(std::unique_ptr<RamConstraint> match, std::unique_ptr<RamValue> output) {
+	void addCase(std::unique_ptr<RamCondition> match, std::unique_ptr<RamValue> output) {
 		cases.emplace_back(move(match), move(output));
 	}
 

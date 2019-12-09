@@ -62,6 +62,9 @@ public:
 		for (const auto& rel : relations) {
 			rel.second->print(out);
 		}
+		if (lattice!=nullptr) {
+			lattice->print(out);
+		}
 		out << "END DECLARATION " << std::endl;
 		out << "PROGRAM" << std::endl;
 		out << *main;

@@ -5,21 +5,21 @@
 
 //TODO
 .def leq(x: Constant, y: Constant): number {
-    case (Bot, _)   => x,
-    case _          => Top
+    case ("Bot", _)   => x,
+    case _          => "Top"
 }
 
 //TODO
 .def lub(x: Constant, y: Constant): Constant {
-    case (Bot, _)   => x,
-    case (_, Bot)   => x,
-    case (_, _)	    => x=y ? x : Top
+    case ("Bot", _)   => x,
+    case (_, "Bot")   => x,
+    case (_, _)	    => x=y ? x : "Top"
 }
 
 .def glb(x: Constant, y: Constant): Constant {
-    case (Top, _)   => x,
-    case (_, Top)   => x,
-    case (_, _)	    => x=y ? x : Bot
+    case ("Top", _)   => x,
+    case (_, "Top")   => x,
+    case (_, _)	    => x=y ? x : "Bot"
 }
 
 .let Sign<> = (Bot, Top, leq, lub, glb)

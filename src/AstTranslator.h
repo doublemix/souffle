@@ -259,7 +259,7 @@ private:
 
 		int findLatArguments(const std::string& var) const {
 			if (lat_var_arg.find(var) != lat_var_arg.end()) {
-				return lat_var_arg[var];
+				return lat_var_arg.at(var);
 			}
 			return -1;
 		}
