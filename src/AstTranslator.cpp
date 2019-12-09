@@ -37,6 +37,7 @@
 #include "LogStatement.h"
 #include "PrecedenceGraph.h"
 #include "RamCondition.h"
+#include "RamLatticeBinaryFunction.h"
 #include "RamNode.h"
 #include "RamOperation.h"
 #include "RamProgram.h"
@@ -313,6 +314,15 @@ std::unique_ptr<RamValue> AstTranslator::translateValue(const AstArgument* arg,
 
 		std::unique_ptr<RamValue> visitVariable(const AstVariable& var)
 				override {
+			/* special case for handling lattice variable, which does not
+			 * bind to any specific Location
+			 */
+			int latArg = index.findLatArguments(var.getName());
+			if (latArg >= 0) {
+				return std::make_unique<RamArgument>(latArg);
+			}
+
+			/* Normal case */
 			assert(index.isDefined(var) && "variable not grounded");
 			if (index.isArgEnum(index.getDefinitionPoint(var),
 					translator.typeEnv)) {
@@ -495,30 +505,69 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 	const SymbolTable& symTab = tu.getSymbolTable();
 	//TODO: not finished, RamLatticeAssociation need to change, RamDomain is not suitable
 	class LatticeBinarytranslator {
-		AstTranslator* translator;
+		AstTranslator& translator;
 		const SymbolTable& symTab;
 		const AstLatticeBinaryFunction* AstBinary;
 		RamLatticeAssociation* RamLat;
-		int FunctionUse = 0; // 1-leq, 2-lub, 3-glb
 	public:
-		LatticeBinarytranslator(AstTranslator* translator,
+		LatticeBinarytranslator(AstTranslator& translator,
 				const SymbolTable& st, const AstLatticeBinaryFunction* AstB,
-				RamLatticeAssociation* RamL, int Use) :
+				RamLatticeAssociation* RamL) :
 				translator(translator), symTab(st), AstBinary(AstB), RamLat(
-						RamL), FunctionUse(Use) {
+						RamL) {
 		}
 
-		void translate() {
+		std::unique_ptr<RamLatticeBinaryFunction> translate() {
+			RamLatticeBinaryFunction* RamLatBinary =
+					new RamLatticeBinaryFunction();
+			ValueIndex index;
+			const std::vector<std::string>& args = AstBinary->getArguments();
+			index.setLatArguments(args[0], 0);
+			index.setLatArguments(args[1], 1);
 
 			const std::vector<AstLatticeBinaryFunction::PairMap>& pairmap =
 					AstBinary->getPairMap();
 
 			for (const auto& pair : pairmap) {
-				std::unique_ptr<RamValue> first = nullptr, second = nullptr,
-						output = nullptr;
+//				std::unique_ptr<RamValue> first = nullptr, second = nullptr,
+//						output = nullptr;
+				AstArgument* first = pair.first;
+				AstArgument* second = pair.second;
+				AstArgument* out = pair.output;
+				bool matchFirst = !(first == nullptr
+						|| dynamic_cast<const AstUnnamedVariable*>(first)
+								!= nullptr);
+				bool matchSecond = !(second == nullptr
+						|| dynamic_cast<const AstUnnamedVariable*>(second)
+								!= nullptr);
+				std::unique_ptr<RamConstraint> match = nullptr;
+				if (matchFirst && !matchSecond) {
+					match = std::make_unique<RamConstraint>(
+							BinaryConstraintOp::EQ,
+							std::make_unique<RamArgument>(0),
+							translator.translateValue(first, index));
+				} else if (!matchFirst && matchSecond) {
+					match = std::make_unique<RamConstraint>(
+							BinaryConstraintOp::EQ,
+							std::make_unique<RamArgument>(1),
+							translator.translateValue(second, index));
+				} else if (matchFirst && matchSecond) {
+					std::unique_ptr<RamConstraint> c1 = std::make_unique<
+							RamConstraint>(BinaryConstraintOp::EQ,
+							std::make_unique<RamArgument>(0),
+							translator.translateValue(first, index));
+					std::unique_ptr<RamConstraint> c2 = std::make_unique<
+							RamConstraint>(BinaryConstraintOp::EQ,
+							std::make_unique<RamArgument>(1),
+							translator.translateValue(second, index));
+					match = std::make_unique<RamConjunction>(move(c1),
+							move(c2));
+				}
 
-//				pair.first;
-//
+				std::unique_ptr<RamValue> output = translator.translateValue(
+						out, index);
+
+				RamLatBinary->addCase(move(match), move(output));
 //				// how to link to the first or second value ?
 //				// create another valueIndex? or use the existed valueIndex ?
 //				translator.translateValue(pair.first, valueIndex);
@@ -562,29 +611,30 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 				 const auto& output_str = static_cast<const AstConstant&>(*pair.output);
 				 output = new RamDomain(output_str.getIndex());
 				 }*/
-
-				switch (FunctionUse) {
-				case 1:
-					RamLat->addLeq(move(first), move(second), move(output));
-					break;
-				case 2:
-					RamLat->addLub(move(first), move(second), move(output));
-					break;
-				case 3:
-					RamLat->addGlb(move(first), move(second), move(output));
-					break;
-				default:
-					assert(0 && "Not supported lattice function!");
-				}
-			}
+//
+//				switch (FunctionUse) {
+//				case 1:
+//					RamLat->addLeq(move(first), move(second), move(output));
+//					break;
+//				case 2:
+//					RamLat->addLub(move(first), move(second), move(output));
+//					break;
+//				case 3:
+//					RamLat->addGlb(move(first), move(second), move(output));
+//					break;
+//				default:
+//					assert(0 && "Not supported lattice function!");
+//				}
+			} // end of traverse pair map
+			return std::unique_ptr<RamLatticeBinaryFunction>(RamLatBinary);
 		}
 	};
 
 	const AstLatticeAssociation* AstLatAssoc = program->getLatticeAssociation();
 	if (AstLatAssoc == nullptr)
 		return nullptr;
-	const AstLatticeBinaryFunction* AstLEQ = program->getLatticeBinaryFunction(
-			AstLatAssoc->getLeq());
+//	const AstLatticeBinaryFunction* AstLEQ = program->getLatticeBinaryFunction(
+//			AstLatAssoc->getLeq());
 	const AstLatticeBinaryFunction* AstLUB = program->getLatticeBinaryFunction(
 			AstLatAssoc->getLub());
 	const AstLatticeBinaryFunction* AstGLB = program->getLatticeBinaryFunction(
@@ -592,22 +642,22 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 
 	RamLatticeAssociation* RamLat = new RamLatticeAssociation();
 
-	LatticeBinarytranslator LEQtranslator(this, symTab, AstLEQ, RamLat, 1);
-	LEQtranslator.translate();
-	LatticeBinarytranslator LUBtranslator(this, symTab, AstLUB, RamLat, 2);
-	LUBtranslator.translate();
-	LatticeBinarytranslator GLBtranslator(this, symTab, AstGLB, RamLat, 3);
-	GLBtranslator.translate();
+//	LatticeBinarytranslator LEQtranslator(*this, symTab, AstLEQ, RamLat, 1);
+//	LEQtranslator.translate();
+	LatticeBinarytranslator LUBtranslator(*this, symTab, AstLUB, RamLat);
+	RamLat->setLUB(move(LUBtranslator.translate()));
+	LatticeBinarytranslator GLBtranslator(*this, symTab, AstGLB, RamLat);
+	RamLat->setGLB(move(GLBtranslator.translate()));
 
-	RamDomain *bot = nullptr, *top = nullptr;
-
-	assert(symTab.exist(AstLatAssoc->getBottom()));
-	bot = new RamDomain(symTab.lookupExisting(AstLatAssoc->getBottom()));
-
-	assert(symTab.exist(AstLatAssoc->getTop()));
-	top = new RamDomain(symTab.lookupExisting(AstLatAssoc->getTop()));
-
-	RamLat->addBotTop(bot, top);
+//	RamDomain *bot = nullptr, *top = nullptr;
+//
+//	assert(symTab.exist(AstLatAssoc->getBottom()));
+//	bot = new RamDomain(symTab.lookupExisting(AstLatAssoc->getBottom()));
+//
+//	assert(symTab.exist(AstLatAssoc->getTop()));
+//	top = new RamDomain(symTab.lookupExisting(AstLatAssoc->getTop()));
+//
+//	RamLat->addBotTop(bot, top);
 
 	return std::unique_ptr<RamLatticeAssociation>(RamLat);
 }

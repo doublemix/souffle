@@ -147,6 +147,13 @@ private:
 		 */
 		using aggregator_location_map = std::vector<std::pair<const AstAggregator*, Location>>;
 
+		/**
+		 * Qing Gong: A map from AstVariable to RamArgument. It's only used to support the
+		 * translation for variable in lattice binary function.
+		 */
+		using lattice_variable_argument_map = std::map<std::string, int>;
+
+
 		/** The index of variable accesses */
 		variable_reference_map var_references;
 
@@ -155,6 +162,9 @@ private:
 
 		/** The level of a nested ram operation that is handling a given aggregator operation */
 		aggregator_location_map aggregator_locations;
+
+		/** The argument number for a variable in a lattice binary function */
+		lattice_variable_argument_map lat_var_arg;
 
 	public:
 		// -- variables --
@@ -240,6 +250,18 @@ private:
 
 			const static Location fail = Location();
 			return fail;
+		}
+
+		// -- lattice
+		void setLatArguments(std::string var, int arg) {
+			lat_var_arg[var] = arg;
+		}
+
+		int findLatArguments(const std::string& var) const {
+			if (lat_var_arg.find(var) != lat_var_arg.end()) {
+				return lat_var_arg[var];
+			}
+			return -1;
 		}
 
 		// -- others --

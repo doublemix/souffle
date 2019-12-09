@@ -89,7 +89,7 @@ public:
 	}
 
 	/** get arguments */
-	std::vector<std::string> getArguments() const {
+	const std::vector<std::string>& getArguments() const {
 		return args;
 	}
 
