@@ -45,6 +45,7 @@ enum RamNodeType {
     RN_AutoIncrement,
     RN_Pack,
     RN_Argument,
+	RN_QuestionMark,
 
     // Conditions
     RN_ExistenceCheck,

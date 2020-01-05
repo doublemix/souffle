@@ -1,7 +1,9 @@
 .enum Constant = {
-	case Top,
-	case Bot
+	case "Top",
+	case "Bot"
 }
+// notice: enum must be decalred before any use of 
+// enum element (because of symbol table offset)
 
 //TODO
 .def leq(x: Constant, y: Constant): number {
@@ -22,7 +24,7 @@
     case (_, _)	    => x=y ? x : "Bot"
 }
 
-.let Sign<> = (Bot, Top, leq, lub, glb)
+.let Sign<> = ("Bot", "Top", leq, lub, glb)
 
 // lattice relation
 .lat A(x: symbol, s: Constant)

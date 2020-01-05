@@ -87,6 +87,7 @@ struct AstVisitor : public ast_visitor_tag {
         FORWARD(TypeCast)
         FORWARD(RecordInit)
         FORWARD(Aggregator)
+		FORWARD(QuestionMark)
         FORWARD(SubroutineArgument)
 
         // literals
@@ -150,6 +151,7 @@ protected:
     LINK(Functor, Argument)
 
     LINK(Aggregator, Argument)
+	LINK(QuestionMark, Argument)
 
     LINK(Argument, Node);
 

@@ -750,7 +750,7 @@ public:
 		return "?";
 	}
 
-	/** Creates a new aggregation node */
+	/** Creates a new ast question mark node */
 	AstQuestionMark(CompOp comp, std::unique_ptr<AstArgument> arg1,
 			std::unique_ptr<AstArgument> arg2) :
 			comp(comp) {

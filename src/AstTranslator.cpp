@@ -391,6 +391,24 @@ std::unique_ptr<RamValue> AstTranslator::translateValue(const AstArgument* arg,
 					index.getAggregatorLocation(agg));
 		}
 
+		// added by Qing Gong
+		std::unique_ptr<RamValue> visitQuestionMark(
+				const AstQuestionMark& qmark) override {
+			// TODO
+			qmark.getArg(0);
+//			translator.translateConstraint();
+
+//			std::unique_ptr<RamValue> valLHS = translator.translateValue(
+//					qmark.getLHS(), index);
+//			std::unique_ptr<RamValue> valRHS = translator.translateValue(
+//					binRel.getRHS(), index);
+//			std::make_unique<RamConstraint>(binRel.getOperator(),
+//					translator.translateValue(binRel.getLHS(), index),
+//					translator.translateValue(binRel.getRHS(), index));
+
+			return nullptr;
+		}
+
 		std::unique_ptr<RamValue> visitSubroutineArgument(
 				const AstSubroutineArgument& subArg) override {
 			return std::make_unique<RamArgument>(subArg.getNumber());
@@ -536,14 +554,16 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 				const AstStringConstant* second_const;
 //				AstArgument* second = pair.second;
 				AstArgument* out = pair.output;
-				bool matchFirst = dynamic_cast<const AstStringConstant*>(pair.first)
-						!= nullptr;
+				bool matchFirst =
+						dynamic_cast<const AstStringConstant*>(pair.first)
+								!= nullptr;
 				if (matchFirst) {
 					first_const =
 							static_cast<const AstStringConstant*>(pair.first);
 				}
-				bool matchSecond = dynamic_cast<const AstStringConstant*>(pair.second)
-						!= nullptr;
+				bool matchSecond =
+						dynamic_cast<const AstStringConstant*>(pair.second)
+								!= nullptr;
 				if (matchSecond) {
 					second_const =
 							static_cast<const AstStringConstant*>(pair.second);
@@ -667,6 +687,7 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 //
 //	RamLat->addBotTop(bot, top);
 
+	std::cout << "Ram Lat generated.\n";
 	return std::unique_ptr<RamLatticeAssociation>(RamLat);
 }
 

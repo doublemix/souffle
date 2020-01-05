@@ -368,17 +368,17 @@ uniontype
     }
 
 enumtype
-  :  CASE IDENT {
+  :  CASE STRING {
   		$$ = new AstEnumType();
-  		$$->add($2);
-  		// regard lattice enum as symbol
-  		driver.getSymbolTable().lookup($2);
+  		driver.getSymbolTable().lookup($2); // add to symbol table
+  		driver.getSymbolTable().moveToEnd($2); // change symbol table
+  		$$->add($2); // regard lattice enum as symbol
   	}
-  | enumtype COMMA CASE IDENT {
+  | enumtype COMMA CASE STRING {
   		$$ = $1;
-  		$1->add($4);
-  		// regard lattice enum as symbol
-  		driver.getSymbolTable().lookup($4);
+  		driver.getSymbolTable().lookup($4); // add to symbol table
+  		driver.getSymbolTable().moveToEnd($4); // change symbol table
+  		$1->add($4); // regard lattice enum as symbol
   	}
 
 
@@ -516,7 +516,7 @@ lattice_decl
   	}
 
 lattice_asscoiation
-  : LET IDENT LT GT EQUALS LPAREN IDENT COMMA IDENT COMMA IDENT COMMA IDENT COMMA IDENT RPAREN {
+  : LET IDENT LT GT EQUALS LPAREN STRING COMMA STRING COMMA IDENT COMMA IDENT COMMA IDENT RPAREN {
     	$$ = new AstLatticeAssociation($2);
     	$$->setALL($7, $9, $11, $13, $15);
   	}

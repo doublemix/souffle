@@ -65,16 +65,16 @@ std::unique_ptr<AstTranslationUnit> ParserDriver::parse(
 
 	translationUnit->getProgram()->finishParsing();
 
-	// added by Qing Gong: change symbol table of all lattice elements, eg: Top, Bot
-	for (const auto* cur : translationUnit->getProgram()->getTypes()) {
-		if (const auto* enum_ptr = dynamic_cast<const AstEnumType *>(cur)) {
-			const auto& cases = enum_ptr->getCases();
-			// assume all symbol types in the .enum
-			for (const auto& cas : cases) {
-				symbolTable.moveToEnd(cas.name);
-			}
-		}
-	}
+	// added by Qing Gong: change symbol table of all lattice elements, eg: "Top", "Bot"
+//	for (const auto* cur : translationUnit->getProgram()->getTypes()) {
+//		if (const auto* enum_ptr = dynamic_cast<const AstEnumType *>(cur)) {
+//			const auto& cases = enum_ptr->getCases();
+//			// assume all symbol types in the .enum
+//			for (const auto& cas : cases) {
+//				symbolTable.moveToEnd(cas.name);
+//			}
+//		}
+//	}
 
 	return std::move(translationUnit);
 }
