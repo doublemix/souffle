@@ -670,17 +670,16 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 	LatticeBinarytranslator GLBtranslator(*this, symTab, AstGLB, RamLat);
 	RamLat->setGLB(move(GLBtranslator.translate()));
 
-//	RamDomain *bot = nullptr, *top = nullptr;
-//
-//	assert(symTab.exist(AstLatAssoc->getBottom()));
-//	bot = new RamDomain(symTab.lookupExisting(AstLatAssoc->getBottom()));
-//
-//	assert(symTab.exist(AstLatAssoc->getTop()));
-//	top = new RamDomain(symTab.lookupExisting(AstLatAssoc->getTop()));
-//
-//	RamLat->addBotTop(bot, top);
 
-	std::cout << "Ram Lat generated.\n";
+	assert(symTab.exist(AstLatAssoc->getBottom()));
+	RamDomain bot = symTab.lookupExisting(AstLatAssoc->getBottom());
+
+	assert(symTab.exist(AstLatAssoc->getTop()));
+	RamDomain top = symTab.lookupExisting(AstLatAssoc->getTop());
+
+	RamLat->setBotTop(bot, top);
+
+	std::cout << "RamLatticeAssociation generated.\n";
 	return std::unique_ptr<RamLatticeAssociation>(RamLat);
 }
 

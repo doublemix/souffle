@@ -34,7 +34,9 @@ namespace souffle {
  */
 class InterpreterRelation {
 public:
-	InterpreterRelation(size_t relArity) : arity(relArity), num_tuples(0), totalIndex(nullptr) {}
+	InterpreterRelation(size_t relArity) :
+			arity(relArity), num_tuples(0), totalIndex(nullptr) {
+	}
 
 	InterpreterRelation(const InterpreterRelation& other) = delete;
 
@@ -100,40 +102,63 @@ public:
 		}
 	}
 
-	/** Find the biggest lattice element for each cell, and insert to both itself and the other relation **/
+	/** Find the biggest lattice element for each cell, and insert
+	 *  to both itself and the other relation **/
 	/*latnorm is visided after merge, eg:
-     MERGE R WITH @new_R;
-     LATNORM R AND @new_R;
-     so we traverse R and find the biggest lattice*/
+	 MERGE R WITH @new_R;
+	 LATNORM R AND @new_R;
+	 so we traverse R and find the biggest lattice*/
+// Notice: Only last element is fixed to lattice element!
 	void latnorm(InterpreterRelation& other, RamLatticeAssociation* latAssoc) {
 		assert(arity == other.getArity());
-		//TODO
-//		RamDomain high[arity];
-//		if (!totalIndex) {
-//			totalIndex = getIndex(getTotalIndexKey());
-//		}
-//		auto it = totalIndex->begin();
-//		auto itend = totalIndex->end();
-//		while (it != itend) {
-//			const RamDomain* data = *(it);
-//			for (size_t i = 0; i < arity-1; i++) {
-//				high[i] = data[i];
-//			}
-//			high[arity-1] = MAX_RAM_DOMAIN;
-//			// get iterator range
-//			auto range_end = totalIndex->UpperBound(high);
-//			auto biggestLat = latAssoc->getBot();
-//			for (; it != range_end; ++it) {
+
+		InterpreterContext ctxt_temp;
+		const RamLatticeBinaryFunction& lub_func = latAssoc->getLUB();
+
+		RamDomain high[arity];
+		if (!totalIndex) {
+			totalIndex = getIndex(getTotalIndexKey());
+		}
+		auto it = totalIndex->begin();
+		auto itend = totalIndex->end();
+
+		// todo: move to interpreter.cpp, only need send iterator it and itend to interpreter.
+		while (it != itend) {
+			const RamDomain* data = *(it);
+			for (size_t i = 0; i < arity - 1; i++) {
+				high[i] = data[i];
+			}
+			high[arity - 1] = MAX_RAM_DOMAIN;
+			// get iterator range
+			auto range_end = totalIndex->UpperBound(high);
+//			RamDomain biggestLat = latAssoc->getBot();
+			RamDomain biggestLat = (*it)[arity - 1];
+			it++;
+			for (; it != range_end; it++) {
 //				const RamDomain* data = *(it);
 //				auto curlat = data[arity-1];
-//				// TODO
-////				biggestLat = latAssoc->applyLub(biggestLat, curlat);
-//			}
-//			high[arity-1] = biggestLat;
-//
-//			insert(high);
-//			other.insert(high);
-//		}
+				// TODO
+				RamDomain curlat = (*it)[arity - 1];
+				// set 2 input variables
+				std::vector<RamDomain> args = { biggestLat, curlat };
+				ctxt_temp.setArguments(args);
+
+				// evaluate binary constraint
+				for (const auto& cas : lub_func.getLatCase()) {
+					if (cas.match == nullptr
+							|| interpreter.evalCond(*cas.match, ctxt_temp)) {
+						// get output if match
+						res = interpreter.evalVal(*cas.output, ctxt_temp);
+						break;
+					}
+				}
+//				biggestLat = latAssoc->applyLub(biggestLat, curlat);
+			}
+			high[arity - 1] = biggestLat;
+
+			insert(high);
+			other.insert(high);
+		}
 	}
 
 	/** Purge table */
@@ -147,7 +172,8 @@ public:
 
 	/** get index for a given set of keys using a cached index as a helper. Keys are encoded as bits for each
 	 * column */
-	InterpreterIndex* getIndex(const SearchColumns& key, InterpreterIndex* cachedIndex) const {
+	InterpreterIndex* getIndex(const SearchColumns& key,
+			InterpreterIndex* cachedIndex) const {
 		if (!cachedIndex) {
 			return getIndex(key);
 		}
@@ -174,7 +200,7 @@ public:
 		InterpreterIndex* res = nullptr;
 		{
 			auto lease = lock.acquire();
-			(void)lease;
+			(void) lease;
 
 			for (auto it = indices.begin(); !res && it != indices.end(); ++it) {
 				if (order.isCompatible(it->first)) {
@@ -203,7 +229,7 @@ public:
 		InterpreterIndex* res = nullptr;
 		{
 			auto lease = lock.acquire();
-			(void)lease;
+			(void) lease;
 			auto pos = indices.find(order);
 			if (pos == indices.end()) {
 				std::unique_ptr<InterpreterIndex>& newIndex = indices[order];
@@ -239,13 +265,16 @@ public:
 	// --- iterator ---
 
 	/** Iterator for relation */
-	class iterator : public std::iterator<std::forward_iterator_tag, RamDomain*> {
+	class iterator: public std::iterator<std::forward_iterator_tag, RamDomain*> {
 	public:
 		iterator() = default;
 
-		iterator(const InterpreterRelation* const relation)
-		: relation(relation), tuple(relation->arity == 0 ? reinterpret_cast<RamDomain*>(this)
-				: &relation->blockList[0][0]) {}
+		iterator(const InterpreterRelation* const relation) :
+				relation(relation), tuple(
+						relation->arity == 0 ?
+								reinterpret_cast<RamDomain*>(this) :
+								&relation->blockList[0][0]) {
+		}
 
 		const RamDomain* operator*() {
 			return tuple;
@@ -274,7 +303,8 @@ public:
 			}
 
 			int blockIndex = index / (BLOCK_SIZE / relation->arity);
-			int tupleIndex = (index % (BLOCK_SIZE / relation->arity)) * relation->arity;
+			int tupleIndex = (index % (BLOCK_SIZE / relation->arity))
+					* relation->arity;
 
 			tuple = &relation->blockList[blockIndex][tupleIndex];
 			return *this;
@@ -306,15 +336,16 @@ public:
 		std::vector<RamDomain*> newTuples;
 
 		// A standard relation does not generate extra new knowledge on insertion.
-		newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
+		newTuples.push_back(new RamDomain[2] { tuple[0], tuple[1] });
 
 		return newTuples;
 	}
 
 	/** Extend relation */
-	virtual void extend(const InterpreterRelation& rel) {}
+	virtual void extend(const InterpreterRelation& rel) {
+	}
 
-	private:
+private:
 	/** Arity of relation */
 	const size_t arity;
 
@@ -340,9 +371,11 @@ public:
  * Interpreter Equivalence Relation
  */
 
-class InterpreterEqRelation : public InterpreterRelation {
+class InterpreterEqRelation: public InterpreterRelation {
 public:
-	InterpreterEqRelation(size_t relArity) : InterpreterRelation(relArity) {}
+	InterpreterEqRelation(size_t relArity) :
+			InterpreterRelation(relArity) {
+	}
 
 	/** Insert tuple */
 	void insert(const RamDomain* tuple) override {
@@ -368,27 +401,28 @@ public:
 	std::vector<RamDomain*> extend(const RamDomain* tuple) override {
 		std::vector<RamDomain*> newTuples;
 
-		newTuples.push_back(new RamDomain[2]{tuple[0], tuple[0]});
-		newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
-		newTuples.push_back(new RamDomain[2]{tuple[1], tuple[0]});
-		newTuples.push_back(new RamDomain[2]{tuple[1], tuple[1]});
+		newTuples.push_back(new RamDomain[2] { tuple[0], tuple[0] });
+		newTuples.push_back(new RamDomain[2] { tuple[0], tuple[1] });
+		newTuples.push_back(new RamDomain[2] { tuple[1], tuple[0] });
+		newTuples.push_back(new RamDomain[2] { tuple[1], tuple[1] });
 
 		std::vector<const RamDomain*> relevantStored;
 		for (const RamDomain* vals : *this) {
-			if (vals[0] == tuple[0] || vals[0] == tuple[1] || vals[1] == tuple[0] || vals[1] == tuple[1]) {
+			if (vals[0] == tuple[0] || vals[0] == tuple[1]
+					|| vals[1] == tuple[0] || vals[1] == tuple[1]) {
 				relevantStored.push_back(vals);
 			}
 		}
 
 		for (const auto vals : relevantStored) {
-			newTuples.push_back(new RamDomain[2]{vals[0], tuple[0]});
-			newTuples.push_back(new RamDomain[2]{vals[0], tuple[1]});
-			newTuples.push_back(new RamDomain[2]{vals[1], tuple[0]});
-			newTuples.push_back(new RamDomain[2]{vals[1], tuple[1]});
-			newTuples.push_back(new RamDomain[2]{tuple[0], vals[0]});
-			newTuples.push_back(new RamDomain[2]{tuple[0], vals[1]});
-			newTuples.push_back(new RamDomain[2]{tuple[1], vals[0]});
-			newTuples.push_back(new RamDomain[2]{tuple[1], vals[1]});
+			newTuples.push_back(new RamDomain[2] { vals[0], tuple[0] });
+			newTuples.push_back(new RamDomain[2] { vals[0], tuple[1] });
+			newTuples.push_back(new RamDomain[2] { vals[1], tuple[0] });
+			newTuples.push_back(new RamDomain[2] { vals[1], tuple[1] });
+			newTuples.push_back(new RamDomain[2] { tuple[0], vals[0] });
+			newTuples.push_back(new RamDomain[2] { tuple[0], vals[1] });
+			newTuples.push_back(new RamDomain[2] { tuple[1], vals[0] });
+			newTuples.push_back(new RamDomain[2] { tuple[1], vals[1] });
 		}
 
 		return newTuples;

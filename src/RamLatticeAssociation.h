@@ -36,6 +36,12 @@ private:
 	/* Greatest lower bound */
 	std::unique_ptr<RamLatticeBinaryFunction> glb = nullptr;
 
+	/* lattice Bottom element */
+	RamDomain bottom;
+
+	/* lattice Top element */
+	RamDomain top;
+
 public:
 	RamLatticeAssociation() :
 			RamNode(RN_LatticeAssociation) {
@@ -73,20 +79,20 @@ public:
 		return *glb;
 	}
 
-//	void addBotTop(RamDomain *b, RamDomain *t) {
-//		assert(b != nullptr && t != nullptr);
-//		bottom = b;
-//		top = t;
-//		//std::cout << "bottom: "<<*b << " top:"<< *t << std::endl;
-//	}
-//
-//	RamDomain getBot() const {
-//		return *bottom;
-//	}
-//
-//	RamDomain getTop() const {
-//		return *top;
-//	}
+	void setBotTop(RamDomain b, RamDomain t) {
+		assert(b != nullptr && t != nullptr);
+		bottom = b;
+		top = t;
+		//std::cout << "bottom: "<<*b << " top:"<< *t << std::endl;
+	}
+
+	RamDomain getBot() const {
+		return bottom;
+	}
+
+	RamDomain getTop() const {
+		return top;
+	}
 
 	/** Add to leq function */
 //	void addLeq(RamDomain* first, RamDomain* second, RamDomain* output) {

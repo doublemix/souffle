@@ -79,7 +79,7 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 		}
 
 		RamDomain visitLatticeGLB(const RamLatticeGLB& latGLB) override {
-			std::cout << "visit RamLatticeGLB here! ";
+//			std::cout << "visit RamLatticeGLB here! ";
 			InterpreterContext ctxt_temp;
 			const RamLatticeBinaryFunction& glb_func =
 					interpreter.getTranslationUnit().getProgram()->getLattice()->getGLB();
@@ -87,14 +87,14 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 			const auto* refs = latGLB.getRefs();
 			auto it = refs->begin();
 			RamDomain res = ctxt[it->identifier][it->element];
-			std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
-			std::cout << "res: " << res << "\n";
+//			std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
+//			std::cout << "res: " << res << "\n";
 			it++;
-			std::cout << "refs size:" << refs->size() << "\n";
+//			std::cout << "refs size:" << refs->size() << "\n";
 			while (it != refs->end()) {
-				std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
+//				std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
 				RamDomain it_r = ctxt[it->identifier][it->element];
-				std::cout << "last_res: " << res <<" ,it_r: " << it_r << "\n";
+//				std::cout << "last_res: " << res <<" ,it_r: " << it_r << "\n";
 				// TODO
 				// set 2 input variables
 				std::vector<RamDomain> args = { res, it_r };
@@ -110,7 +110,7 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 				}
 				it++;
 			}
-			std::cout << "visit RamLatticeGLB finish, res:" << res << "\n";
+//			std::cout << "visit RamLatticeGLB finish, res:" << res << "\n";
 			return res;
 		}
 
