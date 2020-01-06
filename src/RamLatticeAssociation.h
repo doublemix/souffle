@@ -80,7 +80,7 @@ public:
 	}
 
 	void setBotTop(RamDomain b, RamDomain t) {
-		assert(b != nullptr && t != nullptr);
+		assert(b != 0 && t != 0);
 		bottom = b;
 		top = t;
 		//std::cout << "bottom: "<<*b << " top:"<< *t << std::endl;

@@ -102,7 +102,8 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 
 				// evaluate binary constraint
 				for (const auto& cas : glb_func.getLatCase()) {
-					if (cas.match==nullptr || interpreter.evalCond(*cas.match, ctxt_temp)) {
+					if (cas.match == nullptr
+							|| interpreter.evalCond(*cas.match, ctxt_temp)) {
 						// get output if match
 						res = interpreter.evalVal(*cas.output, ctxt_temp);
 						break;
@@ -1008,13 +1009,78 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 					latnorm.getFirstRelation());
 			InterpreterRelation& scd = interpreter.getRelation(
 					latnorm.getSecondRelation());
+			size_t arity = fst.getArity();
+			assert(
+					arity == scd.getArity()
+							&& "Two relations must have the same arity!");
 
 			// insert biggest lattice element into both relations
-			auto latticeAssoc =
-					interpreter.getTranslationUnit().getProgram()->getLattice();
-			//std::cout << "visitLatNorm now.\n";
-			fst.latnorm(scd, latticeAssoc);
-			//std::cout << "visitLatNorm finish.\n";
+//			auto latticeAssoc =
+//					interpreter.getTranslationUnit().getProgram()->getLattice();
+//			std::cout << "visitLatNorm now.\n";
+			// for partial we search for lower and upper boundaries
+			RamDomain low[arity];
+			RamDomain high[arity];
+			for (size_t i = 0; i < arity; i++) {
+				low[i] = MIN_RAM_DOMAIN;
+				high[i] = MAX_RAM_DOMAIN;
+			}
+
+			// obtain index
+			auto totalIndex = fst.getTotalIndex();
+//			auto iitt = totalIndex->begin();
+			auto range = totalIndex->lowerUpperBound(low, high);
+
+			InterpreterContext ctxt_temp;
+			const RamLatticeBinaryFunction& lub_func =
+					interpreter.getTranslationUnit().getProgram()->getLattice()->getLUB();
+
+			auto it = range.first;
+			auto itend = range.second;
+
+			// Traverse the whole relation
+			while (it != itend) {
+				const RamDomain* data = *(it);
+				for (size_t i = 0; i < arity - 1; i++) {
+					high[i] = data[i];
+				}
+				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
+
+				// get iterator range
+				auto range_end = totalIndex->UpperBound(high);
+				//			RamDomain biggestLat = latAssoc->getBot();
+				RamDomain biggestLat = data[arity - 1];
+				++it;
+				for (; it != range_end; ++it) {
+					//				const RamDomain* data = *(it);
+					//				auto curlat = data[arity-1];
+					// TODO
+					RamDomain curlat = (*it)[arity - 1];
+					// set 2 input variables
+					std::vector<RamDomain> args = { biggestLat, curlat };
+					ctxt_temp.setArguments(args);
+
+					// evaluate binary constraint
+					for (const auto& cas : lub_func.getLatCase()) {
+						if (cas.match == nullptr
+								|| interpreter.evalCond(*cas.match,
+										ctxt_temp)) {
+							// get output if match
+							biggestLat = interpreter.evalVal(*cas.output,
+									ctxt_temp);
+							break;
+						}
+					}
+					//				biggestLat = latAssoc->applyLub(biggestLat, curlat);
+				}
+				high[arity - 1] = biggestLat;
+
+				fst.insert(high);
+				scd.insert(high);
+			}
+
+//			fst.latnorm(scd, latticeAssoc);
+//			std::cout << "visitLatNorm finish.\n";
 			return true;
 		}
 

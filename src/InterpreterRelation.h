@@ -57,6 +57,11 @@ public:
 		return num_tuples;
 	}
 
+	const InterpreterIndex* getTotalIndex() const {
+		assert(totalIndex != nullptr);
+		return totalIndex;
+	}
+
 	/** Insert tuple */
 	virtual void insert(const RamDomain* tuple) {
 		// check for null-arity
@@ -109,57 +114,57 @@ public:
 	 LATNORM R AND @new_R;
 	 so we traverse R and find the biggest lattice*/
 // Notice: Only last element is fixed to lattice element!
-	void latnorm(InterpreterRelation& other, RamLatticeAssociation* latAssoc) {
-		assert(arity == other.getArity());
-
-		InterpreterContext ctxt_temp;
-		const RamLatticeBinaryFunction& lub_func = latAssoc->getLUB();
-
-		RamDomain high[arity];
-		if (!totalIndex) {
-			totalIndex = getIndex(getTotalIndexKey());
-		}
-		auto it = totalIndex->begin();
-		auto itend = totalIndex->end();
-
-		// todo: move to interpreter.cpp, only need send iterator it and itend to interpreter.
-		while (it != itend) {
-			const RamDomain* data = *(it);
-			for (size_t i = 0; i < arity - 1; i++) {
-				high[i] = data[i];
-			}
-			high[arity - 1] = MAX_RAM_DOMAIN;
-			// get iterator range
-			auto range_end = totalIndex->UpperBound(high);
-//			RamDomain biggestLat = latAssoc->getBot();
-			RamDomain biggestLat = (*it)[arity - 1];
-			it++;
-			for (; it != range_end; it++) {
-//				const RamDomain* data = *(it);
-//				auto curlat = data[arity-1];
-				// TODO
-				RamDomain curlat = (*it)[arity - 1];
-				// set 2 input variables
-				std::vector<RamDomain> args = { biggestLat, curlat };
-				ctxt_temp.setArguments(args);
-
-				// evaluate binary constraint
-				for (const auto& cas : lub_func.getLatCase()) {
-					if (cas.match == nullptr
-							|| interpreter.evalCond(*cas.match, ctxt_temp)) {
-						// get output if match
-						res = interpreter.evalVal(*cas.output, ctxt_temp);
-						break;
-					}
-				}
-//				biggestLat = latAssoc->applyLub(biggestLat, curlat);
-			}
-			high[arity - 1] = biggestLat;
-
-			insert(high);
-			other.insert(high);
-		}
-	}
+//	void latnorm(InterpreterRelation& other, RamLatticeAssociation* latAssoc) {
+//		assert(arity == other.getArity());
+//
+//		InterpreterContext ctxt_temp;
+//		const RamLatticeBinaryFunction& lub_func = latAssoc->getLUB();
+//
+//		RamDomain high[arity];
+//		if (!totalIndex) {
+//			totalIndex = getIndex(getTotalIndexKey());
+//		}
+//		auto it = totalIndex->begin();
+//		auto itend = totalIndex->end();
+//
+//		// todo: move to interpreter.cpp, only need send iterator it and itend to interpreter.
+//		while (it != itend) {
+//			const RamDomain* data = *(it);
+//			for (size_t i = 0; i < arity - 1; i++) {
+//				high[i] = data[i];
+//			}
+//			high[arity - 1] = MAX_RAM_DOMAIN;
+//			// get iterator range
+//			auto range_end = totalIndex->UpperBound(high);
+////			RamDomain biggestLat = latAssoc->getBot();
+//			RamDomain biggestLat = (*it)[arity - 1];
+//			it++;
+//			for (; it != range_end; it++) {
+////				const RamDomain* data = *(it);
+////				auto curlat = data[arity-1];
+//				// TODO
+//				RamDomain curlat = (*it)[arity - 1];
+//				// set 2 input variables
+//				std::vector<RamDomain> args = { biggestLat, curlat };
+//				ctxt_temp.setArguments(args);
+//
+//				// evaluate binary constraint
+//				for (const auto& cas : lub_func.getLatCase()) {
+//					if (cas.match == nullptr
+//							|| interpreter.evalCond(*cas.match, ctxt_temp)) {
+//						// get output if match
+//						res = interpreter.evalVal(*cas.output, ctxt_temp);
+//						break;
+//					}
+//				}
+////				biggestLat = latAssoc->applyLub(biggestLat, curlat);
+//			}
+//			high[arity - 1] = biggestLat;
+//
+//			insert(high);
+//			other.insert(high);
+//		}
+//	}
 
 	/** Purge table */
 	void purge() {
