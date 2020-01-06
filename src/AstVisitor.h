@@ -26,6 +26,8 @@
 #include "AstRelation.h"
 #include "AstType.h"
 
+#include "AstQuestionMark.h"
+
 #include <functional>
 #include <memory>
 #include <utility>

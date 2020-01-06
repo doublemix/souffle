@@ -24,7 +24,9 @@
 #include "RamRelation.h"
 #include "RamStatement.h"
 #include "RamValue.h"
+
 #include "RamLatticeAssociation.h"
+#include "RamQuestionMark.h"
 
 #include <functional>
 #include <typeinfo>
@@ -92,6 +94,7 @@ struct RamVisitor : public ram_visitor_tag {
             FORWARD(AutoIncrement);
             FORWARD(Pack);
             FORWARD(Argument);
+            FORWARD(QuestionMark);
 
             // conditions
             FORWARD(EmptinessCheck);
@@ -225,6 +228,8 @@ protected:
     LINK(AutoIncrement, Value)
     LINK(Pack, Value)
     LINK(Argument, Value)
+
+	LINK(QuestionMark, Value)
 
     LINK(Value, Node)
 

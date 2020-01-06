@@ -79,7 +79,7 @@ public:
 		cases.emplace_back(move(match), move(output));
 	}
 
-	const std::vector<LatCase>& getCase() {
+	const std::vector<LatCase>& getLatCase() const {
 		return cases;
 	}
 

@@ -11,15 +11,14 @@
     case _          => "Top"
 }
 
-//TODO
 .def lub(x: Constant, y: Constant): Constant {
-    case ("Bot", _)   => x,
+    case ("Bot", _)   => y,
     case (_, "Bot")   => x,
     case (_, _)	    => x=y ? x : "Top"
 }
 
 .def glb(x: Constant, y: Constant): Constant {
-    case ("Top", _)   => x,
+    case ("Top", _)   => y,
     case (_, "Top")   => x,
     case (_, _)	    => x=y ? x : "Bot"
 }

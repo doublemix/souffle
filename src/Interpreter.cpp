@@ -59,14 +59,16 @@
 namespace souffle {
 
 /** Evaluate RAM Value */
-RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& ctxt) {
-	class ValueEvaluator : public RamVisitor<RamDomain> {
+RamDomain Interpreter::evalVal(const RamValue& value,
+		const InterpreterContext& ctxt) {
+	class ValueEvaluator: public RamVisitor<RamDomain> {
 		Interpreter& interpreter;
 		const InterpreterContext& ctxt;
 
 	public:
-		ValueEvaluator(Interpreter& interp, const InterpreterContext& ctxt)
-	: interpreter(interp), ctxt(ctxt) {}
+		ValueEvaluator(Interpreter& interp, const InterpreterContext& ctxt) :
+				interpreter(interp), ctxt(ctxt) {
+		}
 
 		RamDomain visitNumber(const RamNumber& num) override {
 			return num.getConstant();
@@ -77,24 +79,47 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 		}
 
 		RamDomain visitLatticeGLB(const RamLatticeGLB& latGLB) override {
-			//std::cout << "visit RamLatticeGLB here! ";
+			std::cout << "visit RamLatticeGLB here! ";
+			InterpreterContext ctxt_temp;
+			const RamLatticeBinaryFunction& glb_func =
+					interpreter.getTranslationUnit().getProgram()->getLattice()->getGLB();
+
 			const auto* refs = latGLB.getRefs();
 			auto it = refs->begin();
 			RamDomain res = ctxt[it->identifier][it->element];
-			//std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
-			//std::cout << "res: " << res << "\n";
-			it ++;
-			//std::cout << "refs size:" << refs.size() << "\n";
+			std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
+			std::cout << "res: " << res << "\n";
+			it++;
+			std::cout << "refs size:" << refs->size() << "\n";
 			while (it != refs->end()) {
-				//std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
+				std::cout << "it->identifier:" << it->identifier << ",it->element:" << it->element << "\n";
 				RamDomain it_r = ctxt[it->identifier][it->element];
-				//std::cout << "last_res: " << res <<" ,it_r: " << it_r << "\n";
+				std::cout << "last_res: " << res <<" ,it_r: " << it_r << "\n";
 				// TODO
-//				res = interpreter.getTranslationUnit().getProgram()->getLattice()->applyGlb(res, it_r);
-				it ++;
+				// set 2 input variables
+				std::vector<RamDomain> args = { res, it_r };
+				ctxt_temp.setArguments(args);
+
+				// evaluate binary constraint
+				for (const auto& cas : glb_func.getLatCase()) {
+					if (cas.match==nullptr || interpreter.evalCond(*cas.match, ctxt_temp)) {
+						// get output if match
+						res = interpreter.evalVal(*cas.output, ctxt_temp);
+						break;
+					}
+				}
+				it++;
 			}
-			//std::cout << "visit RamLatticeGLB finish, res:" << res << "\n";
+			std::cout << "visit RamLatticeGLB finish, res:" << res << "\n";
 			return res;
+		}
+
+		RamDomain visitQuestionMark(const RamQuestionMark& qmark) override {
+			if (interpreter.evalCond(qmark.getCondition(), ctxt)) {
+				return interpreter.evalVal(qmark.getFirstRet(), ctxt);
+			} else {
+				return interpreter.evalVal(qmark.getSecondRet(), ctxt);
+			}
 		}
 
 		RamDomain visitAutoIncrement(const RamAutoIncrement&) override {
@@ -102,7 +127,8 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 		}
 
 		// intrinsic functors
-		RamDomain visitIntrinsicOperator(const RamIntrinsicOperator& op) override {
+		RamDomain visitIntrinsicOperator(const RamIntrinsicOperator& op)
+				override {
 			const auto& args = op.getArguments();
 
 			switch (op.getOperator()) {
@@ -120,17 +146,22 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 			case FunctorOp::TONUMBER: {
 				RamDomain result = 0;
 				try {
-					result = stord(interpreter.getSymbolTable().resolve(visit(args[0])));
+					result = stord(
+							interpreter.getSymbolTable().resolve(
+									visit(args[0])));
 				} catch (...) {
 					std::cerr << "error: wrong string provided by to_number(\"";
-					std::cerr << interpreter.getSymbolTable().resolve(visit(args[0]));
+					std::cerr
+							<< interpreter.getSymbolTable().resolve(
+									visit(args[0]));
 					std::cerr << "\") functor.\n";
 					raise(SIGFPE);
 				}
 				return result;
 			}
 			case FunctorOp::TOSTRING:
-				return interpreter.getSymbolTable().lookup(std::to_string(visit(args[0])));
+				return interpreter.getSymbolTable().lookup(
+						std::to_string(visit(args[0])));
 
 				/** Binary Functor Operators */
 			case FunctorOp::ADD: {
@@ -174,27 +205,31 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 			}
 			case FunctorOp::CAT: {
 				return interpreter.getSymbolTable().lookup(
-						interpreter.getSymbolTable().resolve(visit(args[0])) +
-						interpreter.getSymbolTable().resolve(visit(args[1])));
+						interpreter.getSymbolTable().resolve(visit(args[0]))
+								+ interpreter.getSymbolTable().resolve(
+										visit(args[1])));
 			}
 
-			/** Ternary Functor Operators */
+				/** Ternary Functor Operators */
 			case FunctorOp::SUBSTR: {
 				auto symbol = visit(args[0]);
-				const std::string& str = interpreter.getSymbolTable().resolve(symbol);
+				const std::string& str = interpreter.getSymbolTable().resolve(
+						symbol);
 				auto idx = visit(args[1]);
 				auto len = visit(args[2]);
 				std::string sub_str;
 				try {
 					sub_str = str.substr(idx, len);
 				} catch (...) {
-					std::cerr << "warning: wrong index position provided by substr(\"";
-					std::cerr << str << "\"," << (int32_t)idx << "," << (int32_t)len << ") functor.\n";
+					std::cerr
+							<< "warning: wrong index position provided by substr(\"";
+					std::cerr << str << "\"," << (int32_t) idx << ","
+							<< (int32_t) len << ") functor.\n";
 				}
 				return interpreter.getSymbolTable().lookup(sub_str);
 			}
 
-			/** Undefined */
+				/** Undefined */
 			default: {
 				assert(false && "unsupported operator");
 				return 0;
@@ -202,7 +237,8 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 			}
 		}
 
-		RamDomain visitUserDefinedOperator(const RamUserDefinedOperator& op) override {
+		RamDomain visitUserDefinedOperator(const RamUserDefinedOperator& op)
+				override {
 			// get name and type
 			const std::string& name = op.getName();
 			const std::string& type = op.getType();
@@ -211,8 +247,8 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 			void* handle = interpreter.loadDLL();
 			void (*fn)() = (void (*)())dlsym(handle, name.c_str());
 			if (fn == nullptr) {
-				std::cerr << "Cannot find user-defined operator " << name << " in " << SOUFFLE_DLL
-						<< std::endl;
+				std::cerr << "Cannot find user-defined operator " << name
+						<< " in " << SOUFFLE_DLL << std::endl;
 				exit(1);
 			}
 
@@ -230,7 +266,8 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 				RamDomain arg = visit(op.getArgument(i));
 				if (type[i] == 'S') {
 					args[i] = &ffi_type_pointer;
-					strVal[i] = interpreter.getSymbolTable().resolve(arg).c_str();
+					strVal[i] =
+							interpreter.getSymbolTable().resolve(arg).c_str();
 					values[i] = &strVal[i];
 				} else {
 					args[i] = &ffi_type_uint32;
@@ -242,15 +279,19 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 			// call external function
 			if (type[arity] == 'N') {
 				// Initialize for numerical return value
-				if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, arity, &ffi_type_uint32, args) != FFI_OK) {
-					std::cerr << "Failed to prepare CIF for user-defined operator ";
+				if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, arity, &ffi_type_uint32,
+						args) != FFI_OK) {
+					std::cerr
+							<< "Failed to prepare CIF for user-defined operator ";
 					std::cerr << name << std::endl;
 					exit(1);
 				}
 			} else {
 				// Initialize for string return value
-				if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, arity, &ffi_type_pointer, args) != FFI_OK) {
-					std::cerr << "Failed to prepare CIF for user-defined operator ";
+				if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, arity,
+						&ffi_type_pointer, args) != FFI_OK) {
+					std::cerr
+							<< "Failed to prepare CIF for user-defined operator ";
 					std::cerr << name << std::endl;
 					exit(1);
 				}
@@ -258,9 +299,10 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 			ffi_call(&cif, fn, &rc, values);
 			RamDomain result;
 			if (type[arity] == 'N') {
-				result = ((RamDomain)rc);
+				result = ((RamDomain) rc);
 			} else {
-				result = interpreter.getSymbolTable().lookup(((const char*)rc));
+				result = interpreter.getSymbolTable().lookup(
+						((const char*) rc));
 			}
 
 			return result;
@@ -285,7 +327,8 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 		// -- safety net --
 
 		RamDomain visitNode(const RamNode& node) override {
-			std::cerr << "Unsupported node type: " << typeid(node).name() << "\n";
+			std::cerr << "Unsupported node type: " << typeid(node).name()
+					<< "\n";
 			assert(false && "Unsupported Node Type!");
 			return 0;
 		}
@@ -296,19 +339,22 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 }
 
 /** Evaluate RAM Condition */
-bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& ctxt) {
-	class ConditionEvaluator : public RamVisitor<bool> {
+bool Interpreter::evalCond(const RamCondition& cond,
+		const InterpreterContext& ctxt) {
+	class ConditionEvaluator: public RamVisitor<bool> {
 		Interpreter& interpreter;
 		const InterpreterContext& ctxt;
 		RamExistenceCheckAnalysis* existCheckAnalysis;
 		RamProvenanceExistenceCheckAnalysis* provExistCheckAnalysis;
 
 	public:
-		ConditionEvaluator(Interpreter& interp, const InterpreterContext& ctxt)
-	: interpreter(interp), ctxt(ctxt),
-	  existCheckAnalysis(interp.getTranslationUnit().getAnalysis<RamExistenceCheckAnalysis>()),
-	  provExistCheckAnalysis(
-			  interp.getTranslationUnit().getAnalysis<RamProvenanceExistenceCheckAnalysis>()) {}
+		ConditionEvaluator(Interpreter& interp, const InterpreterContext& ctxt) :
+				interpreter(interp), ctxt(ctxt), existCheckAnalysis(
+						interp.getTranslationUnit().getAnalysis<
+								RamExistenceCheckAnalysis>()), provExistCheckAnalysis(
+						interp.getTranslationUnit().getAnalysis<
+								RamProvenanceExistenceCheckAnalysis>()) {
+		}
 
 		// -- connectors operators --
 
@@ -327,20 +373,25 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 		}
 
 		bool visitExistenceCheck(const RamExistenceCheck& exists) override {
-			const InterpreterRelation& rel = interpreter.getRelation(exists.getRelation());
+			const InterpreterRelation& rel = interpreter.getRelation(
+					exists.getRelation());
 
 			// construct the pattern tuple
 			auto arity = rel.getArity();
 			auto values = exists.getValues();
 
-			if (Global::config().has("profile") && !exists.getRelation().isTemp()) {
+			if (Global::config().has("profile")
+					&& !exists.getRelation().isTemp()) {
 				interpreter.reads[exists.getRelation().getName()]++;
 			}
 			// for total we use the exists test
 			if (existCheckAnalysis->isTotal(&exists)) {
 				RamDomain tuple[arity];
 				for (size_t i = 0; i < arity; i++) {
-					tuple[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
+					tuple[i] =
+							(values[i]) ?
+									interpreter.evalVal(*values[i], ctxt) :
+									MIN_RAM_DOMAIN;
 				}
 
 				return rel.exists(tuple);
@@ -350,18 +401,21 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 			RamDomain low[arity];
 			RamDomain high[arity];
 			for (size_t i = 0; i < arity; i++) {
-				low[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
+				low[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) :
+				MIN_RAM_DOMAIN;
 				high[i] = (values[i]) ? low[i] : MAX_RAM_DOMAIN;
 			}
 
 			// obtain index
 			auto idx = rel.getIndex(existCheckAnalysis->getKey(&exists));
 			auto range = idx->lowerUpperBound(low, high);
-			return range.first != range.second;  // if there is something => done
+			return range.first != range.second; // if there is something => done
 		}
 
-		bool visitProvenanceExistenceCheck(const RamProvenanceExistenceCheck& provExists) override {
-			const InterpreterRelation& rel = interpreter.getRelation(provExists.getRelation());
+		bool visitProvenanceExistenceCheck(
+				const RamProvenanceExistenceCheck& provExists) override {
+			const InterpreterRelation& rel = interpreter.getRelation(
+					provExists.getRelation());
 
 			// construct the pattern tuple
 			auto arity = rel.getArity();
@@ -371,7 +425,8 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 			RamDomain low[arity];
 			RamDomain high[arity];
 			for (size_t i = 0; i < arity - 2; i++) {
-				low[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
+				low[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) :
+				MIN_RAM_DOMAIN;
 				high[i] = (values[i]) ? low[i] : MAX_RAM_DOMAIN;
 			}
 
@@ -381,9 +436,10 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 			high[arity - 1] = MAX_RAM_DOMAIN;
 
 			// obtain index
-			auto idx = rel.getIndex(provExistCheckAnalysis->getKey(&provExists));
+			auto idx = rel.getIndex(
+					provExistCheckAnalysis->getKey(&provExists));
 			auto range = idx->lowerUpperBound(low, high);
-			return range.first != range.second;  // if there is something => done
+			return range.first != range.second; // if there is something => done
 		}
 
 		// -- comparison operators --
@@ -406,43 +462,51 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 			case BinaryConstraintOp::MATCH: {
 				RamDomain l = interpreter.evalVal(*relOp.getLHS(), ctxt);
 				RamDomain r = interpreter.evalVal(*relOp.getRHS(), ctxt);
-				const std::string& pattern = interpreter.getSymbolTable().resolve(l);
-				const std::string& text = interpreter.getSymbolTable().resolve(r);
+				const std::string& pattern =
+						interpreter.getSymbolTable().resolve(l);
+				const std::string& text = interpreter.getSymbolTable().resolve(
+						r);
 				bool result = false;
 				try {
 					result = std::regex_match(text, std::regex(pattern));
 				} catch (...) {
-					std::cerr << "warning: wrong pattern provided for match(\"" << pattern << "\",\""
-							<< text << "\").\n";
+					std::cerr << "warning: wrong pattern provided for match(\""
+							<< pattern << "\",\"" << text << "\").\n";
 				}
 				return result;
 			}
 			case BinaryConstraintOp::NOT_MATCH: {
 				RamDomain l = interpreter.evalVal(*relOp.getLHS(), ctxt);
 				RamDomain r = interpreter.evalVal(*relOp.getRHS(), ctxt);
-				const std::string& pattern = interpreter.getSymbolTable().resolve(l);
-				const std::string& text = interpreter.getSymbolTable().resolve(r);
+				const std::string& pattern =
+						interpreter.getSymbolTable().resolve(l);
+				const std::string& text = interpreter.getSymbolTable().resolve(
+						r);
 				bool result = false;
 				try {
 					result = !std::regex_match(text, std::regex(pattern));
 				} catch (...) {
-					std::cerr << "warning: wrong pattern provided for !match(\"" << pattern << "\",\""
-							<< text << "\").\n";
+					std::cerr << "warning: wrong pattern provided for !match(\""
+							<< pattern << "\",\"" << text << "\").\n";
 				}
 				return result;
 			}
 			case BinaryConstraintOp::CONTAINS: {
 				RamDomain l = interpreter.evalVal(*relOp.getLHS(), ctxt);
 				RamDomain r = interpreter.evalVal(*relOp.getRHS(), ctxt);
-				const std::string& pattern = interpreter.getSymbolTable().resolve(l);
-				const std::string& text = interpreter.getSymbolTable().resolve(r);
+				const std::string& pattern =
+						interpreter.getSymbolTable().resolve(l);
+				const std::string& text = interpreter.getSymbolTable().resolve(
+						r);
 				return text.find(pattern) != std::string::npos;
 			}
 			case BinaryConstraintOp::NOT_CONTAINS: {
 				RamDomain l = interpreter.evalVal(*relOp.getLHS(), ctxt);
 				RamDomain r = interpreter.evalVal(*relOp.getRHS(), ctxt);
-				const std::string& pattern = interpreter.getSymbolTable().resolve(l);
-				const std::string& text = interpreter.getSymbolTable().resolve(r);
+				const std::string& pattern =
+						interpreter.getSymbolTable().resolve(l);
+				const std::string& text = interpreter.getSymbolTable().resolve(
+						r);
 				return text.find(pattern) == std::string::npos;
 			}
 			default:
@@ -452,7 +516,8 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 		}
 
 		bool visitNode(const RamNode& node) override {
-			std::cerr << "Unsupported node type: " << typeid(node).name() << "\n";
+			std::cerr << "Unsupported node type: " << typeid(node).name()
+					<< "\n";
 			assert(false && "Unsupported Node Type!");
 			return false;
 		}
@@ -463,16 +528,19 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 }
 
 /** Evaluate RAM operation */
-void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args) {
-	class OperationEvaluator : public RamVisitor<void> {
+void Interpreter::evalOp(const RamOperation& op,
+		const InterpreterContext& args) {
+	class OperationEvaluator: public RamVisitor<void> {
 		Interpreter& interpreter;
 		InterpreterContext& ctxt;
 		RamIndexScanKeysAnalysis* keysAnalysis;
 
 	public:
-		OperationEvaluator(Interpreter& interp, InterpreterContext& ctxt)
-	: interpreter(interp), ctxt(ctxt),
-	  keysAnalysis(interp.getTranslationUnit().getAnalysis<RamIndexScanKeysAnalysis>()) {}
+		OperationEvaluator(Interpreter& interp, InterpreterContext& ctxt) :
+				interpreter(interp), ctxt(ctxt), keysAnalysis(
+						interp.getTranslationUnit().getAnalysis<
+								RamIndexScanKeysAnalysis>()) {
+		}
 
 		// -- Operations -----------------------------
 
@@ -483,7 +551,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 		void visitSearch(const RamSearch& search) override {
 			visitNestedOperation(search);
 
-			if (Global::config().has("profile") && !search.getProfileText().empty()) {
+			if (Global::config().has("profile")
+					&& !search.getProfileText().empty()) {
 				interpreter.frequencies[search.getProfileText()][interpreter.getIterationNumber()]++;
 			}
 		}
@@ -491,7 +560,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 		void visitScan(const RamScan& scan) override {
 			//std::cout << "visitScan here!\n";
 			// get the targeted relation
-			const InterpreterRelation& rel = interpreter.getRelation(scan.getRelation());
+			const InterpreterRelation& rel = interpreter.getRelation(
+					scan.getRelation());
 
 			// use simple iterator
 			for (const RamDomain* cur : rel) {
@@ -503,7 +573,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 		void visitIndexScan(const RamIndexScan& scan) override {
 			//std::cout << "visitIndexScan here!\n";
 			// get the targeted relation
-			const InterpreterRelation& rel = interpreter.getRelation(scan.getRelation());
+			const InterpreterRelation& rel = interpreter.getRelation(
+					scan.getRelation());
 
 			// create pattern tuple for range query
 			auto arity = rel.getArity();
@@ -521,7 +592,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 			}
 
 			// obtain index
-			auto idx = rel.getIndex(keysAnalysis->getRangeQueryColumns(&scan), nullptr);
+			auto idx = rel.getIndex(keysAnalysis->getRangeQueryColumns(&scan),
+					nullptr);
 
 			// get iterator range
 			auto range = idx->lowerUpperBound(low, hig);
@@ -537,7 +609,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
 		void visitLookup(const RamLookup& lookup) override {
 			// get reference
-			RamDomain ref = ctxt[lookup.getReferenceLevel()][lookup.getReferencePosition()];
+			RamDomain ref =
+					ctxt[lookup.getReferenceLevel()][lookup.getReferencePosition()];
 
 			// check for null
 			if (isNull(ref)) {
@@ -557,7 +630,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
 		void visitAggregate(const RamAggregate& aggregate) override {
 			// get the targeted relation
-			const InterpreterRelation& rel = interpreter.getRelation(aggregate.getRelation());
+			const InterpreterRelation& rel = interpreter.getRelation(
+					aggregate.getRelation());
 
 			// initialize result
 			RamDomain res = 0;
@@ -622,7 +696,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 				// aggregation is a bit more difficult
 
 				// eval target expression
-				RamDomain cur = interpreter.evalVal(*aggregate.getTargetExpression(), ctxt);
+				RamDomain cur = interpreter.evalVal(
+						*aggregate.getTargetExpression(), ctxt);
 
 				switch (aggregate.getFunction()) {
 				case RamAggregate::MIN:
@@ -657,7 +732,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 				visitNestedOperation(filter);
 			}
 
-			if (Global::config().has("profile") && !filter.getProfileText().empty()) {
+			if (Global::config().has("profile")
+					&& !filter.getProfileText().empty()) {
 				interpreter.frequencies[filter.getProfileText()][interpreter.getIterationNumber()]++;
 			}
 		}
@@ -675,7 +751,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 			}
 
 			// insert in target relation
-			InterpreterRelation& rel = interpreter.getRelation(project.getRelation());
+			InterpreterRelation& rel = interpreter.getRelation(
+					project.getRelation());
 			rel.insert(tuple);
 		}
 
@@ -692,13 +769,16 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
 		// -- safety net --
 		void visitNode(const RamNode& node) override {
-			std::cerr << "Unsupported node type: " << typeid(node).name() << "\n";
+			std::cerr << "Unsupported node type: " << typeid(node).name()
+					<< "\n";
 			assert(false && "Unsupported Node Type!");
 		}
 	};
 
 	// create and run interpreter for operations
-	InterpreterContext ctxt(translationUnit.getAnalysis<RamOperationDepthAnalysis>()->getDepth(&op));
+	InterpreterContext ctxt(
+			translationUnit.getAnalysis<RamOperationDepthAnalysis>()->getDepth(
+					&op));
 	ctxt.setReturnValues(args.getReturnValues());
 	ctxt.setReturnErrors(args.getReturnErrors());
 	ctxt.setArguments(args.getArguments());
@@ -707,11 +787,13 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
 /** Evaluate RAM statement */
 void Interpreter::evalStmt(const RamStatement& stmt) {
-	class StatementEvaluator : public RamVisitor<bool> {
+	class StatementEvaluator: public RamVisitor<bool> {
 		Interpreter& interpreter;
 
 	public:
-		StatementEvaluator(Interpreter& interp) : interpreter(interp) {}
+		StatementEvaluator(Interpreter& interp) :
+				interpreter(interp) {
+		}
 
 		// -- Statements -----------------------------
 
@@ -733,7 +815,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			std::cout << "PARALLEL size: " << stmts.size() << std::endl;
 			for (size_t i = 0; i < stmts.size(); i++) {
 				stmts[i]->print(std::cout);
-				std::cout<<"\nEnd of a stmt.\n";
+				std::cout << "\nEnd of a stmt.\n";
 			}
 			// special case: empty
 			if (stmts.empty()) {
@@ -769,11 +851,14 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 		bool visitLogTimer(const RamLogTimer& timer) override {
 			if (timer.getRelation() == nullptr) {
-				Logger logger(timer.getMessage().c_str(), interpreter.getIterationNumber());
+				Logger logger(timer.getMessage().c_str(),
+						interpreter.getIterationNumber());
 				return visit(timer.getStatement());
 			} else {
-				const InterpreterRelation& rel = interpreter.getRelation(*timer.getRelation());
-				Logger logger(timer.getMessage().c_str(), interpreter.getIterationNumber(),
+				const InterpreterRelation& rel = interpreter.getRelation(
+						*timer.getRelation());
+				Logger logger(timer.getMessage().c_str(),
+						interpreter.getIterationNumber(),
 						std::bind(&InterpreterRelation::size, &rel));
 				return visit(timer.getStatement());
 			}
@@ -787,22 +872,24 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		bool visitStratum(const RamStratum& stratum) override {
 			// TODO (lyndonhenry): should enable strata as subprograms for interpreter here
 
-					// Record relations created in each stratum
-					if (Global::config().has("profile")) {
-						std::map<std::string, size_t> relNames;
-						visitDepthFirst(stratum, [&](const RamCreate& create) {
+			// Record relations created in each stratum
+			if (Global::config().has("profile")) {
+				std::map<std::string, size_t> relNames;
+				visitDepthFirst(stratum,
+						[&](const RamCreate& create) {
 							relNames[create.getRelation().getName()] = create.getRelation().getArity();
 						});
-						for (const auto& cur : relNames) {
-							// Skip temporary relations, marked with '@'
-							if (cur.first[0] == '@') {
-								continue;
-							}
-							ProfileEventSingleton::instance().makeStratumRecord(
-									stratum.getIndex(), "relation", cur.first, "arity", std::to_string(cur.second));
-						}
+				for (const auto& cur : relNames) {
+					// Skip temporary relations, marked with '@'
+					if (cur.first[0] == '@') {
+						continue;
 					}
-					return visit(stratum.getBody());
+					ProfileEventSingleton::instance().makeStratumRecord(
+							stratum.getIndex(), "relation", cur.first, "arity",
+							std::to_string(cur.second));
+				}
+			}
+			return visit(stratum.getBody());
 		}
 
 		bool visitCreate(const RamCreate& create) override {
@@ -811,7 +898,8 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		}
 
 		bool visitClear(const RamClear& clear) override {
-			InterpreterRelation& rel = interpreter.getRelation(clear.getRelation());
+			InterpreterRelation& rel = interpreter.getRelation(
+					clear.getRelation());
 			rel.purge();
 			return true;
 		}
@@ -822,20 +910,24 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		}
 
 		bool visitLogSize(const RamLogSize& size) override {
-			const InterpreterRelation& rel = interpreter.getRelation(size.getRelation());
+			const InterpreterRelation& rel = interpreter.getRelation(
+					size.getRelation());
 			ProfileEventSingleton::instance().makeQuantityEvent(
-					size.getMessage(), rel.size(), interpreter.getIterationNumber());
+					size.getMessage(), rel.size(),
+					interpreter.getIterationNumber());
 			return true;
 		}
 
 		bool visitLoad(const RamLoad& load) override {
 			for (IODirectives ioDirectives : load.getIODirectives()) {
 				try {
-					InterpreterRelation& relation = interpreter.getRelation(load.getRelation());
-					IOSystem::getInstance()
-					.getReader(load.getRelation().getSymbolMask(), interpreter.getSymbolTable(),
-							ioDirectives, Global::config().has("provenance"))
-							->readAll(relation);
+					InterpreterRelation& relation = interpreter.getRelation(
+							load.getRelation());
+					IOSystem::getInstance().getReader(
+							load.getRelation().getSymbolMask(),
+							interpreter.getSymbolTable(), ioDirectives,
+							Global::config().has("provenance"))->readAll(
+							relation);
 				} catch (std::exception& e) {
 					std::cout << "symbolmask:\n";
 					load.getRelation().getSymbolMask().print(std::cout);
@@ -851,10 +943,11 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		bool visitStore(const RamStore& store) override {
 			for (IODirectives ioDirectives : store.getIODirectives()) {
 				try {
-					IOSystem::getInstance()
-					.getWriter(store.getRelation().getSymbolMask(), interpreter.getSymbolTable(),
-							ioDirectives, Global::config().has("provenance"))
-							->writeAll(interpreter.getRelation(store.getRelation()));
+					IOSystem::getInstance().getWriter(
+							store.getRelation().getSymbolMask(),
+							interpreter.getSymbolTable(), ioDirectives,
+							Global::config().has("provenance"))->writeAll(
+							interpreter.getRelation(store.getRelation()));
 				} catch (std::exception& e) {
 					std::cerr << e.what();
 					exit(1);
@@ -893,8 +986,10 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 		bool visitMerge(const RamMerge& merge) override {
 			// get involved relation
-			InterpreterRelation& src = interpreter.getRelation(merge.getSourceRelation());
-			InterpreterRelation& trg = interpreter.getRelation(merge.getTargetRelation());
+			InterpreterRelation& src = interpreter.getRelation(
+					merge.getSourceRelation());
+			InterpreterRelation& trg = interpreter.getRelation(
+					merge.getTargetRelation());
 
 			if (dynamic_cast<InterpreterEqRelation*>(&trg)) {
 				// expand src with the new knowledge generated by insertion.
@@ -909,11 +1004,14 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 		bool visitLatNorm(const RamLatNorm& latnorm) override {
 			// get involved relation
-			InterpreterRelation& fst = interpreter.getRelation(latnorm.getFirstRelation());
-			InterpreterRelation& scd = interpreter.getRelation(latnorm.getSecondRelation());
+			InterpreterRelation& fst = interpreter.getRelation(
+					latnorm.getFirstRelation());
+			InterpreterRelation& scd = interpreter.getRelation(
+					latnorm.getSecondRelation());
 
 			// insert biggest lattice element into both relations
-			auto latticeAssoc = interpreter.getTranslationUnit().getProgram()->getLattice();
+			auto latticeAssoc =
+					interpreter.getTranslationUnit().getProgram()->getLattice();
 			//std::cout << "visitLatNorm now.\n";
 			fst.latnorm(scd, latticeAssoc);
 			//std::cout << "visitLatNorm finish.\n";
@@ -921,7 +1019,8 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		}
 
 		bool visitSwap(const RamSwap& swap) override {
-			interpreter.swapRelation(swap.getFirstRelation(), swap.getSecondRelation());
+			interpreter.swapRelation(swap.getFirstRelation(),
+					swap.getSecondRelation());
 			return true;
 		}
 
@@ -929,8 +1028,9 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 		bool visitNode(const RamNode& node) override {
 			auto lease = getOutputLock().acquire();
-			(void)lease;
-			std::cerr << "Unsupported node type: " << typeid(node).name() << "\n";
+			(void) lease;
+			std::cerr << "Unsupported node type: " << typeid(node).name()
+					<< "\n";
 			assert(false && "Unsupported Node Type!");
 			return false;
 		}
@@ -951,19 +1051,22 @@ void Interpreter::executeMain() {
 	if (!Global::config().has("profile")) {
 		evalStmt(main);
 	} else {
-		ProfileEventSingleton::instance().setOutputFile(Global::config().get("profile"));
+		ProfileEventSingleton::instance().setOutputFile(
+				Global::config().get("profile"));
 		// Prepare the frequency table for threaded use
-		visitDepthFirst(main, [&](const RamSearch& node) {
-			if (!node.getProfileText().empty()) {
-				frequencies.emplace(node.getProfileText(), std::map<size_t, size_t>());
-			}
-		});
+		visitDepthFirst(main,
+				[&](const RamSearch& node) {
+					if (!node.getProfileText().empty()) {
+						frequencies.emplace(node.getProfileText(), std::map<size_t, size_t>());
+					}
+				});
 		// Enable profiling for execution of main
 		ProfileEventSingleton::instance().startTimer();
 		ProfileEventSingleton::instance().makeTimeEvent("@time;starttime");
 		// Store configuration
 		for (const auto& cur : Global::config().data()) {
-			ProfileEventSingleton::instance().makeConfigRecord(cur.first, cur.second);
+			ProfileEventSingleton::instance().makeConfigRecord(cur.first,
+					cur.second);
 		}
 		// Store count of relations
 		size_t relationCount = 0;
@@ -973,18 +1076,21 @@ void Interpreter::executeMain() {
 				reads[create.getRelation().getName()] = 0;
 			}
 		});
-		ProfileEventSingleton::instance().makeConfigRecord("relationCount", std::to_string(relationCount));
+		ProfileEventSingleton::instance().makeConfigRecord("relationCount",
+				std::to_string(relationCount));
 
 		// Store count of rules
 		size_t ruleCount = 0;
-		visitDepthFirst(main, [&](const RamInsert& rule) { ++ruleCount; });
-		ProfileEventSingleton::instance().makeConfigRecord("ruleCount", std::to_string(ruleCount));
+		visitDepthFirst(main, [&](const RamInsert& rule) {++ruleCount;});
+		ProfileEventSingleton::instance().makeConfigRecord("ruleCount",
+				std::to_string(ruleCount));
 
 		evalStmt(main);
 		ProfileEventSingleton::instance().stopTimer();
 		for (auto const& cur : frequencies) {
 			for (auto const& iter : cur.second) {
-				ProfileEventSingleton::instance().makeQuantityEvent(cur.first, iter.second, iter.first);
+				ProfileEventSingleton::instance().makeQuantityEvent(cur.first,
+						iter.second, iter.first);
 			}
 		}
 		for (auto const& cur : reads) {
@@ -996,7 +1102,8 @@ void Interpreter::executeMain() {
 }
 
 /** Execute subroutine */
-void Interpreter::executeSubroutine(const RamStatement& stmt, const std::vector<RamDomain>& arguments,
+void Interpreter::executeSubroutine(const RamStatement& stmt,
+		const std::vector<RamDomain>& arguments,
 		std::vector<RamDomain>& returnValues, std::vector<bool>& returnErrors) {
 	InterpreterContext ctxt;
 	ctxt.setReturnValues(returnValues);

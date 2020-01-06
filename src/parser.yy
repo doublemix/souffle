@@ -37,6 +37,7 @@
     #include "AstClause.h"
     #include "AstComponent.h"
     #include "AstLatticeBinaryFunction.h"
+    #include "AstQuestionMark.h"
     #include "AstFunctorDeclaration.h"
     #include "AstIO.h"
     #include "AstNode.h"
@@ -880,29 +881,30 @@ arg
         exit(1);
     }
 
+// currently, condition in question mark only support binary constraint
 condition
   : arg EQUALS arg {
-        $$ = new AstQuestionMark(AstQuestionMark::CompOp::EQ, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
+        $$ = new AstQuestionMark(BinaryConstraintOp::EQ, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
         $$->setSrcLoc(@$);
     }
   | arg EXCLAMATION EQUALS arg {
-  		$$ = new AstQuestionMark(AstQuestionMark::CompOp::NE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
+  		$$ = new AstQuestionMark(BinaryConstraintOp::NE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
         $$->setSrcLoc(@$);
     }
   | arg LT arg {
-        $$ = new AstQuestionMark(AstQuestionMark::CompOp::LT, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
+        $$ = new AstQuestionMark(BinaryConstraintOp::LT, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
         $$->setSrcLoc(@$);
     }
   | arg LT EQUALS arg {
-        $$ = new AstQuestionMark(AstQuestionMark::CompOp::LE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
+        $$ = new AstQuestionMark(BinaryConstraintOp::LE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
         $$->setSrcLoc(@$);
     }
   | arg GT arg {
-        $$ = new AstQuestionMark(AstQuestionMark::CompOp::GT, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
+        $$ = new AstQuestionMark(BinaryConstraintOp::GT, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
         $$->setSrcLoc(@$);
     }
   | arg GT EQUALS arg {
-        $$ = new AstQuestionMark(AstQuestionMark::CompOp::GE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
+        $$ = new AstQuestionMark(BinaryConstraintOp::GE, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($4));
         $$->setSrcLoc(@$);
     }
   ;

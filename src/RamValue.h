@@ -641,52 +641,52 @@ protected:
 	}
 };
 
-/**
- * Access a question mark operator, which contains a condition,
- * and two return arguments.
- */
-class RamQuestionMark: public RamValue {
-private:
-	// todo: how to avoid mutual include?
-	std::unique_ptr<RamCondition> cond;
-	std::unique_ptr<RamValue> ret1;
-	std::unique_ptr<RamValue> ret2;
-
-public:
-	RamQuestionMark(std::unique_ptr<RamCondition> cd,
-			std::unique_ptr<RamValue> r1, std::unique_ptr<RamValue> r2) :
-			RamValue(RN_QuestionMark), cond(move(cd)), ret1(move(r1)), ret2(
-					move(r2)) {
-	}
-
-	/** Print */
-	void print(std::ostream& os) const override {
-		os << *cond;
-		os << " ? " << *ret1 << " : " << *ret2;
-	}
-
-	/** Obtain list of child nodes */
-	std::vector<const RamNode*> getChildNodes() const override {
-		// TODO
-		return std::vector<const RamNode*>();
-	}
-
-	/** Create clone */
-	RamQuestionMark* clone() const override {
-		return new RamQuestionMark(cond->clone(), ret1->clone(), ret2->clone());
-	}
-
-	/** Apply mapper */
-	void apply(const RamNodeMapper& map) override {
-	}
-
-protected:
-	/** Check equality */
-	bool equal(const RamNode& node) const override {
-		assert(nullptr != dynamic_cast<const RamQuestionMark*>(&node));
-		const auto& other = static_cast<const RamQuestionMark&>(node);
-		return false;
-	}
-};
+///**
+// * Access a question mark operator, which contains a condition,
+// * and two return arguments.
+// */
+//class RamQuestionMark: public RamValue {
+//private:
+//	// todo: how to avoid mutual include?
+//	std::unique_ptr<RamCondition> cond;
+//	std::unique_ptr<RamValue> ret1;
+//	std::unique_ptr<RamValue> ret2;
+//
+//public:
+//	RamQuestionMark(std::unique_ptr<RamCondition> cd,
+//			std::unique_ptr<RamValue> r1, std::unique_ptr<RamValue> r2) :
+//			RamValue(RN_QuestionMark), cond(move(cd)), ret1(move(r1)), ret2(
+//					move(r2)) {
+//	}
+//
+//	/** Print */
+//	void print(std::ostream& os) const override {
+//		os << *cond;
+//		os << " ? " << *ret1 << " : " << *ret2;
+//	}
+//
+//	/** Obtain list of child nodes */
+//	std::vector<const RamNode*> getChildNodes() const override {
+//		// TODO
+//		return std::vector<const RamNode*>();
+//	}
+//
+//	/** Create clone */
+//	RamQuestionMark* clone() const override {
+//		return new RamQuestionMark(cond->clone(), ret1->clone(), ret2->clone());
+//	}
+//
+//	/** Apply mapper */
+//	void apply(const RamNodeMapper& map) override {
+//	}
+//
+//protected:
+//	/** Check equality */
+//	bool equal(const RamNode& node) const override {
+//		assert(nullptr != dynamic_cast<const RamQuestionMark*>(&node));
+//		const auto& other = static_cast<const RamQuestionMark&>(node);
+//		return false;
+//	}
+//};
 
 }  // end of namespace souffle

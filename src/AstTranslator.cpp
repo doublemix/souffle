@@ -38,6 +38,7 @@
 #include "PrecedenceGraph.h"
 #include "RamCondition.h"
 #include "RamLatticeBinaryFunction.h"
+#include "RamQuestionMark.h"
 #include "RamNode.h"
 #include "RamOperation.h"
 #include "RamProgram.h"
@@ -394,19 +395,11 @@ std::unique_ptr<RamValue> AstTranslator::translateValue(const AstArgument* arg,
 		// added by Qing Gong
 		std::unique_ptr<RamValue> visitQuestionMark(
 				const AstQuestionMark& qmark) override {
-			// TODO
-			qmark.getArg(0);
-//			translator.translateConstraint();
-
-//			std::unique_ptr<RamValue> valLHS = translator.translateValue(
-//					qmark.getLHS(), index);
-//			std::unique_ptr<RamValue> valRHS = translator.translateValue(
-//					binRel.getRHS(), index);
-//			std::make_unique<RamConstraint>(binRel.getOperator(),
-//					translator.translateValue(binRel.getLHS(), index),
-//					translator.translateValue(binRel.getRHS(), index));
-
-			return nullptr;
+			return std::make_unique<RamQuestionMark>(
+					translator.translateConstraint(qmark.getBinaryConstraint(),
+							index),
+					translator.translateValue(qmark.getFirstReturn(), index),
+					translator.translateValue(qmark.getSecondReturn(), index));
 		}
 
 		std::unique_ptr<RamValue> visitSubroutineArgument(

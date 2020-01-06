@@ -56,6 +56,7 @@
     #include "AstClause.h"
     #include "AstComponent.h"
     #include "AstLatticeBinaryFunction.h"
+    #include "AstQuestionMark.h"
     #include "AstFunctorDeclaration.h"
     #include "AstIO.h"
     #include "AstNode.h"
@@ -92,7 +93,7 @@
         }                                                      \
     } while (0)
 
-#line 96 "parser.hh" // lalr1.cc:377
+#line 97 "parser.hh" // lalr1.cc:377
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -169,7 +170,7 @@
 
 
 namespace yy {
-#line 173 "parser.hh" // lalr1.cc:377
+#line 174 "parser.hh" // lalr1.cc:377
 
 
 
@@ -2916,7 +2917,7 @@ namespace yy {
 
 
 } // yy
-#line 2920 "parser.hh" // lalr1.cc:377
+#line 2921 "parser.hh" // lalr1.cc:377
 
 
 
