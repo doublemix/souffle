@@ -1602,15 +1602,19 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id, bool& wi
 
     os << "public:\n";
 
+    // TODO: Qing Gong, avoid conflict in Symbol Table!
     // declare symbol table
     os << "// -- initialize symbol table --\n";
     {
         os << "SymbolTable symTable\n";
         if (symTable.size() > 0) {
             os << "{\n";
-            for (size_t i = 0; i < symTable.size(); i++) {
-                os << "\tR\"_(" << symTable.resolve(i) << ")_\",\n";
+            for (size_t i : symTable.getIndices()) {
+            	os << "\tR\"_(" << symTable.resolve(i) << ")_\",\n";
             }
+//            for (size_t i = 0; i < symTable.size(); i++) {
+//                os << "\tR\"_(" << symTable.resolve(i) << ")_\",\n";
+//            }
             os << "}";
         }
         os << ";";

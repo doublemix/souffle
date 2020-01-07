@@ -22,6 +22,8 @@
 
 #include "AstTypes.h"
 
+#include <vector>
+
 #ifdef USE_MPI
 #include "Mpi.h"
 #include <thread>
@@ -306,6 +308,17 @@ public:
 		} else
 #endif
 		return newSymbolOfIndex(symbol);
+	}
+
+	/*
+	 * added by Qing Gong: return all indices in the symbol table, not sorted
+	 */
+	std::vector<size_t> getIndices() const {
+		std::vector<size_t> indices;
+		for (const auto& p: numToStr) {
+			indices.push_back(p.first);
+		}
+		return indices;
 	}
 
 	/** Find a symbol in the table by its index, note that this gives an error if the index is out of

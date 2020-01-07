@@ -551,7 +551,7 @@ int main(int argc, char** argv) {
         std::string compileCmd = ::findTool("souffle-compile", souffleExecutable, ".");
         /* Fail if a souffle-compile executable is not found */
         if (!isExecutable(compileCmd)) {
-            throw std::runtime_error("failed to locate souffle-compile");
+            throw std::runtime_error("failed to locate souffle-compile: "+compileCmd);
         }
         compileCmd += " ";
 
@@ -589,6 +589,7 @@ int main(int argc, char** argv) {
 
             if (Global::config().has("compile")) {
                 auto start = std::chrono::high_resolution_clock::now();
+//                std::cout << "start compiling generated C++ code!\n";
                 compileToBinary(compileCmd, sourceFilename);
                 /* Report overall run-time in verbose mode */
                 if (Global::config().has("verbose")) {
