@@ -589,7 +589,7 @@ int main(int argc, char** argv) {
 
             if (Global::config().has("compile")) {
                 auto start = std::chrono::high_resolution_clock::now();
-//                std::cout << "start compiling generated C++ code!\n";
+                std::cout << "start compiling generated C++ code!\n";
                 compileToBinary(compileCmd, sourceFilename);
                 /* Report overall run-time in verbose mode */
                 if (Global::config().has("verbose")) {

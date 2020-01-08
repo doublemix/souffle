@@ -20,8 +20,6 @@
 #include "RamTypes.h"
 #include "Util.h"
 
-#include "AstTypes.h"
-
 #include <vector>
 
 #ifdef USE_MPI
@@ -411,7 +409,7 @@ public:
 		assert(it != strToNum.end() && "It's not in the symbol table when moving to the end!");
 		size_t org_index = it->second;
 		// move to the end, and avoid using the maximum value, which may be used in numeric variable
-		it->second = MAX_AST_DOMAIN - 1024 - org_index;
+		it->second = MAX_RAM_DOMAIN - 1024 - org_index;
 
 		auto it2 = numToStr.find(org_index);
 		assert(it2 != numToStr.end() && "Fail to locate the original index when moving to the end!");
