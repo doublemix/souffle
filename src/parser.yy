@@ -155,6 +155,7 @@
 %token EQUALS                    "="
 %token STAR                      "*"
 %token AT                        "@"
+%token AMPERSAND				 "&"
 %token SLASH                     "/"
 %token CARET                     "^"
 %token PERCENT                   "%"
@@ -216,7 +217,6 @@
 %printer { yyoutput << $$; } <*>;
 
 
-
 %precedence AS
 %left L_OR
 %left L_AND
@@ -233,6 +233,7 @@
 %precedence LT
 %precedence EQUALS
 %precedence EXCLAMATION
+
 
 %%
 %start program;
@@ -655,6 +656,12 @@ arg
   | AT IDENT functor_list {
         $$ = $3;
         $3->setName($2);
+        $$->setSrcLoc(@$);
+    }
+  | AMPERSAND IDENT LPAREN arg COMMA arg RPAREN {
+  		std::cout << "explicit use of lattice binary function here!\n";
+  		// TODO, not finished!!!!!!!!!!
+  		$$ = new AstVariable($2);
         $$->setSrcLoc(@$);
     }
   | IDENT {

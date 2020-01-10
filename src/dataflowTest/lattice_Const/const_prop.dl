@@ -25,30 +25,71 @@
 
 .let Sign<> = ("Bot", "Top", leq, lub, glb)
 
-// lattice relation
-.lat A(x: symbol, s: Constant)
-.input A
-.lat B(x: symbol, s: Constant)
-.input B
-.lat C(x: symbol, s: Constant)
-.input C
-.lat D(x: symbol, s: Constant)
-.input D
-.lat R(x: symbol, s: Constant)
-.output R
 
-R(x, s) :- A(x, s), B(x, s), C(x, s).
-A(x, s) :- R(x, s), B(x, s).
-R(x, s) :- A(x, s), D(x, s).
-R(x, s) :- A(x, s), C(x, s).
+.def lat_sum(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x+y
+}
+
+.def lat_div(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => y=0 ? "Bot" : x/y
+}
+
+
+.decl LitStm(r: symbol, c: number)         // r = c
+.input LitStm
+.decl AddStm(r: symbol, x: symbol, y: symbol) // r = x + y
+.input AddStm
+.decl DivStm(r: symbol, x: symbol, y: symbol) // r = x / y
+.input DivStm
+
+.lat LocalVar(k: symbol, v: Constant)
+.output LocalVar
+
+// literal statements
+LocalVar(r, c) :- LitStm(r, c).
+// addition statement r = x+y, and the value of x is v1, the
+// value of y is v2
+LocalVar(r, &lat_sum(v1, v2)) :- AddStm(r, x, y),
+                            LocalVar(x, v1),
+                            LocalVar(y, v2).
+// division statement
+LocalVar(r, &lat_div(v1, v2)) :- DivStm(r, x, y),
+                            LocalVar(x, v1),
+                            LocalVar(y, v2).
+
+
+// lattice relation
+//.lat A(x: symbol, s: Constant)
+//.input A
+//.lat B(x: symbol, s: Constant)
+//.input B
+//.lat C(x: symbol, s: Constant)
+//.input C
+//.lat D(x: symbol, s: Constant)
+//.input D
+//.lat R(x: symbol, s: Constant)
+//.output R
+
+//R(x, s) :- A(x, s), B(x, s), C(x, s).
+//A(x, s) :- R(x, s), B(x, s).
+//R(x, s) :- A(x, s), D(x, s).
+//R(x, s) :- A(x, s), C(x, s).
 
 // normal relation
-.decl P(x: symbol, s: symbol)
-.input P
-.decl Q(x: symbol, s: symbol)
-.input Q
-.decl S(x: symbol, s: symbol)
-.output S
-S(x, s) :- P(x, s), Q(x, s).
-P(x, s) :- S(x, s).
-Q(x, s) :- P(x, s).
+//.decl P(x: symbol, s: symbol)
+//.input P
+//.decl Q(x: symbol, s: symbol)
+//.input Q
+//.decl S(x: symbol, s: symbol)
+//.output S
+//S(x, s) :- P(x, s), Q(x, s).
+//P(x, s) :- S(x, s).
+//Q(x, s) :- P(x, s).
