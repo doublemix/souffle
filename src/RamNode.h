@@ -42,6 +42,7 @@ enum RamNodeType {
     RN_Number,
     RN_IntrinsicOperator,
     RN_UserDefinedOperator,
+	RN_LatticeBinaryFunctor,
     RN_AutoIncrement,
     RN_Pack,
     RN_Argument,

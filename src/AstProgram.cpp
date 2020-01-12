@@ -130,7 +130,12 @@ AstRelation* AstProgram::getRelation(const AstRelationIdentifier& name) const {
 
 AstLatticeBinaryFunction* AstProgram::getLatticeBinaryFunction(const std::string& name) const {
 	auto pos = latticeBinary.find(name);
-	return (pos == latticeBinary.end()) ? nullptr : pos->second.get();
+	assert(pos != latticeBinary.end());
+	return pos->second.get();
+}
+
+const std::map<std::string, std::unique_ptr<AstLatticeBinaryFunction>>& AstProgram::GetMapLBF() const {
+	return latticeBinary;
 }
 
 AstLatticeAssociation* AstProgram::getLatticeAssociation() const {

@@ -5,11 +5,6 @@
 // notice: enum must be decalred before any use of 
 // enum element (because of symbol table offset)
 
-//TODO
-.def leq(x: Constant, y: Constant): number {
-    case ("Bot", _)   => x,
-    case _          => "Top"
-}
 
 .def lub(x: Constant, y: Constant): Constant {
     case ("Bot", _)   => y,
@@ -22,9 +17,6 @@
     case (_, "Top")   => x,
     case (_, _)	    => x=y ? x : "Bot"
 }
-
-.let Sign<> = ("Bot", "Top", leq, lub, glb)
-
 
 .def lat_sum(x: Constant, y: Constant): Constant {
     case ("Bot", _)   => "Bot",
@@ -42,6 +34,7 @@
     case (_, _)	      => y=0 ? "Bot" : x/y
 }
 
+.let Sign<> = ("Bot", "Top", lub, glb)
 
 .decl LitStm(r: symbol, c: number)         // r = c
 .input LitStm

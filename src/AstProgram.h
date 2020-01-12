@@ -76,6 +76,9 @@ public:
 	/** Get lattice binary function definition */
 	AstLatticeBinaryFunction* getLatticeBinaryFunction(const std::string& name) const;
 
+	/** Get the whole map for lattice binary functions **/
+	const std::map<std::string, std::unique_ptr<AstLatticeBinaryFunction>>& GetMapLBF() const;
+
 	/** Get lattice association definition */
 	AstLatticeAssociation* getLatticeAssociation() const;
 

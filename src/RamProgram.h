@@ -31,7 +31,11 @@ private:
 	/** Subroutines for querying computed relations */
 	std::map<std::string, std::unique_ptr<RamStatement>> subroutines;
 
+	/** Lattice association **/
 	std::unique_ptr<RamLatticeAssociation> lattice;
+
+	/** all lattice binary functions **/
+	std::map<std::string, std::shared_ptr<RamLatticeBinaryFunction>> LBFs;
 
 public:
 	RamProgram() : RamNode(RN_Program) {}
@@ -130,6 +134,23 @@ public:
 	RamLatticeAssociation* getLattice() const {
 		assert(lattice);
 		return lattice.get();
+	}
+
+	/** add lattice binary function **/
+	void addLBF(std::string name, std::shared_ptr<RamLatticeBinaryFunction> lbf) {
+		assert(LBFs.find(name)==LBFs.end());
+		LBFs.insert({name, lbf});
+	}
+
+	/** get a pointer to a lattice binary function from its name **/
+	std::shared_ptr<RamLatticeBinaryFunction> getLBF(std::string name) {
+		auto it = LBFs.find(name);
+//		if (it==LBFs.end()) {
+//			return std::shared_ptr<RamLatticeBinaryFunction>(nullptr);
+//		} else {
+//			return it->second;
+//		}
+		return it==LBFs.end() ? nullptr : it->second;
 	}
 
 	/** Create clone */

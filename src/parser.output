@@ -78,7 +78,7 @@ Grammar
 
    57 lattice_decl: "lattice declaration" relation_list
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" ")"
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" "identifier" ":" "identifier" "," "identifier" ":" "identifier" ")" ":" "identifier" "{" lattice_def_type "}"
 
@@ -593,7 +593,7 @@ State 7
 
 State 8
 
-   58 lattice_asscoiation: "lattice components type declaration" . "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" . "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" ")"
 
     "identifier"  shift, and go to state 43
 
@@ -879,7 +879,7 @@ State 42
 
 State 43
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" . "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" . "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" ")"
 
     "<"  shift, and go to state 73
 
@@ -1194,7 +1194,7 @@ State 72
 
 State 73
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" . ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" . ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" ")"
 
     ">"  shift, and go to state 136
 
@@ -2073,7 +2073,7 @@ State 135
 
 State 136
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" . "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" . "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" ")"
 
     "="  shift, and go to state 223
 
@@ -3906,7 +3906,7 @@ State 222
 
 State 223
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" . "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" . "(" "symbol" "," "symbol" "," "identifier" "," "identifier" ")"
 
     "("  shift, and go to state 296
 
@@ -5679,7 +5679,7 @@ State 295
 
 State 296
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" . "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" . "symbol" "," "symbol" "," "identifier" "," "identifier" ")"
 
     "symbol"  shift, and go to state 354
 
@@ -6611,7 +6611,7 @@ State 353
 
 State 354
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" . "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" . "," "symbol" "," "identifier" "," "identifier" ")"
 
     ","  shift, and go to state 379
 
@@ -7077,7 +7077,7 @@ State 378
 
 State 379
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," . "symbol" "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," . "symbol" "," "identifier" "," "identifier" ")"
 
     "symbol"  shift, and go to state 399
 
@@ -7314,7 +7314,7 @@ State 398
 
 State 399
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" . "," "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" . "," "identifier" "," "identifier" ")"
 
     ","  shift, and go to state 404
 
@@ -7386,7 +7386,7 @@ State 403
 
 State 404
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," . "identifier" "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," . "identifier" "," "identifier" ")"
 
     "identifier"  shift, and go to state 407
 
@@ -7407,7 +7407,7 @@ State 406
 
 State 407
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" . "," "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" . "," "identifier" ")"
 
     ","  shift, and go to state 409
 
@@ -7421,7 +7421,7 @@ State 408
 
 State 409
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," . "identifier" "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," . "identifier" ")"
 
     "identifier"  shift, and go to state 411
 
@@ -7435,9 +7435,9 @@ State 410
 
 State 411
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" . "," "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" . ")"
 
-    ","  shift, and go to state 413
+    ")"  shift, and go to state 413
 
 
 State 412
@@ -7449,52 +7449,38 @@ State 412
 
 State 413
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," . "identifier" ")"
+   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" ")" .
 
-    "identifier"  shift, and go to state 415
+    $default  reduce using rule 58 (lattice_asscoiation)
 
 
 State 414
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" "identifier" ":" "identifier" "," "identifier" ":" "identifier" ")" ":" "identifier" "{" . lattice_def_type "}"
 
-    "case"  shift, and go to state 416
+    "case"  shift, and go to state 415
 
-    lattice_def_type  go to state 417
+    lattice_def_type  go to state 416
 
 
 State 415
 
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" . ")"
+   60 lattice_def_type: "case" . "(" arg "," arg ")" "=>" arg
 
-    ")"  shift, and go to state 418
+    "("  shift, and go to state 417
 
 
 State 416
-
-   60 lattice_def_type: "case" . "(" arg "," arg ")" "=>" arg
-
-    "("  shift, and go to state 419
-
-
-State 417
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" "identifier" ":" "identifier" "," "identifier" ":" "identifier" ")" ":" "identifier" "{" lattice_def_type . "}"
    61 lattice_def_type: lattice_def_type . "," "case" "(" arg "," arg ")" "=>" arg
    62                 | lattice_def_type . "," "case" "_" "=>" arg
 
-    ","  shift, and go to state 420
-    "}"  shift, and go to state 421
+    ","  shift, and go to state 418
+    "}"  shift, and go to state 419
 
 
-State 418
-
-   58 lattice_asscoiation: "lattice components type declaration" "identifier" "<" ">" "=" "(" "symbol" "," "symbol" "," "identifier" "," "identifier" "," "identifier" ")" .
-
-    $default  reduce using rule 58 (lattice_asscoiation)
-
-
-State 419
+State 417
 
    60 lattice_def_type: "case" "(" . arg "," arg ")" "=>" arg
 
@@ -7523,26 +7509,26 @@ State 419
     "bnot"                          shift, and go to state 105
     "lnot"                          shift, and go to state 106
 
-    arg        go to state 422
+    arg        go to state 420
     condition  go to state 108
 
 
-State 420
+State 418
 
    61 lattice_def_type: lattice_def_type "," . "case" "(" arg "," arg ")" "=>" arg
    62                 | lattice_def_type "," . "case" "_" "=>" arg
 
-    "case"  shift, and go to state 423
+    "case"  shift, and go to state 421
 
 
-State 421
+State 419
 
    59 lattice_def: "lattice binary function definition" "identifier" "(" "identifier" ":" "identifier" "," "identifier" ":" "identifier" ")" ":" "identifier" "{" lattice_def_type "}" .
 
     $default  reduce using rule 59 (lattice_def)
 
 
-State 422
+State 420
 
    60 lattice_def_type: "case" "(" arg . "," arg ")" "=>" arg
    88 arg: arg . "bor" arg
@@ -7568,7 +7554,7 @@ State 422
     "+"          shift, and go to state 177
     "-"          shift, and go to state 178
     "!"          shift, and go to state 179
-    ","          shift, and go to state 424
+    ","          shift, and go to state 422
     "="          shift, and go to state 180
     "*"          shift, and go to state 181
     "/"          shift, and go to state 182
@@ -7583,18 +7569,58 @@ State 422
     "lor"        shift, and go to state 191
 
 
-State 423
+State 421
 
    61 lattice_def_type: lattice_def_type "," "case" . "(" arg "," arg ")" "=>" arg
    62                 | lattice_def_type "," "case" . "_" "=>" arg
 
-    "_"  shift, and go to state 425
-    "("  shift, and go to state 426
+    "_"  shift, and go to state 423
+    "("  shift, and go to state 424
+
+
+State 422
+
+   60 lattice_def_type: "case" "(" arg "," . arg ")" "=>" arg
+
+    "reserved keyword"              shift, and go to state 83
+    "symbol"                        shift, and go to state 84
+    "identifier"                    shift, and go to state 85
+    "number"                        shift, and go to state 86
+    "concatenation of two strings"  shift, and go to state 87
+    "ordinal number of a string"    shift, and go to state 88
+    "length of a string"            shift, and go to state 89
+    "sub-string of a string"        shift, and go to state 90
+    "min aggregator"                shift, and go to state 91
+    "max aggregator"                shift, and go to state 92
+    "count aggregator"              shift, and go to state 93
+    "sum aggregator"                shift, and go to state 94
+    "convert string to number"      shift, and go to state 95
+    "convert number to string"      shift, and go to state 96
+    "nil reference"                 shift, and go to state 97
+    "["                             shift, and go to state 98
+    "_"                             shift, and go to state 99
+    "$"                             shift, and go to state 100
+    "-"                             shift, and go to state 101
+    "("                             shift, and go to state 102
+    "@"                             shift, and go to state 103
+    "&"                             shift, and go to state 104
+    "bnot"                          shift, and go to state 105
+    "lnot"                          shift, and go to state 106
+
+    arg        go to state 425
+    condition  go to state 108
+
+
+State 423
+
+   62 lattice_def_type: lattice_def_type "," "case" "_" . "=>" arg
+
+    "=>"  shift, and go to state 426
 
 
 State 424
 
-   60 lattice_def_type: "case" "(" arg "," . arg ")" "=>" arg
+   61 lattice_def_type: lattice_def_type "," "case" "(" . arg "," arg ")" "=>" arg
 
     "reserved keyword"              shift, and go to state 83
     "symbol"                        shift, and go to state 84
@@ -7627,14 +7653,48 @@ State 424
 
 State 425
 
-   62 lattice_def_type: lattice_def_type "," "case" "_" . "=>" arg
+   60 lattice_def_type: "case" "(" arg "," arg . ")" "=>" arg
+   88 arg: arg . "bor" arg
+   89    | arg . "bxor" arg
+   90    | arg . "band" arg
+   91    | arg . "lor" arg
+   92    | arg . "land" arg
+   93    | arg . "+" arg
+   94    | arg . "-" arg
+   95    | arg . "*" arg
+   96    | arg . "/" arg
+   97    | arg . "%" arg
+   98    | arg . "^" arg
+  108    | arg . "type cast" "identifier"
+  124 condition: arg . "=" arg
+  125          | arg . "!" "=" arg
+  126          | arg . "<" arg
+  127          | arg . "<" "=" arg
+  128          | arg . ">" arg
+  129          | arg . ">" "=" arg
 
-    "=>"  shift, and go to state 428
+    "type cast"  shift, and go to state 176
+    "+"          shift, and go to state 177
+    "-"          shift, and go to state 178
+    "!"          shift, and go to state 179
+    ")"          shift, and go to state 428
+    "="          shift, and go to state 180
+    "*"          shift, and go to state 181
+    "/"          shift, and go to state 182
+    "^"          shift, and go to state 183
+    "%"          shift, and go to state 184
+    "<"          shift, and go to state 185
+    ">"          shift, and go to state 186
+    "band"       shift, and go to state 187
+    "bor"        shift, and go to state 188
+    "bxor"       shift, and go to state 189
+    "land"       shift, and go to state 190
+    "lor"        shift, and go to state 191
 
 
 State 426
 
-   61 lattice_def_type: lattice_def_type "," "case" "(" . arg "," arg ")" "=>" arg
+   62 lattice_def_type: lattice_def_type "," "case" "_" "=>" . arg
 
     "reserved keyword"              shift, and go to state 83
     "symbol"                        shift, and go to state 84
@@ -7667,80 +7727,6 @@ State 426
 
 State 427
 
-   60 lattice_def_type: "case" "(" arg "," arg . ")" "=>" arg
-   88 arg: arg . "bor" arg
-   89    | arg . "bxor" arg
-   90    | arg . "band" arg
-   91    | arg . "lor" arg
-   92    | arg . "land" arg
-   93    | arg . "+" arg
-   94    | arg . "-" arg
-   95    | arg . "*" arg
-   96    | arg . "/" arg
-   97    | arg . "%" arg
-   98    | arg . "^" arg
-  108    | arg . "type cast" "identifier"
-  124 condition: arg . "=" arg
-  125          | arg . "!" "=" arg
-  126          | arg . "<" arg
-  127          | arg . "<" "=" arg
-  128          | arg . ">" arg
-  129          | arg . ">" "=" arg
-
-    "type cast"  shift, and go to state 176
-    "+"          shift, and go to state 177
-    "-"          shift, and go to state 178
-    "!"          shift, and go to state 179
-    ")"          shift, and go to state 430
-    "="          shift, and go to state 180
-    "*"          shift, and go to state 181
-    "/"          shift, and go to state 182
-    "^"          shift, and go to state 183
-    "%"          shift, and go to state 184
-    "<"          shift, and go to state 185
-    ">"          shift, and go to state 186
-    "band"       shift, and go to state 187
-    "bor"        shift, and go to state 188
-    "bxor"       shift, and go to state 189
-    "land"       shift, and go to state 190
-    "lor"        shift, and go to state 191
-
-
-State 428
-
-   62 lattice_def_type: lattice_def_type "," "case" "_" "=>" . arg
-
-    "reserved keyword"              shift, and go to state 83
-    "symbol"                        shift, and go to state 84
-    "identifier"                    shift, and go to state 85
-    "number"                        shift, and go to state 86
-    "concatenation of two strings"  shift, and go to state 87
-    "ordinal number of a string"    shift, and go to state 88
-    "length of a string"            shift, and go to state 89
-    "sub-string of a string"        shift, and go to state 90
-    "min aggregator"                shift, and go to state 91
-    "max aggregator"                shift, and go to state 92
-    "count aggregator"              shift, and go to state 93
-    "sum aggregator"                shift, and go to state 94
-    "convert string to number"      shift, and go to state 95
-    "convert number to string"      shift, and go to state 96
-    "nil reference"                 shift, and go to state 97
-    "["                             shift, and go to state 98
-    "_"                             shift, and go to state 99
-    "$"                             shift, and go to state 100
-    "-"                             shift, and go to state 101
-    "("                             shift, and go to state 102
-    "@"                             shift, and go to state 103
-    "&"                             shift, and go to state 104
-    "bnot"                          shift, and go to state 105
-    "lnot"                          shift, and go to state 106
-
-    arg        go to state 431
-    condition  go to state 108
-
-
-State 429
-
    61 lattice_def_type: lattice_def_type "," "case" "(" arg . "," arg ")" "=>" arg
    88 arg: arg . "bor" arg
    89    | arg . "bxor" arg
@@ -7765,7 +7751,7 @@ State 429
     "+"          shift, and go to state 177
     "-"          shift, and go to state 178
     "!"          shift, and go to state 179
-    ","          shift, and go to state 432
+    ","          shift, and go to state 430
     "="          shift, and go to state 180
     "*"          shift, and go to state 181
     "/"          shift, and go to state 182
@@ -7780,14 +7766,14 @@ State 429
     "lor"        shift, and go to state 191
 
 
-State 430
+State 428
 
    60 lattice_def_type: "case" "(" arg "," arg ")" . "=>" arg
 
-    "=>"  shift, and go to state 433
+    "=>"  shift, and go to state 431
 
 
-State 431
+State 429
 
    62 lattice_def_type: lattice_def_type "," "case" "_" "=>" arg .
    88 arg: arg . "bor" arg
@@ -7829,7 +7815,7 @@ State 431
     $default  reduce using rule 62 (lattice_def_type)
 
 
-State 432
+State 430
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," . arg ")" "=>" arg
 
@@ -7858,11 +7844,11 @@ State 432
     "bnot"                          shift, and go to state 105
     "lnot"                          shift, and go to state 106
 
-    arg        go to state 434
+    arg        go to state 432
     condition  go to state 108
 
 
-State 433
+State 431
 
    60 lattice_def_type: "case" "(" arg "," arg ")" "=>" . arg
 
@@ -7891,11 +7877,11 @@ State 433
     "bnot"                          shift, and go to state 105
     "lnot"                          shift, and go to state 106
 
-    arg        go to state 435
+    arg        go to state 433
     condition  go to state 108
 
 
-State 434
+State 432
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," arg . ")" "=>" arg
    88 arg: arg . "bor" arg
@@ -7921,7 +7907,7 @@ State 434
     "+"          shift, and go to state 177
     "-"          shift, and go to state 178
     "!"          shift, and go to state 179
-    ")"          shift, and go to state 436
+    ")"          shift, and go to state 434
     "="          shift, and go to state 180
     "*"          shift, and go to state 181
     "/"          shift, and go to state 182
@@ -7936,7 +7922,7 @@ State 434
     "lor"        shift, and go to state 191
 
 
-State 435
+State 433
 
    60 lattice_def_type: "case" "(" arg "," arg ")" "=>" arg .
    88 arg: arg . "bor" arg
@@ -7978,14 +7964,14 @@ State 435
     $default  reduce using rule 60 (lattice_def_type)
 
 
-State 436
+State 434
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," arg ")" . "=>" arg
 
-    "=>"  shift, and go to state 437
+    "=>"  shift, and go to state 435
 
 
-State 437
+State 435
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," arg ")" "=>" . arg
 
@@ -8014,11 +8000,11 @@ State 437
     "bnot"                          shift, and go to state 105
     "lnot"                          shift, and go to state 106
 
-    arg        go to state 438
+    arg        go to state 436
     condition  go to state 108
 
 
-State 438
+State 436
 
    61 lattice_def_type: lattice_def_type "," "case" "(" arg "," arg ")" "=>" arg .
    88 arg: arg . "bor" arg

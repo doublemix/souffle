@@ -18,8 +18,10 @@
 
 #include "AstArgument.h"
 #include "AstRelationIdentifier.h"
+#include "AstLatticeBinaryFunction.h"
 #include "RamRelation.h"
 #include "RamLatticeAssociation.h"
+#include "RamLatticeBinaryFunction.h"
 #include "RelationRepresentation.h"
 #include "SymbolMask.h"
 #include "TypeSystem.h"
@@ -46,6 +48,7 @@ class IODirectives;
 class RamCondition;
 class RamElementAccess;
 class RamLatticeGLB;
+class RamLatticeBinaryFunction;
 class RamOperation;
 class RamProgram;
 class RamStatement;
@@ -366,6 +369,9 @@ private:
 
 	/** translate an AST lattice association with lattice binary functions into a RAM lattice **/
 	std::unique_ptr<RamLatticeAssociation> translateLatticeAssoc(const AstTranslationUnit& tu);
+
+	/** translate an AST lattice binary function declaration into a RAM LBF **/
+	std::unique_ptr<RamLatticeBinaryFunction> translateLatticeBinaryFunction(const AstLatticeBinaryFunction* AstB);
 
 	/** translate AST clause to RAM code */
 	class ClauseTranslator {

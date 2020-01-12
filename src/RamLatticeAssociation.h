@@ -26,15 +26,17 @@
 
 #include <iostream>
 
+#include <vector>
+
 namespace souffle {
 
 class RamLatticeAssociation: public RamNode {
 private:
 	/* Least upper bound */
-	std::unique_ptr<RamLatticeBinaryFunction> lub = nullptr;
+	std::shared_ptr<RamLatticeBinaryFunction> lub = nullptr;
 
 	/* Greatest lower bound */
-	std::unique_ptr<RamLatticeBinaryFunction> glb = nullptr;
+	std::shared_ptr<RamLatticeBinaryFunction> glb = nullptr;
 
 	/* lattice Bottom element */
 	RamDomain bottom;
@@ -62,13 +64,13 @@ public:
 	}
 
 	/** set lub function */
-	void setLUB(std::unique_ptr<RamLatticeBinaryFunction> l) {
-		lub = move(l);
+	void setLUB(std::shared_ptr<RamLatticeBinaryFunction> l) {
+		lub = l;
 	}
 
 	/** set glb function */
-	void setGLB(std::unique_ptr<RamLatticeBinaryFunction> g) {
-		glb = move(g);
+	void setGLB(std::shared_ptr<RamLatticeBinaryFunction> g) {
+		glb = g;
 	}
 
 	const RamLatticeBinaryFunction& getLUB() {
@@ -94,84 +96,18 @@ public:
 		return top;
 	}
 
-	/** Add to leq function */
-//	void addLeq(RamDomain* first, RamDomain* second, RamDomain* output) {
-//		std::cout << "print LEQ:" << (first ? std::to_string(*first) : "_")
-//				<< "," << (second ? std::to_string(*second) : "_") << ","
-//				<< (output ? std::to_string(*output) : "_") << "\n";
-//		leq.push_back( { first, second, output });
+	/* add a new lattice binary function other than GLB, LUB, then return
+	 * its index in the vector */
+//	size_t addOtherLBF(std::unique_ptr<RamLatticeBinaryFunction> lbf) {
+//		size_t ind = otherLatticeBinaryFunctions.size();
+//		otherLatticeBinaryFunctions.push_back(std::move(lbf));
+//		return ind;
 //	}
-	/** Add to glb function */
-//	void addGlb(RamDomain* first, RamDomain* second, RamDomain* output) {
-//		std::cout << "print GLB:" << (first ? std::to_string(*first) : "_")
-//				<< "," << (second ? std::to_string(*second) : "_") << ","
-//				<< (output ? std::to_string(*output) : "_") << "\n";
-//		glb.push_back( { first, second, output });
+
+	/* return the lattice binary function based on index */
+//	const RamLatticeBinaryFunction& getOtherLBF(size_t ind) {
+//		return *(otherLatticeBinaryFunctions[ind]);
 //	}
-	/** should not apply any function here, do it in interpreter or compiler **/
-	/*RamDomain applyLeq(RamDomain arg1, RamDomain arg2) {
-	 // TODO: LEQ not finished, the output should be bool
-	 for (auto& cur : leq) {
-	 if ((cur.first == nullptr || *cur.first == arg1)
-	 && (cur.second == nullptr || *cur.second == arg2)) {
-	 return *cur.output;
-	 }
-	 }
-	 std::cerr << "error: apply LEQ fail.\n";
-	 throw(0);
-	 }
-
-	 RamDomain applyLub(RamDomain arg1, RamDomain arg2) {
-	 for (auto& cur : lub) {
-	 if (cur.first == nullptr) {
-	 if (cur.second == nullptr)
-	 return *cur.output;
-	 else if (*cur.second == arg2) {
-	 assert(cur.output == nullptr);
-	 return arg1;
-	 }
-	 } else if (*cur.first == arg1) {
-	 if (cur.second == nullptr) {
-	 assert(cur.output == nullptr);
-	 return arg2;
-	 } else if (*cur.second == arg2) {
-	 return *cur.output;
-	 }
-	 }
-
-	 if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
-	 return *cur.output;
-	 }
-	 }
-	 std::cerr << "error: apply LUB fail.\n";
-	 throw(0);
-	 }
-
-	 RamDomain applyGlb(RamDomain arg1, RamDomain arg2) {
-	 for (auto& cur : glb) {
-	 if (cur.first == nullptr) {
-	 if (cur.second == nullptr)
-	 return *cur.output;
-	 else if (*cur.second == arg2) {
-	 assert(cur.output == nullptr);
-	 return arg1;
-	 }
-	 } else if (*cur.first == arg1) {
-	 if (cur.second == nullptr) {
-	 assert(cur.output == nullptr);
-	 return arg2;
-	 } else if (*cur.second == arg2) {
-	 return *cur.output;
-	 }
-	 }
-
-	 if ((cur.first==nullptr || *cur.first==arg1) && (cur.second==nullptr || *cur.second==arg2)) {
-	 return *cur.output;
-	 }
-	 }
-	 std::cerr << "error: apply GLB fail.\n";
-	 throw(0);
-	 }*/
 
 	/** Get relation */
 

@@ -518,9 +518,9 @@ lattice_decl
   	}
 
 lattice_asscoiation
-  : LET IDENT LT GT EQUALS LPAREN STRING COMMA STRING COMMA IDENT COMMA IDENT COMMA IDENT RPAREN {
+  : LET IDENT LT GT EQUALS LPAREN STRING COMMA STRING COMMA IDENT COMMA IDENT RPAREN {
     	$$ = new AstLatticeAssociation($2);
-    	$$->setALL($7, $9, $11, $13, $15);
+    	$$->setALL($7, $9, $11, $13);
   	}
 
 lattice_def
@@ -660,8 +660,7 @@ arg
     }
   | AMPERSAND IDENT LPAREN arg COMMA arg RPAREN {
   		std::cout << "explicit use of lattice binary function here!\n";
-  		// TODO, not finished!!!!!!!!!!
-  		$$ = new AstVariable($2);
+  		$$ = new AstLatticeBinaryFunctor($2, std::unique_ptr<AstArgument>($4), std::unique_ptr<AstArgument>($6));
         $$->setSrcLoc(@$);
     }
   | IDENT {

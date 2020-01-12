@@ -432,6 +432,8 @@ protected:
 	}
 };
 
+
+
 /**
  * Number Constant
  */
@@ -689,4 +691,4 @@ protected:
 //	}
 //};
 
-}  // end of namespace souffle
+}// end of namespace souffle

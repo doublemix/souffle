@@ -499,6 +499,103 @@ protected:
 };
 
 /**
+ * Added by Qing Gong: lattice functor
+ */
+class AstLatticeFunctor: public AstFunctor {
+};
+
+/**
+ * Added by Qing Gong: lattice binary functor
+ */
+class AstLatticeBinaryFunctor: public AstLatticeFunctor {
+public:
+	AstLatticeBinaryFunctor() = default;
+
+	AstLatticeBinaryFunctor(std::string name, std::unique_ptr<AstArgument> a1,
+			std::unique_ptr<AstArgument> a2) :
+			name(std::move(name)) {
+		args.push_back(std::move(a1));
+		args.push_back(std::move(a2));
+	}
+
+	~AstLatticeBinaryFunctor() override = default;
+
+	/** get name */
+	const std::string& getName() const {
+		return name;
+	}
+
+	/** set name */
+	void setName(const std::string& n) {
+		name = n;
+	}
+
+//	void setArgs(std::unique_ptr<AstArgument> a1,
+//			std::unique_ptr<AstArgument> a2) {
+//		assert(args.size() == 0);
+//		args.push_back(std::move(a1));
+//		args.push_back(std::move(a2));
+//	}
+
+	/** get argument */
+	const AstArgument* getArg(size_t idx) const {
+		assert(idx >= 0 && idx < args.size() && "argument index out of bounds");
+		return args[idx].get();
+	}
+
+	/** print user-defined functor */
+	void print(std::ostream& os) const override {
+		os << '&' << name << "("
+				<< join(args, ",", print_deref<std::unique_ptr<AstArgument>>())
+				<< ")";
+	}
+
+	/** Create clone */
+	AstLatticeBinaryFunctor* clone() const override {
+		assert(args.size() == 2);
+		auto res = new AstLatticeBinaryFunctor(name,
+				std::unique_ptr<AstArgument>(args[0]->clone()),
+				std::unique_ptr<AstArgument>(args[1]->clone()));
+//		for (auto& cur : args) {
+//			res->args.emplace_back(cur->clone());
+//		}
+//		res->setSrcLoc(getSrcLoc());
+//		res->setName(getName());
+		return res;
+	}
+
+	/** Mutates this node */
+	void apply(const AstNodeMapper& map) override {
+		for (auto& arg : args) {
+			arg = map(std::move(arg));
+		}
+	}
+
+	/** Obtains a list of all embedded child nodes */
+	std::vector<const AstNode*> getChildNodes() const override {
+		auto res = AstArgument::getChildNodes();
+		for (auto& cur : args) {
+			res.push_back(cur.get());
+		}
+		return res;
+	}
+
+protected:
+	/** name of lattice functor */
+	std::string name;
+
+	/** arguments of user-defined functor */
+	std::vector<std::unique_ptr<AstArgument>> args;
+
+	/** Implements the node comparison for this node type */
+	bool equal(const AstNode& node) const override {
+		assert(nullptr != dynamic_cast<const AstLatticeBinaryFunctor*>(&node));
+		const auto& other = static_cast<const AstLatticeBinaryFunctor&>(node);
+		return name == other.name && equal_targets(args, other.args);
+	}
+};
+
+/**
  * An argument that takes a list of values and combines them into a
  * new record.
  */

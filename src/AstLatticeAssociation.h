@@ -53,11 +53,10 @@ public:
 		name = n;
 	}
 
-	void setALL(const std::string& B, const std::string& T, const std::string& LEQ, const std::string& LUB, const std::string& GLB) {
-		assert(B!="" && T!="" && LEQ!="" && LUB!="" && GLB!="");
+	void setALL(const std::string& B, const std::string& T, const std::string& LUB, const std::string& GLB) {
+		assert(B!="" && T!="" && LUB!="" && GLB!="");
 		bottom = B;
 		top = T;
-		leq = LEQ;
 		lub = LUB;
 		glb = GLB;
 	}
@@ -70,10 +69,6 @@ public:
 		return bottom;
 	}
 
-	const std::string& getLeq() const {
-		return leq;
-	}
-
 	const std::string& getLub() const {
 		return lub;
 	}
@@ -84,7 +79,7 @@ public:
 
 	AstLatticeAssociation* clone() const override {
 		auto res = new AstLatticeAssociation(name);
-		res->setALL(top, bottom, leq, lub, glb);
+		res->setALL(top, bottom, lub, glb);
 		return res;
 	}
 
@@ -107,9 +102,8 @@ public:
 		os << "Lattice Association: " << name << "<> = (\n";
 		os << "Bottom element: " << bottom << "\n";
 		os << "Top element: " << top << "\n";
-		os << "leq function: " << leq << "\n";
-		os << "lub function: " << lub << "\n";
-		os << "glb function: " << glb << "\n";
+		os << "lub function name: " << lub << "\n";
+		os << "glb function name: " << glb << "\n";
 		os << ")";
 	}
 
@@ -119,30 +113,22 @@ protected:
 	std::string name;
 
 	/** top element for the lattice **/
-	//std::unique_ptr<AstArgument> top;
 	std::string top;
 
 	/** bottom element for the lattice **/
-	//std::unique_ptr<AstArgument> bottom;
 	std::string bottom;
 
-	/** less or equal to **/
-	//std::unique_ptr<AstLatticeBinaryFunction> leq;
-	std::string leq;
-
 	/** least upper bound **/
-	//std::unique_ptr<AstLatticeBinaryFunction> lub;
 	std::string lub;
 
 	/** greatest lower bound **/
-	//std::unique_ptr<AstLatticeBinaryFunction> glb;
 	std::string glb;
 
 	/** Implements the node comparison for this node type */
 	bool equal(const AstNode& node) const override {
 		assert(nullptr != dynamic_cast<const AstLatticeAssociation*>(&node));
 		const auto& other = static_cast<const AstLatticeAssociation&>(node);
-		return name==other.getName() && leq==(other.leq) && lub==(other.lub) && glb==(other.glb) && top==(other.top) && bottom==(other.bottom);
+		return name==other.getName() && lub==(other.lub) && glb==(other.glb) && top==(other.top) && bottom==(other.bottom);
 	}
 };
 }
