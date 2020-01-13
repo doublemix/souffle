@@ -48,7 +48,7 @@
 .input DivStm
 
 .lat LocalVar(k: symbol, v: Constant)
-.input LocalVar
+//.input LocalVar
 .output LocalVar
 
 // literal statements

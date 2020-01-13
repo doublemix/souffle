@@ -6,6 +6,7 @@ PROG     = const_prop
 
 all: 
 	./../../souffle $(PROG).dl --fact-dir=. --output-dir=. --debug-report=$(PROG)_report.html
+	sort -k1 ./LocalVar.csv > ./sortedLocalVar.csv
 
 generate: 
 	./../../souffle -g $(PROG).cpp $(PROG).dl --fact-dir=. --output-dir=. --debug-report=$(PROG)_report.html
