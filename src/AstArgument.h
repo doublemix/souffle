@@ -505,6 +505,87 @@ class AstLatticeFunctor: public AstFunctor {
 };
 
 /**
+ * Added by Qing Gong: lattice unary functor / luf
+ */
+class AstLatticeUnaryFunctor: public AstLatticeFunctor {
+public:
+	AstLatticeUnaryFunctor() = default;
+
+	AstLatticeUnaryFunctor(std::string name, std::unique_ptr<AstArgument> a) :
+			name(std::move(name)), arg(std::move(a)) {
+	}
+
+	~AstLatticeUnaryFunctor() override = default;
+
+	/** get name */
+	const std::string& getName() const {
+		return name;
+	}
+
+	/** set name */
+	void setName(const std::string& n) {
+		name = n;
+	}
+
+//	void setArgs(std::unique_ptr<AstArgument> a1,
+//			std::unique_ptr<AstArgument> a2) {
+//		assert(args.size() == 0);
+//		args.push_back(std::move(a1));
+//		args.push_back(std::move(a2));
+//	}
+
+	/** get argument */
+	const AstArgument* getArgument() const {
+		assert(arg != nullptr && "argument not set");
+		return arg.get();
+	}
+
+	/** print user-defined functor */
+	void print(std::ostream& os) const override {
+		os << '&' << name << "(" << *arg << ")";
+	}
+
+	/** Create clone */
+	AstLatticeUnaryFunctor* clone() const override {
+		assert(arg != nullptr);
+		auto res = new AstLatticeUnaryFunctor(name,
+				std::unique_ptr<AstArgument>(arg->clone()));
+//		for (auto& cur : args) {
+//			res->args.emplace_back(cur->clone());
+//		}
+//		res->setSrcLoc(getSrcLoc());
+//		res->setName(getName());
+		return res;
+	}
+
+	/** Mutates this node */
+	void apply(const AstNodeMapper& map) override {
+		arg = map(std::move(arg));
+	}
+
+	/** Obtains a list of all embedded child nodes */
+	std::vector<const AstNode*> getChildNodes() const override {
+		auto res = AstArgument::getChildNodes();
+		res.push_back(arg.get());
+		return res;
+	}
+
+protected:
+	/** name of lattice functor */
+	std::string name;
+
+	/** arguments of user-defined functor */
+	std::unique_ptr<AstArgument> arg;
+
+	/** Implements the node comparison for this node type */
+	bool equal(const AstNode& node) const override {
+		assert(nullptr != dynamic_cast<const AstLatticeUnaryFunctor*>(&node));
+		const auto& other = static_cast<const AstLatticeUnaryFunctor&>(node);
+		return name == other.name && arg.get() == other.arg.get();
+	}
+};
+
+/**
  * Added by Qing Gong: lattice binary functor
  */
 class AstLatticeBinaryFunctor: public AstLatticeFunctor {
@@ -538,9 +619,13 @@ public:
 //	}
 
 	/** get argument */
-	const AstArgument* getArg(size_t idx) const {
+	const AstArgument* getArgument(size_t idx) const {
 		assert(idx >= 0 && idx < args.size() && "argument index out of bounds");
 		return args[idx].get();
+	}
+
+	std::vector<AstArgument*> getArguments() const {
+		return toPtrVector(args);
 	}
 
 	/** print user-defined functor */

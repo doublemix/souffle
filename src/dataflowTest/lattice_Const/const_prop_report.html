@@ -28,7 +28,7 @@ function toggleVisibility(id) {
 </head>
 <body>
 <div class='headerdiv'><h1>Souffle Debug Report</h1></div>
-<a href="#Parsing6">After Parsing (0.002114s)</a>
+<a href="#Parsing6">After Parsing (0.048541s)</a>
 <ul>
 <li class='leaf'><a href="#Parsing-dl0">Datalog</a>
 <ul>
@@ -49,10 +49,10 @@ function toggleVisibility(id) {
 <ul>
 </ul>
 </li></ul>
-<a href="#AstComponentChecker7">After AstComponentChecker (0.000030s) (unchanged)</a>
+<a href="#AstComponentChecker7">After AstComponentChecker (0.000022s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#ComponentInstantiationTransformer14">After ComponentInstantiationTransformer (0.000020s)</a>
+<a href="#ComponentInstantiationTransformer14">After ComponentInstantiationTransformer (0.000018s)</a>
 <ul>
 <li class='leaf'><a href="#ComponentInstantiationTransformer-dl8">Datalog</a>
 <ul>
@@ -73,78 +73,114 @@ function toggleVisibility(id) {
 <ul>
 </ul>
 </li></ul>
-<a href="#UniqueAggregationVariablesTransformer15">After UniqueAggregationVariablesTransformer (0.000013s) (unchanged)</a>
+<a href="#UniqueAggregationVariablesTransformer15">After UniqueAggregationVariablesTransformer (0.000011s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#AstSemanticChecker16">After AstSemanticChecker (0.000586s) (unchanged)</a>
+<a href="#AstSemanticChecker16">After AstSemanticChecker (0.000368s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#RemoveBooleanConstraintsTransformer17">After RemoveBooleanConstraintsTransformer (0.000018s) (unchanged)</a>
+<a href="#RemoveBooleanConstraintsTransformer17">After RemoveBooleanConstraintsTransformer (0.000014s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#ResolveAliasesTransformer18">After ResolveAliasesTransformer (0.000051s) (unchanged)</a>
+<a href="#ResolveAliasesTransformer24">After ResolveAliasesTransformer (0.000040s)</a>
+<ul>
+<li class='leaf'><a href="#ResolveAliasesTransformer-dl18">Datalog</a>
 <ul>
 </ul>
-<a href="#MinimiseProgramTransformer19">After MinimiseProgramTransformer (0.000009s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-ta19">Type Analysis</a>
 <ul>
 </ul>
-<a href="#InlineRelationsTransformer20">After InlineRelationsTransformer (0.000014s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-tea20">Type Environment Analysis</a>
 <ul>
 </ul>
-<a href="#ResolveAliasesTransformer21">After ResolveAliasesTransformer (0.000044s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-prec-graph21">Precedence Graph</a>
 <ul>
 </ul>
-<a href="#RemoveRedundantRelationsTransformer22">After RemoveRedundantRelationsTransformer (0.000006s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-scc-graph22">SCC Graph</a>
 <ul>
 </ul>
-<a href="#RemoveRelationCopiesTransformer23">After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-topsort-scc-graph23">SCC Topological Sort Order</a>
 <ul>
 </ul>
-<a href="#RemoveEmptyRelationsTransformer24">After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</a>
+</li></ul>
+<a href="#MinimiseProgramTransformer25">After MinimiseProgramTransformer (0.000008s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#ReplaceSingletonVariablesTransformer25">After ReplaceSingletonVariablesTransformer (0.000019s) (unchanged)</a>
+<a href="#InlineRelationsTransformer26">After InlineRelationsTransformer (0.000014s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#ReduceExistentialsTransformer26">After ReduceExistentialsTransformer (0.000037s) (unchanged)</a>
+<a href="#ResolveAliasesTransformer33">After ResolveAliasesTransformer (0.000042s)</a>
+<ul>
+<li class='leaf'><a href="#ResolveAliasesTransformer-dl27">Datalog</a>
 <ul>
 </ul>
-<a href="#RemoveRedundantRelationsTransformer27">After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-ta28">Type Analysis</a>
 <ul>
 </ul>
-<a href="#RemoveRelationCopiesTransformer28">After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-tea29">Type Environment Analysis</a>
 <ul>
 </ul>
-<a href="#PartitionBodyLiteralsTransformer29">After PartitionBodyLiteralsTransformer (0.000029s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-prec-graph30">Precedence Graph</a>
 <ul>
 </ul>
-<a href="#MinimiseProgramTransformer30">After MinimiseProgramTransformer (0.000007s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-scc-graph31">SCC Graph</a>
 <ul>
 </ul>
-<a href="#RemoveRelationCopiesTransformer31">After RemoveRelationCopiesTransformer (0.000000s) (unchanged)</a>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-topsort-scc-graph32">SCC Topological Sort Order</a>
 <ul>
 </ul>
-<a href="#ReorderLiteralsTransformer32">After ReorderLiteralsTransformer (0.000009s) (unchanged)</a>
+</li></ul>
+<a href="#RemoveRedundantRelationsTransformer34">After RemoveRedundantRelationsTransformer (0.000034s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#MaterializeAggregationQueriesTransformer33">After MaterializeAggregationQueriesTransformer (0.000011s) (unchanged)</a>
+<a href="#RemoveRelationCopiesTransformer35">After RemoveRelationCopiesTransformer (0.000002s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#RemoveEmptyRelationsTransformer34">After RemoveEmptyRelationsTransformer (0.000000s) (unchanged)</a>
+<a href="#RemoveEmptyRelationsTransformer36">After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#ReorderLiteralsTransformer35">After ReorderLiteralsTransformer (0.000006s) (unchanged)</a>
+<a href="#ReplaceSingletonVariablesTransformer37">After ReplaceSingletonVariablesTransformer (0.000019s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#AstExecutionPlanChecker36">After AstExecutionPlanChecker (0.000022s) (unchanged)</a>
+<a href="#ReduceExistentialsTransformer38">After ReduceExistentialsTransformer (0.000030s) (unchanged)</a>
 <ul>
 </ul>
-<a href="#ram-program37">RAM Program (0.000874s)</a>
+<a href="#RemoveRedundantRelationsTransformer39">After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer40">After RemoveRelationCopiesTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#PartitionBodyLiteralsTransformer41">After PartitionBodyLiteralsTransformer (0.000036s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MinimiseProgramTransformer42">After MinimiseProgramTransformer (0.000006s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer43">After RemoveRelationCopiesTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReorderLiteralsTransformer44">After ReorderLiteralsTransformer (0.000009s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MaterializeAggregationQueriesTransformer45">After MaterializeAggregationQueriesTransformer (0.000013s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveEmptyRelationsTransformer46">After RemoveEmptyRelationsTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReorderLiteralsTransformer47">After ReorderLiteralsTransformer (0.000005s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#AstExecutionPlanChecker48">After AstExecutionPlanChecker (0.000021s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ram-program49">RAM Program (0.000726s)</a>
 <ul>
 </ul>
 <a id="Parsing6"></a>
 <div class='headerdiv'>
-<h1>After Parsing (0.002114s)</h1>
+<h1>After Parsing (0.048541s)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
@@ -162,29 +198,47 @@ function toggleVisibility(id) {
 Lattice Association: Sign&lt;> = (
 Bottom element: Bot
 Top element: Top
-leq function: leq
-lub function: lub
-glb function: glb
+lub function name: lub
+glb function name: glb
 )
 
 
 // -- glb --
-LatticeBinaryFunction: @glb (x,y):Constant{
+LatticeBinaryFunction: &glb (x,y):Constant{
 ("Top",_)=>y
 (_,"Top")=>x
 (_,_)=>x = y ? x : "Bot"
 }
 
 
-// -- leq --
-LatticeBinaryFunction: @leq (x,y):number{
-("Bot",_)=>x
-(_,_)=>"Top"
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Constant{
+(_)=>x
+}
+
+
+// -- lat_div --
+LatticeBinaryFunction: &lat_div (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>(y = 0 ? "Bot" : x/y)
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>(x+y)
 }
 
 
 // -- lub --
-LatticeBinaryFunction: @lub (x,y):Constant{
+LatticeBinaryFunction: &lub (x,y):Constant{
 ("Bot",_)=>y
 (_,"Bot")=>x
 (_,_)=>x = y ? x : "Top"
@@ -195,86 +249,46 @@ LatticeBinaryFunction: @lub (x,y):Constant{
 // ----- Relations -----
 
 
-// -- A --
-.decl A(x:symbol,s:Constant)  
+// -- AddStm --
+.decl AddStm(r:symbol,x:symbol,y:symbol)  
 
-A(x,s) :- 
-   R(x,s),
-   B(x,s).
-
-.output {A}
+.output {AddStm}
 
 
 
-// -- B --
-.decl B(x:symbol,s:Constant)  
+// -- DivStm --
+.decl DivStm(r:symbol,x:symbol,y:symbol)  
 
-.output {B}
-
-
-
-// -- C --
-.decl C(x:symbol,s:Constant)  
-
-.output {C}
+.output {DivStm}
 
 
 
-// -- D --
-.decl D(x:symbol,s:Constant)  
+// -- LitStm --
+.decl LitStm(r:symbol,c:number)  
 
-.output {D}
-
-
-
-// -- P --
-.decl P(x:symbol,s:symbol)  
-
-P(x,s) :- 
-   S(x,s).
-
-.output {P}
+.output {LitStm}
 
 
 
-// -- Q --
-.decl Q(x:symbol,s:symbol)  
+// -- LocalVar --
+.decl LocalVar(k:symbol,v:Constant)  
 
-Q(x,s) :- 
-   P(x,s).
+LocalVar(r,&lat_alpha(c)) :- 
+   LitStm(r,c).
 
-.output {Q}
+LocalVar(r,&lat_sum(v1,v2)) :- 
+   AddStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
 
+LocalVar(r,&lat_div(v1,v2)) :- 
+   DivStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
 
+.output {LocalVar}
 
-// -- R --
-.decl R(x:symbol,s:Constant)  
-
-R(x,s) :- 
-   A(x,s),
-   B(x,s),
-   C(x,s).
-
-R(x,s) :- 
-   A(x,s),
-   D(x,s).
-
-R(x,s) :- 
-   A(x,s),
-   C(x,s).
-
-.output {R}
-
-
-
-// -- S --
-.decl S(x:symbol,s:symbol)  
-
-S(x,s) :- 
-   P(x,s),
-   Q(x,s).
-
-.output {S}
+.output {LocalVar}
 
 </pre>
 
@@ -286,123 +300,65 @@ S(x,s) :-
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 <pre>-- Analysis logs --
-Clause: A(x,s) :- 
-   R(x,s),
-   B(x,s).
+Clause: LocalVar(r,&lat_alpha(c)) :- 
+   LitStm(r,c).
 Problem:
 {
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Constant,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
 }
 Solution:
-{var(x)->{symbol},var(s)->{Constant}}
-Clause: P(x,s) :- 
-   S(x,s).
+{var(c)->{number},var(r)->{symbol},var(&lat_alpha(c))->{Constant}}
+Clause: LocalVar(r,&lat_sum(v1,v2)) :- 
+   AddStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
 Problem:
 {
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Constant,
+	var(r) &lt;: symbol,
 	var(x) &lt;: symbol,
-	var(s) &lt;: symbol,
+	var(y) &lt;: symbol,
 	var(x) &lt;: symbol,
-	var(s) &lt;: symbol
+	var(v1) &lt;: Constant,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
 }
 Solution:
-{var(s)->{symbol},var(x)->{symbol}}
-Clause: Q(x,s) :- 
-   P(x,s).
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(r)->{symbol},var(&lat_sum(v1,v2))->{Constant}}
+Clause: LocalVar(r,&lat_div(v1,v2)) :- 
+   DivStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
 Problem:
 {
+	var(r) &lt;: symbol,
+	var(&lat_div(v1,v2)) &lt;: Constant,
+	var(r) &lt;: symbol,
 	var(x) &lt;: symbol,
-	var(s) &lt;: symbol,
+	var(y) &lt;: symbol,
 	var(x) &lt;: symbol,
-	var(s) &lt;: symbol
+	var(v1) &lt;: Constant,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
 }
 Solution:
-{var(x)->{symbol},var(s)->{symbol}}
-Clause: R(x,s) :- 
-   A(x,s),
-   B(x,s),
-   C(x,s).
-Problem:
-{
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant
-}
-Solution:
-{var(x)->{symbol},var(s)->{Constant}}
-Clause: R(x,s) :- 
-   A(x,s),
-   D(x,s).
-Problem:
-{
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant
-}
-Solution:
-{var(x)->{symbol},var(s)->{Constant}}
-Clause: R(x,s) :- 
-   A(x,s),
-   C(x,s).
-Problem:
-{
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant
-}
-Solution:
-{var(x)->{symbol},var(s)->{Constant}}
-Clause: S(x,s) :- 
-   P(x,s),
-   Q(x,s).
-Problem:
-{
-	var(x) &lt;: symbol,
-	var(s) &lt;: symbol,
-	var(x) &lt;: symbol,
-	var(s) &lt;: symbol,
-	var(x) &lt;: symbol,
-	var(s) &lt;: symbol
-}
-Solution:
-{var(x)->{symbol},var(s)->{symbol}}
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(r)->{symbol},var(&lat_div(v1,v2))->{Constant}}
 
 -- Result --
-A(x&isin;{symbol},s&isin;{Constant}) :- 
-   R(x&isin;{symbol},s&isin;{Constant}),
-   B(x&isin;{symbol},s&isin;{Constant}).
-P(x&isin;{symbol},s&isin;{symbol}) :- 
-   S(x&isin;{symbol},s&isin;{symbol}).
-Q(x&isin;{symbol},s&isin;{symbol}) :- 
-   P(x&isin;{symbol},s&isin;{symbol}).
-R(x&isin;{symbol},s&isin;{Constant}) :- 
-   A(x&isin;{symbol},s&isin;{Constant}),
-   B(x&isin;{symbol},s&isin;{Constant}),
-   C(x&isin;{symbol},s&isin;{Constant}).
-R(x&isin;{symbol},s&isin;{Constant}) :- 
-   A(x&isin;{symbol},s&isin;{Constant}),
-   D(x&isin;{symbol},s&isin;{Constant}).
-R(x&isin;{symbol},s&isin;{Constant}) :- 
-   A(x&isin;{symbol},s&isin;{Constant}),
-   C(x&isin;{symbol},s&isin;{Constant}).
-S(x&isin;{symbol},s&isin;{symbol}) :- 
-   P(x&isin;{symbol},s&isin;{symbol}),
-   Q(x&isin;{symbol},s&isin;{symbol}).
+LocalVar(r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   LitStm(r&isin;{symbol},c&isin;{number}).
+LocalVar(r&isin;{symbol},&lat_sum(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   AddStm(r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   LocalVar(x&isin;{symbol},v1&isin;{Constant}),
+   LocalVar(y&isin;{symbol},v2&isin;{Constant}).
+LocalVar(r&isin;{symbol},&lat_div(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   DivStm(r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   LocalVar(x&isin;{symbol},v1&isin;{Constant}),
+   LocalVar(y&isin;{symbol},v2&isin;{Constant}).
 </pre>
 
 </div>
@@ -425,28 +381,18 @@ S(x&isin;{symbol},s&isin;{symbol}) :-
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
-<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMzgwcHQiIGhlaWdodD0iMTg4cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMzgwLjAwIDE4OC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxODQpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xODQgMzc2LC0xODQgMzc2LDQgLTQsNCIvPgo8IS0tIEEgLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+QTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjI3IiBjeT0iLTkwIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNyIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QTwvdGV4dD4KPC9nPgo8IS0tIFIgLS0+CjxnIGlkPSJub2RlNyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+UjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjgyIiBjeT0iLTE4IiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI4MiIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+UjwvdGV4dD4KPC9nPgo8IS0tIEEmIzQ1OyZndDtSIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkEmIzQ1OyZndDtSPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzQuNDM1NywtNzIuNTcwOEM0MC44NTgzLC02Mi44NTAzIDUwLjA0NjIsLTUwLjY0MjMgNTguNzIwNywtNDAuMjM5MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNjEuNjI5MiwtNDIuMjI1NCA2NS41MDQ4LC0zMi4zNjQ5IDU2LjMyNiwtMzcuNjU2NCA2MS42MjkyLC00Mi4yMjU0Ii8+CjwvZz4KPCEtLSBCIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSI1NSIgY3k9Ii0xNjIiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU1IiB5PSItMTU4LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QjwvdGV4dD4KPC9nPgo8IS0tIEImIzQ1OyZndDtBIC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkImIzQ1OyZndDtBPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDguMjIyLC0xNDQuNTcwOEM0NS4wMTI4LC0xMzYuMzE4NyA0MS4xMDY1LC0xMjYuMjczOCAzNy41MjQyLC0xMTcuMDYyMyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNDAuNjk5MiwtMTE1LjU2OTcgMzMuODEyNiwtMTA3LjUxODIgMzQuMTc1MiwtMTE4LjEwNjkgNDAuNjk5MiwtMTE1LjU2OTciLz4KPC9nPgo8IS0tIEImIzQ1OyZndDtSIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkImIzQ1OyZndDtSPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTguMzY1LC0xNDQuMDUzNUM2Mi45NzMsLTExOS40Nzc0IDcxLjI5MzYsLTc1LjEwMDggNzYuNzMxNywtNDYuMDk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iODAuMTg5NywtNDYuNjQ2NSA3OC41OTI2LC0zNi4xNzI3IDczLjMwOTYsLTQ1LjM1NjQgODAuMTg5NywtNDYuNjQ2NSIvPgo8L2c+CjwhLS0gQyAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5DPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3IiBjeT0iLTkwIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzciIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkM8L3RleHQ+CjwvZz4KPCEtLSBDJiM0NTsmZ3Q7UiAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5DJiM0NTsmZ3Q7UjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEyNC41MTk2LC03My42NjIxQzExNy40ODc2LC02NC40NTY0IDEwOC41NjUzLC01Mi43NzY0IDEwMC43MTE3LC00Mi40OTUzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMDMuMjgyOCwtNDAuMDk1MyA5NC40MzEsLTM0LjI3MzMgOTcuNzIsLTQ0LjM0NDYgMTAzLjI4MjgsLTQwLjA5NTMiLz4KPC9nPgo8IS0tIEQgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+RDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIwOSIgY3k9Ii05MCIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjA5IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5EPC90ZXh0Pgo8L2c+CjwhLS0gRCYjNDU7Jmd0O1IgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+RCYjNDU7Jmd0O1I8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xODguMzEyNiwtNzguMjcxN0MxNjcuNDYzNywtNjYuNDUxOSAxMzUuMDg5MywtNDguMDk3OSAxMTEuNTQxNywtMzQuNzQ4MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTEzLjEwNCwtMzEuNjEwNCAxMDIuNjc4NSwtMjkuNzIzMyAxMDkuNjUxNiwtMzcuNjk5OSAxMTMuMTA0LC0zMS42MTA0Ii8+CjwvZz4KPCEtLSBQIC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPlA8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDUiIGN5PSItMTYyIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNDUiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5QPC90ZXh0Pgo8L2c+CjwhLS0gUSAtLT4KPGcgaWQ9Im5vZGU2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5RPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjgxIiBjeT0iLTkwIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyODEiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPlE8L3RleHQ+CjwvZz4KPCEtLSBQJiM0NTsmZ3Q7USAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5QJiM0NTsmZ3Q7UTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzMS4xMTMsLTE0Ni4zNzcxQzMyMi40NzQ3LC0xMzYuNjU5IDMxMS4yMTA3LC0xMjMuOTg3IDMwMS41NTAzLC0xMTMuMTE5MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzA0LjExOTYsLTExMC43NDEzIDI5NC44NTk5LC0xMDUuNTkyNCAyOTguODg3NywtMTE1LjM5MTggMzA0LjExOTYsLTExMC43NDEzIi8+CjwvZz4KPCEtLSBTIC0tPgo8ZyBpZD0ibm9kZTgiIGNsYXNzPSJub2RlIj4KPHRpdGxlPlM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDUiIGN5PSItMTgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM0NSIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+UzwvdGV4dD4KPC9nPgo8IS0tIFAmIzQ1OyZndDtTIC0tPgo8ZyBpZD0iZWRnZTciIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlAmIzQ1OyZndDtTPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzQwLjM1NjIsLTE0NC4wNTM1QzMzNy44NzI4LC0xMTkuNTg1MiAzMzcuNTg1NSwtNzUuNDg5NiAzMzkuNDk0MywtNDYuNDc5OSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzQzLjAxMDMsLTQ2LjQyMzggMzQwLjMzMzMsLTM2LjE3MjcgMzM2LjAzMzQsLTQ1Ljg1NTcgMzQzLjAxMDMsLTQ2LjQyMzgiLz4KPC9nPgo8IS0tIFEmIzQ1OyZndDtTIC0tPgo8ZyBpZD0iZWRnZTgiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlEmIzQ1OyZndDtTPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjk0Ljg4NywtNzQuMzc3MUMzMDMuNTI1MywtNjQuNjU5IDMxNC43ODkzLC01MS45ODcgMzI0LjQ0OTcsLTQxLjExOTEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjMyNy4xMTIzLC00My4zOTE4IDMzMS4xNDAxLC0zMy41OTI0IDMyMS44ODA0LC0zOC43NDEzIDMyNy4xMTIzLC00My4zOTE4Ii8+CjwvZz4KPCEtLSBSJiM0NTsmZ3Q7QSAtLT4KPGcgaWQ9ImVkZ2U5IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5SJiM0NTsmZ3Q7QTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTc0LjYyMywtMzUuMzQwM0M2OC4yMzk3LC00NS4wMTE2IDU5LjEwMDUsLTU3LjE2NjEgNTAuNDQ5NywtNjcuNTU2NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNDcuNTQ1NCwtNjUuNTY1NyA0My42Nzg3LC03NS40Mjk3IDUyLjg1MjgsLTcwLjEyOTkgNDcuNTQ1NCwtNjUuNTY1NyIvPgo8L2c+CjwhLS0gUyYjNDU7Jmd0O1AgLS0+CjxnIGlkPSJlZGdlMTAiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlMmIzQ1OyZndDtQPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzQ5LjY2NjcsLTM2LjE3MjdDMzUyLjEzNjUsLTYwLjc2MTMgMzUyLjQxMDMsLTEwNC44NzA1IDM1MC40ODgxLC0xMzMuNzg3MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzQ2Ljk3NTMsLTEzMy44MDAyIDM0OS42NDM4LC0xNDQuMDUzNSAzNTMuOTUxNywtMTM0LjM3NCAzNDYuOTc1MywtMTMzLjgwMDIiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjczcHQiIGhlaWdodD0iMTE2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjczLjA0IDExNi4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxMTIpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xMTIgMjY5LjA0MzMsLTExMiAyNjkuMDQzMyw0IC00LDQiLz4KPCEtLSBBZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+QWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDAuMjk2NCIgY3k9Ii05MCIgcng9IjQwLjA5MzkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MC4yOTY0IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5BZGRTdG08L3RleHQ+CjwvZz4KPCEtLSBMb2NhbFZhciAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Mb2NhbFZhcjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzNy4yOTY0IiBjeT0iLTE4IiByeD0iNDQuMzkzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii0xNC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkxvY2FsVmFyPC90ZXh0Pgo8L2c+CjwhLS0gQWRkU3RtJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QWRkU3RtJiM0NTsmZ3Q7TG9jYWxWYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik02MS4zNDQsLTc0LjM3NzFDNzQuODUxNywtNjQuMzUwOCA5Mi41OTU0LC01MS4xODAyIDEwNy41MzU2LC00MC4wOTA1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMTAuMDExMywtNDIuNjExNyAxMTUuOTU1LC0zMy44NDExIDEwNS44MzkyLC0zNi45OTA5IDExMC4wMTEzLC00Mi42MTE3Ii8+CjwvZz4KPCEtLSBEaXZTdG0gLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+RGl2U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3LjI5NjQiIGN5PSItOTAiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIERpdlN0bSYjNDU7Jmd0O0xvY2FsVmFyIC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkRpdlN0bSYjNDU7Jmd0O0xvY2FsVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM3LjI5NjQsLTcxLjgzMTRDMTM3LjI5NjQsLTY0LjEzMSAxMzcuMjk2NCwtNTQuOTc0MyAxMzcuMjk2NCwtNDYuNDE2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTQwLjc5NjUsLTQ2LjQxMzIgMTM3LjI5NjQsLTM2LjQxMzMgMTMzLjc5NjUsLTQ2LjQxMzMgMTQwLjc5NjUsLTQ2LjQxMzIiLz4KPC9nPgo8IS0tIExpdFN0bSAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5MaXRTdG08L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMjkuMjk2NCIgY3k9Ii05MCIgcng9IjM1Ljk5NTQiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMjkuMjk2NCIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+TGl0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gTGl0U3RtJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TGl0U3RtJiM0NTsmZ3Q7TG9jYWxWYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMDkuNzg1NiwtNzQuNzMwN0MxOTYuOTk4OSwtNjQuNzIzNyAxODAuMDY5OCwtNTEuNDc0OCAxNjUuNzg3NiwtNDAuMjk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3Ljc2NzgsLTM3LjQwMjcgMTU3LjczNTYsLTMzLjk5NTkgMTYzLjQ1MzYsLTQyLjkxNTMgMTY3Ljc2NzgsLTM3LjQwMjciLz4KPC9nPgo8IS0tIExvY2FsVmFyJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TG9jYWxWYXImIzQ1OyZndDtMb2NhbFZhcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE2OC4wMTc0LC0zMC45NDNDMTg0LjQ4NzYsLTMzLjE0MjUgMTk5LjQ5MjUsLTI4LjgyODEgMTk5LjQ5MjUsLTE4IDE5OS40OTI1LC05LjQ1NTkgMTkwLjE1MDIsLTQuOTY3NSAxNzguMTE3MywtNC41MzQ2Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxNzcuODIzMiwtMS4wNDUxIDE2OC4wMTc0LC01LjA1NyAxNzguMTg0OCwtOC4wMzU3IDE3Ny44MjMyLC0xLjA0NTEiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
 <a href="javascript:toggleVisibility('Parsing-prec-graph-source')">(show dot source)</a>
 <div id='Parsing-prec-graph-source' style='display:none'>
 <pre>digraph {
-	"A" [label = "A"];
-	"B" [label = "B"];
-	"C" [label = "C"];
-	"D" [label = "D"];
-	"P" [label = "P"];
-	"Q" [label = "Q"];
-	"R" [label = "R"];
-	"S" [label = "S"];
-	"A" -> "R";
-	"B" -> "A";
-	"B" -> "R";
-	"C" -> "R";
-	"D" -> "R";
-	"P" -> "Q";
-	"P" -> "S";
-	"Q" -> "S";
-	"R" -> "A";
-	"S" -> "P";
+	"AddStm" [label = "AddStm"];
+	"DivStm" [label = "DivStm"];
+	"LitStm" [label = "LitStm"];
+	"LocalVar" [label = "LocalVar"];
+	"AddStm" -> "LocalVar";
+	"DivStm" -> "LocalVar";
+	"LitStm" -> "LocalVar";
+	"LocalVar" -> "LocalVar";
 }
 </pre>
 </div>
@@ -458,15 +404,14 @@ S(x&isin;{symbol},s&isin;{symbol}) :-
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
-<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjc4cHQiIGhlaWdodD0iMTczcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjc4LjAwIDE3Mi42OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxNjguNjkzNCkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTE2OC42OTM0IDI3NCwtMTY4LjY5MzQgMjc0LDQgLTQsNCIvPgo8IS0tIF8wIC0tPgo8ZyBpZD0ibm9kZTEiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8wPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjciIGN5PSItMTI3LjIxNjgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI3IiB5PSItMTIzLjUxNjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QjwvdGV4dD4KPC9nPgo8IS0tIF8zIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8zPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iOTkiIGN5PSItMjYuODcwMSIgcng9IjI3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5OSIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QSw8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijk5IiB5PSItMTUuNjcwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5SPC90ZXh0Pgo8L2c+CjwhLS0gXzAmIzQ1OyZndDtfMyAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMCYjNDU7Jmd0O18zPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzguODg5MywtMTEwLjY0NjZDNDkuMjU1NCwtOTYuMTk5MyA2NC41NTc1LC03NC44NzI3IDc3LjEyOCwtNTcuMzUzMSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iODAuMDYsLTU5LjI3MDYgODMuMDQ2LC00OS4xMDUyIDc0LjM3MjUsLTU1LjE4OTcgODAuMDYsLTU5LjI3MDYiLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iOTkiIGN5PSItMTI3LjIxNjgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijk5IiB5PSItMTIzLjUxNjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QzwvdGV4dD4KPC9nPgo8IS0tIF8xJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzEmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTk5LC0xMDguODExNkM5OSwtOTYuMzA3MyA5OSwtNzkuMzMwOSA5OSwtNjQuMDcyOCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTAyLjUwMDEsLTYzLjg2MDEgOTksLTUzLjg2MDEgOTUuNTAwMSwtNjMuODYwMiAxMDIuNTAwMSwtNjMuODYwMSIvPgo8L2c+CjwhLS0gXzIgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxNzEiIGN5PSItMTI3LjIxNjgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE3MSIgeT0iLTEyMy41MTY4IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkQ8L3RleHQ+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O18zIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7XzM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTkuMTEwNywtMTEwLjY0NjZDMTQ4Ljc0NDYsLTk2LjE5OTMgMTMzLjQ0MjUsLTc0Ljg3MjcgMTIwLjg3MiwtNTcuMzUzMSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTIzLjYyNzUsLTU1LjE4OTcgMTE0Ljk1NCwtNDkuMTA1MiAxMTcuOTQsLTU5LjI3MDYgMTIzLjYyNzUsLTU1LjE4OTciLz4KPC9nPgo8IS0tIF80IC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl80PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjQzIiBjeT0iLTEyNy4yMTY4IiByeD0iMjciIHJ5PSIzNy40NTMzIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI0MyIgeT0iLTEzOC41MTY4IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPlAsPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNDMiIHk9Ii0xMjMuNTE2OCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5RLDwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjQzIiB5PSItMTA4LjUxNjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+UzwvdGV4dD4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjczcHQiIGhlaWdodD0iMTE2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjczLjA0IDExNi4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxMTIpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xMTIgMjY5LjA0MzMsLTExMiAyNjkuMDQzMyw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQwLjI5NjQiIGN5PSItOTAiIHJ4PSI0MC4wOTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDAuMjk2NCIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QWRkU3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxMzcuMjk2NCIgY3k9Ii0xOCIgcng9IjQ0LjM5MyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEzNy4yOTY0IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5Mb2NhbFZhcjwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTYxLjM0NCwtNzQuMzc3MUM3NC44NTE3LC02NC4zNTA4IDkyLjU5NTQsLTUxLjE4MDIgMTA3LjUzNTYsLTQwLjA5MDUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjExMC4wMTEzLC00Mi42MTE3IDExNS45NTUsLTMzLjg0MTEgMTA1LjgzOTIsLTM2Ljk5MDkgMTEwLjAxMTMsLTQyLjYxMTciLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3LjI5NjQiIGN5PSItOTAiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIF8xJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzEmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEzNy4yOTY0LC03MS44MzE0QzEzNy4yOTY0LC02NC4xMzEgMTM3LjI5NjQsLTU0Ljk3NDMgMTM3LjI5NjQsLTQ2LjQxNjYiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjE0MC43OTY1LC00Ni40MTMyIDEzNy4yOTY0LC0zNi40MTMzIDEzMy43OTY1LC00Ni40MTMzIDE0MC43OTY1LC00Ni40MTMyIi8+CjwvZz4KPCEtLSBfMiAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIyOS4yOTY0IiBjeT0iLTkwIiByeD0iMzUuOTk1NCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyOS4yOTY0IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5MaXRTdG08L3RleHQ+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O18zIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7XzM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMDkuNzg1NiwtNzQuNzMwN0MxOTYuOTk4OSwtNjQuNzIzNyAxODAuMDY5OCwtNTEuNDc0OCAxNjUuNzg3NiwtNDAuMjk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3Ljc2NzgsLTM3LjQwMjcgMTU3LjczNTYsLTMzLjk5NTkgMTYzLjQ1MzYsLTQyLjkxNTMgMTY3Ljc2NzgsLTM3LjQwMjciLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
 <a href="javascript:toggleVisibility('Parsing-scc-graph-source')">(show dot source)</a>
 <div id='Parsing-scc-graph-source' style='display:none'>
 <pre>digraph {
-	_0[label = "B" ];
-	_1[label = "C" ];
-	_2[label = "D" ];
-	_3[label = "A,\nR" ];
-	_4[label = "P,\nQ,\nS" ];
+	_0[label = "AddStm" ];
+	_1[label = "DivStm" ];
+	_2[label = "LitStm" ];
+	_3[label = "LocalVar" ];
 	_0 -> _3;
 	_1 -> _3;
 	_2 -> _3;
@@ -484,13 +429,11 @@ S(x&isin;{symbol},s&isin;{symbol}) :-
 0 3
 1 3
 2 3
-4 4
 --- total order with relations of each strata ---
-0: [B]
-1: [C]
-2: [D]
-3: [A, R]
-4: [P, Q, S]
+0: [AddStm]
+1: [DivStm]
+2: [LitStm]
+3: [LocalVar]
 
 --- statistics of topological order ---
 cost: 3
@@ -500,7 +443,7 @@ cost: 3
 </div>
 <a id="AstComponentChecker7"></a>
 <div class='headerdiv'>
-<h1>After AstComponentChecker (0.000030s) (unchanged)</h1>
+<h1>After AstComponentChecker (0.000022s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
@@ -508,7 +451,7 @@ cost: 3
 </div>
 <a id="ComponentInstantiationTransformer14"></a>
 <div class='headerdiv'>
-<h1>After ComponentInstantiationTransformer (0.000020s)</h1>
+<h1>After ComponentInstantiationTransformer (0.000018s)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
@@ -526,29 +469,47 @@ cost: 3
 Lattice Association: Sign&lt;> = (
 Bottom element: Bot
 Top element: Top
-leq function: leq
-lub function: lub
-glb function: glb
+lub function name: lub
+glb function name: glb
 )
 
 
 // -- glb --
-LatticeBinaryFunction: @glb (x,y):Constant{
+LatticeBinaryFunction: &glb (x,y):Constant{
 ("Top",_)=>y
 (_,"Top")=>x
 (_,_)=>x = y ? x : "Bot"
 }
 
 
-// -- leq --
-LatticeBinaryFunction: @leq (x,y):number{
-("Bot",_)=>x
-(_,_)=>"Top"
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Constant{
+(_)=>x
+}
+
+
+// -- lat_div --
+LatticeBinaryFunction: &lat_div (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>(y = 0 ? "Bot" : x/y)
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>(x+y)
 }
 
 
 // -- lub --
-LatticeBinaryFunction: @lub (x,y):Constant{
+LatticeBinaryFunction: &lub (x,y):Constant{
 ("Bot",_)=>y
 (_,"Bot")=>x
 (_,_)=>x = y ? x : "Top"
@@ -559,86 +520,46 @@ LatticeBinaryFunction: @lub (x,y):Constant{
 // ----- Relations -----
 
 
-// -- A --
-.decl A(x:symbol,s:Constant)  
+// -- AddStm --
+.decl AddStm(r:symbol,x:symbol,y:symbol)  
 
-A(x,s) :- 
-   R(x,s),
-   B(x,s).
-
-.output {A}
+.output {AddStm}
 
 
 
-// -- B --
-.decl B(x:symbol,s:Constant)  
+// -- DivStm --
+.decl DivStm(r:symbol,x:symbol,y:symbol)  
 
-.output {B}
-
-
-
-// -- C --
-.decl C(x:symbol,s:Constant)  
-
-.output {C}
+.output {DivStm}
 
 
 
-// -- D --
-.decl D(x:symbol,s:Constant)  
+// -- LitStm --
+.decl LitStm(r:symbol,c:number)  
 
-.output {D}
-
-
-
-// -- P --
-.decl P(x:symbol,s:symbol)  
-
-P(x,s) :- 
-   S(x,s).
-
-.output {P}
+.output {LitStm}
 
 
 
-// -- Q --
-.decl Q(x:symbol,s:symbol)  
+// -- LocalVar --
+.decl LocalVar(k:symbol,v:Constant)  
 
-Q(x,s) :- 
-   P(x,s).
+LocalVar(r,&lat_alpha(c)) :- 
+   LitStm(r,c).
 
-.output {Q}
+LocalVar(r,&lat_sum(v1,v2)) :- 
+   AddStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
 
+LocalVar(r,&lat_div(v1,v2)) :- 
+   DivStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
 
+.output {LocalVar}
 
-// -- R --
-.decl R(x:symbol,s:Constant)  
-
-R(x,s) :- 
-   A(x,s),
-   B(x,s),
-   C(x,s).
-
-R(x,s) :- 
-   A(x,s),
-   D(x,s).
-
-R(x,s) :- 
-   A(x,s),
-   C(x,s).
-
-.output {R}
-
-
-
-// -- S --
-.decl S(x:symbol,s:symbol)  
-
-S(x,s) :- 
-   P(x,s),
-   Q(x,s).
-
-.output {S}
+.output {LocalVar}
 
 </pre>
 
@@ -650,123 +571,65 @@ S(x,s) :-
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 <pre>-- Analysis logs --
-Clause: A(x,s) :- 
-   R(x,s),
-   B(x,s).
+Clause: LocalVar(r,&lat_alpha(c)) :- 
+   LitStm(r,c).
 Problem:
 {
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Constant,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
 }
 Solution:
-{var(x)->{symbol},var(s)->{Constant}}
-Clause: P(x,s) :- 
-   S(x,s).
+{var(c)->{number},var(r)->{symbol},var(&lat_alpha(c))->{Constant}}
+Clause: LocalVar(r,&lat_sum(v1,v2)) :- 
+   AddStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
 Problem:
 {
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Constant,
+	var(r) &lt;: symbol,
 	var(x) &lt;: symbol,
-	var(s) &lt;: symbol,
+	var(y) &lt;: symbol,
 	var(x) &lt;: symbol,
-	var(s) &lt;: symbol
+	var(v1) &lt;: Constant,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
 }
 Solution:
-{var(s)->{symbol},var(x)->{symbol}}
-Clause: Q(x,s) :- 
-   P(x,s).
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(r)->{symbol},var(&lat_sum(v1,v2))->{Constant}}
+Clause: LocalVar(r,&lat_div(v1,v2)) :- 
+   DivStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
 Problem:
 {
+	var(r) &lt;: symbol,
+	var(&lat_div(v1,v2)) &lt;: Constant,
+	var(r) &lt;: symbol,
 	var(x) &lt;: symbol,
-	var(s) &lt;: symbol,
+	var(y) &lt;: symbol,
 	var(x) &lt;: symbol,
-	var(s) &lt;: symbol
+	var(v1) &lt;: Constant,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
 }
 Solution:
-{var(x)->{symbol},var(s)->{symbol}}
-Clause: R(x,s) :- 
-   A(x,s),
-   B(x,s),
-   C(x,s).
-Problem:
-{
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant
-}
-Solution:
-{var(x)->{symbol},var(s)->{Constant}}
-Clause: R(x,s) :- 
-   A(x,s),
-   D(x,s).
-Problem:
-{
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant
-}
-Solution:
-{var(x)->{symbol},var(s)->{Constant}}
-Clause: R(x,s) :- 
-   A(x,s),
-   C(x,s).
-Problem:
-{
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant,
-	var(x) &lt;: symbol,
-	var(s) &lt;: Constant
-}
-Solution:
-{var(x)->{symbol},var(s)->{Constant}}
-Clause: S(x,s) :- 
-   P(x,s),
-   Q(x,s).
-Problem:
-{
-	var(x) &lt;: symbol,
-	var(s) &lt;: symbol,
-	var(x) &lt;: symbol,
-	var(s) &lt;: symbol,
-	var(x) &lt;: symbol,
-	var(s) &lt;: symbol
-}
-Solution:
-{var(x)->{symbol},var(s)->{symbol}}
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(r)->{symbol},var(&lat_div(v1,v2))->{Constant}}
 
 -- Result --
-A(x&isin;{symbol},s&isin;{Constant}) :- 
-   R(x&isin;{symbol},s&isin;{Constant}),
-   B(x&isin;{symbol},s&isin;{Constant}).
-P(x&isin;{symbol},s&isin;{symbol}) :- 
-   S(x&isin;{symbol},s&isin;{symbol}).
-Q(x&isin;{symbol},s&isin;{symbol}) :- 
-   P(x&isin;{symbol},s&isin;{symbol}).
-R(x&isin;{symbol},s&isin;{Constant}) :- 
-   A(x&isin;{symbol},s&isin;{Constant}),
-   B(x&isin;{symbol},s&isin;{Constant}),
-   C(x&isin;{symbol},s&isin;{Constant}).
-R(x&isin;{symbol},s&isin;{Constant}) :- 
-   A(x&isin;{symbol},s&isin;{Constant}),
-   D(x&isin;{symbol},s&isin;{Constant}).
-R(x&isin;{symbol},s&isin;{Constant}) :- 
-   A(x&isin;{symbol},s&isin;{Constant}),
-   C(x&isin;{symbol},s&isin;{Constant}).
-S(x&isin;{symbol},s&isin;{symbol}) :- 
-   P(x&isin;{symbol},s&isin;{symbol}),
-   Q(x&isin;{symbol},s&isin;{symbol}).
+LocalVar(r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   LitStm(r&isin;{symbol},c&isin;{number}).
+LocalVar(r&isin;{symbol},&lat_sum(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   AddStm(r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   LocalVar(x&isin;{symbol},v1&isin;{Constant}),
+   LocalVar(y&isin;{symbol},v2&isin;{Constant}).
+LocalVar(r&isin;{symbol},&lat_div(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   DivStm(r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   LocalVar(x&isin;{symbol},v1&isin;{Constant}),
+   LocalVar(y&isin;{symbol},v2&isin;{Constant}).
 </pre>
 
 </div>
@@ -789,28 +652,18 @@ S(x&isin;{symbol},s&isin;{symbol}) :-
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
-<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMzgwcHQiIGhlaWdodD0iMTg4cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMzgwLjAwIDE4OC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxODQpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xODQgMzc2LC0xODQgMzc2LDQgLTQsNCIvPgo8IS0tIEEgLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+QTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjI3IiBjeT0iLTkwIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNyIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QTwvdGV4dD4KPC9nPgo8IS0tIFIgLS0+CjxnIGlkPSJub2RlNyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+UjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjgyIiBjeT0iLTE4IiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI4MiIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+UjwvdGV4dD4KPC9nPgo8IS0tIEEmIzQ1OyZndDtSIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkEmIzQ1OyZndDtSPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzQuNDM1NywtNzIuNTcwOEM0MC44NTgzLC02Mi44NTAzIDUwLjA0NjIsLTUwLjY0MjMgNTguNzIwNywtNDAuMjM5MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNjEuNjI5MiwtNDIuMjI1NCA2NS41MDQ4LC0zMi4zNjQ5IDU2LjMyNiwtMzcuNjU2NCA2MS42MjkyLC00Mi4yMjU0Ii8+CjwvZz4KPCEtLSBCIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPkI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSI1NSIgY3k9Ii0xNjIiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU1IiB5PSItMTU4LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QjwvdGV4dD4KPC9nPgo8IS0tIEImIzQ1OyZndDtBIC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkImIzQ1OyZndDtBPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDguMjIyLC0xNDQuNTcwOEM0NS4wMTI4LC0xMzYuMzE4NyA0MS4xMDY1LC0xMjYuMjczOCAzNy41MjQyLC0xMTcuMDYyMyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNDAuNjk5MiwtMTE1LjU2OTcgMzMuODEyNiwtMTA3LjUxODIgMzQuMTc1MiwtMTE4LjEwNjkgNDAuNjk5MiwtMTE1LjU2OTciLz4KPC9nPgo8IS0tIEImIzQ1OyZndDtSIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkImIzQ1OyZndDtSPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTguMzY1LC0xNDQuMDUzNUM2Mi45NzMsLTExOS40Nzc0IDcxLjI5MzYsLTc1LjEwMDggNzYuNzMxNywtNDYuMDk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iODAuMTg5NywtNDYuNjQ2NSA3OC41OTI2LC0zNi4xNzI3IDczLjMwOTYsLTQ1LjM1NjQgODAuMTg5NywtNDYuNjQ2NSIvPgo8L2c+CjwhLS0gQyAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5DPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3IiBjeT0iLTkwIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzciIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkM8L3RleHQ+CjwvZz4KPCEtLSBDJiM0NTsmZ3Q7UiAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5DJiM0NTsmZ3Q7UjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEyNC41MTk2LC03My42NjIxQzExNy40ODc2LC02NC40NTY0IDEwOC41NjUzLC01Mi43NzY0IDEwMC43MTE3LC00Mi40OTUzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMDMuMjgyOCwtNDAuMDk1MyA5NC40MzEsLTM0LjI3MzMgOTcuNzIsLTQ0LjM0NDYgMTAzLjI4MjgsLTQwLjA5NTMiLz4KPC9nPgo8IS0tIEQgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+RDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIwOSIgY3k9Ii05MCIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjA5IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5EPC90ZXh0Pgo8L2c+CjwhLS0gRCYjNDU7Jmd0O1IgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+RCYjNDU7Jmd0O1I8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xODguMzEyNiwtNzguMjcxN0MxNjcuNDYzNywtNjYuNDUxOSAxMzUuMDg5MywtNDguMDk3OSAxMTEuNTQxNywtMzQuNzQ4MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTEzLjEwNCwtMzEuNjEwNCAxMDIuNjc4NSwtMjkuNzIzMyAxMDkuNjUxNiwtMzcuNjk5OSAxMTMuMTA0LC0zMS42MTA0Ii8+CjwvZz4KPCEtLSBQIC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPlA8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDUiIGN5PSItMTYyIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNDUiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5QPC90ZXh0Pgo8L2c+CjwhLS0gUSAtLT4KPGcgaWQ9Im5vZGU2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5RPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjgxIiBjeT0iLTkwIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyODEiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPlE8L3RleHQ+CjwvZz4KPCEtLSBQJiM0NTsmZ3Q7USAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5QJiM0NTsmZ3Q7UTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzMS4xMTMsLTE0Ni4zNzcxQzMyMi40NzQ3LC0xMzYuNjU5IDMxMS4yMTA3LC0xMjMuOTg3IDMwMS41NTAzLC0xMTMuMTE5MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzA0LjExOTYsLTExMC43NDEzIDI5NC44NTk5LC0xMDUuNTkyNCAyOTguODg3NywtMTE1LjM5MTggMzA0LjExOTYsLTExMC43NDEzIi8+CjwvZz4KPCEtLSBTIC0tPgo8ZyBpZD0ibm9kZTgiIGNsYXNzPSJub2RlIj4KPHRpdGxlPlM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDUiIGN5PSItMTgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM0NSIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+UzwvdGV4dD4KPC9nPgo8IS0tIFAmIzQ1OyZndDtTIC0tPgo8ZyBpZD0iZWRnZTciIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlAmIzQ1OyZndDtTPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzQwLjM1NjIsLTE0NC4wNTM1QzMzNy44NzI4LC0xMTkuNTg1MiAzMzcuNTg1NSwtNzUuNDg5NiAzMzkuNDk0MywtNDYuNDc5OSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzQzLjAxMDMsLTQ2LjQyMzggMzQwLjMzMzMsLTM2LjE3MjcgMzM2LjAzMzQsLTQ1Ljg1NTcgMzQzLjAxMDMsLTQ2LjQyMzgiLz4KPC9nPgo8IS0tIFEmIzQ1OyZndDtTIC0tPgo8ZyBpZD0iZWRnZTgiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlEmIzQ1OyZndDtTPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjk0Ljg4NywtNzQuMzc3MUMzMDMuNTI1MywtNjQuNjU5IDMxNC43ODkzLC01MS45ODcgMzI0LjQ0OTcsLTQxLjExOTEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjMyNy4xMTIzLC00My4zOTE4IDMzMS4xNDAxLC0zMy41OTI0IDMyMS44ODA0LC0zOC43NDEzIDMyNy4xMTIzLC00My4zOTE4Ii8+CjwvZz4KPCEtLSBSJiM0NTsmZ3Q7QSAtLT4KPGcgaWQ9ImVkZ2U5IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5SJiM0NTsmZ3Q7QTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTc0LjYyMywtMzUuMzQwM0M2OC4yMzk3LC00NS4wMTE2IDU5LjEwMDUsLTU3LjE2NjEgNTAuNDQ5NywtNjcuNTU2NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNDcuNTQ1NCwtNjUuNTY1NyA0My42Nzg3LC03NS40Mjk3IDUyLjg1MjgsLTcwLjEyOTkgNDcuNTQ1NCwtNjUuNTY1NyIvPgo8L2c+CjwhLS0gUyYjNDU7Jmd0O1AgLS0+CjxnIGlkPSJlZGdlMTAiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPlMmIzQ1OyZndDtQPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzQ5LjY2NjcsLTM2LjE3MjdDMzUyLjEzNjUsLTYwLjc2MTMgMzUyLjQxMDMsLTEwNC44NzA1IDM1MC40ODgxLC0xMzMuNzg3MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzQ2Ljk3NTMsLTEzMy44MDAyIDM0OS42NDM4LC0xNDQuMDUzNSAzNTMuOTUxNywtMTM0LjM3NCAzNDYuOTc1MywtMTMzLjgwMDIiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjczcHQiIGhlaWdodD0iMTE2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjczLjA0IDExNi4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxMTIpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xMTIgMjY5LjA0MzMsLTExMiAyNjkuMDQzMyw0IC00LDQiLz4KPCEtLSBBZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+QWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDAuMjk2NCIgY3k9Ii05MCIgcng9IjQwLjA5MzkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MC4yOTY0IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5BZGRTdG08L3RleHQ+CjwvZz4KPCEtLSBMb2NhbFZhciAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Mb2NhbFZhcjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzNy4yOTY0IiBjeT0iLTE4IiByeD0iNDQuMzkzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii0xNC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkxvY2FsVmFyPC90ZXh0Pgo8L2c+CjwhLS0gQWRkU3RtJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QWRkU3RtJiM0NTsmZ3Q7TG9jYWxWYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik02MS4zNDQsLTc0LjM3NzFDNzQuODUxNywtNjQuMzUwOCA5Mi41OTU0LC01MS4xODAyIDEwNy41MzU2LC00MC4wOTA1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMTAuMDExMywtNDIuNjExNyAxMTUuOTU1LC0zMy44NDExIDEwNS44MzkyLC0zNi45OTA5IDExMC4wMTEzLC00Mi42MTE3Ii8+CjwvZz4KPCEtLSBEaXZTdG0gLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+RGl2U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3LjI5NjQiIGN5PSItOTAiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIERpdlN0bSYjNDU7Jmd0O0xvY2FsVmFyIC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkRpdlN0bSYjNDU7Jmd0O0xvY2FsVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM3LjI5NjQsLTcxLjgzMTRDMTM3LjI5NjQsLTY0LjEzMSAxMzcuMjk2NCwtNTQuOTc0MyAxMzcuMjk2NCwtNDYuNDE2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTQwLjc5NjUsLTQ2LjQxMzIgMTM3LjI5NjQsLTM2LjQxMzMgMTMzLjc5NjUsLTQ2LjQxMzMgMTQwLjc5NjUsLTQ2LjQxMzIiLz4KPC9nPgo8IS0tIExpdFN0bSAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5MaXRTdG08L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMjkuMjk2NCIgY3k9Ii05MCIgcng9IjM1Ljk5NTQiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMjkuMjk2NCIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+TGl0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gTGl0U3RtJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TGl0U3RtJiM0NTsmZ3Q7TG9jYWxWYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMDkuNzg1NiwtNzQuNzMwN0MxOTYuOTk4OSwtNjQuNzIzNyAxODAuMDY5OCwtNTEuNDc0OCAxNjUuNzg3NiwtNDAuMjk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3Ljc2NzgsLTM3LjQwMjcgMTU3LjczNTYsLTMzLjk5NTkgMTYzLjQ1MzYsLTQyLjkxNTMgMTY3Ljc2NzgsLTM3LjQwMjciLz4KPC9nPgo8IS0tIExvY2FsVmFyJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TG9jYWxWYXImIzQ1OyZndDtMb2NhbFZhcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE2OC4wMTc0LC0zMC45NDNDMTg0LjQ4NzYsLTMzLjE0MjUgMTk5LjQ5MjUsLTI4LjgyODEgMTk5LjQ5MjUsLTE4IDE5OS40OTI1LC05LjQ1NTkgMTkwLjE1MDIsLTQuOTY3NSAxNzguMTE3MywtNC41MzQ2Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxNzcuODIzMiwtMS4wNDUxIDE2OC4wMTc0LC01LjA1NyAxNzguMTg0OCwtOC4wMzU3IDE3Ny44MjMyLC0xLjA0NTEiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
 <a href="javascript:toggleVisibility('ComponentInstantiationTransformer-prec-graph-source')">(show dot source)</a>
 <div id='ComponentInstantiationTransformer-prec-graph-source' style='display:none'>
 <pre>digraph {
-	"A" [label = "A"];
-	"B" [label = "B"];
-	"C" [label = "C"];
-	"D" [label = "D"];
-	"P" [label = "P"];
-	"Q" [label = "Q"];
-	"R" [label = "R"];
-	"S" [label = "S"];
-	"A" -> "R";
-	"B" -> "A";
-	"B" -> "R";
-	"C" -> "R";
-	"D" -> "R";
-	"P" -> "Q";
-	"P" -> "S";
-	"Q" -> "S";
-	"R" -> "A";
-	"S" -> "P";
+	"AddStm" [label = "AddStm"];
+	"DivStm" [label = "DivStm"];
+	"LitStm" [label = "LitStm"];
+	"LocalVar" [label = "LocalVar"];
+	"AddStm" -> "LocalVar";
+	"DivStm" -> "LocalVar";
+	"LitStm" -> "LocalVar";
+	"LocalVar" -> "LocalVar";
 }
 </pre>
 </div>
@@ -822,15 +675,14 @@ S(x&isin;{symbol},s&isin;{symbol}) :-
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
-<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjc4cHQiIGhlaWdodD0iMTczcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjc4LjAwIDE3Mi42OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxNjguNjkzNCkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTE2OC42OTM0IDI3NCwtMTY4LjY5MzQgMjc0LDQgLTQsNCIvPgo8IS0tIF8wIC0tPgo8ZyBpZD0ibm9kZTEiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8wPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjciIGN5PSItMTI3LjIxNjgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI3IiB5PSItMTIzLjUxNjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QjwvdGV4dD4KPC9nPgo8IS0tIF8zIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8zPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iOTkiIGN5PSItMjYuODcwMSIgcng9IjI3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5OSIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QSw8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijk5IiB5PSItMTUuNjcwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5SPC90ZXh0Pgo8L2c+CjwhLS0gXzAmIzQ1OyZndDtfMyAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMCYjNDU7Jmd0O18zPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzguODg5MywtMTEwLjY0NjZDNDkuMjU1NCwtOTYuMTk5MyA2NC41NTc1LC03NC44NzI3IDc3LjEyOCwtNTcuMzUzMSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iODAuMDYsLTU5LjI3MDYgODMuMDQ2LC00OS4xMDUyIDc0LjM3MjUsLTU1LjE4OTcgODAuMDYsLTU5LjI3MDYiLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iOTkiIGN5PSItMTI3LjIxNjgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijk5IiB5PSItMTIzLjUxNjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QzwvdGV4dD4KPC9nPgo8IS0tIF8xJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzEmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTk5LC0xMDguODExNkM5OSwtOTYuMzA3MyA5OSwtNzkuMzMwOSA5OSwtNjQuMDcyOCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTAyLjUwMDEsLTYzLjg2MDEgOTksLTUzLjg2MDEgOTUuNTAwMSwtNjMuODYwMiAxMDIuNTAwMSwtNjMuODYwMSIvPgo8L2c+CjwhLS0gXzIgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxNzEiIGN5PSItMTI3LjIxNjgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE3MSIgeT0iLTEyMy41MTY4IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkQ8L3RleHQ+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O18zIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7XzM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTkuMTEwNywtMTEwLjY0NjZDMTQ4Ljc0NDYsLTk2LjE5OTMgMTMzLjQ0MjUsLTc0Ljg3MjcgMTIwLjg3MiwtNTcuMzUzMSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTIzLjYyNzUsLTU1LjE4OTcgMTE0Ljk1NCwtNDkuMTA1MiAxMTcuOTQsLTU5LjI3MDYgMTIzLjYyNzUsLTU1LjE4OTciLz4KPC9nPgo8IS0tIF80IC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl80PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjQzIiBjeT0iLTEyNy4yMTY4IiByeD0iMjciIHJ5PSIzNy40NTMzIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI0MyIgeT0iLTEzOC41MTY4IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPlAsPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNDMiIHk9Ii0xMjMuNTE2OCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5RLDwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjQzIiB5PSItMTA4LjUxNjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+UzwvdGV4dD4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjczcHQiIGhlaWdodD0iMTE2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjczLjA0IDExNi4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxMTIpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xMTIgMjY5LjA0MzMsLTExMiAyNjkuMDQzMyw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQwLjI5NjQiIGN5PSItOTAiIHJ4PSI0MC4wOTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDAuMjk2NCIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QWRkU3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxMzcuMjk2NCIgY3k9Ii0xOCIgcng9IjQ0LjM5MyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEzNy4yOTY0IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5Mb2NhbFZhcjwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTYxLjM0NCwtNzQuMzc3MUM3NC44NTE3LC02NC4zNTA4IDkyLjU5NTQsLTUxLjE4MDIgMTA3LjUzNTYsLTQwLjA5MDUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjExMC4wMTEzLC00Mi42MTE3IDExNS45NTUsLTMzLjg0MTEgMTA1LjgzOTIsLTM2Ljk5MDkgMTEwLjAxMTMsLTQyLjYxMTciLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3LjI5NjQiIGN5PSItOTAiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIF8xJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzEmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEzNy4yOTY0LC03MS44MzE0QzEzNy4yOTY0LC02NC4xMzEgMTM3LjI5NjQsLTU0Ljk3NDMgMTM3LjI5NjQsLTQ2LjQxNjYiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjE0MC43OTY1LC00Ni40MTMyIDEzNy4yOTY0LC0zNi40MTMzIDEzMy43OTY1LC00Ni40MTMzIDE0MC43OTY1LC00Ni40MTMyIi8+CjwvZz4KPCEtLSBfMiAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIyOS4yOTY0IiBjeT0iLTkwIiByeD0iMzUuOTk1NCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyOS4yOTY0IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5MaXRTdG08L3RleHQ+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O18zIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7XzM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMDkuNzg1NiwtNzQuNzMwN0MxOTYuOTk4OSwtNjQuNzIzNyAxODAuMDY5OCwtNTEuNDc0OCAxNjUuNzg3NiwtNDAuMjk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3Ljc2NzgsLTM3LjQwMjcgMTU3LjczNTYsLTMzLjk5NTkgMTYzLjQ1MzYsLTQyLjkxNTMgMTY3Ljc2NzgsLTM3LjQwMjciLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
 <a href="javascript:toggleVisibility('ComponentInstantiationTransformer-scc-graph-source')">(show dot source)</a>
 <div id='ComponentInstantiationTransformer-scc-graph-source' style='display:none'>
 <pre>digraph {
-	_0[label = "B" ];
-	_1[label = "C" ];
-	_2[label = "D" ];
-	_3[label = "A,\nR" ];
-	_4[label = "P,\nQ,\nS" ];
+	_0[label = "AddStm" ];
+	_1[label = "DivStm" ];
+	_2[label = "LitStm" ];
+	_3[label = "LocalVar" ];
 	_0 -> _3;
 	_1 -> _3;
 	_2 -> _3;
@@ -848,13 +700,11 @@ S(x&isin;{symbol},s&isin;{symbol}) :-
 0 3
 1 3
 2 3
-4 4
 --- total order with relations of each strata ---
-0: [B]
-1: [C]
-2: [D]
-3: [A, R]
-4: [P, Q, S]
+0: [AddStm]
+1: [DivStm]
+2: [LitStm]
+3: [LocalVar]
 
 --- statistics of topological order ---
 cost: 3
@@ -864,7 +714,7 @@ cost: 3
 </div>
 <a id="UniqueAggregationVariablesTransformer15"></a>
 <div class='headerdiv'>
-<h1>After UniqueAggregationVariablesTransformer (0.000013s) (unchanged)</h1>
+<h1>After UniqueAggregationVariablesTransformer (0.000011s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
@@ -872,7 +722,7 @@ cost: 3
 </div>
 <a id="AstSemanticChecker16"></a>
 <div class='headerdiv'>
-<h1>After AstSemanticChecker (0.000586s) (unchanged)</h1>
+<h1>After AstSemanticChecker (0.000368s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
@@ -880,29 +730,284 @@ cost: 3
 </div>
 <a id="RemoveBooleanConstraintsTransformer17"></a>
 <div class='headerdiv'>
-<h1>After RemoveBooleanConstraintsTransformer (0.000018s) (unchanged)</h1>
+<h1>After RemoveBooleanConstraintsTransformer (0.000014s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
 </div>
-<a id="ResolveAliasesTransformer18"></a>
+<a id="ResolveAliasesTransformer24"></a>
 <div class='headerdiv'>
-<h1>After ResolveAliasesTransformer (0.000051s) (unchanged)</h1>
+<h1>After ResolveAliasesTransformer (0.000040s)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
-</div>
-<a id="MinimiseProgramTransformer19"></a>
+<a id="ResolveAliasesTransformer-dl18"></a>
 <div class='headerdiv'>
-<h1>After MinimiseProgramTransformer (0.000009s) (unchanged)</h1>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.type Constant = {Top:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Sign&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Constant{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Constant{
+(_)=>x
+}
+
+
+// -- lat_div --
+LatticeBinaryFunction: &lat_div (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>(y = 0 ? "Bot" : x/y)
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>(x+y)
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Constant{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- AddStm --
+.decl AddStm(r:symbol,x:symbol,y:symbol)  
+
+.output {AddStm}
+
+
+
+// -- DivStm --
+.decl DivStm(r:symbol,x:symbol,y:symbol)  
+
+.output {DivStm}
+
+
+
+// -- LitStm --
+.decl LitStm(r:symbol,c:number)  
+
+.output {LitStm}
+
+
+
+// -- LocalVar --
+.decl LocalVar(k:symbol,v:Constant)  
+
+LocalVar(r,&lat_sum(v1,v2)) :- 
+   AddStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
+
+LocalVar(r,&lat_div(v1,v2)) :- 
+   DivStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
+
+LocalVar(r,&lat_alpha(c)) :- 
+   LitStm(r,c).
+
+.output {LocalVar}
+
+.output {LocalVar}
+
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-ta19"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: LocalVar(r,&lat_sum(v1,v2)) :- 
+   AddStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
+Problem:
+{
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Constant,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Constant,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(r)->{symbol},var(&lat_sum(v1,v2))->{Constant}}
+Clause: LocalVar(r,&lat_div(v1,v2)) :- 
+   DivStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
+Problem:
+{
+	var(r) &lt;: symbol,
+	var(&lat_div(v1,v2)) &lt;: Constant,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Constant,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(r)->{symbol},var(&lat_div(v1,v2))->{Constant}}
+Clause: LocalVar(r,&lat_alpha(c)) :- 
+   LitStm(r,c).
+Problem:
+{
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Constant,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(&lat_alpha(c))->{Constant},var(c)->{number},var(r)->{symbol}}
+
+-- Result --
+LocalVar(r&isin;{symbol},&lat_sum(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   AddStm(r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   LocalVar(x&isin;{symbol},v1&isin;{Constant}),
+   LocalVar(y&isin;{symbol},v2&isin;{Constant}).
+LocalVar(r&isin;{symbol},&lat_div(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   DivStm(r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   LocalVar(x&isin;{symbol},v1&isin;{Constant}),
+   LocalVar(y&isin;{symbol},v2&isin;{Constant}).
+LocalVar(r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   LitStm(r&isin;{symbol},c&isin;{number}).
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-tea20"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Constant = {Top:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-prec-graph21"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjczcHQiIGhlaWdodD0iMTE2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjczLjA0IDExNi4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxMTIpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xMTIgMjY5LjA0MzMsLTExMiAyNjkuMDQzMyw0IC00LDQiLz4KPCEtLSBBZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+QWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDAuMjk2NCIgY3k9Ii05MCIgcng9IjQwLjA5MzkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MC4yOTY0IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5BZGRTdG08L3RleHQ+CjwvZz4KPCEtLSBMb2NhbFZhciAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Mb2NhbFZhcjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzNy4yOTY0IiBjeT0iLTE4IiByeD0iNDQuMzkzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii0xNC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkxvY2FsVmFyPC90ZXh0Pgo8L2c+CjwhLS0gQWRkU3RtJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QWRkU3RtJiM0NTsmZ3Q7TG9jYWxWYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik02MS4zNDQsLTc0LjM3NzFDNzQuODUxNywtNjQuMzUwOCA5Mi41OTU0LC01MS4xODAyIDEwNy41MzU2LC00MC4wOTA1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMTAuMDExMywtNDIuNjExNyAxMTUuOTU1LC0zMy44NDExIDEwNS44MzkyLC0zNi45OTA5IDExMC4wMTEzLC00Mi42MTE3Ii8+CjwvZz4KPCEtLSBEaXZTdG0gLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+RGl2U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3LjI5NjQiIGN5PSItOTAiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIERpdlN0bSYjNDU7Jmd0O0xvY2FsVmFyIC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkRpdlN0bSYjNDU7Jmd0O0xvY2FsVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM3LjI5NjQsLTcxLjgzMTRDMTM3LjI5NjQsLTY0LjEzMSAxMzcuMjk2NCwtNTQuOTc0MyAxMzcuMjk2NCwtNDYuNDE2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTQwLjc5NjUsLTQ2LjQxMzIgMTM3LjI5NjQsLTM2LjQxMzMgMTMzLjc5NjUsLTQ2LjQxMzMgMTQwLjc5NjUsLTQ2LjQxMzIiLz4KPC9nPgo8IS0tIExpdFN0bSAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5MaXRTdG08L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMjkuMjk2NCIgY3k9Ii05MCIgcng9IjM1Ljk5NTQiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMjkuMjk2NCIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+TGl0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gTGl0U3RtJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TGl0U3RtJiM0NTsmZ3Q7TG9jYWxWYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMDkuNzg1NiwtNzQuNzMwN0MxOTYuOTk4OSwtNjQuNzIzNyAxODAuMDY5OCwtNTEuNDc0OCAxNjUuNzg3NiwtNDAuMjk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3Ljc2NzgsLTM3LjQwMjcgMTU3LjczNTYsLTMzLjk5NTkgMTYzLjQ1MzYsLTQyLjkxNTMgMTY3Ljc2NzgsLTM3LjQwMjciLz4KPC9nPgo8IS0tIExvY2FsVmFyJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TG9jYWxWYXImIzQ1OyZndDtMb2NhbFZhcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE2OC4wMTc0LC0zMC45NDNDMTg0LjQ4NzYsLTMzLjE0MjUgMTk5LjQ5MjUsLTI4LjgyODEgMTk5LjQ5MjUsLTE4IDE5OS40OTI1LC05LjQ1NTkgMTkwLjE1MDIsLTQuOTY3NSAxNzguMTE3MywtNC41MzQ2Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxNzcuODIzMiwtMS4wNDUxIDE2OC4wMTc0LC01LjA1NyAxNzguMTg0OCwtOC4wMzU3IDE3Ny44MjMyLC0xLjA0NTEiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"AddStm" [label = "AddStm"];
+	"DivStm" [label = "DivStm"];
+	"LitStm" [label = "LitStm"];
+	"LocalVar" [label = "LocalVar"];
+	"AddStm" -> "LocalVar";
+	"DivStm" -> "LocalVar";
+	"LitStm" -> "LocalVar";
+	"LocalVar" -> "LocalVar";
+}
+</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-scc-graph22"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjczcHQiIGhlaWdodD0iMTE2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjczLjA0IDExNi4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxMTIpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xMTIgMjY5LjA0MzMsLTExMiAyNjkuMDQzMyw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQwLjI5NjQiIGN5PSItOTAiIHJ4PSI0MC4wOTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDAuMjk2NCIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QWRkU3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxMzcuMjk2NCIgY3k9Ii0xOCIgcng9IjQ0LjM5MyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEzNy4yOTY0IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5Mb2NhbFZhcjwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTYxLjM0NCwtNzQuMzc3MUM3NC44NTE3LC02NC4zNTA4IDkyLjU5NTQsLTUxLjE4MDIgMTA3LjUzNTYsLTQwLjA5MDUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjExMC4wMTEzLC00Mi42MTE3IDExNS45NTUsLTMzLjg0MTEgMTA1LjgzOTIsLTM2Ljk5MDkgMTEwLjAxMTMsLTQyLjYxMTciLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3LjI5NjQiIGN5PSItOTAiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIF8xJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzEmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEzNy4yOTY0LC03MS44MzE0QzEzNy4yOTY0LC02NC4xMzEgMTM3LjI5NjQsLTU0Ljk3NDMgMTM3LjI5NjQsLTQ2LjQxNjYiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjE0MC43OTY1LC00Ni40MTMyIDEzNy4yOTY0LC0zNi40MTMzIDEzMy43OTY1LC00Ni40MTMzIDE0MC43OTY1LC00Ni40MTMyIi8+CjwvZz4KPCEtLSBfMiAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIyOS4yOTY0IiBjeT0iLTkwIiByeD0iMzUuOTk1NCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyOS4yOTY0IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5MaXRTdG08L3RleHQ+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O18zIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7XzM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMDkuNzg1NiwtNzQuNzMwN0MxOTYuOTk4OSwtNjQuNzIzNyAxODAuMDY5OCwtNTEuNDc0OCAxNjUuNzg3NiwtNDAuMjk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3Ljc2NzgsLTM3LjQwMjcgMTU3LjczNTYsLTMzLjk5NTkgMTYzLjQ1MzYsLTQyLjkxNTMgMTY3Ljc2NzgsLTM3LjQwMjciLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "AddStm" ];
+	_1[label = "DivStm" ];
+	_2[label = "LitStm" ];
+	_3[label = "LocalVar" ];
+	_0 -> _3;
+	_1 -> _3;
+	_2 -> _3;
+}</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-topsort-scc-graph23"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 3
+1 3
+2 3
+--- total order with relations of each strata ---
+0: [AddStm]
+1: [DivStm]
+2: [LitStm]
+3: [LocalVar]
+
+--- statistics of topological order ---
+cost: 3
+</pre>
+
+</div>
+</div>
+<a id="MinimiseProgramTransformer25"></a>
+<div class='headerdiv'>
+<h1>After MinimiseProgramTransformer (0.000008s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
 </div>
-<a id="InlineRelationsTransformer20"></a>
+<a id="InlineRelationsTransformer26"></a>
 <div class='headerdiv'>
 <h1>After InlineRelationsTransformer (0.000014s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
@@ -910,31 +1015,286 @@ cost: 3
 <div style='padding-left: 1em'>
 
 </div>
-<a id="ResolveAliasesTransformer21"></a>
+<a id="ResolveAliasesTransformer33"></a>
 <div class='headerdiv'>
-<h1>After ResolveAliasesTransformer (0.000044s) (unchanged)</h1>
+<h1>After ResolveAliasesTransformer (0.000042s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="ResolveAliasesTransformer-dl27"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.type Constant = {Top:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Sign&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Constant{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Constant{
+(_)=>x
+}
+
+
+// -- lat_div --
+LatticeBinaryFunction: &lat_div (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>(y = 0 ? "Bot" : x/y)
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>(x+y)
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Constant{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- AddStm --
+.decl AddStm(r:symbol,x:symbol,y:symbol)  
+
+.output {AddStm}
+
+
+
+// -- DivStm --
+.decl DivStm(r:symbol,x:symbol,y:symbol)  
+
+.output {DivStm}
+
+
+
+// -- LitStm --
+.decl LitStm(r:symbol,c:number)  
+
+.output {LitStm}
+
+
+
+// -- LocalVar --
+.decl LocalVar(k:symbol,v:Constant)  
+
+LocalVar(r,&lat_sum(v1,v2)) :- 
+   AddStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
+
+LocalVar(r,&lat_div(v1,v2)) :- 
+   DivStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
+
+LocalVar(r,&lat_alpha(c)) :- 
+   LitStm(r,c).
+
+.output {LocalVar}
+
+.output {LocalVar}
+
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-ta28"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: LocalVar(r,&lat_sum(v1,v2)) :- 
+   AddStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
+Problem:
+{
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Constant,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Constant,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(r)->{symbol},var(&lat_sum(v1,v2))->{Constant}}
+Clause: LocalVar(r,&lat_div(v1,v2)) :- 
+   DivStm(r,x,y),
+   LocalVar(x,v1),
+   LocalVar(y,v2).
+Problem:
+{
+	var(r) &lt;: symbol,
+	var(&lat_div(v1,v2)) &lt;: Constant,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Constant,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(r)->{symbol},var(&lat_div(v1,v2))->{Constant}}
+Clause: LocalVar(r,&lat_alpha(c)) :- 
+   LitStm(r,c).
+Problem:
+{
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Constant,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(c)->{number},var(r)->{symbol},var(&lat_alpha(c))->{Constant}}
+
+-- Result --
+LocalVar(r&isin;{symbol},&lat_sum(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   AddStm(r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   LocalVar(x&isin;{symbol},v1&isin;{Constant}),
+   LocalVar(y&isin;{symbol},v2&isin;{Constant}).
+LocalVar(r&isin;{symbol},&lat_div(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   DivStm(r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   LocalVar(x&isin;{symbol},v1&isin;{Constant}),
+   LocalVar(y&isin;{symbol},v2&isin;{Constant}).
+LocalVar(r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   LitStm(r&isin;{symbol},c&isin;{number}).
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-tea29"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Constant = {Top:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-prec-graph30"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjczcHQiIGhlaWdodD0iMTE2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjczLjA0IDExNi4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxMTIpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xMTIgMjY5LjA0MzMsLTExMiAyNjkuMDQzMyw0IC00LDQiLz4KPCEtLSBBZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+QWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDAuMjk2NCIgY3k9Ii05MCIgcng9IjQwLjA5MzkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MC4yOTY0IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5BZGRTdG08L3RleHQ+CjwvZz4KPCEtLSBMb2NhbFZhciAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5Mb2NhbFZhcjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzNy4yOTY0IiBjeT0iLTE4IiByeD0iNDQuMzkzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii0xNC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkxvY2FsVmFyPC90ZXh0Pgo8L2c+CjwhLS0gQWRkU3RtJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+QWRkU3RtJiM0NTsmZ3Q7TG9jYWxWYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik02MS4zNDQsLTc0LjM3NzFDNzQuODUxNywtNjQuMzUwOCA5Mi41OTU0LC01MS4xODAyIDEwNy41MzU2LC00MC4wOTA1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMTAuMDExMywtNDIuNjExNyAxMTUuOTU1LC0zMy44NDExIDEwNS44MzkyLC0zNi45OTA5IDExMC4wMTEzLC00Mi42MTE3Ii8+CjwvZz4KPCEtLSBEaXZTdG0gLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+RGl2U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3LjI5NjQiIGN5PSItOTAiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIERpdlN0bSYjNDU7Jmd0O0xvY2FsVmFyIC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPkRpdlN0bSYjNDU7Jmd0O0xvY2FsVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM3LjI5NjQsLTcxLjgzMTRDMTM3LjI5NjQsLTY0LjEzMSAxMzcuMjk2NCwtNTQuOTc0MyAxMzcuMjk2NCwtNDYuNDE2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTQwLjc5NjUsLTQ2LjQxMzIgMTM3LjI5NjQsLTM2LjQxMzMgMTMzLjc5NjUsLTQ2LjQxMzMgMTQwLjc5NjUsLTQ2LjQxMzIiLz4KPC9nPgo8IS0tIExpdFN0bSAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5MaXRTdG08L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMjkuMjk2NCIgY3k9Ii05MCIgcng9IjM1Ljk5NTQiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMjkuMjk2NCIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+TGl0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gTGl0U3RtJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TGl0U3RtJiM0NTsmZ3Q7TG9jYWxWYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMDkuNzg1NiwtNzQuNzMwN0MxOTYuOTk4OSwtNjQuNzIzNyAxODAuMDY5OCwtNTEuNDc0OCAxNjUuNzg3NiwtNDAuMjk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3Ljc2NzgsLTM3LjQwMjcgMTU3LjczNTYsLTMzLjk5NTkgMTYzLjQ1MzYsLTQyLjkxNTMgMTY3Ljc2NzgsLTM3LjQwMjciLz4KPC9nPgo8IS0tIExvY2FsVmFyJiM0NTsmZ3Q7TG9jYWxWYXIgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+TG9jYWxWYXImIzQ1OyZndDtMb2NhbFZhcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE2OC4wMTc0LC0zMC45NDNDMTg0LjQ4NzYsLTMzLjE0MjUgMTk5LjQ5MjUsLTI4LjgyODEgMTk5LjQ5MjUsLTE4IDE5OS40OTI1LC05LjQ1NTkgMTkwLjE1MDIsLTQuOTY3NSAxNzguMTE3MywtNC41MzQ2Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxNzcuODIzMiwtMS4wNDUxIDE2OC4wMTc0LC01LjA1NyAxNzguMTg0OCwtOC4wMzU3IDE3Ny44MjMyLC0xLjA0NTEiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"AddStm" [label = "AddStm"];
+	"DivStm" [label = "DivStm"];
+	"LitStm" [label = "LitStm"];
+	"LocalVar" [label = "LocalVar"];
+	"AddStm" -> "LocalVar";
+	"DivStm" -> "LocalVar";
+	"LitStm" -> "LocalVar";
+	"LocalVar" -> "LocalVar";
+}
+</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-scc-graph31"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjczcHQiIGhlaWdodD0iMTE2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjczLjA0IDExNi4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAxMTIpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0xMTIgMjY5LjA0MzMsLTExMiAyNjkuMDQzMyw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQwLjI5NjQiIGN5PSItOTAiIHJ4PSI0MC4wOTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDAuMjk2NCIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+QWRkU3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxMzcuMjk2NCIgY3k9Ii0xOCIgcng9IjQ0LjM5MyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEzNy4yOTY0IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5Mb2NhbFZhcjwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTYxLjM0NCwtNzQuMzc3MUM3NC44NTE3LC02NC4zNTA4IDkyLjU5NTQsLTUxLjE4MDIgMTA3LjUzNTYsLTQwLjA5MDUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjExMC4wMTEzLC00Mi42MTE3IDExNS45NTUsLTMzLjg0MTEgMTA1LjgzOTIsLTM2Ljk5MDkgMTEwLjAxMTMsLTQyLjYxMTciLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTM3LjI5NjQiIGN5PSItOTAiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM3LjI5NjQiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPkRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIF8xJiM0NTsmZ3Q7XzMgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzEmIzQ1OyZndDtfMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEzNy4yOTY0LC03MS44MzE0QzEzNy4yOTY0LC02NC4xMzEgMTM3LjI5NjQsLTU0Ljk3NDMgMTM3LjI5NjQsLTQ2LjQxNjYiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjE0MC43OTY1LC00Ni40MTMyIDEzNy4yOTY0LC0zNi40MTMzIDEzMy43OTY1LC00Ni40MTMzIDE0MC43OTY1LC00Ni40MTMyIi8+CjwvZz4KPCEtLSBfMiAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIyOS4yOTY0IiBjeT0iLTkwIiByeD0iMzUuOTk1NCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyOS4yOTY0IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5MaXRTdG08L3RleHQ+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O18zIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7XzM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMDkuNzg1NiwtNzQuNzMwN0MxOTYuOTk4OSwtNjQuNzIzNyAxODAuMDY5OCwtNTEuNDc0OCAxNjUuNzg3NiwtNDAuMjk3NCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3Ljc2NzgsLTM3LjQwMjcgMTU3LjczNTYsLTMzLjk5NTkgMTYzLjQ1MzYsLTQyLjkxNTMgMTY3Ljc2NzgsLTM3LjQwMjciLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "AddStm" ];
+	_1[label = "DivStm" ];
+	_2[label = "LitStm" ];
+	_3[label = "LocalVar" ];
+	_0 -> _3;
+	_1 -> _3;
+	_2 -> _3;
+}</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-topsort-scc-graph32"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 3
+1 3
+2 3
+--- total order with relations of each strata ---
+0: [AddStm]
+1: [DivStm]
+2: [LitStm]
+3: [LocalVar]
+
+--- statistics of topological order ---
+cost: 3
+</pre>
+
+</div>
+</div>
+<a id="RemoveRedundantRelationsTransformer34"></a>
+<div class='headerdiv'>
+<h1>After RemoveRedundantRelationsTransformer (0.000034s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
 </div>
-<a id="RemoveRedundantRelationsTransformer22"></a>
+<a id="RemoveRelationCopiesTransformer35"></a>
 <div class='headerdiv'>
-<h1>After RemoveRedundantRelationsTransformer (0.000006s) (unchanged)</h1>
+<h1>After RemoveRelationCopiesTransformer (0.000002s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
 </div>
-<a id="RemoveRelationCopiesTransformer23"></a>
-<div class='headerdiv'>
-<h1>After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</h1>
-<a href='#'>(return to top)</a>
-</div><div style='clear:both'></div>
-<div style='padding-left: 1em'>
-
-</div>
-<a id="RemoveEmptyRelationsTransformer24"></a>
+<a id="RemoveEmptyRelationsTransformer36"></a>
 <div class='headerdiv'>
 <h1>After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
@@ -942,7 +1302,7 @@ cost: 3
 <div style='padding-left: 1em'>
 
 </div>
-<a id="ReplaceSingletonVariablesTransformer25"></a>
+<a id="ReplaceSingletonVariablesTransformer37"></a>
 <div class='headerdiv'>
 <h1>After ReplaceSingletonVariablesTransformer (0.000019s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
@@ -950,15 +1310,15 @@ cost: 3
 <div style='padding-left: 1em'>
 
 </div>
-<a id="ReduceExistentialsTransformer26"></a>
+<a id="ReduceExistentialsTransformer38"></a>
 <div class='headerdiv'>
-<h1>After ReduceExistentialsTransformer (0.000037s) (unchanged)</h1>
+<h1>After ReduceExistentialsTransformer (0.000030s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
 </div>
-<a id="RemoveRedundantRelationsTransformer27"></a>
+<a id="RemoveRedundantRelationsTransformer39"></a>
 <div class='headerdiv'>
 <h1>After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
@@ -966,31 +1326,7 @@ cost: 3
 <div style='padding-left: 1em'>
 
 </div>
-<a id="RemoveRelationCopiesTransformer28"></a>
-<div class='headerdiv'>
-<h1>After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</h1>
-<a href='#'>(return to top)</a>
-</div><div style='clear:both'></div>
-<div style='padding-left: 1em'>
-
-</div>
-<a id="PartitionBodyLiteralsTransformer29"></a>
-<div class='headerdiv'>
-<h1>After PartitionBodyLiteralsTransformer (0.000029s) (unchanged)</h1>
-<a href='#'>(return to top)</a>
-</div><div style='clear:both'></div>
-<div style='padding-left: 1em'>
-
-</div>
-<a id="MinimiseProgramTransformer30"></a>
-<div class='headerdiv'>
-<h1>After MinimiseProgramTransformer (0.000007s) (unchanged)</h1>
-<a href='#'>(return to top)</a>
-</div><div style='clear:both'></div>
-<div style='padding-left: 1em'>
-
-</div>
-<a id="RemoveRelationCopiesTransformer31"></a>
+<a id="RemoveRelationCopiesTransformer40"></a>
 <div class='headerdiv'>
 <h1>After RemoveRelationCopiesTransformer (0.000000s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
@@ -998,7 +1334,31 @@ cost: 3
 <div style='padding-left: 1em'>
 
 </div>
-<a id="ReorderLiteralsTransformer32"></a>
+<a id="PartitionBodyLiteralsTransformer41"></a>
+<div class='headerdiv'>
+<h1>After PartitionBodyLiteralsTransformer (0.000036s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="MinimiseProgramTransformer42"></a>
+<div class='headerdiv'>
+<h1>After MinimiseProgramTransformer (0.000006s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer43"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000000s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReorderLiteralsTransformer44"></a>
 <div class='headerdiv'>
 <h1>After ReorderLiteralsTransformer (0.000009s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
@@ -1006,15 +1366,15 @@ cost: 3
 <div style='padding-left: 1em'>
 
 </div>
-<a id="MaterializeAggregationQueriesTransformer33"></a>
+<a id="MaterializeAggregationQueriesTransformer45"></a>
 <div class='headerdiv'>
-<h1>After MaterializeAggregationQueriesTransformer (0.000011s) (unchanged)</h1>
+<h1>After MaterializeAggregationQueriesTransformer (0.000013s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
 </div>
-<a id="RemoveEmptyRelationsTransformer34"></a>
+<a id="RemoveEmptyRelationsTransformer46"></a>
 <div class='headerdiv'>
 <h1>After RemoveEmptyRelationsTransformer (0.000000s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
@@ -1022,89 +1382,81 @@ cost: 3
 <div style='padding-left: 1em'>
 
 </div>
-<a id="ReorderLiteralsTransformer35"></a>
+<a id="ReorderLiteralsTransformer47"></a>
 <div class='headerdiv'>
-<h1>After ReorderLiteralsTransformer (0.000006s) (unchanged)</h1>
+<h1>After ReorderLiteralsTransformer (0.000005s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
 </div>
-<a id="AstExecutionPlanChecker36"></a>
+<a id="AstExecutionPlanChecker48"></a>
 <div class='headerdiv'>
-<h1>After AstExecutionPlanChecker (0.000022s) (unchanged)</h1>
+<h1>After AstExecutionPlanChecker (0.000021s) (unchanged)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 
 </div>
-<a id="ram-program37"></a>
+<a id="ram-program49"></a>
 <div class='headerdiv'>
-<h1>RAM Program (0.000874s)</h1>
+<h1>RAM Program (0.000726s)</h1>
 <a href='#'>(return to top)</a>
 </div><div style='clear:both'></div>
 <div style='padding-left: 1em'>
 <pre>DECLARATION 
-@delta_A(x,s) @delta_P(x,s) @delta_Q(x,s) @delta_R(x,s) @delta_S(x,s) @new_A(x,s) @new_P(x,s) @new_Q(x,s) @new_R(x,s) @new_S(x,s) A(x,s) B(x,s) C(x,s) D(x,s) P(x,s) Q(x,s) R(x,s) S(x,s) LATTICE ASSOCIATION DEFINITION. 
+@delta_LocalVar(k,v) @new_LocalVar(k,v) AddStm(r,x,y) DivStm(r,x,y) LitStm(r,c) LocalVar(k,v) LATTICE ASSOCIATION DEFINITION. 
 lub: 
 LATTICE BINARY FUNCTION 
 size: 3
-match:(argument(0) = number(2147482622)), output:argument(1)
-match:(argument(1) = number(2147482622)), output:argument(0)
-match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147482623)
+match:(argument(0) = number(2147418112)), output:argument(1)
+match:(argument(1) = number(2147418112)), output:argument(0)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418111)
 glb: 
 LATTICE BINARY FUNCTION 
 size: 3
-match:(argument(0) = number(2147482623)), output:argument(1)
-match:(argument(1) = number(2147482623)), output:argument(0)
-match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147482622)
+match:(argument(0) = number(2147418111)), output:argument(1)
+match:(argument(1) = number(2147418111)), output:argument(0)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418112)
 END DECLARATION 
 PROGRAM
 BEGIN_STRATUM_0
-	CREATE B(x,s) ;
-	LOAD DATA FOR B FROM {{{"IO","file"},{"filename","./B.facts"},{"name","B"}}[{{"IO","file"},{"filename","./B.facts"},{"name","B"}}]}
+	CREATE AddStm(r,x,y) ;
+	LOAD DATA FOR AddStm FROM {{{"IO","file"},{"filename","./AddStm.facts"},{"name","AddStm"}}[{{"IO","file"},{"filename","./AddStm.facts"},{"name","AddStm"}}]}
 END_STRATUM_0;
 BEGIN_STRATUM_1
-	CREATE C(x,s) ;
-	LOAD DATA FOR C FROM {{{"IO","file"},{"filename","./C.facts"},{"name","C"}}[{{"IO","file"},{"filename","./C.facts"},{"name","C"}}]}
+	CREATE DivStm(r,x,y) ;
+	LOAD DATA FOR DivStm FROM {{{"IO","file"},{"filename","./DivStm.facts"},{"name","DivStm"}}[{{"IO","file"},{"filename","./DivStm.facts"},{"name","DivStm"}}]}
 END_STRATUM_1;
 BEGIN_STRATUM_2
-	CREATE D(x,s) ;
-	LOAD DATA FOR D FROM {{{"IO","file"},{"filename","./D.facts"},{"name","D"}}[{{"IO","file"},{"filename","./D.facts"},{"name","D"}}]}
+	CREATE LitStm(r,c) ;
+	LOAD DATA FOR LitStm FROM {{{"IO","file"},{"filename","./LitStm.facts"},{"name","LitStm"}}[{{"IO","file"},{"filename","./LitStm.facts"},{"name","LitStm"}}]}
 END_STRATUM_2;
 BEGIN_STRATUM_3
-	CREATE A(x,s) ;
-	CREATE @delta_A(x,s) ;
-	CREATE @new_A(x,s) ;
-	CREATE R(x,s) ;
-	CREATE @delta_R(x,s) ;
-	CREATE @new_R(x,s) ;
-	LOAD DATA FOR A FROM {{{"IO","file"},{"filename","./A.facts"},{"name","A"}}[{{"IO","file"},{"filename","./A.facts"},{"name","A"}}]};
-	MERGE @delta_A WITH A;
-	MERGE @delta_R WITH R;
+	CREATE LocalVar(k,v) ;
+	CREATE @delta_LocalVar(k,v) ;
+	CREATE @new_LocalVar(k,v) ;
+	LOAD DATA FOR LocalVar FROM {{{"IO","file"},{"filename","./LocalVar.facts"},{"name","LocalVar"}}[{{"IO","file"},{"filename","./LocalVar.facts"},{"name","LocalVar"}}]};
+	BEGIN_DEBUG "LocalVar(r,&lat_alpha(c)) :- \n   LitStm(r,c).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [55:2-55:45]"
+		INSERT 
+			for t0 in LitStm {
+					PROJECT_LAT (t0.r, lat_alpha( t0.c )) INTO LocalVar			}
+
+	END_DEBUG;
+	MERGE @delta_LocalVar WITH LocalVar;
 	LOOP
 		PARALLEL
-			BEGIN_DEBUG "A(x,s) :- \n   R(x,s),\n   B(x,s).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [41:1-41:29]"
+			BEGIN_DEBUG "LocalVar(r,&lat_sum(v1,v2)) :- \n   AddStm(r,x,y),\n   LocalVar(x,v1),\n   LocalVar(y,v2).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [58:1-60:45]"
 				INSERT 
-					for t0 in @delta_R {
-							for t1 in B {
-									IF (not (t0.x,glb( t0.s, t1.s )) ∈ A) {
-											IF (t0.x = t1.x) {
-													PROJECT_LAT (t0.x, glb( t0.s, t1.s )) INTO @new_A											}
-									}
-							}
-					}
-
-			END_DEBUG;
-			BEGIN_DEBUG "R(x,s) :- \n   A(x,s),\n   B(x,s),\n   C(x,s).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [40:1-40:38]"
-				INSERT 
-					for t0 in @delta_A {
-							for t1 in B {
-									for t2 in C {
-											IF (not (t0.x,glb( t0.s, t1.s, t2.s )) ∈ R) {
-													IF (t0.x = t2.x) {
-															IF (t0.x = t1.x) {
-																	PROJECT_LAT (t0.x, glb( t0.s, t1.s, t2.s )) INTO @new_R															}
+					for t0 in AddStm {
+							for t1 in @delta_LocalVar {
+									for t2 in LocalVar {
+											IF (not (t0.y,t2.v) ∈ @delta_LocalVar) {
+													IF (not (t0.r,lat_sum( t1.v, t2.v )) ∈ LocalVar) {
+															IF (t0.y = t2.k) {
+																	IF (t0.x = t1.k) {
+																			PROJECT_LAT (t0.r, lat_sum( t1.v, t2.v )) INTO @new_LocalVar																	}
+															}
 													}
 											}
 									}
@@ -1112,93 +1464,15 @@ BEGIN_STRATUM_3
 					}
 
 			END_DEBUG;
-			BEGIN_DEBUG "R(x,s) :- \n   A(x,s),\n   D(x,s).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [42:1-42:29]"
+			BEGIN_DEBUG "LocalVar(r,&lat_sum(v1,v2)) :- \n   AddStm(r,x,y),\n   LocalVar(x,v1),\n   LocalVar(y,v2).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [58:1-60:45]"
 				INSERT 
-					for t0 in @delta_A {
-							for t1 in D {
-									IF (not (t0.x,glb( t0.s, t1.s )) ∈ R) {
-											IF (t0.x = t1.x) {
-													PROJECT_LAT (t0.x, glb( t0.s, t1.s )) INTO @new_R											}
-									}
-							}
-					}
-
-			END_DEBUG;
-			BEGIN_DEBUG "R(x,s) :- \n   A(x,s),\n   C(x,s).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [43:1-43:29]"
-				INSERT 
-					for t0 in @delta_A {
-							for t1 in C {
-									IF (not (t0.x,glb( t0.s, t1.s )) ∈ R) {
-											IF (t0.x = t1.x) {
-													PROJECT_LAT (t0.x, glb( t0.s, t1.s )) INTO @new_R											}
-									}
-							}
-					}
-
-			END_DEBUG		END PARALLEL;
-		EXIT ((@new_A = ∅) and (@new_R = ∅));
-		MERGE A WITH @new_A;
-		LATNORM A AND @new_A;
-		SWAP (@delta_A, @new_A);
-		CLEAR @new_A;
-		MERGE R WITH @new_R;
-		LATNORM R AND @new_R;
-		SWAP (@delta_R, @new_R);
-		CLEAR @new_R
-	END LOOP;
-	DROP @delta_A;
-	DROP @new_A;
-	DROP @delta_R;
-	DROP @new_R;
-	STORE DATA FOR R TO {{{"IO","file"},{"attributeNames","x\ts"},{"filename","./R.csv"},{"name","R"}}};
-	DROP A;
-	DROP B;
-	DROP C;
-	DROP D;
-	DROP R
-END_STRATUM_3;
-BEGIN_STRATUM_4
-	CREATE P(x,s) ;
-	CREATE @delta_P(x,s) ;
-	CREATE @new_P(x,s) ;
-	CREATE Q(x,s) ;
-	CREATE @delta_Q(x,s) ;
-	CREATE @new_Q(x,s) ;
-	CREATE S(x,s) ;
-	CREATE @delta_S(x,s) ;
-	CREATE @new_S(x,s) ;
-	LOAD DATA FOR P FROM {{{"IO","file"},{"filename","./P.facts"},{"name","P"}}[{{"IO","file"},{"filename","./P.facts"},{"name","P"}}]};
-	LOAD DATA FOR Q FROM {{{"IO","file"},{"filename","./Q.facts"},{"name","Q"}}[{{"IO","file"},{"filename","./Q.facts"},{"name","Q"}}]};
-	MERGE @delta_P WITH P;
-	MERGE @delta_Q WITH Q;
-	MERGE @delta_S WITH S;
-	LOOP
-		PARALLEL
-			BEGIN_DEBUG "P(x,s) :- \n   S(x,s).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [53:1-53:20]"
-				INSERT 
-					for t0 in @delta_S {
-							IF (not (t0.x,t0.s) ∈ P) {
-									PROJECT (t0.x, t0.s) INTO @new_P							}
-					}
-
-			END_DEBUG;
-			BEGIN_DEBUG "Q(x,s) :- \n   P(x,s).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [54:1-54:20]"
-				INSERT 
-					for t0 in @delta_P {
-							IF (not (t0.x,t0.s) ∈ Q) {
-									PROJECT (t0.x, t0.s) INTO @new_Q							}
-					}
-
-			END_DEBUG;
-			BEGIN_DEBUG "S(x,s) :- \n   P(x,s),\n   Q(x,s).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [52:1-52:29]"
-				INSERT 
-					for t0 in @delta_P {
-							for t1 in Q {
-									IF (not (t0.x,t0.s) ∈ @delta_Q) {
-											IF (not (t0.x,t0.s) ∈ S) {
-													IF (t0.x = t1.x) {
-															IF (t0.s = t1.s) {
-																	PROJECT (t0.x, t0.s) INTO @new_S															}
+					for t0 in AddStm {
+							for t1 in LocalVar {
+									for t2 in @delta_LocalVar {
+											IF (not (t0.r,lat_sum( t1.v, t2.v )) ∈ LocalVar) {
+													IF (t0.y = t2.k) {
+															IF (t0.x = t1.k) {
+																	PROJECT_LAT (t0.r, lat_sum( t1.v, t2.v )) INTO @new_LocalVar															}
 													}
 											}
 									}
@@ -1206,42 +1480,54 @@ BEGIN_STRATUM_4
 					}
 
 			END_DEBUG;
-			BEGIN_DEBUG "S(x,s) :- \n   P(x,s),\n   Q(x,s).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [52:1-52:29]"
+			BEGIN_DEBUG "LocalVar(r,&lat_div(v1,v2)) :- \n   DivStm(r,x,y),\n   LocalVar(x,v1),\n   LocalVar(y,v2).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [62:1-64:45]"
 				INSERT 
-					for t0 in P {
-							for t1 in @delta_Q {
-									IF (not (t0.x,t0.s) ∈ S) {
-											IF (t0.x = t1.x) {
-													IF (t0.s = t1.s) {
-															PROJECT (t0.x, t0.s) INTO @new_S													}
+					for t0 in DivStm {
+							for t1 in @delta_LocalVar {
+									for t2 in LocalVar {
+											IF (not (t0.y,t2.v) ∈ @delta_LocalVar) {
+													IF (not (t0.r,lat_div( t1.v, t2.v )) ∈ LocalVar) {
+															IF (t0.y = t2.k) {
+																	IF (t0.x = t1.k) {
+																			PROJECT_LAT (t0.r, lat_div( t1.v, t2.v )) INTO @new_LocalVar																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "LocalVar(r,&lat_div(v1,v2)) :- \n   DivStm(r,x,y),\n   LocalVar(x,v1),\n   LocalVar(y,v2).\nin file /home/gq/Programming/souffle/src/dataflowTest/lattice_Const/const_prop.dl [62:1-64:45]"
+				INSERT 
+					for t0 in DivStm {
+							for t1 in LocalVar {
+									for t2 in @delta_LocalVar {
+											IF (not (t0.r,lat_div( t1.v, t2.v )) ∈ LocalVar) {
+													IF (t0.y = t2.k) {
+															IF (t0.x = t1.k) {
+																	PROJECT_LAT (t0.r, lat_div( t1.v, t2.v )) INTO @new_LocalVar															}
+													}
 											}
 									}
 							}
 					}
 
 			END_DEBUG		END PARALLEL;
-		EXIT (((@new_P = ∅) and (@new_Q = ∅)) and (@new_S = ∅));
-		MERGE P WITH @new_P;
-		SWAP (@delta_P, @new_P);
-		CLEAR @new_P;
-		MERGE Q WITH @new_Q;
-		SWAP (@delta_Q, @new_Q);
-		CLEAR @new_Q;
-		MERGE S WITH @new_S;
-		SWAP (@delta_S, @new_S);
-		CLEAR @new_S
+		EXIT (@new_LocalVar = ∅);
+		MERGE LocalVar WITH @new_LocalVar;
+		LATNORM LocalVar AND @new_LocalVar;
+		SWAP (@delta_LocalVar, @new_LocalVar);
+		CLEAR @new_LocalVar
 	END LOOP;
-	DROP @delta_P;
-	DROP @new_P;
-	DROP @delta_Q;
-	DROP @new_Q;
-	DROP @delta_S;
-	DROP @new_S;
-	STORE DATA FOR S TO {{{"IO","file"},{"attributeNames","x\ts"},{"filename","./S.csv"},{"name","S"}}};
-	DROP P;
-	DROP Q;
-	DROP S
-END_STRATUM_4
+	DROP @delta_LocalVar;
+	DROP @new_LocalVar;
+	STORE DATA FOR LocalVar TO {{{"IO","file"},{"attributeNames","k\tv"},{"filename","./LocalVar.csv"},{"name","LocalVar"}}};
+	DROP LitStm;
+	DROP AddStm;
+	DROP DivStm;
+	DROP LocalVar
+END_STRATUM_3
 END PROGRAM
 </pre>
 

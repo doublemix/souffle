@@ -74,10 +74,10 @@ public:
 	AstRelation* getRelation(const AstRelationIdentifier& name) const;
 
 	/** Get lattice binary function definition */
-	AstLatticeBinaryFunction* getLatticeBinaryFunction(const std::string& name) const;
+	AstLatticeFunction* getLatticeFunction(const std::string& name) const;
 
 	/** Get the whole map for lattice binary functions **/
-	const std::map<std::string, std::unique_ptr<AstLatticeBinaryFunction>>& GetMapLBF() const;
+	const std::map<std::string, std::unique_ptr<AstLatticeFunction>>& GetMapLatticeFunction() const;
 
 	/** Get lattice association definition */
 	AstLatticeAssociation* getLatticeAssociation() const;
@@ -153,7 +153,7 @@ public:
 			res.push_back(cur.second.get());
 		}
 		res.push_back(latticeAssociation.get());
-		for (const auto& cur : latticeBinary) {
+		for (const auto& cur : latticeFunctions) {
 			res.push_back(cur.second.get());
 		}
 		for (const auto& cur : relations) {
@@ -259,7 +259,7 @@ private:
 
 	/** Lattice */
 	std::unique_ptr<AstLatticeAssociation> latticeAssociation;
-	std::map<std::string, std::unique_ptr<AstLatticeBinaryFunction>> latticeBinary;
+	std::map<std::string, std::unique_ptr<AstLatticeFunction>> latticeFunctions;
 
 	/** Program relations */
 	std::map<AstRelationIdentifier, std::unique_ptr<AstRelation>> relations;
@@ -310,8 +310,9 @@ private:
 	/** Add a pragma to the program */
 	void addPragma(std::unique_ptr<AstPragma> r);
 
+	void addLatticeFunction(std::unique_ptr<souffle::AstLatticeFunction> f);
 	/** Add a Lattice Binary Function to the program */
-	void addLatticeBinaryFunction(std::unique_ptr<souffle::AstLatticeBinaryFunction> f);
+//	void addLatticeBinaryFunction(std::unique_ptr<souffle::AstLatticeBinaryFunction> f);
 
 	/** Add a Lattice Association to the program */
 	void addLatticeAssociation(std::unique_ptr<souffle::AstLatticeAssociation> f);

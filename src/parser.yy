@@ -36,7 +36,7 @@
     #include "AstArgument.h"
     #include "AstClause.h"
     #include "AstComponent.h"
-    #include "AstLatticeBinaryFunction.h"
+    #include "AstLatticeFunction.h"
     #include "AstQuestionMark.h"
     #include "AstFunctorDeclaration.h"
     #include "AstIO.h"
@@ -184,8 +184,11 @@
 
 %type <AstLatticeAssociation *>			 lattice_asscoiation
 
-%type <AstLatticeBinaryFunction *>		 lattice_def
-%type <AstLatticeBinaryFunction *>		 lattice_def_type
+%type <AstLatticeBinaryFunction *>		 lattice_binary_def
+%type <AstLatticeBinaryFunction *>		 lattice_binary_def_type
+
+%type <AstLatticeUnaryFunction *>		 lattice_unary_def
+%type <AstLatticeUnaryFunction *>		 lattice_unary_def_type
 
 %type <std::vector<AstRelation *>>		 lattice_decl
 
@@ -261,9 +264,13 @@ unit
     	std::cout << ".let Lattice Asscoiation here!\n";
     	driver.addLatticeAssociation(std::unique_ptr<AstLatticeAssociation>($2));
   	}
-  | unit lattice_def {
-  		std::cout << ".def Lattice binary function definition here!\n";
-  		driver.addLatticeBinaryFunction(std::unique_ptr<AstLatticeBinaryFunction>($2));
+  | unit lattice_unary_def {
+  		std::cout << ".def Lattice Unary function definition here!\n";
+  		driver.addLatticeFunction(std::unique_ptr<AstLatticeUnaryFunction>($2));
+  	}
+  | unit lattice_binary_def {
+  		std::cout << ".def Lattice Binary function definition here!\n";
+  		driver.addLatticeFunction(std::unique_ptr<AstLatticeBinaryFunction>($2));
   	}
   | unit load_head {
         for(const auto& cur : $2) driver.addLoad(std::unique_ptr<AstLoad>(cur));
@@ -522,10 +529,28 @@ lattice_asscoiation
     	$$ = new AstLatticeAssociation($2);
     	$$->setALL($7, $9, $11, $13);
   	}
+  	
+lattice_unary_def
+  : DEF IDENT LPAREN IDENT COLON IDENT RPAREN COLON IDENT LBRACE lattice_unary_def_type RBRACE {
+  		$$ = $11;
+  		$$->setSrcLoc(@$);
+  		$$->setName($2);
+  		$$->setArg($4);
+  		$$->setOutput($9);
+  	}
 
-lattice_def
-  : DEF IDENT LPAREN IDENT COLON IDENT COMMA IDENT COLON IDENT RPAREN COLON IDENT LBRACE lattice_def_type RBRACE {
-  // TODO
+lattice_unary_def_type
+  : CASE LPAREN arg RPAREN ARROW arg {
+  		$$ = new AstLatticeUnaryFunction();	
+  		$$->addUnaryMap($3, $6);
+  	}
+  | lattice_unary_def_type COMMA CASE LPAREN arg RPAREN ARROW arg {
+  		$$ = $1;
+  		$$->addUnaryMap($5, $8);
+  	}
+
+lattice_binary_def
+  : DEF IDENT LPAREN IDENT COLON IDENT COMMA IDENT COLON IDENT RPAREN COLON IDENT LBRACE lattice_binary_def_type RBRACE {
   		$$ = $15;
   		$$->setSrcLoc(@$);
   		$$->setName($2);
@@ -534,18 +559,14 @@ lattice_def
   		$$->setOutput($13);
   	}
 
-lattice_def_type
+lattice_binary_def_type
   : CASE LPAREN arg COMMA arg RPAREN ARROW arg {
   		$$ = new AstLatticeBinaryFunction();	
   		$$->addPairMap($3, $5, $8);
   	}
-  | lattice_def_type COMMA CASE LPAREN arg COMMA arg RPAREN ARROW arg {
+  | lattice_binary_def_type COMMA CASE LPAREN arg COMMA arg RPAREN ARROW arg {
   		$$ = $1;
   		$$->addPairMap($5, $7, $10);
-  	}
-  | lattice_def_type COMMA CASE UNDERSCORE ARROW arg {
-  		$$ = $1;
-  		$$->addPairMap(new AstUnnamedVariable(), new AstUnnamedVariable(), $6);
   	}
 
 
@@ -658,8 +679,13 @@ arg
         $3->setName($2);
         $$->setSrcLoc(@$);
     }
+  | AMPERSAND IDENT LPAREN arg RPAREN {
+  		std::cout << "explicit use of lattice unary functor here!\n";
+  		$$ = new AstLatticeUnaryFunctor($2, std::unique_ptr<AstArgument>($4));
+        $$->setSrcLoc(@$);
+    }
   | AMPERSAND IDENT LPAREN arg COMMA arg RPAREN {
-  		std::cout << "explicit use of lattice binary function here!\n";
+  		std::cout << "explicit use of lattice binary functor here!\n";
   		$$ = new AstLatticeBinaryFunctor($2, std::unique_ptr<AstArgument>($4), std::unique_ptr<AstArgument>($6));
         $$->setSrcLoc(@$);
     }

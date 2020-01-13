@@ -10,7 +10,7 @@
 
 /************************************************************************
  *
- * @file RamLatticeBinaryFunction.h
+ * @file RamLatticeFunction.h
  *
  * Defines the lattice binary function for RAM
  *
@@ -28,8 +28,96 @@
 
 namespace souffle {
 
-class RamLatticeBinaryFunction: public RamNode {
+class RamLatticeFunction: public RamNode {
+public:
+	RamLatticeFunction(RamNodeType type): RamNode(type) {}
+};
+
+/**
+ * Lattice Unary Function declaration
+ */
+class RamLatticeUnaryFunction: public RamLatticeFunction {
+public:
+	/** The type utilized to model a field */
+	// Example: "case (Bot)=> x=2 ? y*2 : x"
+	struct LatCase {
+		std::unique_ptr<RamConstraint> constraint = nullptr;
+		std::unique_ptr<RamValue> output = nullptr;
+		LatCase(std::unique_ptr<RamConstraint> m, std::unique_ptr<RamValue> o) :
+			constraint(move(m)), output(move(o)) {
+		}
+		bool operator==(const LatCase& other) const {
+			return this == &other
+					|| (*constraint == *other.constraint && *output == *other.output);
+		}
+	};
+
+	RamLatticeUnaryFunction():
+		RamLatticeFunction(RN_LatticeUnaryFunction) {
+	}
+
+	/** Obtain child nodes */
+	std::vector<const RamNode*> getChildNodes() const override {
+		return std::vector<const RamNode*>();
+	}
+
+	/** Print */
+	void print(std::ostream& out) const override {
+		//#define PrintLatCase(x) (((x)!=nullptr) ? std::to_string(*(x)) : "_")
+		out << "LATTICE UNARY FUNCTION " << std::endl;
+		out << "size: " << Unarycases.size() << std::endl;
+		for (auto& cur : Unarycases) {
+			out << "match:";
+			if (cur.constraint!=nullptr)
+				cur.constraint->print(out);
+			else
+				out << "True";
+			out << ", output:";
+			cur.output->print(out);
+			out << std::endl;
+		}
+	}
+
+	/** Add to cases of function */
+	void addCase(std::unique_ptr<RamConstraint> match, std::unique_ptr<RamValue> output) {
+		Unarycases.emplace_back(move(match), move(output));
+	}
+
+	const std::vector<LatCase>& getLatCase() const {
+		return Unarycases;
+	}
+
+	/** Create clone */
+	RamLatticeUnaryFunction* clone() const override {
+		RamLatticeUnaryFunction* res = new RamLatticeUnaryFunction();
+		//TODO
+		return res;
+	}
+
+	/** Apply mapper */
+	void apply(const RamNodeMapper& map) override {
+		//TODO
+	}
+
+protected:
+	/** Check equality */
+	bool equal(const RamNode& node) const override {
+		assert(nullptr != dynamic_cast<const RamLatticeUnaryFunction*>(&node));
+		const auto& other = static_cast<const RamLatticeUnaryFunction&>(node);
+		return Unarycases == other.Unarycases;
+	}
+
 private:
+	/* vector of cases for lattice Unary function */
+	std::vector<LatCase> Unarycases;
+
+};
+
+/**
+ * Lattince Binary Function declaration
+ */
+class RamLatticeBinaryFunction: public RamLatticeFunction {
+public:
 	/** The type utilized to model a field */
 	// Example: "case (Bot,x)=>x>2 ? y*2 : x"
 	struct LatCase {
@@ -44,12 +132,8 @@ private:
 		}
 	};
 
-	/* vector of cases for lattice binary function */
-	std::vector<LatCase> cases;
-
-public:
 	RamLatticeBinaryFunction():
-		RamNode(RN_LatticeBinaryFunction) {
+		RamLatticeFunction(RN_LatticeBinaryFunction) {
 	}
 
 	/** Obtain child nodes */
@@ -102,6 +186,10 @@ protected:
 		const auto& other = static_cast<const RamLatticeBinaryFunction&>(node);
 		return cases == other.cases;
 	}
+
+private:
+	/* vector of cases for lattice binary function */
+	std::vector<LatCase> cases;
 };
 
 }  // end of namespace souffle

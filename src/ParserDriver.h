@@ -42,50 +42,55 @@ class SymbolTable;
 using yyscan_t = void*;
 
 struct scanner_data {
-    SrcLocation yylloc;
+	SrcLocation yylloc;
 
-    /* Stack of parsed files */
-    const char* yyfilename = nullptr;
+	/* Stack of parsed files */
+	const char* yyfilename = nullptr;
 };
 
 class ParserDriver {
 public:
-    ParserDriver();
-    virtual ~ParserDriver();
+	ParserDriver();
+	virtual ~ParserDriver();
 
-    std::unique_ptr<AstTranslationUnit> translationUnit;
+	std::unique_ptr<AstTranslationUnit> translationUnit;
 
-    void addRelation(std::unique_ptr<AstRelation> r);
+	void addRelation(std::unique_ptr<AstRelation> r);
 
-    void addLatticeBinaryFunction(std::unique_ptr<AstLatticeBinaryFunction> f);
-    void addLatticeAssociation(std::unique_ptr<AstLatticeAssociation> f);
+	void addLatticeFunction(std::unique_ptr<AstLatticeFunction> f);
+//	void addLatticeBinaryFunction(std::unique_ptr<AstLatticeBinaryFunction> f);
+	void addLatticeAssociation(std::unique_ptr<AstLatticeAssociation> f);
 
-    void addFunctorDeclaration(std::unique_ptr<AstFunctorDeclaration> f);
-    void addStore(std::unique_ptr<AstStore> d);
-    void addLoad(std::unique_ptr<AstLoad> d);
-    void addType(std::unique_ptr<AstType> type);
-    void addClause(std::unique_ptr<AstClause> c);
-    void addComponent(std::unique_ptr<AstComponent> c);
-    void addInstantiation(std::unique_ptr<AstComponentInit> ci);
-    void addPragma(std::unique_ptr<AstPragma> p);
+	void addFunctorDeclaration(std::unique_ptr<AstFunctorDeclaration> f);
+	void addStore(std::unique_ptr<AstStore> d);
+	void addLoad(std::unique_ptr<AstLoad> d);
+	void addType(std::unique_ptr<AstType> type);
+	void addClause(std::unique_ptr<AstClause> c);
+	void addComponent(std::unique_ptr<AstComponent> c);
+	void addInstantiation(std::unique_ptr<AstComponentInit> ci);
+	void addPragma(std::unique_ptr<AstPragma> p);
 
-    souffle::SymbolTable& getSymbolTable();
+	souffle::SymbolTable& getSymbolTable();
 
-    bool trace_scanning = false;
+	bool trace_scanning = false;
 
-    std::unique_ptr<AstTranslationUnit> parse(const std::string& filename, FILE* in, SymbolTable& symbolTable,
-            ErrorReport& errorReport, DebugReport& debugReport);
-    std::unique_ptr<AstTranslationUnit> parse(const std::string& code, SymbolTable& symbolTable,
-            ErrorReport& errorReport, DebugReport& debugReport);
-    static std::unique_ptr<AstTranslationUnit> parseTranslationUnit(const std::string& filename, FILE* in,
-            SymbolTable& symbolTable, ErrorReport& errorReport, DebugReport& debugReport);
-    static std::unique_ptr<AstTranslationUnit> parseTranslationUnit(const std::string& code,
-            SymbolTable& symbolTable, ErrorReport& errorReport, DebugReport& debugReport);
+	std::unique_ptr<AstTranslationUnit> parse(const std::string& filename,
+			FILE* in, SymbolTable& symbolTable, ErrorReport& errorReport,
+			DebugReport& debugReport);
+	std::unique_ptr<AstTranslationUnit> parse(const std::string& code,
+			SymbolTable& symbolTable, ErrorReport& errorReport,
+			DebugReport& debugReport);
+	static std::unique_ptr<AstTranslationUnit> parseTranslationUnit(
+			const std::string& filename, FILE* in, SymbolTable& symbolTable,
+			ErrorReport& errorReport, DebugReport& debugReport);
+	static std::unique_ptr<AstTranslationUnit> parseTranslationUnit(
+			const std::string& code, SymbolTable& symbolTable,
+			ErrorReport& errorReport, DebugReport& debugReport);
 
-    bool trace_parsing = false;
+	bool trace_parsing = false;
 
-    void error(const SrcLocation& loc, const std::string& msg);
-    void error(const std::string& msg);
+	void error(const SrcLocation& loc, const std::string& msg);
+	void error(const std::string& msg);
 };
 
 }  // end of namespace souffle

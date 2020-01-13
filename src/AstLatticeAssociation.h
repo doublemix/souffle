@@ -20,7 +20,6 @@
 
 #include "AstNode.h"
 #include "AstArgument.h"
-#include "AstLatticeBinaryFunction.h"
 #include "AstTypes.h"
 #include "FunctorOps.h"
 #include "SymbolTable.h"
@@ -32,6 +31,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "AstLatticeFunction.h"
 
 namespace souffle {
 

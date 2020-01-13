@@ -34,6 +34,7 @@
 #include "RamProgram.h"
 #include "RamProvenanceExistenceCheckAnalysis.h"
 #include "RamValue.h"
+#include "RamLatticeFunctor.h"
 #include "RamVisitor.h"
 #include "ReadStream.h"
 #include "SignalHandler.h"
@@ -55,6 +56,7 @@
 #include <typeinfo>
 #include <utility>
 #include <ffi.h>
+#include "RamLatticeFunction.h"
 
 namespace souffle {
 
@@ -307,6 +309,57 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 			}
 
 			return result;
+		}
+
+		RamDomain visitLatticeUnaryFunctor(const RamLatticeUnaryFunctor& luf)
+				override {
+//			std::cout << "visitLatticeUnaryFunctor here\n";
+
+			InterpreterContext ctxt_temp;
+			const RamLatticeUnaryFunction& func = luf.getFunc();
+			RamDomain arg1 = interpreter.evalVal(*luf.getRef(), ctxt);
+
+			// set 2 input variables
+			std::vector<RamDomain> args = { arg1 };
+			ctxt_temp.setArguments(args);
+
+			// evaluate binary constraint
+			for (const auto& cas : func.getLatCase()) {
+				if (cas.constraint == nullptr
+						|| interpreter.evalCond(*cas.constraint, ctxt_temp)) {
+					// get output if match
+					return interpreter.evalVal(*cas.output, ctxt_temp);
+				}
+			}
+
+			std::cerr << "Failed to find a match for a lattice unary functor!" << std::endl;
+			exit(1);
+		}
+
+		RamDomain visitLatticeBinaryFunctor(const RamLatticeBinaryFunctor& lbf)
+				override {
+//			std::cout << "visitLatticeBinaryFunctor here\n";
+
+			InterpreterContext ctxt_temp;
+			const RamLatticeBinaryFunction& func = lbf.getFunc();
+			RamDomain arg1 = interpreter.evalVal(*lbf.getRef1(), ctxt);
+			RamDomain arg2 = interpreter.evalVal(*lbf.getRef2(), ctxt);
+
+			// set 2 input variables
+			std::vector<RamDomain> args = { arg1, arg2 };
+			ctxt_temp.setArguments(args);
+
+			// evaluate binary constraint
+			for (const auto& cas : func.getLatCase()) {
+				if (cas.match == nullptr
+						|| interpreter.evalCond(*cas.match, ctxt_temp)) {
+					// get output if match
+					return interpreter.evalVal(*cas.output, ctxt_temp);
+				}
+			}
+
+			std::cerr << "Failed to find a match for a lattice binary functor!" << std::endl;
+			exit(1);
 		}
 
 		// -- records --
@@ -813,11 +866,11 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		bool visitParallel(const RamParallel& parallel) override {
 			// get statements to be processed in parallel
 			const auto& stmts = parallel.getStatements();
-			std::cout << "PARALLEL size: " << stmts.size() << std::endl;
-			for (size_t i = 0; i < stmts.size(); i++) {
-				stmts[i]->print(std::cout);
-				std::cout << "\nEnd of a stmt.\n";
-			}
+//			std::cout << "PARALLEL size: " << stmts.size() << std::endl;
+//			for (size_t i = 0; i < stmts.size(); i++) {
+//				stmts[i]->print(std::cout);
+//				std::cout << "\nEnd of a stmt.\n";
+//			}
 			// special case: empty
 			if (stmts.empty()) {
 				return true;
@@ -872,7 +925,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 		bool visitStratum(const RamStratum& stratum) override {
 			// TODO (lyndonhenry): should enable strata as subprograms for interpreter here
-
+			std::cout<<"visitStratum!\n";
 			// Record relations created in each stratum
 			if (Global::config().has("profile")) {
 				std::map<std::string, size_t> relNames;
@@ -942,6 +995,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			return true;
 		}
 		bool visitStore(const RamStore& store) override {
+			std::cout << "start visitStore\n";
 			for (IODirectives ioDirectives : store.getIODirectives()) {
 				try {
 					IOSystem::getInstance().getWriter(
@@ -954,6 +1008,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 					exit(1);
 				}
 			}
+			std::cout << "finish visitStore\n";
 			return true;
 		}
 
@@ -1152,6 +1207,7 @@ void Interpreter::executeMain() {
 				std::to_string(ruleCount));
 
 		evalStmt(main);
+
 		ProfileEventSingleton::instance().stopTimer();
 		for (auto const& cur : frequencies) {
 			for (auto const& iter : cur.second) {

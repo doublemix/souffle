@@ -371,28 +371,68 @@ std::unique_ptr<RamValue> AstTranslator::translateValue(const AstArgument* arg,
 					std::move(values));
 		}
 
+		std::unique_ptr<RamValue> visitLatticeUnaryFunctor(
+				const AstLatticeUnaryFunctor& luf) {
+			std::unique_ptr<RamLatticeUnaryFunctor> ret = std::make_unique<
+					RamLatticeUnaryFunctor>(luf.getName());
+			const auto& arg1 = luf.getArgument();
+			std::unique_ptr<RamValue> ramArg1 = translator.translateValue(arg1,
+					index);
+			ret->setRef(std::move(ramArg1));
+
+			// check if the calling Ram Lattice Function has been generated
+			std::shared_ptr<RamLatticeUnaryFunction> RamLUF =
+					translator.ramProg->getLUF(luf.getName());
+			if (RamLUF == nullptr) {
+				const AstLatticeFunction* AstLF =
+						translator.program->getLatticeFunction(luf.getName());
+				assert(
+						nullptr
+								!= dynamic_cast<const AstLatticeUnaryFunction*>(AstLF));
+				const AstLatticeUnaryFunction* AstLUF =
+						static_cast<const AstLatticeUnaryFunction*>(AstLF);
+				assert(AstLUF != nullptr);
+				RamLUF = std::move(
+						translator.translateLatticeUnaryFunction(AstLUF));
+				// add to Ram Program
+				translator.ramProg->addLUF(luf.getName(), RamLUF);
+			}
+
+			ret->setFunc(RamLUF);
+			return std::move(ret);
+		}
+
 		std::unique_ptr<RamValue> visitLatticeBinaryFunctor(
 				const AstLatticeBinaryFunctor& lbf) {
 			std::unique_ptr<RamLatticeBinaryFunctor> ret = std::make_unique<
 					RamLatticeBinaryFunctor>(lbf.getName());
 			std::vector<std::unique_ptr<RamValue>> values;
-			const auto& arg1 = lbf.getArg(0);
+			const auto& arg1 = lbf.getArgument(0);
 			std::unique_ptr<RamValue> ramArg1 = translator.translateValue(arg1,
 					index);
-			const auto& arg2 = lbf.getArg(1);
+			const auto& arg2 = lbf.getArgument(1);
 			std::unique_ptr<RamValue> ramArg2 = translator.translateValue(arg2,
 					index);
 			ret->setRef(std::move(ramArg1), std::move(ramArg2));
 
-			// check if Ram Lattice Function has been generated
-			std::shared_ptr<RamLatticeBinaryFunction> RamLBF = translator.ramProg->getLBF(
-					lbf.getName());
+			// check if the calling Ram Lattice Function has been generated
+			std::shared_ptr<RamLatticeBinaryFunction> RamLBF =
+					translator.ramProg->getLBF(lbf.getName());
 			if (RamLBF == nullptr) {
 				// translate the lbf from ast into ram, add into ram program
+//				const AstLatticeBinaryFunction* AstLBF =
+//						translator.program->getLatticeBinaryFunction(
+//								lbf.getName());
+				const AstLatticeFunction* AstLF =
+						translator.program->getLatticeFunction(lbf.getName());
+				assert(
+						nullptr
+								!= dynamic_cast<const AstLatticeBinaryFunction*>(AstLF));
 				const AstLatticeBinaryFunction* AstLBF =
-						translator.program->getLatticeBinaryFunction(
-								lbf.getName());
-				RamLBF = std::move(translator.translateLatticeBinaryFunction(AstLBF));
+						static_cast<const AstLatticeBinaryFunction*>(AstLF);
+				assert(AstLBF != nullptr);
+				RamLBF = std::move(
+						translator.translateLatticeBinaryFunction(AstLBF));
 				// add to Ram Program
 				translator.ramProg->addLBF(lbf.getName(), RamLBF);
 			}
@@ -623,10 +663,14 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 	if (AstLatAssoc == nullptr)
 		return nullptr;
 
-	const AstLatticeBinaryFunction* AstLUB = program->getLatticeBinaryFunction(
-			AstLatAssoc->getLub());
-	const AstLatticeBinaryFunction* AstGLB = program->getLatticeBinaryFunction(
-			AstLatAssoc->getGlb());
+	const AstLatticeBinaryFunction* AstLUB =
+			static_cast<const AstLatticeBinaryFunction*>(program->getLatticeFunction(
+					AstLatAssoc->getLub()));
+	assert(AstLUB != nullptr);
+	const AstLatticeBinaryFunction* AstGLB =
+			static_cast<const AstLatticeBinaryFunction*>(program->getLatticeFunction(
+					AstLatAssoc->getGlb()));
+	assert(AstGLB != nullptr);
 
 	RamLatticeAssociation* RamLat = new RamLatticeAssociation();
 
@@ -658,12 +702,49 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 //					move(OtherLBFtranslator.translate()));
 //		}
 //	}
-
 	std::cout << "RamLatticeAssociation generated.\n";
 	return std::unique_ptr<RamLatticeAssociation>(RamLat);
 }
 
-std::unique_ptr<RamLatticeBinaryFunction> AstTranslator::translateLatticeBinaryFunction (
+std::unique_ptr<RamLatticeUnaryFunction> AstTranslator::translateLatticeUnaryFunction(
+		const AstLatticeUnaryFunction* AstUnary) {
+	AstTranslator& translator = *this;
+	RamLatticeUnaryFunction* RamLatUnary = new RamLatticeUnaryFunction();
+	ValueIndex index;
+	const std::string& arg = AstUnary->getArgument();
+	index.setLatArguments(arg, 0);
+
+	const std::vector<AstLatticeUnaryFunction::UnaryMap>& unarymap =
+			AstUnary->getUnaryMap();
+
+	for (const auto& pair : unarymap) {
+		std::unique_ptr<RamConstraint> match = nullptr;
+
+		if (dynamic_cast<const AstStringConstant*>(pair.first) != nullptr) {
+			const AstStringConstant* first_const =
+					static_cast<const AstStringConstant*>(pair.first);
+			match = std::make_unique<RamConstraint>(BinaryConstraintOp::EQ,
+					std::make_unique<RamArgument>(0),
+					translator.translateValue(first_const, index));
+		}
+
+		std::unique_ptr<RamValue> output = translator.translateValue(
+				pair.output, index);
+
+		RamLatUnary->addCase(std::move(match), std::move(output));
+	} // end of traverse pair map
+
+	// check if the last match constraint is empty
+	const std::vector<RamLatticeUnaryFunction::LatCase>& ramLatCases =
+			RamLatUnary->getLatCase();
+	assert(
+			ramLatCases.back().constraint == nullptr
+					&& "The last match constraint of lattice unary function must be NULL!");
+
+	return std::unique_ptr<RamLatticeUnaryFunction>(RamLatUnary);
+}
+
+std::unique_ptr<RamLatticeBinaryFunction> AstTranslator::translateLatticeBinaryFunction(
 		const AstLatticeBinaryFunction* AstBinary) {
 	AstTranslator& translator = *this;
 	RamLatticeBinaryFunction* RamLatBinary = new RamLatticeBinaryFunction();
@@ -682,7 +763,7 @@ std::unique_ptr<RamLatticeBinaryFunction> AstTranslator::translateLatticeBinaryF
 		const AstStringConstant* first_const;
 		const AstStringConstant* second_const;
 		//				AstArgument* second = pair.second;
-		AstArgument* out = pair.output;
+		const AstArgument* out = pair.output;
 		bool matchFirst = dynamic_cast<const AstStringConstant*>(pair.first)
 				!= nullptr;
 		if (matchFirst) {
@@ -716,8 +797,16 @@ std::unique_ptr<RamLatticeBinaryFunction> AstTranslator::translateLatticeBinaryF
 		std::unique_ptr<RamValue> output = translator.translateValue(out,
 				index);
 
-		RamLatBinary->addCase(move(match), move(output));
+		RamLatBinary->addCase(std::move(match), std::move(output));
 	} // end of traverse pair map
+
+	// check if the last match constraint is empty
+	const std::vector<RamLatticeBinaryFunction::LatCase>& ramLatCases =
+			RamLatBinary->getLatCase();
+	assert(
+			ramLatCases.back().match == nullptr
+					&& "The last match constraint of lattice binary function must be NULL!");
+
 	return std::unique_ptr<RamLatticeBinaryFunction>(RamLatBinary);
 }
 
@@ -823,26 +912,15 @@ void AstTranslator::ClauseTranslator::createValueIndex(
 	// add aggregation functions
 	visitDepthFirstPostOrder(clause, [&](const AstAggregator& cur) {
 		// add each aggregator expression only once
-			if (any_of(aggregators, [&](const AstAggregator* agg) {return *agg == cur;})) {
-				return;
-			}
+			if (any_of(aggregators, [&](const AstAggregator* agg) {return *agg == cur;})) {return;}
 
-			int aggLoc = level++;
-			valueIndex.setAggregatorLocation(cur, Location( {aggLoc, 0}));
+			int aggLoc = level++; valueIndex.setAggregatorLocation(cur, Location( {aggLoc, 0}));
 
 			// bind aggregator variables to locations
-			assert(nullptr != dynamic_cast<const AstAtom*>(cur.getBodyLiterals()[0]));
-			const AstAtom& atom = static_cast<const AstAtom&>(*cur.getBodyLiterals()[0]);
-			for (size_t pos = 0; pos < atom.getArguments().size(); ++pos) {
-				if (const auto* var = dynamic_cast<const AstVariable*>(atom.getArgument(pos))) {
-					valueIndex.addVarReference(
-							*var, aggLoc, (int)pos, std::move(translator.translateRelation(&atom)));
-				}
-			};
+			assert(nullptr != dynamic_cast<const AstAtom*>(cur.getBodyLiterals()[0])); const AstAtom& atom = static_cast<const AstAtom&>(*cur.getBodyLiterals()[0]); for (size_t pos = 0; pos < atom.getArguments().size(); ++pos) {if (const auto* var = dynamic_cast<const AstVariable*>(atom.getArgument(pos))) {valueIndex.addVarReference( *var, aggLoc, (int)pos, std::move(translator.translateRelation(&atom)));}};
 
 			// and remember aggregator
-			aggregators.push_back(&cur);
-		});
+			aggregators.push_back(&cur);});
 }
 
 /** begin with projection */
@@ -893,7 +971,7 @@ std::unique_ptr<RamOperation> AstTranslator::ClauseTranslator::createOperation(
 	}
 
 	// build up insertion call
-	return std::move(project);  // start with innermost
+	return std::move(project);						// start with innermost
 }
 
 std::unique_ptr<RamOperation> AstTranslator::ProvenanceClauseTranslator::createOperation(

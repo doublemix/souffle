@@ -27,6 +27,7 @@
 
 #include "RamLatticeAssociation.h"
 #include "RamQuestionMark.h"
+#include "RamLatticeFunctor.h"
 
 #include <functional>
 #include <typeinfo>
@@ -83,6 +84,7 @@ struct RamVisitor : public ram_visitor_tag {
 
             // Lattice Association
             FORWARD(LatticeAssociation);
+            FORWARD(LatticeUnaryFunction);
             FORWARD(LatticeBinaryFunction);
 
             // values
@@ -91,6 +93,8 @@ struct RamVisitor : public ram_visitor_tag {
             FORWARD(Number);
             FORWARD(IntrinsicOperator);
             FORWARD(UserDefinedOperator);
+            FORWARD(LatticeUnaryFunctor);
+            FORWARD(LatticeBinaryFunctor);
             FORWARD(AutoIncrement);
             FORWARD(Pack);
             FORWARD(Argument);
@@ -215,9 +219,11 @@ protected:
 
     LINK(Condition, Node)
 
-	// Lattice Association
+	// Lattice Association, and lattice functions
 	LINK(LatticeAssociation, Node);
-    LINK(LatticeBinaryFunction, Node);
+    LINK(LatticeBinaryFunction, LatticeFunction);
+    LINK(LatticeUnaryFunction, LatticeFunction);
+    LINK(LatticeFunction, Node);
 
     // -- values --
     LINK(Number, Value)
@@ -230,6 +236,10 @@ protected:
     LINK(Argument, Value)
 
 	LINK(QuestionMark, Value)
+
+	LINK(LatticeUnaryFunctor, LatticeFunctor)
+	LINK(LatticeBinaryFunctor, LatticeFunctor)
+	LINK(LatticeFunctor, Value)
 
     LINK(Value, Node)
 

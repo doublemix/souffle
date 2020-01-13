@@ -313,7 +313,7 @@ public:
 	 */
 	std::vector<size_t> getIndices() const {
 		std::vector<size_t> indices;
-		for (const auto& p: numToStr) {
+		for (const auto& p : numToStr) {
 			indices.push_back(p.first);
 		}
 		return indices;
@@ -342,13 +342,20 @@ public:
 		}
 	}
 
-	const std::string& unsafeResolve(const RamDomain index) const {
+	// original: const std::string& unsafeResolve
+	const std::string unsafeResolve(const RamDomain index) const {
 #ifdef USE_MPI
 		if (mpi::commRank() != 0) {
 			return cacheResolve(index, UNSAFE_RESOLVE);
 		} else
 #endif
-		return numToStr.at(static_cast<size_t>(index));
+		//TODO: Qing Gong, MPI not finished
+		//			if (numToStr.find(static_cast<size_t>(index))==numToStr.end()) {
+		//				std::cout<<"Error!, out of bound!\n";
+		//			}
+
+		//changed by Qing Gong, original: return numToStr.at(static_cast<size_t>(index));
+		return (index >= MAX_RAM_DOMAIN-65536 && index < MAX_RAM_DOMAIN-5536) ? numToStr.at(static_cast<size_t>(index)) : std::to_string(index);
 	}
 
 	/* Return the size of the symbol table, being the number of symbols it currently holds. */
@@ -406,13 +413,18 @@ public:
 		auto lease = access.acquire();
 		(void) lease;  // avoid warning;
 		auto it = strToNum.find(symbol);
-		assert(it != strToNum.end() && "It's not in the symbol table when moving to the end!");
+		assert(
+				it != strToNum.end()
+						&& "It's not in the symbol table when moving to the end!");
 		size_t org_index = it->second;
 		// move to the end, and avoid using the maximum value, which may be used in numeric variable
-		it->second = MAX_RAM_DOMAIN - 1024 - org_index;
+		assert(org_index>=0 && org_index<60000);
+		it->second = MAX_RAM_DOMAIN - 65536 + org_index;
 
 		auto it2 = numToStr.find(org_index);
-		assert(it2 != numToStr.end() && "Fail to locate the original index when moving to the end!");
+		assert(
+				it2 != numToStr.end()
+						&& "Fail to locate the original index when moving to the end!");
 		numToStr.erase(it2);
 		numToStr[it->second] = symbol;
 	}

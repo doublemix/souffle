@@ -21,12 +21,12 @@
 #include "RamNode.h"
 #include "RamValue.h"
 #include "RamTypes.h"
-#include "RamLatticeBinaryFunction.h"
 #include <string>
 
 #include <iostream>
 
 #include <vector>
+#include "RamLatticeFunction.h"
 
 namespace souffle {
 

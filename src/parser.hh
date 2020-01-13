@@ -55,7 +55,7 @@
     #include "AstArgument.h"
     #include "AstClause.h"
     #include "AstComponent.h"
-    #include "AstLatticeBinaryFunction.h"
+    #include "AstLatticeFunction.h"
     #include "AstQuestionMark.h"
     #include "AstFunctorDeclaration.h"
     #include "AstIO.h"
@@ -384,49 +384,53 @@ namespace yy {
       // lattice_asscoiation
       char dummy13[sizeof(AstLatticeAssociation *)];
 
-      // lattice_def
-      // lattice_def_type
+      // lattice_binary_def
+      // lattice_binary_def_type
       char dummy14[sizeof(AstLatticeBinaryFunction *)];
 
+      // lattice_unary_def
+      // lattice_unary_def_type
+      char dummy15[sizeof(AstLatticeUnaryFunction *)];
+
       // pragma
-      char dummy15[sizeof(AstPragma *)];
+      char dummy16[sizeof(AstPragma *)];
 
       // condition
-      char dummy16[sizeof(AstQuestionMark *)];
+      char dummy17[sizeof(AstQuestionMark *)];
 
       // recordlist
-      char dummy17[sizeof(AstRecordInit *)];
+      char dummy18[sizeof(AstRecordInit *)];
 
       // recordtype
-      char dummy18[sizeof(AstRecordType *)];
+      char dummy19[sizeof(AstRecordType *)];
 
       // non_empty_attributes
       // attributes
       // relation_body
-      char dummy19[sizeof(AstRelation *)];
+      char dummy20[sizeof(AstRelation *)];
 
       // rel_id
-      char dummy20[sizeof(AstRelationIdentifier *)];
+      char dummy21[sizeof(AstRelationIdentifier *)];
 
       // type
-      char dummy21[sizeof(AstType *)];
+      char dummy22[sizeof(AstType *)];
 
       // type_id
-      char dummy22[sizeof(AstTypeIdentifier *)];
+      char dummy23[sizeof(AstTypeIdentifier *)];
 
       // uniontype
-      char dummy23[sizeof(AstUnionType *)];
+      char dummy24[sizeof(AstUnionType *)];
 
       // functor_list
       // functor_args
-      char dummy24[sizeof(AstUserDefinedFunctor *)];
+      char dummy25[sizeof(AstUserDefinedFunctor *)];
 
       // literal
       // term
       // conjunction
       // disjunction
       // body
-      char dummy25[sizeof(RuleBody *)];
+      char dummy26[sizeof(RuleBody *)];
 
       // "reserved keyword"
       // "symbol"
@@ -435,35 +439,35 @@ namespace yy {
       // functor_type
       // functor_typeargs
       // comp_override
-      char dummy26[sizeof(std::string)];
+      char dummy27[sizeof(std::string)];
 
       // head
-      char dummy27[sizeof(std::vector<AstAtom*>)];
+      char dummy28[sizeof(std::vector<AstAtom*>)];
 
       // rule_def
       // rule
-      char dummy28[sizeof(std::vector<AstClause*>)];
+      char dummy29[sizeof(std::vector<AstClause*>)];
 
       // iodirective_list
-      char dummy29[sizeof(std::vector<AstIO *>)];
+      char dummy30[sizeof(std::vector<AstIO *>)];
 
       // load_head
-      char dummy30[sizeof(std::vector<AstLoad *>)];
+      char dummy31[sizeof(std::vector<AstLoad *>)];
 
       // relation_decl
       // relation_list
       // lattice_decl
-      char dummy31[sizeof(std::vector<AstRelation *>)];
+      char dummy32[sizeof(std::vector<AstRelation *>)];
 
       // store_head
-      char dummy32[sizeof(std::vector<AstStore *>)];
+      char dummy33[sizeof(std::vector<AstStore *>)];
 
       // type_param_list
       // type_params
-      char dummy33[sizeof(std::vector<AstTypeIdentifier>)];
+      char dummy34[sizeof(std::vector<AstTypeIdentifier>)];
 
       // qualifiers
-      char dummy34[sizeof(uint32_t)];
+      char dummy35[sizeof(uint32_t)];
 };
 
     /// Symbol semantic values.
@@ -635,6 +639,8 @@ namespace yy {
   basic_symbol (typename Base::kind_type t, const AstLatticeAssociation * v, const location_type& l);
 
   basic_symbol (typename Base::kind_type t, const AstLatticeBinaryFunction * v, const location_type& l);
+
+  basic_symbol (typename Base::kind_type t, const AstLatticeUnaryFunction * v, const location_type& l);
 
   basic_symbol (typename Base::kind_type t, const AstPragma * v, const location_type& l);
 
@@ -1288,8 +1294,8 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 1989,     ///< Last index in yytable_.
-      yynnts_ = 58,  ///< Number of nonterminal symbols.
+      yylast_ = 2011,     ///< Last index in yytable_.
+      yynnts_ = 60,  ///< Number of nonterminal symbols.
       yyfinal_ = 3, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
@@ -1380,31 +1386,31 @@ namespace yy {
   {
       switch (other.type_get ())
     {
-      case 116: // arg
+      case 118: // arg
         value.copy< AstArgument * > (other.value);
         break;
 
-      case 121: // non_empty_arg_list
-      case 122: // arg_list
-      case 123: // atom
+      case 123: // non_empty_arg_list
+      case 124: // arg_list
+      case 125: // atom
         value.copy< AstAtom * > (other.value);
         break;
 
-      case 125: // fact
+      case 127: // fact
         value.copy< AstClause * > (other.value);
         break;
 
-      case 140: // component_head
-      case 141: // component_body
-      case 142: // component
+      case 142: // component_head
+      case 143: // component_body
+      case 144: // component
         value.copy< AstComponent * > (other.value);
         break;
 
-      case 143: // comp_init
+      case 145: // comp_init
         value.copy< AstComponentInit * > (other.value);
         break;
 
-      case 139: // comp_type
+      case 141: // comp_type
         value.copy< AstComponentType * > (other.value);
         break;
 
@@ -1416,13 +1422,13 @@ namespace yy {
         value.copy< AstEnumType * > (other.value);
         break;
 
-      case 131: // exec_order_list
-      case 132: // exec_order
+      case 133: // exec_order_list
+      case 134: // exec_order
         value.copy< AstExecutionOrder * > (other.value);
         break;
 
-      case 133: // exec_plan_list
-      case 134: // exec_plan
+      case 135: // exec_plan_list
+      case 136: // exec_plan
         value.copy< AstExecutionPlan * > (other.value);
         break;
 
@@ -1430,9 +1436,9 @@ namespace yy {
         value.copy< AstFunctorDeclaration * > (other.value);
         break;
 
-      case 110: // non_empty_key_value_pairs
-      case 111: // key_value_pairs
-      case 115: // iodirective_body
+      case 112: // non_empty_key_value_pairs
+      case 113: // key_value_pairs
+      case 117: // iodirective_body
         value.copy< AstIO * > (other.value);
         break;
 
@@ -1440,20 +1446,25 @@ namespace yy {
         value.copy< AstLatticeAssociation * > (other.value);
         break;
 
-      case 108: // lattice_def
-      case 109: // lattice_def_type
+      case 110: // lattice_binary_def
+      case 111: // lattice_binary_def_type
         value.copy< AstLatticeBinaryFunction * > (other.value);
+        break;
+
+      case 108: // lattice_unary_def
+      case 109: // lattice_unary_def_type
+        value.copy< AstLatticeUnaryFunction * > (other.value);
         break;
 
       case 90: // pragma
         value.copy< AstPragma * > (other.value);
         break;
 
-      case 117: // condition
+      case 119: // condition
         value.copy< AstQuestionMark * > (other.value);
         break;
 
-      case 120: // recordlist
+      case 122: // recordlist
         value.copy< AstRecordInit * > (other.value);
         break;
 
@@ -1483,16 +1494,16 @@ namespace yy {
         value.copy< AstUnionType * > (other.value);
         break;
 
-      case 118: // functor_list
-      case 119: // functor_args
+      case 120: // functor_list
+      case 121: // functor_args
         value.copy< AstUserDefinedFunctor * > (other.value);
         break;
 
-      case 124: // literal
-      case 127: // term
-      case 128: // conjunction
-      case 129: // disjunction
-      case 130: // body
+      case 126: // literal
+      case 129: // term
+      case 130: // conjunction
+      case 131: // disjunction
+      case 132: // body
         value.copy< RuleBody * > (other.value);
         break;
 
@@ -1502,24 +1513,24 @@ namespace yy {
       case 7: // "relational operator"
       case 101: // functor_type
       case 102: // functor_typeargs
-      case 144: // comp_override
+      case 146: // comp_override
         value.copy< std::string > (other.value);
         break;
 
-      case 126: // head
+      case 128: // head
         value.copy< std::vector<AstAtom*> > (other.value);
         break;
 
-      case 135: // rule_def
-      case 136: // rule
+      case 137: // rule_def
+      case 138: // rule
         value.copy< std::vector<AstClause*> > (other.value);
         break;
 
-      case 114: // iodirective_list
+      case 116: // iodirective_list
         value.copy< std::vector<AstIO *> > (other.value);
         break;
 
-      case 112: // load_head
+      case 114: // load_head
         value.copy< std::vector<AstLoad *> > (other.value);
         break;
 
@@ -1529,12 +1540,12 @@ namespace yy {
         value.copy< std::vector<AstRelation *> > (other.value);
         break;
 
-      case 113: // store_head
+      case 115: // store_head
         value.copy< std::vector<AstStore *> > (other.value);
         break;
 
-      case 137: // type_param_list
-      case 138: // type_params
+      case 139: // type_param_list
+      case 140: // type_params
         value.copy< std::vector<AstTypeIdentifier> > (other.value);
         break;
 
@@ -1559,31 +1570,31 @@ namespace yy {
     (void) v;
       switch (this->type_get ())
     {
-      case 116: // arg
+      case 118: // arg
         value.copy< AstArgument * > (v);
         break;
 
-      case 121: // non_empty_arg_list
-      case 122: // arg_list
-      case 123: // atom
+      case 123: // non_empty_arg_list
+      case 124: // arg_list
+      case 125: // atom
         value.copy< AstAtom * > (v);
         break;
 
-      case 125: // fact
+      case 127: // fact
         value.copy< AstClause * > (v);
         break;
 
-      case 140: // component_head
-      case 141: // component_body
-      case 142: // component
+      case 142: // component_head
+      case 143: // component_body
+      case 144: // component
         value.copy< AstComponent * > (v);
         break;
 
-      case 143: // comp_init
+      case 145: // comp_init
         value.copy< AstComponentInit * > (v);
         break;
 
-      case 139: // comp_type
+      case 141: // comp_type
         value.copy< AstComponentType * > (v);
         break;
 
@@ -1595,13 +1606,13 @@ namespace yy {
         value.copy< AstEnumType * > (v);
         break;
 
-      case 131: // exec_order_list
-      case 132: // exec_order
+      case 133: // exec_order_list
+      case 134: // exec_order
         value.copy< AstExecutionOrder * > (v);
         break;
 
-      case 133: // exec_plan_list
-      case 134: // exec_plan
+      case 135: // exec_plan_list
+      case 136: // exec_plan
         value.copy< AstExecutionPlan * > (v);
         break;
 
@@ -1609,9 +1620,9 @@ namespace yy {
         value.copy< AstFunctorDeclaration * > (v);
         break;
 
-      case 110: // non_empty_key_value_pairs
-      case 111: // key_value_pairs
-      case 115: // iodirective_body
+      case 112: // non_empty_key_value_pairs
+      case 113: // key_value_pairs
+      case 117: // iodirective_body
         value.copy< AstIO * > (v);
         break;
 
@@ -1619,20 +1630,25 @@ namespace yy {
         value.copy< AstLatticeAssociation * > (v);
         break;
 
-      case 108: // lattice_def
-      case 109: // lattice_def_type
+      case 110: // lattice_binary_def
+      case 111: // lattice_binary_def_type
         value.copy< AstLatticeBinaryFunction * > (v);
+        break;
+
+      case 108: // lattice_unary_def
+      case 109: // lattice_unary_def_type
+        value.copy< AstLatticeUnaryFunction * > (v);
         break;
 
       case 90: // pragma
         value.copy< AstPragma * > (v);
         break;
 
-      case 117: // condition
+      case 119: // condition
         value.copy< AstQuestionMark * > (v);
         break;
 
-      case 120: // recordlist
+      case 122: // recordlist
         value.copy< AstRecordInit * > (v);
         break;
 
@@ -1662,16 +1678,16 @@ namespace yy {
         value.copy< AstUnionType * > (v);
         break;
 
-      case 118: // functor_list
-      case 119: // functor_args
+      case 120: // functor_list
+      case 121: // functor_args
         value.copy< AstUserDefinedFunctor * > (v);
         break;
 
-      case 124: // literal
-      case 127: // term
-      case 128: // conjunction
-      case 129: // disjunction
-      case 130: // body
+      case 126: // literal
+      case 129: // term
+      case 130: // conjunction
+      case 131: // disjunction
+      case 132: // body
         value.copy< RuleBody * > (v);
         break;
 
@@ -1681,24 +1697,24 @@ namespace yy {
       case 7: // "relational operator"
       case 101: // functor_type
       case 102: // functor_typeargs
-      case 144: // comp_override
+      case 146: // comp_override
         value.copy< std::string > (v);
         break;
 
-      case 126: // head
+      case 128: // head
         value.copy< std::vector<AstAtom*> > (v);
         break;
 
-      case 135: // rule_def
-      case 136: // rule
+      case 137: // rule_def
+      case 138: // rule
         value.copy< std::vector<AstClause*> > (v);
         break;
 
-      case 114: // iodirective_list
+      case 116: // iodirective_list
         value.copy< std::vector<AstIO *> > (v);
         break;
 
-      case 112: // load_head
+      case 114: // load_head
         value.copy< std::vector<AstLoad *> > (v);
         break;
 
@@ -1708,12 +1724,12 @@ namespace yy {
         value.copy< std::vector<AstRelation *> > (v);
         break;
 
-      case 113: // store_head
+      case 115: // store_head
         value.copy< std::vector<AstStore *> > (v);
         break;
 
-      case 137: // type_param_list
-      case 138: // type_params
+      case 139: // type_param_list
+      case 140: // type_params
         value.copy< std::vector<AstTypeIdentifier> > (v);
         break;
 
@@ -1829,6 +1845,13 @@ namespace yy {
 
   template <typename Base>
   parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const AstLatticeBinaryFunction * v, const location_type& l)
+    : Base (t)
+    , value (v)
+    , location (l)
+  {}
+
+  template <typename Base>
+  parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const AstLatticeUnaryFunction * v, const location_type& l)
     : Base (t)
     , value (v)
     , location (l)
@@ -2000,31 +2023,31 @@ namespace yy {
     // Type destructor.
     switch (yytype)
     {
-      case 116: // arg
+      case 118: // arg
         value.template destroy< AstArgument * > ();
         break;
 
-      case 121: // non_empty_arg_list
-      case 122: // arg_list
-      case 123: // atom
+      case 123: // non_empty_arg_list
+      case 124: // arg_list
+      case 125: // atom
         value.template destroy< AstAtom * > ();
         break;
 
-      case 125: // fact
+      case 127: // fact
         value.template destroy< AstClause * > ();
         break;
 
-      case 140: // component_head
-      case 141: // component_body
-      case 142: // component
+      case 142: // component_head
+      case 143: // component_body
+      case 144: // component
         value.template destroy< AstComponent * > ();
         break;
 
-      case 143: // comp_init
+      case 145: // comp_init
         value.template destroy< AstComponentInit * > ();
         break;
 
-      case 139: // comp_type
+      case 141: // comp_type
         value.template destroy< AstComponentType * > ();
         break;
 
@@ -2036,13 +2059,13 @@ namespace yy {
         value.template destroy< AstEnumType * > ();
         break;
 
-      case 131: // exec_order_list
-      case 132: // exec_order
+      case 133: // exec_order_list
+      case 134: // exec_order
         value.template destroy< AstExecutionOrder * > ();
         break;
 
-      case 133: // exec_plan_list
-      case 134: // exec_plan
+      case 135: // exec_plan_list
+      case 136: // exec_plan
         value.template destroy< AstExecutionPlan * > ();
         break;
 
@@ -2050,9 +2073,9 @@ namespace yy {
         value.template destroy< AstFunctorDeclaration * > ();
         break;
 
-      case 110: // non_empty_key_value_pairs
-      case 111: // key_value_pairs
-      case 115: // iodirective_body
+      case 112: // non_empty_key_value_pairs
+      case 113: // key_value_pairs
+      case 117: // iodirective_body
         value.template destroy< AstIO * > ();
         break;
 
@@ -2060,20 +2083,25 @@ namespace yy {
         value.template destroy< AstLatticeAssociation * > ();
         break;
 
-      case 108: // lattice_def
-      case 109: // lattice_def_type
+      case 110: // lattice_binary_def
+      case 111: // lattice_binary_def_type
         value.template destroy< AstLatticeBinaryFunction * > ();
+        break;
+
+      case 108: // lattice_unary_def
+      case 109: // lattice_unary_def_type
+        value.template destroy< AstLatticeUnaryFunction * > ();
         break;
 
       case 90: // pragma
         value.template destroy< AstPragma * > ();
         break;
 
-      case 117: // condition
+      case 119: // condition
         value.template destroy< AstQuestionMark * > ();
         break;
 
-      case 120: // recordlist
+      case 122: // recordlist
         value.template destroy< AstRecordInit * > ();
         break;
 
@@ -2103,16 +2131,16 @@ namespace yy {
         value.template destroy< AstUnionType * > ();
         break;
 
-      case 118: // functor_list
-      case 119: // functor_args
+      case 120: // functor_list
+      case 121: // functor_args
         value.template destroy< AstUserDefinedFunctor * > ();
         break;
 
-      case 124: // literal
-      case 127: // term
-      case 128: // conjunction
-      case 129: // disjunction
-      case 130: // body
+      case 126: // literal
+      case 129: // term
+      case 130: // conjunction
+      case 131: // disjunction
+      case 132: // body
         value.template destroy< RuleBody * > ();
         break;
 
@@ -2122,24 +2150,24 @@ namespace yy {
       case 7: // "relational operator"
       case 101: // functor_type
       case 102: // functor_typeargs
-      case 144: // comp_override
+      case 146: // comp_override
         value.template destroy< std::string > ();
         break;
 
-      case 126: // head
+      case 128: // head
         value.template destroy< std::vector<AstAtom*> > ();
         break;
 
-      case 135: // rule_def
-      case 136: // rule
+      case 137: // rule_def
+      case 138: // rule
         value.template destroy< std::vector<AstClause*> > ();
         break;
 
-      case 114: // iodirective_list
+      case 116: // iodirective_list
         value.template destroy< std::vector<AstIO *> > ();
         break;
 
-      case 112: // load_head
+      case 114: // load_head
         value.template destroy< std::vector<AstLoad *> > ();
         break;
 
@@ -2149,12 +2177,12 @@ namespace yy {
         value.template destroy< std::vector<AstRelation *> > ();
         break;
 
-      case 113: // store_head
+      case 115: // store_head
         value.template destroy< std::vector<AstStore *> > ();
         break;
 
-      case 137: // type_param_list
-      case 138: // type_params
+      case 139: // type_param_list
+      case 140: // type_params
         value.template destroy< std::vector<AstTypeIdentifier> > ();
         break;
 
@@ -2185,31 +2213,31 @@ namespace yy {
     super_type::move(s);
       switch (this->type_get ())
     {
-      case 116: // arg
+      case 118: // arg
         value.move< AstArgument * > (s.value);
         break;
 
-      case 121: // non_empty_arg_list
-      case 122: // arg_list
-      case 123: // atom
+      case 123: // non_empty_arg_list
+      case 124: // arg_list
+      case 125: // atom
         value.move< AstAtom * > (s.value);
         break;
 
-      case 125: // fact
+      case 127: // fact
         value.move< AstClause * > (s.value);
         break;
 
-      case 140: // component_head
-      case 141: // component_body
-      case 142: // component
+      case 142: // component_head
+      case 143: // component_body
+      case 144: // component
         value.move< AstComponent * > (s.value);
         break;
 
-      case 143: // comp_init
+      case 145: // comp_init
         value.move< AstComponentInit * > (s.value);
         break;
 
-      case 139: // comp_type
+      case 141: // comp_type
         value.move< AstComponentType * > (s.value);
         break;
 
@@ -2221,13 +2249,13 @@ namespace yy {
         value.move< AstEnumType * > (s.value);
         break;
 
-      case 131: // exec_order_list
-      case 132: // exec_order
+      case 133: // exec_order_list
+      case 134: // exec_order
         value.move< AstExecutionOrder * > (s.value);
         break;
 
-      case 133: // exec_plan_list
-      case 134: // exec_plan
+      case 135: // exec_plan_list
+      case 136: // exec_plan
         value.move< AstExecutionPlan * > (s.value);
         break;
 
@@ -2235,9 +2263,9 @@ namespace yy {
         value.move< AstFunctorDeclaration * > (s.value);
         break;
 
-      case 110: // non_empty_key_value_pairs
-      case 111: // key_value_pairs
-      case 115: // iodirective_body
+      case 112: // non_empty_key_value_pairs
+      case 113: // key_value_pairs
+      case 117: // iodirective_body
         value.move< AstIO * > (s.value);
         break;
 
@@ -2245,20 +2273,25 @@ namespace yy {
         value.move< AstLatticeAssociation * > (s.value);
         break;
 
-      case 108: // lattice_def
-      case 109: // lattice_def_type
+      case 110: // lattice_binary_def
+      case 111: // lattice_binary_def_type
         value.move< AstLatticeBinaryFunction * > (s.value);
+        break;
+
+      case 108: // lattice_unary_def
+      case 109: // lattice_unary_def_type
+        value.move< AstLatticeUnaryFunction * > (s.value);
         break;
 
       case 90: // pragma
         value.move< AstPragma * > (s.value);
         break;
 
-      case 117: // condition
+      case 119: // condition
         value.move< AstQuestionMark * > (s.value);
         break;
 
-      case 120: // recordlist
+      case 122: // recordlist
         value.move< AstRecordInit * > (s.value);
         break;
 
@@ -2288,16 +2321,16 @@ namespace yy {
         value.move< AstUnionType * > (s.value);
         break;
 
-      case 118: // functor_list
-      case 119: // functor_args
+      case 120: // functor_list
+      case 121: // functor_args
         value.move< AstUserDefinedFunctor * > (s.value);
         break;
 
-      case 124: // literal
-      case 127: // term
-      case 128: // conjunction
-      case 129: // disjunction
-      case 130: // body
+      case 126: // literal
+      case 129: // term
+      case 130: // conjunction
+      case 131: // disjunction
+      case 132: // body
         value.move< RuleBody * > (s.value);
         break;
 
@@ -2307,24 +2340,24 @@ namespace yy {
       case 7: // "relational operator"
       case 101: // functor_type
       case 102: // functor_typeargs
-      case 144: // comp_override
+      case 146: // comp_override
         value.move< std::string > (s.value);
         break;
 
-      case 126: // head
+      case 128: // head
         value.move< std::vector<AstAtom*> > (s.value);
         break;
 
-      case 135: // rule_def
-      case 136: // rule
+      case 137: // rule_def
+      case 138: // rule
         value.move< std::vector<AstClause*> > (s.value);
         break;
 
-      case 114: // iodirective_list
+      case 116: // iodirective_list
         value.move< std::vector<AstIO *> > (s.value);
         break;
 
-      case 112: // load_head
+      case 114: // load_head
         value.move< std::vector<AstLoad *> > (s.value);
         break;
 
@@ -2334,12 +2367,12 @@ namespace yy {
         value.move< std::vector<AstRelation *> > (s.value);
         break;
 
-      case 113: // store_head
+      case 115: // store_head
         value.move< std::vector<AstStore *> > (s.value);
         break;
 
-      case 137: // type_param_list
-      case 138: // type_params
+      case 139: // type_param_list
+      case 140: // type_params
         value.move< std::vector<AstTypeIdentifier> > (s.value);
         break;
 
@@ -2928,7 +2961,7 @@ namespace yy {
 
 
 } // yy
-#line 2932 "parser.hh" // lalr1.cc:377
+#line 2965 "parser.hh" // lalr1.cc:377
 
 
 

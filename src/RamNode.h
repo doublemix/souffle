@@ -34,6 +34,7 @@ enum RamNodeType {
 
 	// Lattice Association and Binary functions
 	RN_LatticeAssociation,
+	RN_LatticeUnaryFunction,
 	RN_LatticeBinaryFunction,
 
     // Values
@@ -42,6 +43,7 @@ enum RamNodeType {
     RN_Number,
     RN_IntrinsicOperator,
     RN_UserDefinedOperator,
+	RN_LatticeUnaryFunctor,
 	RN_LatticeBinaryFunctor,
     RN_AutoIncrement,
     RN_Pack,

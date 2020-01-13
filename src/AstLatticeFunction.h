@@ -33,10 +33,150 @@
 
 namespace souffle {
 
-/**
- * Subclass of AstArgument that represents an Lattice Binary function/operation
+/*
+ * Represents a lattice function
  */
-class AstLatticeBinaryFunction: public AstNode {
+class AstLatticeFunction: public AstNode {
+public:
+	AstLatticeFunction() = default;
+	AstLatticeFunction(std::string name) :
+			name(std::move(name)) {
+	}
+
+	/** get name */
+	const std::string& getName() const {
+		return name;
+	}
+
+	/** set name */
+	void setName(const std::string& n) {
+		name = n;
+	}
+protected:
+	/** name of lattice binary function */
+	std::string name;
+};
+
+/**
+ * represents a lattice unary function
+ */
+class AstLatticeUnaryFunction: public AstLatticeFunction {
+public:
+	struct UnaryMap {
+		AstArgument* first;
+		AstArgument* output;
+
+		bool operator==(const UnaryMap& other) const {
+			return this == &other
+					|| (first == other.first && output == other.output);
+		}
+	};
+
+	AstLatticeUnaryFunction() = default;
+	AstLatticeUnaryFunction(std::string name) :
+			AstLatticeFunction(name) {
+	}
+
+	~AstLatticeUnaryFunction() override = default;
+
+	/** get name */
+//	const std::string& getName() const {
+//		return name;
+//	}
+//
+//	/** set name */
+//	void setName(const std::string& n) {
+//		name = n;
+//	}
+	/** get output */
+	const std::string& getOutput() const {
+		return func_output;
+	}
+
+	/** set output **/
+	void setOutput(const std::string& output) {
+		func_output = output;
+	}
+
+	/** get arguments */
+	const std::string& getArgument() const {
+		assert(arg!="");
+		return arg;
+	}
+
+	/** set argument to argument list */
+	void setArg(const std::string& a) {
+		arg = a;
+	}
+
+	/** add argument to argument list */
+	void addUnaryMap(AstArgument* first, AstArgument* output) {
+		unarymap.push_back( { first, output });
+	}
+
+	const std::vector<UnaryMap>& getUnaryMap() const {
+		return unarymap;
+	}
+
+	/** print user-defined functor */
+	void print(std::ostream& os) const override {
+		os << "LatticeUnaryFunction: &" << name << " (";
+		os << arg;
+		os << "):";
+		os << func_output;
+		os << "{\n";
+		for (auto& um : unarymap) {
+			os << "(";
+			um.first->print(os);
+			os << ")=>";
+			um.output->print(os);
+			os << "\n";
+		}
+		os << "}";
+	}
+
+	std::vector<const AstNode*> getChildNodes() const override {
+		auto res = std::vector<const AstNode*>();
+		// TODO
+		return res;
+	}
+
+	AstLatticeUnaryFunction* clone() const override {
+		// TODO
+		AstLatticeUnaryFunction* res = new AstLatticeUnaryFunction(name);
+		res->setSrcLoc(getSrcLoc());
+		return res;
+	}
+
+	/** Mutates this node */
+	void apply(const AstNodeMapper& map) override {
+		// TODO
+	}
+
+protected:
+	/** name of lattice binary function */
+//	std::string name;
+	/** arguments of lattice binary function */
+	std::string arg;
+
+	/** output of lattice binary function **/
+	std::string func_output;
+
+	/** lattice unary map **/
+	std::vector<UnaryMap> unarymap;
+
+	/** Implements the node comparison for this node type */
+	bool equal(const AstNode& node) const override {
+		assert(nullptr != dynamic_cast<const AstLatticeUnaryFunction*>(&node));
+		const auto& other = static_cast<const AstLatticeUnaryFunction&>(node);
+		return name == other.getName() && unarymap == other.unarymap;
+	}
+};
+
+/**
+ * Subclass of AstArgument that represents a Lattice Binary function
+ */
+class AstLatticeBinaryFunction: public AstLatticeFunction {
 public:
 	/** The type utilized to model a field */
 	struct PairMap {
@@ -58,21 +198,20 @@ public:
 	AstLatticeBinaryFunction() = default;
 
 	AstLatticeBinaryFunction(std::string name) :
-			name(std::move(name)) {
+			AstLatticeFunction(name) {
 	}
 
 	~AstLatticeBinaryFunction() override = default;
 
 	/** get name */
-	const std::string& getName() const {
-		return name;
-	}
-
-	/** set name */
-	void setName(const std::string& n) {
-		name = n;
-	}
-
+//	const std::string& getName() const {
+//		return name;
+//	}
+//
+//	/** set name */
+//	void setName(const std::string& n) {
+//		name = n;
+//	}
 	/** get output */
 	const std::string& getOutput() const {
 		return func_output;
@@ -90,6 +229,7 @@ public:
 
 	/** get arguments */
 	const std::vector<std::string>& getArguments() const {
+		assert(args.size()==2);
 		return args;
 	}
 
@@ -110,7 +250,7 @@ public:
 
 	/** print user-defined functor */
 	void print(std::ostream& os) const override {
-		os << "LatticeBinaryFunction: @" << name << " (";
+		os << "LatticeBinaryFunction: &" << name << " (";
 		os << args[0];
 		for (size_t i = 1; i < args.size(); i++) {
 			os << "," << args[i];
@@ -150,8 +290,7 @@ public:
 
 protected:
 	/** name of lattice binary function */
-	std::string name;
-
+//	std::string name;
 	/** arguments of lattice binary function */
 	std::vector<std::string> args;
 

@@ -8,7 +8,7 @@
  ************************************************************************/
 #pragma once
 
-#include "RamLatticeBinaryFunction.h"
+#include "RamLatticeFunction.h"
 
 namespace souffle {
 /**
@@ -18,6 +18,77 @@ class RamLatticeFunctor: public RamValue {
 public:
 	RamLatticeFunctor(RamNodeType type) :
 			RamValue(type) {
+	}
+};
+
+/**
+ * Lattice unary functor: different from lattice binary functor,
+ * it can only support one argument
+ */
+class RamLatticeUnaryFunctor: public RamLatticeFunctor {
+private:
+	std::string name;
+
+	std::unique_ptr<RamValue> ref;
+
+	std::shared_ptr<RamLatticeUnaryFunction> func;
+
+public:
+
+	RamLatticeUnaryFunctor(std::string n) :
+			RamLatticeFunctor(RN_LatticeUnaryFunctor), name(n) {
+	}
+
+	RamLatticeUnaryFunctor(std::string n, std::unique_ptr<RamValue> r) :
+			RamLatticeFunctor(RN_LatticeUnaryFunctor), name(n), ref(
+					std::move(r)) {
+	}
+
+	/** Print */
+	void print(std::ostream& os) const override {
+		os << name << "( ";
+		os << *ref;
+		os << " )";
+	}
+
+	void setRef(std::unique_ptr<RamValue> r) {
+		ref = std::move(r);
+	}
+
+	const RamValue* getRef() const {
+		return ref.get();
+	}
+
+	void setFunc(std::shared_ptr<RamLatticeUnaryFunction> f) {
+		func = f;
+	}
+
+	const RamLatticeUnaryFunction& getFunc() const {
+		return *func;
+	}
+
+	/** Obtain list of child nodes */
+	std::vector<const RamNode*> getChildNodes() const override {
+		return std::vector<const RamNode*>();  // no child nodes
+	}
+
+	/** Create clone */
+	RamLatticeUnaryFunctor* clone() const override {
+		return new RamLatticeUnaryFunctor(name,
+				std::unique_ptr<RamValue>(ref->clone()));
+	}
+
+	/** Apply mapper */
+	void apply(const RamNodeMapper& map) override {
+		//TODO
+	}
+
+protected:
+	/** Check equality */
+	bool equal(const RamNode& node) const override {
+		assert(nullptr != dynamic_cast<const RamLatticeUnaryFunctor*>(&node));
+		const auto& other = static_cast<const RamLatticeUnaryFunctor&>(node);
+		return name == other.name && ref.get() == other.ref.get();
 	}
 };
 
@@ -136,7 +207,7 @@ public:
 		func = f;
 	}
 
-	const RamLatticeBinaryFunction& getFunc() {
+	const RamLatticeBinaryFunction& getFunc() const {
 		return *func;
 	}
 

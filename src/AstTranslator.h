@@ -18,10 +18,8 @@
 
 #include "AstArgument.h"
 #include "AstRelationIdentifier.h"
-#include "AstLatticeBinaryFunction.h"
 #include "RamRelation.h"
 #include "RamLatticeAssociation.h"
-#include "RamLatticeBinaryFunction.h"
 #include "RelationRepresentation.h"
 #include "SymbolMask.h"
 #include "TypeSystem.h"
@@ -34,6 +32,9 @@
 #include <string>
 #include <utility>
 #include <locale>
+
+#include "AstLatticeFunction.h"
+#include "RamLatticeFunction.h"
 
 namespace souffle {
 
@@ -370,7 +371,10 @@ private:
 	/** translate an AST lattice association with lattice binary functions into a RAM lattice **/
 	std::unique_ptr<RamLatticeAssociation> translateLatticeAssoc(const AstTranslationUnit& tu);
 
-	/** translate an AST lattice binary function declaration into a RAM LBF **/
+	/** translate an AST lattice Unary Function declaration into a RAM LUF **/
+	std::unique_ptr<RamLatticeUnaryFunction> translateLatticeUnaryFunction(const AstLatticeUnaryFunction* AstUnary);
+
+	/** translate an AST Lattice Binary Function declaration into a RAM LBF **/
 	std::unique_ptr<RamLatticeBinaryFunction> translateLatticeBinaryFunction(const AstLatticeBinaryFunction* AstB);
 
 	/** translate AST clause to RAM code */

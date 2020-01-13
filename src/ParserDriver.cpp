@@ -120,11 +120,11 @@ void ParserDriver::addPragma(std::unique_ptr<AstPragma> p) {
 	translationUnit->getProgram()->addPragma(std::move(p));
 }
 
-void ParserDriver::addLatticeBinaryFunction(
-		std::unique_ptr<AstLatticeBinaryFunction> f) {
+void ParserDriver::addLatticeFunction(
+		std::unique_ptr<AstLatticeFunction> f) {
 	const std::string& name = f->getName();
-	if (AstLatticeBinaryFunction* prev =
-			translationUnit->getProgram()->getLatticeBinaryFunction(name)) {
+	if (AstLatticeFunction* prev =
+			translationUnit->getProgram()->getLatticeFunction(name)) {
 		Diagnostic err(Diagnostic::ERROR,
 				DiagnosticMessage(
 						"Redefinition of Lattice Binary Function: "
@@ -132,9 +132,25 @@ void ParserDriver::addLatticeBinaryFunction(
 				{ DiagnosticMessage("Previous definition", prev->getSrcLoc()) });
 		translationUnit->getErrorReport().addDiagnostic(err);
 	} else {
-		translationUnit->getProgram()->addLatticeBinaryFunction(std::move(f));
+		translationUnit->getProgram()->addLatticeFunction(std::move(f));
 	}
 }
+
+//void ParserDriver::addLatticeBinaryFunction(
+//		std::unique_ptr<AstLatticeBinaryFunction> f) {
+//	const std::string& name = f->getName();
+//	if (AstLatticeBinaryFunction* prev =
+//			translationUnit->getProgram()->getLatticeBinaryFunction(name)) {
+//		Diagnostic err(Diagnostic::ERROR,
+//				DiagnosticMessage(
+//						"Redefinition of Lattice Binary Function: "
+//								+ toString(name), f->getSrcLoc()),
+//				{ DiagnosticMessage("Previous definition", prev->getSrcLoc()) });
+//		translationUnit->getErrorReport().addDiagnostic(err);
+//	} else {
+//		translationUnit->getProgram()->addLatticeBinaryFunction(std::move(f));
+//	}
+//}
 
 void ParserDriver::addLatticeAssociation(
 		std::unique_ptr<AstLatticeAssociation> f) {
