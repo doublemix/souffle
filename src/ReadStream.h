@@ -17,6 +17,7 @@
 #include "IODirectives.h"
 #include "RamTypes.h"
 #include "SymbolMask.h"
+#include "EnumTypeMask.h"
 #include "SymbolTable.h"
 
 #include <memory>
@@ -25,8 +26,8 @@ namespace souffle {
 
 class ReadStream {
 public:
-    ReadStream(const SymbolMask& symbolMask, SymbolTable& symbolTable, const bool prov)
-            : symbolMask(symbolMask), symbolTable(symbolTable), isProvenance(prov),
+    ReadStream(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, SymbolTable& symbolTable, const bool prov)
+            : symbolMask(symbolMask), enumTypeMask(enumTypeMask), symbolTable(symbolTable), isProvenance(prov),
               arity(symbolMask.getArity() - (prov ? 2 : 0)) {}
     template <typename T>
     void readAll(T& relation) {
@@ -43,6 +44,7 @@ public:
 protected:
     virtual std::unique_ptr<RamDomain[]> readNextTuple() = 0;
     const SymbolMask& symbolMask;
+    const EnumTypeMask& enumTypeMask;
     SymbolTable& symbolTable;
     const bool isProvenance;
     const uint8_t arity;
@@ -50,7 +52,7 @@ protected:
 
 class ReadStreamFactory {
 public:
-    virtual std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, SymbolTable& symbolTable,
+    virtual std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance) = 0;
     virtual const std::string& getName() const = 0;
     virtual ~ReadStreamFactory() = default;

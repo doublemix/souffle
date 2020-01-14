@@ -17,6 +17,7 @@
 #include "IODirectives.h"
 #include "RamTypes.h"
 #include "SymbolMask.h"
+#include "EnumTypeMask.h"
 #include "SymbolTable.h"
 
 #include <cassert>
@@ -25,9 +26,9 @@ namespace souffle {
 
 class WriteStream {
 public:
-    WriteStream(const SymbolMask& symbolMask, const SymbolTable& symbolTable, const bool prov,
+    WriteStream(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, const SymbolTable& symbolTable, const bool prov,
             bool summary = false)
-            : symbolMask(symbolMask), symbolTable(symbolTable), isProvenance(prov), summary(summary),
+            : symbolMask(symbolMask), enumTypeMask(enumTypeMask), symbolTable(symbolTable), isProvenance(prov), summary(summary),
               arity(symbolMask.getArity() - (prov ? 2 : 0)) {}
     template <typename T>
     void writeAll(const T& relation) {
@@ -55,6 +56,7 @@ public:
 
 protected:
     const SymbolMask& symbolMask;
+    const EnumTypeMask& enumTypeMask;
     const SymbolTable& symbolTable;
     const bool isProvenance;
     const bool summary;
@@ -73,7 +75,7 @@ protected:
 
 class WriteStreamFactory {
 public:
-    virtual std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask,
+    virtual std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask,
             const SymbolTable& symbolTable, const IODirectives& ioDirectives, const bool provenance) = 0;
     virtual const std::string& getName() const = 0;
     virtual ~WriteStreamFactory() = default;

@@ -978,7 +978,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 					InterpreterRelation& relation = interpreter.getRelation(
 							load.getRelation());
 					IOSystem::getInstance().getReader(
-							load.getRelation().getSymbolMask(),
+							load.getRelation().getSymbolMask(), load.getRelation().getEnumTypeMask(),
 							interpreter.getSymbolTable(), ioDirectives,
 							Global::config().has("provenance"))->readAll(
 							relation);
@@ -999,7 +999,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			for (IODirectives ioDirectives : store.getIODirectives()) {
 				try {
 					IOSystem::getInstance().getWriter(
-							store.getRelation().getSymbolMask(),
+							store.getRelation().getSymbolMask(), store.getRelation().getEnumTypeMask(),
 							interpreter.getSymbolTable(), ioDirectives,
 							Global::config().has("provenance"))->writeAll(
 							interpreter.getRelation(store.getRelation()));

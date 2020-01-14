@@ -360,8 +360,8 @@ private:
     }
 
     void printRelationOutput(
-            const SymbolMask& symMask, const IODirectives& ioDir, const Relation& rel) override {
-        WriteCoutCSVFactory().getWriter(symMask, prog.getSymbolTable(), ioDir, true)->writeAll(rel);
+            const SymbolMask& symMask, const EnumTypeMask& enumTypeMask, const IODirectives& ioDir, const Relation& rel) override {
+        WriteCoutCSVFactory().getWriter(symMask, enumTypeMask, prog.getSymbolTable(), ioDir, true)->writeAll(rel);
     }
 };
 

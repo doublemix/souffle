@@ -270,6 +270,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 								"'\\n';}\n";
 			}
 			out << "}\n";
+			//TODO: const EnumTypeMask& enumTypeMask
 			PRINT_END_COMMENT(out);
 		}
 

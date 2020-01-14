@@ -48,6 +48,7 @@
 #include "RamTypes.h"
 #include "SrcLocation.h"
 #include "SymbolMask.h"
+#include "EnumTypeMask.h"
 #include "TypeSystem.h"
 #include "Util.h"
 #include <algorithm>
@@ -97,8 +98,22 @@ SymbolMask AstTranslator::getSymbolMask(const AstRelation& rel) {
 		/* changed to see Enum type as symbol type,
 		 not consider other type of lattice elements like set of integers */
 		const Type& t = typeEnv->getType(rel.getAttribute(i)->getTypeName());
-		bool isSymbol = isSymbolType(t) || isEnumType(t);
+		bool isSymbol = isSymbolType(t);
 		res.setSymbol(i, isSymbol);
+	}
+	return res;
+}
+
+/** get enum type mask */
+EnumTypeMask AstTranslator::getEnumTypeMask(const AstRelation& rel) {
+	auto arity = rel.getArity();
+	EnumTypeMask res(arity);
+	for (size_t i = 0; i < arity; i++) {
+		/* changed to see Enum type as symbol type,
+		 not consider other type of lattice elements like set of integers */
+		const Type& t = typeEnv->getType(rel.getAttribute(i)->getTypeName());
+		bool isEnum = isEnumType(t);
+		res.setEnumType(i, isEnum);
 	}
 	return res;
 }
@@ -237,13 +252,13 @@ std::unique_ptr<RamRelationReference> AstTranslator::createRelationReference(
 		const std::string name, const size_t arity,
 		const std::vector<std::string> attributeNames,
 		const std::vector<std::string> attributeTypeQualifiers,
-		const SymbolMask mask, const RelationRepresentation representation,
+		const SymbolMask mask, const EnumTypeMask enumTypeMask, const RelationRepresentation representation,
 		const bool latticeFlag) {
 	const RamRelation* ramRel = ramProg->getRelation(name);
 	if (ramRel == nullptr) {
 		ramProg->addRelation(
 				std::make_unique<RamRelation>(name, arity, attributeNames,
-						attributeTypeQualifiers, mask, representation,
+						attributeTypeQualifiers, mask, enumTypeMask, representation,
 						latticeFlag));
 		ramRel = ramProg->getRelation(name);
 		assert(ramRel != nullptr && "cannot find relation");
@@ -253,7 +268,7 @@ std::unique_ptr<RamRelationReference> AstTranslator::createRelationReference(
 
 std::unique_ptr<RamRelationReference> AstTranslator::createRelationReference(
 		const std::string name, const size_t arity) {
-	return createRelationReference(name, arity, { }, { }, SymbolMask(arity),
+	return createRelationReference(name, arity, { }, { }, SymbolMask(arity), EnumTypeMask(arity),
 			{ });
 }
 
@@ -284,7 +299,7 @@ std::unique_ptr<RamRelationReference> AstTranslator::translateRelation(
 	return createRelationReference(
 			relationNamePrefix + getRelationName(rel->getName()),
 			rel->getArity(), attributeNames, attributeTypeQualifiers,
-			getSymbolMask(*rel), rel->getRepresentation(), rel->isLattice());
+			getSymbolMask(*rel), getEnumTypeMask(*rel), rel->getRepresentation(), rel->isLattice());
 }
 
 std::unique_ptr<RamRelationReference> AstTranslator::translateDeltaRelation(

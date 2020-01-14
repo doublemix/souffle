@@ -18,6 +18,7 @@
 #include "RamTypes.h"
 #include "ReadStream.h"
 #include "SymbolMask.h"
+#include "EnumTypeMask.h"
 #include "SymbolTable.h"
 #include "Util.h"
 
@@ -37,9 +38,9 @@ namespace souffle {
 
 class ReadStreamCSV : public ReadStream {
 public:
-    ReadStreamCSV(std::istream& file, const SymbolMask& symbolMask, SymbolTable& symbolTable,
+    ReadStreamCSV(std::istream& file, const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance = false)
-            : ReadStream(symbolMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
+            : ReadStream(symbolMask, enumTypeMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
               file(file), lineNumber(0), inputMap(getInputColumnMap(ioDirectives, arity)) {
         while (inputMap.size() < arity) {
             int size = inputMap.size();
@@ -153,9 +154,9 @@ protected:
 
 class ReadFileCSV : public ReadStreamCSV {
 public:
-    ReadFileCSV(const SymbolMask& symbolMask, SymbolTable& symbolTable, const IODirectives& ioDirectives,
+    ReadFileCSV(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, SymbolTable& symbolTable, const IODirectives& ioDirectives,
             const bool provenance = false)
-            : ReadStreamCSV(fileHandle, symbolMask, symbolTable, ioDirectives, provenance),
+            : ReadStreamCSV(fileHandle, symbolMask, enumTypeMask, symbolTable, ioDirectives, provenance),
               baseName(souffle::baseName(getFileName(ioDirectives))),
               fileHandle(getFileName(ioDirectives), std::ios::in | std::ios::binary) {
         if (!ioDirectives.has("intermediate")) {
@@ -205,9 +206,9 @@ protected:
 
 class ReadCinCSVFactory : public ReadStreamFactory {
 public:
-    std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, SymbolTable& symbolTable,
+    std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance) override {
-        return std::make_unique<ReadStreamCSV>(std::cin, symbolMask, symbolTable, ioDirectives, provenance);
+        return std::make_unique<ReadStreamCSV>(std::cin, symbolMask, enumTypeMask, symbolTable, ioDirectives, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "stdin";
@@ -218,9 +219,9 @@ public:
 
 class ReadFileCSVFactory : public ReadStreamFactory {
 public:
-    std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, SymbolTable& symbolTable,
+    std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance) override {
-        return std::make_unique<ReadFileCSV>(symbolMask, symbolTable, ioDirectives, provenance);
+        return std::make_unique<ReadFileCSV>(symbolMask, enumTypeMask, symbolTable, ioDirectives, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "file";

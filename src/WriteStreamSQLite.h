@@ -15,6 +15,7 @@
 #pragma once
 
 #include "SymbolMask.h"
+#include "EnumTypeMask.h"
 #include "SymbolTable.h"
 #include "WriteStream.h"
 
@@ -30,8 +31,8 @@ namespace souffle {
 class WriteStreamSQLite : public WriteStream {
 public:
     WriteStreamSQLite(const std::string& dbFilename, const std::string& relationName,
-            const SymbolMask& symbolMask, const SymbolTable& symbolTable, const bool provenance)
-            : WriteStream(symbolMask, symbolTable, provenance), dbFilename(dbFilename),
+            const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, const SymbolTable& symbolTable, const bool provenance)
+            : WriteStream(symbolMask, enumTypeMask, symbolTable, provenance), dbFilename(dbFilename),
               relationName(relationName) {
         openDB();
         createTables();
@@ -256,11 +257,11 @@ private:
 
 class WriteSQLiteFactory : public WriteStreamFactory {
 public:
-    std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
+    std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, const SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance) override {
         std::string dbName = ioDirectives.get("dbname");
         std::string relationName = ioDirectives.getRelationName();
-        return std::make_unique<WriteStreamSQLite>(dbName, relationName, symbolMask, symbolTable, provenance);
+        return std::make_unique<WriteStreamSQLite>(dbName, relationName, symbolMask, enumTypeMask, symbolTable, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "sqlite";

@@ -17,6 +17,7 @@
 #include "IODirectives.h"
 #include "ParallelUtils.h"
 #include "SymbolMask.h"
+#include "EnumTypeMask.h"
 #include "SymbolTable.h"
 #include "WriteStream.h"
 #ifdef USE_LIBZ
@@ -43,9 +44,9 @@ protected:
 
 class WriteFileCSV : public WriteStreamCSV, public WriteStream {
 public:
-    WriteFileCSV(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
+    WriteFileCSV(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, const SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance = false)
-            : WriteStream(symbolMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
+            : WriteStream(symbolMask, enumTypeMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
               file(ioDirectives.getFileName(), std::ios::out | std::ios::binary) {
         if (ioDirectives.has("headers") && ioDirectives.get("headers") == "true") {
             file << ioDirectives.get("attributeNames") << std::endl;
@@ -65,6 +66,8 @@ protected:
     void writeNextTuple(const RamDomain* tuple) override {
         if (symbolMask.isSymbol(0)) {
             file << symbolTable.unsafeResolve(tuple[0]);
+        } else if (enumTypeMask.isEnumType(0)) {
+        	file << symbolTable.enumTypeResolve(tuple[0]);
         } else {
             file << tuple[0];
         }
@@ -72,6 +75,8 @@ protected:
             file << delimiter;
             if (symbolMask.isSymbol(col)) {
                 file << symbolTable.unsafeResolve(tuple[col]);
+            } else if (enumTypeMask.isEnumType(col)) {
+            	file << symbolTable.enumTypeResolve(tuple[col]);
             } else {
                 file << tuple[col];
             }
@@ -83,9 +88,9 @@ protected:
 #ifdef USE_LIBZ
 class WriteGZipFileCSV : public WriteStreamCSV, public WriteStream {
 public:
-    WriteGZipFileCSV(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
+    WriteGZipFileCSV(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, const SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance = false)
-            : WriteStream(symbolMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
+            : WriteStream(symbolMask, enumTypeMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
               file(ioDirectives.getFileName(), std::ios::out | std::ios::binary) {
         if (ioDirectives.has("headers") && ioDirectives.get("headers") == "true") {
             file << ioDirectives.get("attributeNames") << std::endl;
@@ -102,6 +107,8 @@ protected:
     void writeNextTuple(const RamDomain* tuple) override {
         if (symbolMask.isSymbol(0)) {
             file << symbolTable.unsafeResolve(tuple[0]);
+        } else if (enumTypeMask.isEnumType(0)) {
+        	file << symbolTable.enumTypeResolve(tuple[0]);
         } else {
             file << tuple[0];
         }
@@ -109,6 +116,8 @@ protected:
             file << delimiter;
             if (symbolMask.isSymbol(col)) {
                 file << symbolTable.unsafeResolve(tuple[col]);
+            } else if (enumTypeMask.isEnumType(col)) {
+            	file << symbolTable.enumTypeResolve(tuple[col]);
             } else {
                 file << tuple[col];
             }
@@ -123,9 +132,9 @@ protected:
 
 class WriteCoutCSV : public WriteStreamCSV, public WriteStream {
 public:
-    WriteCoutCSV(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
+    WriteCoutCSV(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, const SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance = false)
-            : WriteStream(symbolMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)) {
+            : WriteStream(symbolMask, enumTypeMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)) {
         std::cout << "---------------\n" << ioDirectives.getRelationName();
         if (ioDirectives.has("headers") && ioDirectives.get("headers") == "true") {
             std::cout << "\n" << ioDirectives.get("attributeNames");
@@ -145,6 +154,8 @@ protected:
     void writeNextTuple(const RamDomain* tuple) override {
         if (symbolMask.isSymbol(0)) {
             std::cout << symbolTable.unsafeResolve(tuple[0]);
+        } else if (enumTypeMask.isEnumType(0)) {
+        	std::cout << symbolTable.enumTypeResolve(tuple[0]);
         } else {
             std::cout << tuple[0];
         }
@@ -152,6 +163,8 @@ protected:
             std::cout << delimiter;
             if (symbolMask.isSymbol(col)) {
                 std::cout << symbolTable.unsafeResolve(tuple[col]);
+            } else if (enumTypeMask.isEnumType(col)) {
+            	std::cout << symbolTable.enumTypeResolve(tuple[col]);
             } else {
                 std::cout << tuple[col];
             }
@@ -165,7 +178,7 @@ protected:
 class WriteCoutPrintSize : public WriteStream {
 public:
     WriteCoutPrintSize(const IODirectives& ioDirectives)
-            : WriteStream({}, {}, false, true), lease(souffle::getOutputLock().acquire()) {
+            : WriteStream({}, {}, {}, false, true), lease(souffle::getOutputLock().acquire()) {
         std::cout << ioDirectives.getRelationName() << "\t";
     }
 
@@ -189,14 +202,14 @@ protected:
 
 class WriteFileCSVFactory : public WriteStreamFactory {
 public:
-    std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
+    std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, const SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance) override {
 #ifdef USE_LIBZ
         if (ioDirectives.has("compress")) {
-            return std::make_unique<WriteGZipFileCSV>(symbolMask, symbolTable, ioDirectives, provenance);
+            return std::make_unique<WriteGZipFileCSV>(symbolMask, enumTypeMask, symbolTable, ioDirectives, provenance);
         }
 #endif
-        return std::make_unique<WriteFileCSV>(symbolMask, symbolTable, ioDirectives, provenance);
+        return std::make_unique<WriteFileCSV>(symbolMask, enumTypeMask, symbolTable, ioDirectives, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "file";
@@ -207,9 +220,9 @@ public:
 
 class WriteCoutCSVFactory : public WriteStreamFactory {
 public:
-    std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
+    std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const EnumTypeMask& enumTypeMask, const SymbolTable& symbolTable,
             const IODirectives& ioDirectives, const bool provenance) override {
-        return std::make_unique<WriteCoutCSV>(symbolMask, symbolTable, ioDirectives, provenance);
+        return std::make_unique<WriteCoutCSV>(symbolMask, enumTypeMask, symbolTable, ioDirectives, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "stdout";
@@ -220,7 +233,7 @@ public:
 
 class WriteCoutPrintSizeFactory : public WriteStreamFactory {
 public:
-    std::unique_ptr<WriteStream> getWriter(const SymbolMask& /* symbolMask */,
+    std::unique_ptr<WriteStream> getWriter(const SymbolMask& /* symbolMask */, const EnumTypeMask& enumTypeMask,
             const SymbolTable& /* symbolTable */, const IODirectives& ioDirectives,
             const bool /* provenance */) override {
         return std::make_unique<WriteCoutPrintSize>(ioDirectives);

@@ -342,20 +342,29 @@ public:
 		}
 	}
 
-	// original: const std::string& unsafeResolve
-	const std::string unsafeResolve(const RamDomain index) const {
+
+	const std::string& unsafeResolve(const RamDomain index) const {
 #ifdef USE_MPI
 		if (mpi::commRank() != 0) {
 			return cacheResolve(index, UNSAFE_RESOLVE);
 		} else
 #endif
-		//TODO: Qing Gong, MPI not finished
-		//			if (numToStr.find(static_cast<size_t>(index))==numToStr.end()) {
-		//				std::cout<<"Error!, out of bound!\n";
-		//			}
 
-		//changed by Qing Gong, original: return numToStr.at(static_cast<size_t>(index));
-		return (index >= MAX_RAM_DOMAIN-65536 && index < MAX_RAM_DOMAIN-5536) ? numToStr.at(static_cast<size_t>(index)) : std::to_string(index);
+		return numToStr.at(static_cast<size_t>(index));
+	}
+
+	// added by Qing Gong, MPI not finished
+	const std::string enumTypeResolve(const RamDomain index) const {
+#ifdef USE_MPI
+		std::cout << "enumTypeResolve not finished!\n";
+		exit(1);
+		if (mpi::commRank() != 0) {
+			return cacheResolve(index, UNSAFE_RESOLVE);
+		} else
+#endif
+
+		return (index >= MAX_RAM_DOMAIN - 65536 && index < MAX_RAM_DOMAIN - 5536) ?
+				numToStr.at(static_cast<size_t>(index)) : std::to_string(index);
 	}
 
 	/* Return the size of the symbol table, being the number of symbols it currently holds. */
@@ -418,7 +427,7 @@ public:
 						&& "It's not in the symbol table when moving to the end!");
 		size_t org_index = it->second;
 		// move to the end, and avoid using the maximum value, which may be used in numeric variable
-		assert(org_index>=0 && org_index<60000);
+		assert(org_index >= 0 && org_index < 60000);
 		it->second = MAX_RAM_DOMAIN - 65536 + org_index;
 
 		auto it2 = numToStr.find(org_index);

@@ -74,10 +74,13 @@ public:
 
         // create symbol mask
         SymbolMask symMask(rel->getArity());
+        EnumTypeMask enumTypeMask(rel->getArity());
 
         for (size_t i = 0; i < rel->getArity(); i++) {
             if (*(rel->getAttrType(i)) == 's') {
                 symMask.setSymbol(i);
+            } else if (*(rel->getAttrType(i)) == 'e') {
+            	enumTypeMask.setEnumType(i);
             }
         }
 
@@ -90,7 +93,7 @@ public:
         auto originalCoutBuf = std::cout.rdbuf(out.rdbuf());
 
         // print relation
-        printRelationOutput(symMask, dir, *rel);
+        printRelationOutput(symMask, enumTypeMask, dir, *rel);
 
         // restore original cout buffer
         std::cout.rdbuf(originalCoutBuf);
@@ -149,7 +152,7 @@ protected:
     }
 
     virtual void printRelationOutput(
-            const SymbolMask& symMask, const IODirectives& ioDir, const Relation& rel) = 0;
+            const SymbolMask& symMask, const EnumTypeMask& enumTypeMask, const IODirectives& ioDir, const Relation& rel) = 0;
 };
 
 }  // end of namespace souffle

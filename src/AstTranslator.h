@@ -22,6 +22,7 @@
 #include "RamLatticeAssociation.h"
 #include "RelationRepresentation.h"
 #include "SymbolMask.h"
+#include "EnumTypeMask.h"
 #include "TypeSystem.h"
 #include "Util.h"
 #include <cassert>
@@ -326,6 +327,9 @@ private:
 	/** get symbol mask of a relation describing type attributes */
 	SymbolMask getSymbolMask(const AstRelation& rel);
 
+	/** get enum type mask of a relation describing type attributes */
+	EnumTypeMask getEnumTypeMask(const AstRelation& rel);
+
 	/** converts the given relation identifier into a relation name */
 	std::string getRelationName(const AstRelationIdentifier& id) {
 		return toString(join(id.getNames(), "."));
@@ -343,7 +347,7 @@ private:
 	/** create a reference to a RAM relation */
 	std::unique_ptr<RamRelationReference> createRelationReference(const std::string name, const size_t arity,
 			const std::vector<std::string> attributeNames,
-			const std::vector<std::string> attributeTypeQualifiers, const SymbolMask mask,
+			const std::vector<std::string> attributeTypeQualifiers, const SymbolMask mask, const EnumTypeMask enumTypeMask,
 			const RelationRepresentation structure, const bool latticeFlag = false);
 
 	/** create a reference to a RAM relation */
