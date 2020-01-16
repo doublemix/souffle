@@ -90,6 +90,9 @@ public:
 
     /** Set lattice flag for this relation **/
     void setLattice() {
+    	// check if the last variable is enum type variable,
+    	// and the other variables are not
+
     	LatticeFlag = true;
     }
 
@@ -202,7 +205,12 @@ public:
 
     /** Print string representation of the relation to a given output stream */
     void print(std::ostream& os) const override {
-        os << ".decl " << this->getName() << "(";
+    	if (LatticeFlag) {
+    		os << ".lat ";
+    	} else {
+    		os << ".decl ";
+    	}
+        os << this->getName() << "(";
         if (!attributes.empty()) {
             os << attributes[0]->getAttributeName() << ":" << attributes[0]->getTypeName();
 

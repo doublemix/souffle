@@ -38,7 +38,7 @@
     case (_, _)	      => y=0 ? "Bot" : x/y
 }
 
-.let Sign<> = ("Bot", "Top", lub, glb)
+.let Const<> = ("Bot", "Top", lub, glb)
 
 .decl setConstStm(l:number, r: symbol, c: number)         // r = c
 .input setConstStm

@@ -629,6 +629,33 @@ void AstSemanticChecker::checkRelationDeclaration(ErrorReport& report,
 					attr->getSrcLoc());
 		}
 
+		/* added by Qing Gong: if it is lattice relation, the last
+		 * variable should be enum, and other variables are not. */
+		if (relation.isLattice()) {
+			if (i == relation.getArity() - 1) {
+				// last variable
+				if (!isEnumType(typeEnv.getType(typeName))) {
+					report.addError(
+							"Last variable must be Enum for lattice relation",
+							attr->getSrcLoc());
+				}
+			} else {
+				// not the last variable
+				if (isEnumType(typeEnv.getType(typeName))) {
+					report.addError(
+							"Variables other than the last one cannot be Enum for lattice relation",
+							attr->getSrcLoc());
+				}
+			}
+
+		} else {
+			if (isEnumType(typeEnv.getType(typeName))) {
+				report.addError(
+						"Variables cannot be Enum for non-lattice relation",
+						attr->getSrcLoc());
+			}
+		}
+
 		/* check whether name occurs more than once */
 		for (size_t j = 0; j < i; j++) {
 			if (attr->getAttributeName()

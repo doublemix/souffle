@@ -85,16 +85,20 @@ private:
 	struct Location {
 		int identifier;
 		int element;
-		std::unique_ptr<RamRelationReference> relation{nullptr};
+		std::unique_ptr<RamRelationReference> relation { nullptr };
 
 		Location() = default;
 
-		Location(int ident, int elem, std::unique_ptr<RamRelationReference> rel = nullptr)
-		: identifier(ident), element(elem), relation(std::move(rel)) {}
+		Location(int ident, int elem,
+				std::unique_ptr<RamRelationReference> rel = nullptr) :
+				identifier(ident), element(elem), relation(std::move(rel)) {
+		}
 
-		Location(const Location& l) : identifier(l.identifier), element(l.element) {
+		Location(const Location& l) :
+				identifier(l.identifier), element(l.element) {
 			if (l.relation != nullptr) {
-				relation = std::unique_ptr<RamRelationReference>(l.relation->clone());
+				relation = std::unique_ptr<RamRelationReference>(
+						l.relation->clone());
 			}
 		}
 
@@ -114,14 +118,16 @@ private:
 		}
 
 		bool operator<(const Location& loc) const {
-			return identifier < loc.identifier || (identifier == loc.identifier && element < loc.element);
+			return identifier < loc.identifier
+					|| (identifier == loc.identifier && element < loc.element);
 		}
 
 		void print(std::ostream& out) const {
 			out << "(" << identifier << "," << element << ")";
 		}
 
-		friend std::ostream& operator<<(std::ostream& out, const Location& loc) {
+		friend std::ostream& operator<<(std::ostream& out,
+				const Location& loc) {
 			loc.print(out);
 			return out;
 		}
@@ -158,7 +164,6 @@ private:
 		 */
 		using lattice_variable_argument_map = std::map<std::string, int>;
 
-
 		/** The index of variable accesses */
 		variable_reference_map var_references;
 
@@ -181,7 +186,7 @@ private:
 
 		void addVarReference(const AstVariable& var, int ident, int pos,
 				std::unique_ptr<RamRelationReference> rel = nullptr) {
-			addVarReference(var, Location({ident, pos, std::move(rel)}));
+			addVarReference(var, Location( { ident, pos, std::move(rel) }));
 		}
 
 		bool isDefined(const AstVariable& var) const {
@@ -190,20 +195,24 @@ private:
 
 		const Location& getDefinitionPoint(const AstVariable& var) const {
 			auto pos = var_references.find(var.getName());
-			assert(pos != var_references.end() && "Undefined variable referenced!");
+			assert(
+					pos != var_references.end()
+							&& "Undefined variable referenced!");
 			return *pos->second.begin();
 		}
 
-		const bool isArgEnum(const Location& loc, const TypeEnvironment* typeEnv) const {
+		const bool isArgEnum(const Location& loc,
+				const TypeEnvironment* typeEnv) const {
 			//const Location& loc = getDefinitionPoint(var);
 			auto rel = loc.relation->getRelation();
-			const std::string& argTypeQualifier = rel->getArgTypeQualifier(loc.element);
-			size_t start = 1+argTypeQualifier.find(":");
-			size_t i=start;
+			const std::string& argTypeQualifier = rel->getArgTypeQualifier(
+					loc.element);
+			size_t start = 1 + argTypeQualifier.find(":");
+			size_t i = start;
 			while (std::isalnum(argTypeQualifier[i])) {
 				i++;
 			}
-			std::string ident = argTypeQualifier.substr(start, i-start);
+			std::string ident = argTypeQualifier.substr(start, i - start);
 			return isEnumType(typeEnv->getType(ident));
 		}
 
@@ -221,7 +230,8 @@ private:
 
 		void setRecordDefinition(const AstRecordInit& init, int ident, int pos,
 				std::unique_ptr<RamRelationReference> rel = nullptr) {
-			setRecordDefinition(init, Location({ident, pos, std::move(rel)}));
+			setRecordDefinition(init,
+					Location( { ident, pos, std::move(rel) }));
 		}
 
 		const Location& getDefinitionPoint(const AstRecordInit& init) const {
@@ -237,7 +247,8 @@ private:
 
 		// -- aggregates --
 
-		void setAggregatorLocation(const AstAggregator& agg, const Location& loc) {
+		void setAggregatorLocation(const AstAggregator& agg,
+				const Location& loc) {
 			aggregator_locations.push_back(std::make_pair(&agg, loc));
 		}
 
@@ -251,7 +262,9 @@ private:
 
 			// fail
 			std::cout << "Lookup of " << &agg << " = " << agg << " failed\n";
-			assert(false && "Requested aggregation operation is not processed!");
+			assert(
+					false
+							&& "Requested aggregation operation is not processed!");
 
 			const static Location fail = Location();
 			return fail;
@@ -304,17 +317,20 @@ private:
 			out << join(var_references, "\n\t");
 		}
 
-		friend std::ostream& operator<<(std::ostream& out, const ValueIndex& index) __attribute__((unused)) {
+		friend std::ostream& operator<<(std::ostream& out,
+				const ValueIndex& index) __attribute__((unused)) {
 			index.print(out);
 			return out;
 		}
 	};
 
 	/** create a RAM element access node */
-	static std::unique_ptr<RamElementAccess> makeRamElementAccess(const Location& loc);
+	static std::unique_ptr<RamElementAccess> makeRamElementAccess(
+			const Location& loc);
 
 	/** create a RAM lattice element GLB access node **/
-	static std::unique_ptr<RamLatticeGLB> makeRamLatticeGLB(const std::set<Location>& locs);
+	static std::unique_ptr<RamLatticeGLB> makeRamLatticeGLB(
+			const std::set<Location>& locs);
 	/**
 	 * assigns names to unnamed variables such that enclosing
 	 * constructs may be cloned without losing the variable-identity
@@ -322,7 +338,8 @@ private:
 	void nameUnnamedVariables(AstClause* clause);
 
 	/** append statement to a list of statements */
-	void appendStmt(std::unique_ptr<RamStatement>& stmtList, std::unique_ptr<RamStatement> stmt);
+	void appendStmt(std::unique_ptr<RamStatement>& stmtList,
+			std::unique_ptr<RamStatement> stmt);
 
 	/** get symbol mask of a relation describing type attributes */
 	SymbolMask getSymbolMask(const AstRelation& rel);
@@ -335,51 +352,74 @@ private:
 		return toString(join(id.getNames(), "."));
 	}
 
-	void makeIODirective(IODirectives& ioDirective, const AstRelation* rel, const std::string& filePath,
-			const std::string& fileExt, const bool isIntermediate);
+	void makeIODirective(IODirectives& ioDirective, const AstRelation* rel,
+			const std::string& filePath, const std::string& fileExt,
+			const bool isIntermediate);
 
 	std::vector<IODirectives> getInputIODirectives(const AstRelation* rel,
-			std::string filePath = std::string(), const std::string& fileExt = std::string());
+			std::string filePath = std::string(), const std::string& fileExt =
+					std::string());
 
 	std::vector<IODirectives> getOutputIODirectives(const AstRelation* rel,
-			std::string filePath = std::string(), const std::string& fileExt = std::string());
+			std::string filePath = std::string(), const std::string& fileExt =
+					std::string());
 
 	/** create a reference to a RAM relation */
-	std::unique_ptr<RamRelationReference> createRelationReference(const std::string name, const size_t arity,
+	std::unique_ptr<RamRelationReference> createRelationReference(
+			const std::string name, const size_t arity,
 			const std::vector<std::string> attributeNames,
-			const std::vector<std::string> attributeTypeQualifiers, const SymbolMask mask, const EnumTypeMask enumTypeMask,
-			const RelationRepresentation structure, const bool latticeFlag = false);
+			const std::vector<std::string> attributeTypeQualifiers,
+			const SymbolMask mask, const EnumTypeMask enumTypeMask,
+			const RelationRepresentation structure, const bool latticeFlag =
+					false);
 
 	/** create a reference to a RAM relation */
-	std::unique_ptr<RamRelationReference> createRelationReference(const std::string name, const size_t arity);
+	std::unique_ptr<RamRelationReference> createRelationReference(
+			const std::string name, const size_t arity);
 
 	/** a utility to translate atoms to relations */
-	std::unique_ptr<RamRelationReference> translateRelation(const AstAtom* atom);
+	std::unique_ptr<RamRelationReference> translateRelation(
+			const AstAtom* atom);
 
 	/** translate an AST relation to a RAM relation */
 	std::unique_ptr<RamRelationReference> translateRelation(
 			const AstRelation* rel, const std::string relationNamePrefix = "");
 
 	/** translate a temporary `delta` relation to a RAM relation for semi-naive evaluation */
-	std::unique_ptr<RamRelationReference> translateDeltaRelation(const AstRelation* rel);
+	std::unique_ptr<RamRelationReference> translateDeltaRelation(
+			const AstRelation* rel);
 
 	/** translate a temporary `new` relation to a RAM relation for semi-naive evaluation */
-	std::unique_ptr<RamRelationReference> translateNewRelation(const AstRelation* rel);
+	std::unique_ptr<RamRelationReference> translateNewRelation(
+			const AstRelation* rel);
+
+	/** added by Qing Gong: translate a temporary `org_lat` relation that stores only top lattice element */
+	std::unique_ptr<RamRelationReference> translateOrgLatRelation(
+			const AstRelation* rel);
+
+	/** added by Qing Gong: translate a temporary `new_lat` relation  that stores only top lattice element */
+	std::unique_ptr<RamRelationReference> translateNewLatRelation(
+			const AstRelation* rel);
 
 	/** translate an AST argument to a RAM value */
-	std::unique_ptr<RamValue> translateValue(const AstArgument* arg, const ValueIndex& index);
+	std::unique_ptr<RamValue> translateValue(const AstArgument* arg,
+			const ValueIndex& index);
 
 	/** translate an AST constraint to a RAM condition */
-	std::unique_ptr<RamCondition> translateConstraint(const AstLiteral* arg, const ValueIndex& index);
+	std::unique_ptr<RamCondition> translateConstraint(const AstLiteral* arg,
+			const ValueIndex& index);
 
 	/** translate an AST lattice association with lattice binary functions into a RAM lattice **/
-	std::unique_ptr<RamLatticeAssociation> translateLatticeAssoc(const AstTranslationUnit& tu);
+	std::unique_ptr<RamLatticeAssociation> translateLatticeAssoc(
+			const AstTranslationUnit& tu);
 
 	/** translate an AST lattice Unary Function declaration into a RAM LUF **/
-	std::unique_ptr<RamLatticeUnaryFunction> translateLatticeUnaryFunction(const AstLatticeUnaryFunction* AstUnary);
+	std::unique_ptr<RamLatticeUnaryFunction> translateLatticeUnaryFunction(
+			const AstLatticeUnaryFunction* AstUnary);
 
 	/** translate an AST Lattice Binary Function declaration into a RAM LBF **/
-	std::unique_ptr<RamLatticeBinaryFunction> translateLatticeBinaryFunction(const AstLatticeBinaryFunction* AstB);
+	std::unique_ptr<RamLatticeBinaryFunction> translateLatticeBinaryFunction(
+			const AstLatticeBinaryFunction* AstB);
 
 	/** translate AST clause to RAM code */
 	class ClauseTranslator {
@@ -391,14 +431,16 @@ private:
 		// the order of processed operations
 		std::vector<const AstNode*> op_nesting;
 
-		std::unique_ptr<AstClause> getReorderedClause(const AstClause& clause, const int version) const;
+		std::unique_ptr<AstClause> getReorderedClause(const AstClause& clause,
+				const int version) const;
 
-		arg_list* getArgList(
-				const AstNode* curNode, std::map<const AstNode*, std::unique_ptr<arg_list>>& nodeArgs) const;
+		arg_list* getArgList(const AstNode* curNode,
+				std::map<const AstNode*, std::unique_ptr<arg_list>>& nodeArgs) const;
 
 		void indexValues(const AstNode* curNode,
 				std::map<const AstNode*, std::unique_ptr<arg_list>>& nodeArgs,
-				std::map<const arg_list*, int>& arg_level, RamRelationReference* relation);
+				std::map<const arg_list*, int>& arg_level,
+				RamRelationReference* relation);
 
 		void createValueIndex(const AstClause& clause);
 
@@ -411,23 +453,31 @@ private:
 		// current nesting level
 		int level = 0;
 
-		virtual std::unique_ptr<RamOperation> createOperation(const AstClause& clause);
-		virtual std::unique_ptr<RamCondition> createCondition(const AstClause& originalClause);
+		virtual std::unique_ptr<RamOperation> createOperation(
+				const AstClause& clause);
+		virtual std::unique_ptr<RamCondition> createCondition(
+				const AstClause& originalClause);
 
 	public:
-		ClauseTranslator(AstTranslator& translator) : translator(translator) {}
+		ClauseTranslator(AstTranslator& translator) :
+				translator(translator) {
+		}
 
-		std::unique_ptr<RamStatement> translateClause(
-				const AstClause& clause, const AstClause& originalClause, const int version = 0);
+		std::unique_ptr<RamStatement> translateClause(const AstClause& clause,
+				const AstClause& originalClause, const int version = 0);
 	};
 
-	class ProvenanceClauseTranslator : public ClauseTranslator {
+	class ProvenanceClauseTranslator: public ClauseTranslator {
 	protected:
-		std::unique_ptr<RamOperation> createOperation(const AstClause& clause) override;
-		std::unique_ptr<RamCondition> createCondition(const AstClause& originalClause) override;
+		std::unique_ptr<RamOperation> createOperation(const AstClause& clause)
+				override;
+		std::unique_ptr<RamCondition> createCondition(
+				const AstClause& originalClause) override;
 
 	public:
-		ProvenanceClauseTranslator(AstTranslator& translator) : ClauseTranslator(translator) {}
+		ProvenanceClauseTranslator(AstTranslator& translator) :
+				ClauseTranslator(translator) {
+		}
 	};
 
 	/**
@@ -440,10 +490,12 @@ private:
 
 	/** translate RAM code for recursive relations in a strongly-connected component */
 	std::unique_ptr<RamStatement> translateRecursiveRelation(
-			const std::set<const AstRelation*>& scc, const RecursiveClauses* recursiveClauses);
+			const std::set<const AstRelation*>& scc,
+			const RecursiveClauses* recursiveClauses);
 
 	/** translate RAM code for subroutine to get subproofs */
-	std::unique_ptr<RamStatement> makeSubproofSubroutine(const AstClause& clause);
+	std::unique_ptr<RamStatement> makeSubproofSubroutine(
+			const AstClause& clause);
 
 	/** translate AST to RAM Program */
 	void translateProgram(const AstTranslationUnit& translationUnit);

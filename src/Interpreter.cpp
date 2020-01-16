@@ -1058,12 +1058,13 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			return true;
 		}
 
+		// TODO
 		bool visitLatNorm(const RamLatNorm& latnorm) override {
 			// get involved relation
 			InterpreterRelation& fst = interpreter.getRelation(
-					latnorm.getFirstRelation());
+					latnorm.getRelation_IN_New());
 			InterpreterRelation& scd = interpreter.getRelation(
-					latnorm.getSecondRelation());
+					latnorm.getRelation_IN_Origin());
 			size_t arity = fst.getArity();
 			assert(
 					arity == scd.getArity()
