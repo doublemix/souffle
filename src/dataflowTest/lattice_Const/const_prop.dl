@@ -40,28 +40,43 @@
 
 .let Sign<> = ("Bot", "Top", lub, glb)
 
-.decl LitStm(r: symbol, c: number)         // r = c
-.input LitStm
-.decl AddStm(r: symbol, x: symbol, y: symbol) // r = x + y
-.input AddStm
-.decl DivStm(r: symbol, x: symbol, y: symbol) // r = x / y
-.input DivStm
+.decl setConstStm(l:number, r: symbol, c: number)         // r = c
+.input setConstStm
+.decl addStm(l:number, r: symbol, x: symbol, y: symbol) // r = x + y
+.input addStm
+.decl divStm(l:number, r: symbol, x: symbol, y: symbol) // r = x / y
+.input divStm
 
-.lat LocalVar(k: symbol, v: Constant)
-//.input LocalVar
-.output LocalVar
+.decl flow(l1: number, l2: number) // control flow from l1 to l2
+.input flow
 
-// literal statements
- LocalVar(r, &lat_alpha(c)) :- LitStm(r, c).
+.lat varEntry(l:number, k: symbol, v: Constant)
+.output varEntry
+.lat varExit(l:number, k: symbol, v: Constant)
+.output varExit
+
+// varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
+varEntry(l2, k, v) :- varExit(l1, k, v), flow(l1, l2).
+
+// statement: set to constant number
+varExit(l, r, &lat_alpha(c)) :- setConstStm(l, r, c).
+
 // addition statement r = x+y, and the value of x is v1, the
 // value of y is v2
-LocalVar(r, &lat_sum(v1, v2)) :- AddStm(r, x, y),
-                            LocalVar(x, v1),
-                            LocalVar(y, v2).
+varExit(l, r, &lat_sum(v1, v2)) :- addStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2).
 // division statement
-LocalVar(r, &lat_div(v1, v2)) :- DivStm(r, x, y),
-                            LocalVar(x, v1),
-                            LocalVar(y, v2).
+varExit(l, r, &lat_div(v1, v2)) :- divStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2).
+
+// if the statement doesn't assign to r
+.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
+assignVar(l, r) :- setConstStm(l, r, c).
+assignVar(l, r) :- addStm(l, r, x, y).
+assignVar(l, r) :- divStm(l, r, x, y).
+varExit(l, r, v) :- varEntry(l, r, v), !assignVar(l, r).
 
 
 // lattice relation
