@@ -58,6 +58,9 @@ public:
 	}
 
 	const InterpreterIndex* getTotalIndex() const {
+		if (!totalIndex) {
+			totalIndex = getIndex(getTotalIndexKey());
+		}
 		assert(totalIndex != nullptr);
 		return totalIndex;
 	}
@@ -165,7 +168,6 @@ public:
 //			other.insert(high);
 //		}
 //	}
-
 	/** Purge table */
 	void purge() {
 		blockList.clear();

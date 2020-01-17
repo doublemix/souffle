@@ -352,9 +352,9 @@ std::unique_ptr<RamValue> AstTranslator::translateValue(const AstArgument* arg,
 			assert(index.isDefined(var) && "variable not grounded");
 			if (index.isArgEnum(index.getDefinitionPoint(var),
 					translator.typeEnv)) {
-				std::cout << "Enum type detected! all loc size:"
-						<< index.getVariableReferences().at(var.getName()).size()
-						<< "\n";
+//				std::cout << "Enum type detected! all loc size:"
+//						<< index.getVariableReferences().at(var.getName()).size()
+//						<< "\n";
 				if (index.getVariableReferences().at(var.getName()).size() == 1)
 					return makeRamElementAccess(index.getDefinitionPoint(var));
 				else

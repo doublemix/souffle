@@ -33,8 +33,10 @@ class InterpreterIndexOrder {
 public:
 	// -- constructors --
 
-	InterpreterIndexOrder(std::vector<unsigned char> order = std::vector<unsigned char>())
-: columns(std::move(order)) {}
+	InterpreterIndexOrder(
+			std::vector<unsigned char> order = std::vector<unsigned char>()) :
+			columns(std::move(order)) {
+	}
 
 	InterpreterIndexOrder(const InterpreterIndexOrder&) = default;
 	InterpreterIndexOrder(InterpreterIndexOrder&&) = default;
@@ -120,10 +122,13 @@ public:
 
 	/** Enables the index order to be printed */
 	void print(std::ostream& out) const {
-		out << "[" << join(columns, ",", [](std::ostream& out, int i) { out << i; }) << "]";
+		out << "["
+				<< join(columns, ",", [](std::ostream& out, int i) {out << i;})
+				<< "]";
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, const InterpreterIndexOrder& order) {
+	friend std::ostream& operator<<(std::ostream& out,
+			const InterpreterIndexOrder& order) {
 		order.print(out);
 		return out;
 	}
@@ -139,7 +144,9 @@ public:
 		const InterpreterIndexOrder& order;
 
 		/* constructor to initialize state */
-		comparator(const InterpreterIndexOrder& order) : order(order) {}
+		comparator(const InterpreterIndexOrder& order) :
+				order(order) {
+		}
 
 		/* comparison function */
 		int operator()(const RamDomain* x, const RamDomain* y) const {
@@ -175,8 +182,10 @@ public:
 
 	using iterator = index_set::iterator;
 
-	InterpreterIndex(InterpreterIndexOrder order)
-	: theOrder(std::move(order)), set(comparator(theOrder), comparator(theOrder)) {}
+	InterpreterIndex(InterpreterIndexOrder order) :
+			theOrder(std::move(order)), set(comparator(theOrder),
+					comparator(theOrder)) {
+	}
 
 	const InterpreterIndexOrder& order() const {
 		return theOrder;
@@ -196,10 +205,11 @@ public:
 	 *
 	 * precondition: the tuples do not exist in the index
 	 */
-	template <class Iter>
+	template<class Iter>
 	void insert(const Iter& a, const Iter& b) {
 		set.insert(a, b);
-	};
+	}
+	;
 
 	/** check whether tuple exists in index */
 	bool exists(const RamDomain* value) {
@@ -227,8 +237,14 @@ public:
 	}
 
 	/** return start and end iterator of an equal range */
-	inline std::pair<iterator, iterator> equalRange(const RamDomain* value) const {
+	inline std::pair<iterator, iterator> equalRange(
+			const RamDomain* value) const {
 		return lowerUpperBound(value, value);
+	}
+
+	/** return start iterator of a range */
+	inline iterator LowerBound(const RamDomain* low) const {
+		return set.lower_bound(low);
 	}
 
 	/** return end iterator of a range */
@@ -236,8 +252,10 @@ public:
 		return set.upper_bound(high);
 	}
 	/** return start and end iterator of a range */
-	inline std::pair<iterator, iterator> lowerUpperBound(const RamDomain* low, const RamDomain* high) const {
-		return std::pair<iterator, iterator>(set.lower_bound(low), set.upper_bound(high));
+	inline std::pair<iterator, iterator> lowerUpperBound(const RamDomain* low,
+			const RamDomain* high) const {
+		return std::pair<iterator, iterator>(set.lower_bound(low),
+				set.upper_bound(high));
 	}
 
 private:
