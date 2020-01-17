@@ -313,6 +313,11 @@ std::unique_ptr<RamRelationReference> AstTranslator::translateNewRelation(
 	return translateRelation(rel, "@new_");
 }
 
+std::unique_ptr<RamRelationReference> AstTranslator::translateLatTempRelation(
+		const AstRelation* rel) {
+	return translateRelation(rel, "@lat_temp_");
+}
+
 std::unique_ptr<RamRelationReference> AstTranslator::translateOrgLatRelation(
 		const AstRelation* rel) {
 	return translateRelation(rel, "@org_lat_");
@@ -1331,6 +1336,9 @@ std::unique_ptr<RamStatement> AstTranslator::translateNonRecursiveRelation(
 
 	// the ram table reference
 	std::unique_ptr<RamRelationReference> rrel = translateRelation(&rel);
+	// mappings for temporary relations
+	std::unique_ptr<RamRelationReference> rrel_temp = translateLatTempRelation(
+			&rel);
 
 	/* iterate over all clauses that belong to the relation */
 	for (AstClause* clause : rel.getClauses()) {
@@ -1369,6 +1377,34 @@ std::unique_ptr<RamStatement> AstTranslator::translateNonRecursiveRelation(
 
 		// add rule to result
 		appendStmt(res, std::move(rule));
+	}
+
+	// added by Qing Gong: consider lattice for non-recursive relations
+	if (res && rel.isLattice()) {
+		// Run only if there are non-recursive rules
+		// added by Qing Gong
+		// if this is lattice relation with lattice, need to normalize it.
+		appendStmt(res,
+				std::make_unique<RamCreate>(
+						std::unique_ptr<RamRelationReference>(
+								rrel_temp->clone())));
+
+		appendStmt(res,
+				std::make_unique<RamLatNorm>(
+						std::unique_ptr<RamRelationReference>(rrel->clone()),
+						std::unique_ptr<RamRelationReference>(
+								rrel_temp->clone())));
+		// add swaps for them
+		appendStmt(res,
+				std::make_unique<RamSwap>(
+						std::unique_ptr<RamRelationReference>(rrel->clone()),
+						std::unique_ptr<RamRelationReference>(
+								rrel_temp->clone())));
+		// add drop
+		appendStmt(res,
+				std::make_unique<RamDrop>(
+						std::unique_ptr<RamRelationReference>(
+								rrel_temp->clone())));
 	}
 
 	// add logging for entire relation
@@ -1471,7 +1507,7 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 			// added by Qing Gong
 			// if there is relation with lattice, need to normalize it.
 			appendStmt(updateRelTable,
-					std::make_unique<RamLatNorm>(
+					std::make_unique<RamLatExt>(
 							std::unique_ptr<RamRelationReference>(
 									rrel[rel]->clone()),
 							std::unique_ptr<RamRelationReference>(

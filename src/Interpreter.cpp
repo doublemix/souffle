@@ -1062,18 +1062,29 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			return true;
 		}
 
-		//
 		bool visitLatNorm(const RamLatNorm& latnorm) override {
-			std::cout << "visit LatNorm here!\n";
+			std::cout << "\n visit LatNorm here! relation: " << latnorm.getRelation_IN_Rel().getName() << std::endl;
+			InterpreterRelation& IN_Rel = interpreter.getRelation(
+					latnorm.getRelation_IN_Rel());
+			InterpreterRelation& OUT_Rel = interpreter.getRelation(
+					latnorm.getRelation_OUT_Rel());
+			//TODO
+			OUT_Rel.insert(IN_Rel);
+			return true;
+		}
+
+		//
+		bool visitLatExt(const RamLatExt& latext) override {
+//			std::cout << "\n visit LatExt here! relation: " << latext.getRelation_IN_Origin().getName() << std::endl;
 			// get involved relation
 			InterpreterRelation& IN_Origin = interpreter.getRelation(
-					latnorm.getRelation_IN_Origin());
+					latext.getRelation_IN_Origin());
 			InterpreterRelation& IN_New = interpreter.getRelation(
-					latnorm.getRelation_IN_New());
+					latext.getRelation_IN_New());
 			InterpreterRelation& OUT_Origin = interpreter.getRelation(
-					latnorm.getRelation_OUT_Origin());
+					latext.getRelation_OUT_Origin());
 			InterpreterRelation& OUT_New = interpreter.getRelation(
-					latnorm.getRelation_OUT_New());
+					latext.getRelation_OUT_New());
 
 			size_t arity = IN_Origin.getArity();
 
@@ -1100,9 +1111,17 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			auto org_it = org_range.first;
 			auto org_itend = org_range.second;
 
+//			std::cout << "Step 1\n";
 			// Step 1: Traverse the whole original relation, require that only 1 element in 1 cell!
 			for (; org_it != org_itend; ++org_it) {
 				const RamDomain* data = *org_it;
+
+//				std::cout << "data: ";
+//				for (size_t i = 0; i < arity; i++) {
+//					std::cout << data[i] << " ";
+//				}
+//				std::cout << std::endl;
+
 				for (size_t i = 0; i < arity - 1; i++) {
 					low[i] = data[i];
 					high[i] = data[i];
@@ -1120,7 +1139,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 					RamDomain biggestLat = Org_Lat;
 
 					// search the cell in new lattice relation
-					for (++new_it; new_it != new_itend; ++new_it) {
+					for (; new_it != new_itend; ++new_it) {
 						RamDomain curlat = (*new_it)[arity - 1];
 						// set 2 input variables
 						ctxt_temp.setArguments( { biggestLat, curlat });
@@ -1137,20 +1156,37 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 						}
 					}
 					high[arity - 1] = biggestLat;
-
+//					std::cout << "biggestLat: " << biggestLat << " Org_Lat:" << Org_Lat << std::endl;
 					OUT_Origin.insert(high);
 					if (biggestLat != Org_Lat) {
 						OUT_New.insert(high);
 					}
 
+//					std::cout << "insert - exist in new: ";
+//					if (biggestLat != Org_Lat) {
+//						std::cout << "(both) ";
+//					}
+//					for (size_t i = 0; i < arity; i++) {
+//						std::cout << high[i] << " ";
+//					}
+//					std::cout << std::endl;
+
 				} else {
 					// the cell does not exist in the new lattice relation
-					OUT_Origin.insert(high);
+					OUT_Origin.insert(data);
+
+//					std::cout << "insert - not exist in new: ";
+//					for (size_t i = 0; i < arity; i++) {
+//						std::cout << data[i] << " ";
+//					}
+//					std::cout << std::endl;
 				}
 
 			}
 
 			// Step 2: Traverse the whole new lattice relation
+
+//			std::cout << "Step 2\n";
 			for (size_t i = 0; i < arity; i++) {
 				low[i] = MIN_RAM_DOMAIN;
 				high[i] = MAX_RAM_DOMAIN;
@@ -1160,6 +1196,13 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			auto new_itend = new_range.second;
 			while (new_it != new_itend) {
 				const RamDomain* data = *new_it;
+
+//				std::cout << "data: ";
+//				for (size_t i = 0; i < arity; i++) {
+//					std::cout << data[i] << " ";
+//				}
+//				std::cout << std::endl;
+
 				for (size_t i = 0; i < arity - 1; i++) {
 					low[i] = data[i];
 					high[i] = data[i];
@@ -1168,8 +1211,11 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
 				auto range_end = new_totalIndex->UpperBound(high);
 
-				if (org_totalIndex->LowerBound(low) == org_itend) {
+				if (org_totalIndex->LowerBound(low)
+						== org_totalIndex->UpperBound(high)) {
 					// the cell does not exist in original lattice relation, need to handle
+//					std::cout
+//							<< "the cell does not exist in original lattice relation\n";
 					RamDomain biggestLat = data[arity - 1];
 					for (++new_it; new_it != range_end; ++new_it) {
 						RamDomain curlat = (*new_it)[arity - 1];
@@ -1190,6 +1236,12 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 					high[arity - 1] = biggestLat;
 					OUT_Origin.insert(high);
 					OUT_New.insert(high);
+
+//					std::cout << "insert both: ";
+//					for (size_t i = 0; i < arity; i++) {
+//						std::cout << high[i] << " ";
+//					}
+//					std::cout << std::endl;
 
 				} else {
 					// the cell exists in original lattice relation, already handled

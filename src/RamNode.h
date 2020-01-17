@@ -79,6 +79,7 @@ enum RamNodeType {
 
     RN_Merge,
 	RN_LatNorm,
+	RN_LatExt,
     RN_Swap,
 
     // Control-flow

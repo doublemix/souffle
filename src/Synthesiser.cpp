@@ -468,6 +468,14 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 			PRINT_END_COMMENT(out);
 		}
 
+		//added by Qing Gong
+		void visitLatExt(const RamLatExt& latExt, std::ostream& out)
+				override {
+			PRINT_BEGIN_COMMENT(out);
+			out << "//TODO: visitLatExt\n";
+			PRINT_END_COMMENT(out);
+		}
+
 		void visitClear(const RamClear& clear, std::ostream& out) override {
 			PRINT_BEGIN_COMMENT(out);
 			out << synthesiser.getRelationName(clear.getRelation()) << "->"

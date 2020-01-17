@@ -311,9 +311,76 @@ protected:
 };
 
 /**
- * Normalize two relations on the lattice element
+ * Normalize a relation on the lattice element
  */
 class RamLatNorm: public RamStatement {
+protected:
+	std::unique_ptr<RamRelationReference> IN_Rel;
+	std::unique_ptr<RamRelationReference> OUT_Rel;
+
+public:
+	RamLatNorm(std::unique_ptr<RamRelationReference> I_rel,
+			std::unique_ptr<RamRelationReference> O_rel) :
+			RamStatement(RN_LatNorm), IN_Rel(std::move(I_rel)), OUT_Rel(std::move(O_rel)) {
+		// TODO (#541): check not just for arity also for correct type!!
+		// Introduce an equivalence type-check for two ram relations
+		assert(IN_Rel->getArity() == OUT_Rel->getArity());
+		assert(IN_Rel->isLattice() && OUT_Rel->isLattice());
+	}
+
+	/** Get source relation */
+	const RamRelationReference& getRelation_IN_Rel() const {
+		return *IN_Rel;
+	}
+
+	/** Get target output relation */
+	const RamRelationReference& getRelation_OUT_Rel() const {
+		return *OUT_Rel;
+	}
+
+	/** Pretty print */
+	void print(std::ostream& os, int tabpos) const override {
+		os << std::string(tabpos, '\t');
+		os << "LATNORM ";
+		os << IN_Rel->getName();
+		os << " INTO ";
+		os << OUT_Rel->getName();
+	}
+
+	/** Obtain list of child nodes */
+	std::vector<const RamNode*> getChildNodes() const override {
+		return std::vector<const RamNode*>( { IN_Rel.get(), OUT_Rel.get() });
+	}
+
+	/** Create clone */
+	RamLatNorm* clone() const override {
+		RamLatNorm* res = new RamLatNorm(
+				std::unique_ptr<RamRelationReference>(IN_Rel->clone()),
+				std::unique_ptr<RamRelationReference>(OUT_Rel->clone()));
+		return res;
+	}
+
+	/** Apply mapper */
+	void apply(const RamNodeMapper& map) override {
+		IN_Rel = map(std::move(IN_Rel));
+		OUT_Rel = map(std::move(OUT_Rel));
+	}
+
+protected:
+	/** Check equality */
+	bool equal(const RamNode& node) const override {
+		assert(nullptr != dynamic_cast<const RamLatNorm*>(&node));
+		const auto& other = static_cast<const RamLatNorm&>(node);
+		return getRelation_IN_Rel() == other.getRelation_IN_Rel()
+				&& getRelation_OUT_Rel() == other.getRelation_OUT_Rel();
+	}
+};
+
+
+/**
+ * Extract lattice elements from two latticerelations
+ */
+class RamLatExt: public RamStatement {
 protected:
 	std::unique_ptr<RamRelationReference> IN_Origin;
 	std::unique_ptr<RamRelationReference> IN_New;
@@ -321,11 +388,11 @@ protected:
 	std::unique_ptr<RamRelationReference> OUT_New;
 
 public:
-	RamLatNorm(std::unique_ptr<RamRelationReference> I_Org,
+	RamLatExt(std::unique_ptr<RamRelationReference> I_Org,
 			std::unique_ptr<RamRelationReference> I_n,
 			std::unique_ptr<RamRelationReference> O_Org,
 			std::unique_ptr<RamRelationReference> O_n) :
-			RamStatement(RN_LatNorm), IN_Origin(std::move(I_Org)), IN_New(
+			RamStatement(RN_LatExt), IN_Origin(std::move(I_Org)), IN_New(
 					std::move(I_n)), OUT_Origin(std::move(O_Org)), OUT_New(
 					std::move(O_n)) {
 		// TODO (#541): check not just for arity also for correct type!!
@@ -359,7 +426,7 @@ public:
 	/** Pretty print */
 	void print(std::ostream& os, int tabpos) const override {
 		os << std::string(tabpos, '\t');
-		os << "LATNORM ";
+		os << "LATEXT ";
 		os << "(" << IN_Origin->getName() << ", " << IN_New->getName() << ")";
 		os << " INTO ";
 		os << "(" << OUT_Origin->getName() << ", " << OUT_New->getName() << ")";
@@ -372,8 +439,8 @@ public:
 	}
 
 	/** Create clone */
-	RamLatNorm* clone() const override {
-		RamLatNorm* res = new RamLatNorm(
+	RamLatExt* clone() const override {
+		RamLatExt* res = new RamLatExt(
 				std::unique_ptr<RamRelationReference>(IN_Origin->clone()),
 				std::unique_ptr<RamRelationReference>(IN_New->clone()),
 				std::unique_ptr<RamRelationReference>(OUT_Origin->clone()),
@@ -392,8 +459,8 @@ public:
 protected:
 	/** Check equality */
 	bool equal(const RamNode& node) const override {
-		assert(nullptr != dynamic_cast<const RamLatNorm*>(&node));
-		const auto& other = static_cast<const RamLatNorm&>(node);
+		assert(nullptr != dynamic_cast<const RamLatExt*>(&node));
+		const auto& other = static_cast<const RamLatExt&>(node);
 		return getRelation_IN_Origin() == other.getRelation_IN_Origin()
 				&& getRelation_IN_New() == other.getRelation_IN_New()
 				&& getRelation_OUT_Origin() == other.getRelation_OUT_Origin()

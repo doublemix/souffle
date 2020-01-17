@@ -389,6 +389,10 @@ private:
 	std::unique_ptr<RamRelationReference> translateDeltaRelation(
 			const AstRelation* rel);
 
+	/** (Non-recursive relation) translate a temporary lattice relation to a RAM relation for semi-naive evaluation */
+	std::unique_ptr<RamRelationReference> translateLatTempRelation(
+			const AstRelation* rel);
+
 	/** translate a temporary `new` relation to a RAM relation for semi-naive evaluation */
 	std::unique_ptr<RamRelationReference> translateNewRelation(
 			const AstRelation* rel);
