@@ -153,6 +153,8 @@ inline std::string getSymbolForFunctorOp(FunctorOp op) {
 
         /** Undefined */
         default:
+        	std::cerr << "Undefined Operator!" << std::endl;
+        	exit(1);
             break;
     }
 

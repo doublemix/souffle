@@ -356,7 +356,7 @@ public:
 		if (isInfixFunctorOp(function)) {
 			os << "(";
 			os
-					<< join(args, getSymbolForFunctorOp(function),
+					<< join(args, " "+getSymbolForFunctorOp(function)+" ",
 							print_deref<std::unique_ptr<AstArgument>>());
 			os << ")";
 		} else {

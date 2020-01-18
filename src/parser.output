@@ -123,26 +123,26 @@ Grammar
    89    | "identifier"
    90    | "number"
    91    | "(" arg ")"
-   92    | arg "bor" arg
-   93    | arg "bxor" arg
-   94    | arg "band" arg
-   95    | arg "lor" arg
-   96    | arg "land" arg
-   97    | arg "+" arg
-   98    | arg "-" arg
-   99    | arg "*" arg
-  100    | arg "/" arg
-  101    | arg "%" arg
-  102    | arg "^" arg
-  103    | "max aggregator" "(" arg "," arg ")"
-  104    | "min aggregator" "(" arg "," arg ")"
-  105    | "concatenation of two strings" "(" arg "," arg ")"
-  106    | "ordinal number of a string" "(" arg ")"
-  107    | "length of a string" "(" arg ")"
-  108    | "convert string to number" "(" arg ")"
-  109    | "convert number to string" "(" arg ")"
-  110    | "sub-string of a string" "(" arg "," arg "," arg ")"
-  111    | condition "?" arg ":" arg
+   92    | condition "?" arg ":" arg
+   93    | arg "bor" arg
+   94    | arg "bxor" arg
+   95    | arg "band" arg
+   96    | arg "lor" arg
+   97    | arg "land" arg
+   98    | arg "+" arg
+   99    | arg "-" arg
+  100    | arg "*" arg
+  101    | arg "/" arg
+  102    | arg "%" arg
+  103    | arg "^" arg
+  104    | "max aggregator" "(" arg "," arg ")"
+  105    | "min aggregator" "(" arg "," arg ")"
+  106    | "concatenation of two strings" "(" arg "," arg ")"
+  107    | "ordinal number of a string" "(" arg ")"
+  108    | "length of a string" "(" arg ")"
+  109    | "convert string to number" "(" arg ")"
+  110    | "convert number to string" "(" arg ")"
+  111    | "sub-string of a string" "(" arg "," arg "," arg ")"
   112    | arg "type cast" "identifier"
   113    | "-" arg
   114    | "bnot" arg
@@ -279,12 +279,12 @@ error (256)
 "relation qualifier inline" (271) 44
 "match predicate" (272) 150
 "checks whether substring is contained in a string" (273) 151
-"concatenation of two strings" (274) 105
-"ordinal number of a string" (275) 106
-"length of a string" (276) 107
-"sub-string of a string" (277) 110
-"min aggregator" (278) 104 123 124
-"max aggregator" (279) 103 125 126
+"concatenation of two strings" (274) 106
+"ordinal number of a string" (275) 107
+"length of a string" (276) 108
+"sub-string of a string" (277) 111
+"min aggregator" (278) 105 123 124
+"max aggregator" (279) 104 125 126
 "count aggregator" (280) 119 120
 "sum aggregator" (281) 121 122
 "true literal constraint" (282) 70 71 152
@@ -307,8 +307,8 @@ error (256)
 "component instantiation" (299) 194
 "numeric type declaration" (300) 21
 "symbolic type declaration" (301) 22
-"convert string to number" (302) 108
-"convert number to string" (303) 109
+"convert string to number" (302) 109
+"convert number to string" (303) 110
 "type cast" (304) 112
 "nil reference" (305) 118
 "|" (306) 31
@@ -316,39 +316,39 @@ error (256)
 "]" (308) 25 26 116 117
 "_" (309) 84
 "$" (310) 85
-"+" (311) 97
-"-" (312) 98 113
+"+" (311) 98
+"-" (312) 99 113
 "!" (313) 129 158
-"?" (314) 111
-"(" (315) 49 50 57 59 60 61 62 63 64 65 81 87 88 91 103 104 105 106
-    107 108 109 110 127 134 135 144 150 151 159 167
-")" (316) 49 50 57 59 60 61 62 63 64 65 81 87 88 91 103 104 105 106
-    107 108 109 110 127 134 135 144 150 151 159 167
-"," (317) 29 33 37 52 56 59 62 63 64 65 67 69 71 73 80 88 103 104 105
-    110 137 139 141 150 151 156 161 166 169 176 182
-":" (318) 28 29 36 37 49 50 60 63 111 119 120 121 122 123 124 125 126
+"?" (314) 92
+"(" (315) 49 50 57 59 60 61 62 63 64 65 81 87 88 91 104 105 106 107
+    108 109 110 111 127 134 135 144 150 151 159 167
+")" (316) 49 50 57 59 60 61 62 63 64 65 81 87 88 91 104 105 106 107
+    108 109 110 111 127 134 135 144 150 151 159 167
+"," (317) 29 33 37 52 56 59 62 63 64 65 67 69 71 73 80 88 104 105 106
+    111 137 139 141 150 151 156 161 166 169 176 182
+":" (318) 28 29 36 37 49 50 60 63 92 119 120 121 122 123 124 125 126
     168 169 181
 ";" (319) 163
 "." (320) 20 35 154 171
 "=>" (321) 61 62 64 65
 "=" (322) 24 25 26 27 59 66 67 68 69 70 71 72 73 128 129 131 133 148
     194
-"*" (323) 99
+"*" (323) 100
 "@" (324) 86
 "&" (325) 87 88
-"/" (326) 100
-"^" (327) 102
-"%" (328) 101
+"/" (326) 101
+"^" (327) 103
+"%" (328) 102
 "{" (329) 27 60 63 120 122 124 126 193
 "}" (330) 27 60 63 120 122 124 126 193
 "<" (331) 59 130 131 146 178
 ">" (332) 59 132 133 147 178
-"band" (333) 94
-"bor" (334) 92
-"bxor" (335) 93
+"band" (333) 95
+"bor" (334) 93
+"bxor" (335) 94
 "bnot" (336) 114
-"land" (337) 96
-"lor" (338) 95
+"land" (337) 97
+"lor" (338) 96
 "lnot" (339) 115
 "case" (340) 32 33 61 62 64 65
 NEG (341)
@@ -429,7 +429,7 @@ arg (118)
     128 129 130 131 132 133 136 137 138 139 140 141 145 146 147 148
     150 151
 condition (119)
-    on left: 128 129 130 131 132 133, on right: 111
+    on left: 128 129 130 131 132 133, on right: 92
 functor_list (120)
     on left: 134 135, on right: 86
 functor_args (121)
@@ -1339,35 +1339,35 @@ State 87
 
 State 88
 
-  105 arg: "concatenation of two strings" . "(" arg "," arg ")"
+  106 arg: "concatenation of two strings" . "(" arg "," arg ")"
 
     "("  shift, and go to state 156
 
 
 State 89
 
-  106 arg: "ordinal number of a string" . "(" arg ")"
+  107 arg: "ordinal number of a string" . "(" arg ")"
 
     "("  shift, and go to state 157
 
 
 State 90
 
-  107 arg: "length of a string" . "(" arg ")"
+  108 arg: "length of a string" . "(" arg ")"
 
     "("  shift, and go to state 158
 
 
 State 91
 
-  110 arg: "sub-string of a string" . "(" arg "," arg "," arg ")"
+  111 arg: "sub-string of a string" . "(" arg "," arg "," arg ")"
 
     "("  shift, and go to state 159
 
 
 State 92
 
-  104 arg: "min aggregator" . "(" arg "," arg ")"
+  105 arg: "min aggregator" . "(" arg "," arg ")"
   123    | "min aggregator" . arg ":" atom
   124    | "min aggregator" . arg ":" "{" body "}"
 
@@ -1402,7 +1402,7 @@ State 92
 
 State 93
 
-  103 arg: "max aggregator" . "(" arg "," arg ")"
+  104 arg: "max aggregator" . "(" arg "," arg ")"
   125    | "max aggregator" . arg ":" atom
   126    | "max aggregator" . arg ":" "{" body "}"
 
@@ -1479,14 +1479,14 @@ State 95
 
 State 96
 
-  108 arg: "convert string to number" . "(" arg ")"
+  109 arg: "convert string to number" . "(" arg ")"
 
     "("  shift, and go to state 166
 
 
 State 97
 
-  109 arg: "convert number to string" . "(" arg ")"
+  110 arg: "convert number to string" . "(" arg ")"
 
     "("  shift, and go to state 167
 
@@ -1697,17 +1697,17 @@ State 107
 
 State 108
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -1739,7 +1739,7 @@ State 108
 
 State 109
 
-  111 arg: condition . "?" arg ":" arg
+   92 arg: condition . "?" arg ":" arg
 
     "?"  shift, and go to state 193
 
@@ -1894,17 +1894,17 @@ State 119
 
 State 120
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -2282,7 +2282,7 @@ State 155
 
 State 156
 
-  105 arg: "concatenation of two strings" "(" . arg "," arg ")"
+  106 arg: "concatenation of two strings" "(" . arg "," arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2315,7 +2315,7 @@ State 156
 
 State 157
 
-  106 arg: "ordinal number of a string" "(" . arg ")"
+  107 arg: "ordinal number of a string" "(" . arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2348,7 +2348,7 @@ State 157
 
 State 158
 
-  107 arg: "length of a string" "(" . arg ")"
+  108 arg: "length of a string" "(" . arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2381,7 +2381,7 @@ State 158
 
 State 159
 
-  110 arg: "sub-string of a string" "(" . arg "," arg "," arg ")"
+  111 arg: "sub-string of a string" "(" . arg "," arg "," arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2415,7 +2415,7 @@ State 159
 State 160
 
    91 arg: "(" . arg ")"
-  104    | "min aggregator" "(" . arg "," arg ")"
+  105    | "min aggregator" "(" . arg "," arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2448,17 +2448,17 @@ State 160
 
 State 161
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   123    | "min aggregator" arg . ":" atom
   124    | "min aggregator" arg . ":" "{" body "}"
@@ -2491,7 +2491,7 @@ State 161
 State 162
 
    91 arg: "(" . arg ")"
-  103    | "max aggregator" "(" . arg "," arg ")"
+  104    | "max aggregator" "(" . arg "," arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2524,17 +2524,17 @@ State 162
 
 State 163
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   125    | "max aggregator" arg . ":" atom
   126    | "max aggregator" arg . ":" "{" body "}"
@@ -2578,17 +2578,17 @@ State 164
 
 State 165
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   121    | "sum aggregator" arg . ":" atom
   122    | "sum aggregator" arg . ":" "{" body "}"
@@ -2620,7 +2620,7 @@ State 165
 
 State 166
 
-  108 arg: "convert string to number" "(" . arg ")"
+  109 arg: "convert string to number" "(" . arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2653,7 +2653,7 @@ State 166
 
 State 167
 
-  109 arg: "convert number to string" "(" . arg ")"
+  110 arg: "convert number to string" "(" . arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2693,17 +2693,17 @@ State 168
 
 State 169
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -2744,17 +2744,17 @@ State 170
 
 State 171
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   113    | "-" arg .
   128 condition: arg . "=" arg
@@ -2776,17 +2776,17 @@ State 171
 State 172
 
    91 arg: "(" arg . ")"
-   92    | arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93    | arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -2833,17 +2833,17 @@ State 174
 
 State 175
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   114    | "bnot" arg .
   128 condition: arg . "=" arg
@@ -2864,17 +2864,17 @@ State 175
 
 State 176
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   115    | "lnot" arg .
   128 condition: arg . "=" arg
@@ -2902,7 +2902,7 @@ State 177
 
 State 178
 
-   97 arg: arg "+" . arg
+   98 arg: arg "+" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -2935,7 +2935,7 @@ State 178
 
 State 179
 
-   98 arg: arg "-" . arg
+   99 arg: arg "-" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3008,7 +3008,7 @@ State 181
 
 State 182
 
-   99 arg: arg "*" . arg
+  100 arg: arg "*" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3041,7 +3041,7 @@ State 182
 
 State 183
 
-  100 arg: arg "/" . arg
+  101 arg: arg "/" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3074,7 +3074,7 @@ State 183
 
 State 184
 
-  102 arg: arg "^" . arg
+  103 arg: arg "^" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3107,7 +3107,7 @@ State 184
 
 State 185
 
-  101 arg: arg "%" . arg
+  102 arg: arg "%" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3210,7 +3210,7 @@ State 187
 
 State 188
 
-   94 arg: arg "band" . arg
+   95 arg: arg "band" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3243,7 +3243,7 @@ State 188
 
 State 189
 
-   92 arg: arg "bor" . arg
+   93 arg: arg "bor" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3276,7 +3276,7 @@ State 189
 
 State 190
 
-   93 arg: arg "bxor" . arg
+   94 arg: arg "bxor" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3309,7 +3309,7 @@ State 190
 
 State 191
 
-   96 arg: arg "land" . arg
+   97 arg: arg "land" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3342,7 +3342,7 @@ State 191
 
 State 192
 
-   95 arg: arg "lor" . arg
+   96 arg: arg "lor" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3375,7 +3375,7 @@ State 192
 
 State 193
 
-  111 arg: condition "?" . arg ":" arg
+   92 arg: condition "?" . arg ":" arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -3522,17 +3522,17 @@ State 198
 State 199
 
    91 arg: "(" arg . ")"
-   92    | arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93    | arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4074,17 +4074,17 @@ State 240
 
 State 241
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   127    | "reserved keyword" "(" arg . ")"
   128 condition: arg . "=" arg
@@ -4115,18 +4115,18 @@ State 241
 
 State 242
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  105    | "concatenation of two strings" "(" arg . "," arg ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  106    | "concatenation of two strings" "(" arg . "," arg ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4156,18 +4156,18 @@ State 242
 
 State 243
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  106    | "ordinal number of a string" "(" arg . ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  107    | "ordinal number of a string" "(" arg . ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4197,18 +4197,18 @@ State 243
 
 State 244
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  107    | "length of a string" "(" arg . ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  108    | "length of a string" "(" arg . ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4238,18 +4238,18 @@ State 244
 
 State 245
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  110    | "sub-string of a string" "(" arg . "," arg "," arg ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  111    | "sub-string of a string" "(" arg . "," arg "," arg ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4280,18 +4280,18 @@ State 245
 State 246
 
    91 arg: "(" arg . ")"
-   92    | arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  104    | "min aggregator" "(" arg . "," arg ")"
+   93    | arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  105    | "min aggregator" "(" arg . "," arg ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4335,18 +4335,18 @@ State 247
 State 248
 
    91 arg: "(" arg . ")"
-   92    | arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  103    | "max aggregator" "(" arg . "," arg ")"
+   93    | arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  104    | "max aggregator" "(" arg . "," arg ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4453,18 +4453,18 @@ State 252
 
 State 253
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  108    | "convert string to number" "(" arg . ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  109    | "convert string to number" "(" arg . ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4494,18 +4494,18 @@ State 253
 
 State 254
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  109    | "convert number to string" "(" arg . ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  110    | "convert number to string" "(" arg . ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4666,52 +4666,18 @@ State 261
 
 State 262
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   97    | arg "+" arg .
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  112    | arg . "type cast" "identifier"
-  128 condition: arg . "=" arg
-  129          | arg . "!" "=" arg
-  130          | arg . "<" arg
-  131          | arg . "<" "=" arg
-  132          | arg . ">" arg
-  133          | arg . ">" "=" arg
-
-    "!"  shift, and go to state 180
-    "="  shift, and go to state 181
-    "*"  shift, and go to state 182
-    "/"  shift, and go to state 183
-    "^"  shift, and go to state 184
-    "%"  shift, and go to state 185
-    "<"  shift, and go to state 186
-    ">"  shift, and go to state 187
-
-    $default  reduce using rule 97 (arg)
-
-
-State 263
-
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   98    | arg "-" arg .
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   98    | arg "+" arg .
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4730,6 +4696,40 @@ State 263
     ">"  shift, and go to state 187
 
     $default  reduce using rule 98 (arg)
+
+
+State 263
+
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+   99    | arg "-" arg .
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  112    | arg . "type cast" "identifier"
+  128 condition: arg . "=" arg
+  129          | arg . "!" "=" arg
+  130          | arg . "<" arg
+  131          | arg . "<" "=" arg
+  132          | arg . ">" arg
+  133          | arg . ">" "=" arg
+
+    "!"  shift, and go to state 180
+    "="  shift, and go to state 181
+    "*"  shift, and go to state 182
+    "/"  shift, and go to state 183
+    "^"  shift, and go to state 184
+    "%"  shift, and go to state 185
+    "<"  shift, and go to state 186
+    ">"  shift, and go to state 187
+
+    $default  reduce using rule 99 (arg)
 
 
 State 264
@@ -4767,17 +4767,17 @@ State 264
 
 State 265
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   128          | arg "=" arg .
@@ -4809,49 +4809,18 @@ State 265
 
 State 266
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-   99    | arg "*" arg .
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  112    | arg . "type cast" "identifier"
-  128 condition: arg . "=" arg
-  129          | arg . "!" "=" arg
-  130          | arg . "<" arg
-  131          | arg . "<" "=" arg
-  132          | arg . ">" arg
-  133          | arg . ">" "=" arg
-
-    "!"  shift, and go to state 180
-    "="  shift, and go to state 181
-    "^"  shift, and go to state 184
-    "<"  shift, and go to state 186
-    ">"  shift, and go to state 187
-
-    $default  reduce using rule 99 (arg)
-
-
-State 267
-
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  100    | arg "/" arg .
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  100    | arg "*" arg .
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4869,51 +4838,20 @@ State 267
     $default  reduce using rule 100 (arg)
 
 
-State 268
+State 267
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  102    | arg "^" arg .
-  112    | arg . "type cast" "identifier"
-  128 condition: arg . "=" arg
-  129          | arg . "!" "=" arg
-  130          | arg . "<" arg
-  131          | arg . "<" "=" arg
-  132          | arg . ">" arg
-  133          | arg . ">" "=" arg
-
-    "!"  shift, and go to state 180
-    "="  shift, and go to state 181
-    "^"  shift, and go to state 184
-    "<"  shift, and go to state 186
-    ">"  shift, and go to state 187
-
-    $default  reduce using rule 102 (arg)
-
-
-State 269
-
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  101    | arg "%" arg .
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  101    | arg "/" arg .
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -4929,6 +4867,68 @@ State 269
     ">"  shift, and go to state 187
 
     $default  reduce using rule 101 (arg)
+
+
+State 268
+
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  103    | arg "^" arg .
+  112    | arg . "type cast" "identifier"
+  128 condition: arg . "=" arg
+  129          | arg . "!" "=" arg
+  130          | arg . "<" arg
+  131          | arg . "<" "=" arg
+  132          | arg . ">" arg
+  133          | arg . ">" "=" arg
+
+    "!"  shift, and go to state 180
+    "="  shift, and go to state 181
+    "^"  shift, and go to state 184
+    "<"  shift, and go to state 186
+    ">"  shift, and go to state 187
+
+    $default  reduce using rule 103 (arg)
+
+
+State 269
+
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  102    | arg "%" arg .
+  103    | arg . "^" arg
+  112    | arg . "type cast" "identifier"
+  128 condition: arg . "=" arg
+  129          | arg . "!" "=" arg
+  130          | arg . "<" arg
+  131          | arg . "<" "=" arg
+  132          | arg . ">" arg
+  133          | arg . ">" "=" arg
+
+    "!"  shift, and go to state 180
+    "="  shift, and go to state 181
+    "^"  shift, and go to state 184
+    "<"  shift, and go to state 186
+    ">"  shift, and go to state 187
+
+    $default  reduce using rule 102 (arg)
 
 
 State 270
@@ -4966,17 +4966,17 @@ State 270
 
 State 271
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5041,17 +5041,17 @@ State 272
 
 State 273
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5083,18 +5083,18 @@ State 273
 
 State 274
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   94    | arg "band" arg .
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   95    | arg "band" arg .
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5114,23 +5114,23 @@ State 274
     "<"  shift, and go to state 186
     ">"  shift, and go to state 187
 
-    $default  reduce using rule 94 (arg)
+    $default  reduce using rule 95 (arg)
 
 
 State 275
 
-   92 arg: arg . "bor" arg
-   92    | arg "bor" arg .
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   93    | arg "bor" arg .
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5152,23 +5152,23 @@ State 275
     "band"  shift, and go to state 188
     "bxor"  shift, and go to state 190
 
-    $default  reduce using rule 92 (arg)
+    $default  reduce using rule 93 (arg)
 
 
 State 276
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   93    | arg "bxor" arg .
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   94    | arg "bxor" arg .
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5189,23 +5189,23 @@ State 276
     ">"     shift, and go to state 187
     "band"  shift, and go to state 188
 
-    $default  reduce using rule 93 (arg)
+    $default  reduce using rule 94 (arg)
 
 
 State 277
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   96    | arg "land" arg .
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   97    | arg "land" arg .
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5228,23 +5228,23 @@ State 277
     "bor"   shift, and go to state 189
     "bxor"  shift, and go to state 190
 
-    $default  reduce using rule 96 (arg)
+    $default  reduce using rule 97 (arg)
 
 
 State 278
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   95    | arg "lor" arg .
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   96    | arg "lor" arg .
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5268,23 +5268,23 @@ State 278
     "bxor"  shift, and go to state 190
     "land"  shift, and go to state 191
 
-    $default  reduce using rule 95 (arg)
+    $default  reduce using rule 96 (arg)
 
 
 State 279
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  111    | condition "?" arg . ":" arg
+   92 arg: condition "?" arg . ":" arg
+   93    | arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5314,17 +5314,17 @@ State 279
 
 State 280
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5356,17 +5356,17 @@ State 280
 
 State 281
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5397,17 +5397,17 @@ State 281
 
 State 282
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5445,17 +5445,17 @@ State 283
 
 State 284
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5487,17 +5487,17 @@ State 284
 
 State 285
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   128          | arg "=" arg .
@@ -5531,17 +5531,17 @@ State 285
 
 State 286
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5575,17 +5575,17 @@ State 286
 
 State 287
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -5862,7 +5862,7 @@ State 316
 
 State 317
 
-  105 arg: "concatenation of two strings" "(" arg "," . arg ")"
+  106 arg: "concatenation of two strings" "(" arg "," . arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -5895,21 +5895,21 @@ State 317
 
 State 318
 
-  106 arg: "ordinal number of a string" "(" arg ")" .
-
-    $default  reduce using rule 106 (arg)
-
-
-State 319
-
-  107 arg: "length of a string" "(" arg ")" .
+  107 arg: "ordinal number of a string" "(" arg ")" .
 
     $default  reduce using rule 107 (arg)
 
 
+State 319
+
+  108 arg: "length of a string" "(" arg ")" .
+
+    $default  reduce using rule 108 (arg)
+
+
 State 320
 
-  110 arg: "sub-string of a string" "(" arg "," . arg "," arg ")"
+  111 arg: "sub-string of a string" "(" arg "," . arg "," arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -5942,7 +5942,7 @@ State 320
 
 State 321
 
-  104 arg: "min aggregator" "(" arg "," . arg ")"
+  105 arg: "min aggregator" "(" arg "," . arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -6027,7 +6027,7 @@ State 323
 
 State 324
 
-  103 arg: "max aggregator" "(" arg "," . arg ")"
+  104 arg: "max aggregator" "(" arg "," . arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -6171,31 +6171,31 @@ State 329
 
 State 330
 
-  108 arg: "convert string to number" "(" arg ")" .
-
-    $default  reduce using rule 108 (arg)
-
-
-State 331
-
-  109 arg: "convert number to string" "(" arg ")" .
+  109 arg: "convert string to number" "(" arg ")" .
 
     $default  reduce using rule 109 (arg)
 
 
+State 331
+
+  110 arg: "convert number to string" "(" arg ")" .
+
+    $default  reduce using rule 110 (arg)
+
+
 State 332
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6234,17 +6234,17 @@ State 333
 
 State 334
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6287,17 +6287,17 @@ State 336
 
    87 arg: "&" "identifier" "(" arg . ")"
    88    | "&" "identifier" "(" arg . "," arg ")"
-   92    | arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93    | arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6328,17 +6328,17 @@ State 336
 
 State 337
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6370,17 +6370,17 @@ State 337
 
 State 338
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6412,17 +6412,17 @@ State 338
 
 State 339
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6454,7 +6454,7 @@ State 339
 
 State 340
 
-  111 arg: condition "?" arg ":" . arg
+   92 arg: condition "?" arg ":" . arg
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -6708,18 +6708,18 @@ State 362
 
 State 363
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  105    | "concatenation of two strings" "(" arg "," arg . ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  106    | "concatenation of two strings" "(" arg "," arg . ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6749,18 +6749,18 @@ State 363
 
 State 364
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  110    | "sub-string of a string" "(" arg "," arg . "," arg ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  111    | "sub-string of a string" "(" arg "," arg . "," arg ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6790,18 +6790,18 @@ State 364
 
 State 365
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  104    | "min aggregator" "(" arg "," arg . ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  105    | "min aggregator" "(" arg "," arg . ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6838,18 +6838,18 @@ State 366
 
 State 367
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  103    | "max aggregator" "(" arg "," arg . ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  104    | "max aggregator" "(" arg "," arg . ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -6980,18 +6980,18 @@ State 374
 
 State 375
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  111    | condition "?" arg ":" arg .
+   92 arg: condition "?" arg ":" arg .
+   93    | arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7000,27 +7000,38 @@ State 375
   132          | arg . ">" arg
   133          | arg . ">" "=" arg
 
-    "!"  shift, and go to state 180
-    "="  shift, and go to state 181
-    "<"  shift, and go to state 186
-    ">"  shift, and go to state 187
+    "+"     shift, and go to state 178
+    "-"     shift, and go to state 179
+    "!"     shift, and go to state 180
+    "="     shift, and go to state 181
+    "*"     shift, and go to state 182
+    "/"     shift, and go to state 183
+    "^"     shift, and go to state 184
+    "%"     shift, and go to state 185
+    "<"     shift, and go to state 186
+    ">"     shift, and go to state 187
+    "band"  shift, and go to state 188
+    "bor"   shift, and go to state 189
+    "bxor"  shift, and go to state 190
+    "land"  shift, and go to state 191
+    "lor"   shift, and go to state 192
 
-    $default  reduce using rule 111 (arg)
+    $default  reduce using rule 92 (arg)
 
 
 State 376
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7051,17 +7062,17 @@ State 376
 
 State 377
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7188,14 +7199,14 @@ State 390
 
 State 391
 
-  105 arg: "concatenation of two strings" "(" arg "," arg ")" .
+  106 arg: "concatenation of two strings" "(" arg "," arg ")" .
 
-    $default  reduce using rule 105 (arg)
+    $default  reduce using rule 106 (arg)
 
 
 State 392
 
-  110 arg: "sub-string of a string" "(" arg "," arg "," . arg ")"
+  111 arg: "sub-string of a string" "(" arg "," arg "," . arg ")"
 
     "reserved keyword"              shift, and go to state 84
     "symbol"                        shift, and go to state 85
@@ -7228,9 +7239,9 @@ State 392
 
 State 393
 
-  104 arg: "min aggregator" "(" arg "," arg ")" .
+  105 arg: "min aggregator" "(" arg "," arg ")" .
 
-    $default  reduce using rule 104 (arg)
+    $default  reduce using rule 105 (arg)
 
 
 State 394
@@ -7242,9 +7253,9 @@ State 394
 
 State 395
 
-  103 arg: "max aggregator" "(" arg "," arg ")" .
+  104 arg: "max aggregator" "(" arg "," arg ")" .
 
-    $default  reduce using rule 103 (arg)
+    $default  reduce using rule 104 (arg)
 
 
 State 396
@@ -7263,17 +7274,17 @@ State 397
 
 State 398
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7306,17 +7317,17 @@ State 398
 State 399
 
    88 arg: "&" "identifier" "(" arg "," arg . ")"
-   92    | arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93    | arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7398,18 +7409,18 @@ State 406
 
 State 407
 
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
-  110    | "sub-string of a string" "(" arg "," arg "," arg . ")"
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
+  111    | "sub-string of a string" "(" arg "," arg "," arg . ")"
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7469,9 +7480,9 @@ State 411
 
 State 412
 
-  110 arg: "sub-string of a string" "(" arg "," arg "," arg ")" .
+  111 arg: "sub-string of a string" "(" arg "," arg "," arg ")" .
 
-    $default  reduce using rule 110 (arg)
+    $default  reduce using rule 111 (arg)
 
 
 State 413
@@ -7575,17 +7586,17 @@ State 422
 State 423
 
    61 lattice_unary_def_type: "case" "(" arg . ")" "=>" arg
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7719,17 +7730,17 @@ State 430
 State 431
 
    62 lattice_unary_def_type: lattice_unary_def_type "," "case" "(" arg . ")" "=>" arg
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7776,17 +7787,17 @@ State 433
 State 434
 
    61 lattice_unary_def_type: "case" "(" arg ")" "=>" arg .
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7905,17 +7916,17 @@ State 439
 State 440
 
    64 lattice_binary_def_type: "case" "(" arg . "," arg ")" "=>" arg
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -7953,17 +7964,17 @@ State 441
 State 442
 
    62 lattice_unary_def_type: lattice_unary_def_type "," "case" "(" arg ")" "=>" arg .
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -8061,17 +8072,17 @@ State 444
 State 445
 
    64 lattice_binary_def_type: "case" "(" arg "," arg . ")" "=>" arg
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -8102,17 +8113,17 @@ State 445
 State 446
 
    65 lattice_binary_def_type: lattice_binary_def_type "," "case" "(" arg . "," arg ")" "=>" arg
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -8216,17 +8227,17 @@ State 449
 State 450
 
    65 lattice_binary_def_type: lattice_binary_def_type "," "case" "(" arg "," arg . ")" "=>" arg
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -8257,17 +8268,17 @@ State 450
 State 451
 
    64 lattice_binary_def_type: "case" "(" arg "," arg ")" "=>" arg .
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg
@@ -8339,17 +8350,17 @@ State 453
 State 454
 
    65 lattice_binary_def_type: lattice_binary_def_type "," "case" "(" arg "," arg ")" "=>" arg .
-   92 arg: arg . "bor" arg
-   93    | arg . "bxor" arg
-   94    | arg . "band" arg
-   95    | arg . "lor" arg
-   96    | arg . "land" arg
-   97    | arg . "+" arg
-   98    | arg . "-" arg
-   99    | arg . "*" arg
-  100    | arg . "/" arg
-  101    | arg . "%" arg
-  102    | arg . "^" arg
+   93 arg: arg . "bor" arg
+   94    | arg . "bxor" arg
+   95    | arg . "band" arg
+   96    | arg . "lor" arg
+   97    | arg . "land" arg
+   98    | arg . "+" arg
+   99    | arg . "-" arg
+  100    | arg . "*" arg
+  101    | arg . "/" arg
+  102    | arg . "%" arg
+  103    | arg . "^" arg
   112    | arg . "type cast" "identifier"
   128 condition: arg . "=" arg
   129          | arg . "!" "=" arg

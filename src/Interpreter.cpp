@@ -119,13 +119,10 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 
 		RamDomain visitQuestionMark(const RamQuestionMark& qmark) override {
 			if (interpreter.evalCond(qmark.getCondition(), ctxt)) {
-				std::cout<<"visitQuestionMark: cond pass\n";
-				RamDomain res = interpreter.evalVal(qmark.getFirstRet(), ctxt);
-				std::cout<< res <<std::endl;
-				std::cout<<"before return\n";
-				return res;
+//				std::cout<<"visitQuestionMark: cond pass\n";
+				return interpreter.evalVal(qmark.getFirstRet(), ctxt);
 			} else {
-				std::cout<<"visitQuestionMark: cond fail\n";
+//				std::cout<<"visitQuestionMark: cond fail\n";
 				return interpreter.evalVal(qmark.getSecondRet(), ctxt);
 			}
 			return 0;
@@ -361,13 +358,10 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 				if (cas.match == nullptr
 						|| interpreter.evalCond(*cas.match, ctxt_temp)) {
 					// get output if match
-					std::cout << "find a match: " << *cas.output << std::endl;
-					if (dynamic_cast<RamQuestionMark *>(cas.output.get())!=nullptr) {
-						std::cout << "cast to question mark!\n";
-					}
-					RamDomain res = interpreter.evalVal(*cas.output, ctxt_temp);
-					std::cout << "get res: " << res << std::endl;
-					std::cout << "find a match finish.\n";
+//					std::cout << "find a match: " << *cas.output << std::endl;
+//					if (dynamic_cast<RamQuestionMark *>(cas.output.get())!=nullptr) {
+//						std::cout << "cast to question mark!\n";
+//					}
 					return interpreter.evalVal(*cas.output, ctxt_temp);
 				}
 			}

@@ -221,6 +221,9 @@
 
 
 %precedence AS
+
+%precedence COLON
+
 %left L_OR
 %left L_AND
 %left BW_OR
@@ -231,11 +234,12 @@
 %precedence BW_NOT L_NOT
 %precedence NEG
 %right CARET
-%precedence COLON
+
+%precedence EXCLAMATION
+
 %precedence GT
 %precedence LT
 %precedence EQUALS
-%precedence EXCLAMATION
 
 
 %%
@@ -700,6 +704,10 @@ arg
   | LPAREN arg RPAREN {
         $$ = $2;
     }
+  | condition QUESTION arg COLON arg {
+  		$1->setReturns(std::unique_ptr<AstArgument>($3), std::unique_ptr<AstArgument>($5));
+  		$$ = $1;
+    }
   | arg BW_OR arg {
         $$ = new AstIntrinsicFunctor(FunctorOp::BOR, std::unique_ptr<AstArgument>($1), std::unique_ptr<AstArgument>($3));
         $$->setSrcLoc(@$);
@@ -778,10 +786,6 @@ arg
                 std::unique_ptr<AstArgument>($5),
                 std::unique_ptr<AstArgument>($7));
         $$->setSrcLoc(@$);
-    }
-  | condition QUESTION arg COLON arg {
-  		$1->setReturns(std::unique_ptr<AstArgument>($3), std::unique_ptr<AstArgument>($5));
-  		$$ = $1;
     }
   | arg AS IDENT {
         $$ = new AstTypeCast(std::unique_ptr<AstArgument>($1), $3);
