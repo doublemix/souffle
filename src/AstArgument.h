@@ -352,6 +352,7 @@ public:
 
 	/** Print argument to the given output stream */
 	void print(std::ostream& os) const override {
+		os << "Intrsc";
 		if (isInfixFunctorOp(function)) {
 			os << "(";
 			os

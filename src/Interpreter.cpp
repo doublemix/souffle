@@ -119,10 +119,16 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 
 		RamDomain visitQuestionMark(const RamQuestionMark& qmark) override {
 			if (interpreter.evalCond(qmark.getCondition(), ctxt)) {
-				return interpreter.evalVal(qmark.getFirstRet(), ctxt);
+				std::cout<<"visitQuestionMark: cond pass\n";
+				RamDomain res = interpreter.evalVal(qmark.getFirstRet(), ctxt);
+				std::cout<< res <<std::endl;
+				std::cout<<"before return\n";
+				return res;
 			} else {
+				std::cout<<"visitQuestionMark: cond fail\n";
 				return interpreter.evalVal(qmark.getSecondRet(), ctxt);
 			}
+			return 0;
 		}
 
 		RamDomain visitAutoIncrement(const RamAutoIncrement&) override {
@@ -355,6 +361,13 @@ RamDomain Interpreter::evalVal(const RamValue& value,
 				if (cas.match == nullptr
 						|| interpreter.evalCond(*cas.match, ctxt_temp)) {
 					// get output if match
+					std::cout << "find a match: " << *cas.output << std::endl;
+					if (dynamic_cast<RamQuestionMark *>(cas.output.get())!=nullptr) {
+						std::cout << "cast to question mark!\n";
+					}
+					RamDomain res = interpreter.evalVal(*cas.output, ctxt_temp);
+					std::cout << "get res: " << res << std::endl;
+					std::cout << "find a match finish.\n";
 					return interpreter.evalVal(*cas.output, ctxt_temp);
 				}
 			}
@@ -1063,13 +1076,70 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		}
 
 		bool visitLatNorm(const RamLatNorm& latnorm) override {
-			std::cout << "\n visit LatNorm here! relation: " << latnorm.getRelation_IN_Rel().getName() << std::endl;
+			std::cout << "\n visit LatNorm here! relation: "
+					<< latnorm.getRelation_IN_Rel().getName() << std::endl;
 			InterpreterRelation& IN_Rel = interpreter.getRelation(
 					latnorm.getRelation_IN_Rel());
 			InterpreterRelation& OUT_Rel = interpreter.getRelation(
 					latnorm.getRelation_OUT_Rel());
 			//TODO
-			OUT_Rel.insert(IN_Rel);
+			size_t arity = IN_Rel.getArity();
+			RamDomain low[arity];
+			RamDomain high[arity];
+			for (size_t i = 0; i < arity; i++) {
+				low[i] = MIN_RAM_DOMAIN;
+				high[i] = MAX_RAM_DOMAIN;
+			}
+
+			InterpreterContext ctxt_temp;
+			const RamLatticeBinaryFunction& lub_func =
+					interpreter.getTranslationUnit().getProgram()->getLattice()->getLUB();
+
+			// obtain index
+			auto totalIndex = IN_Rel.getTotalIndex();
+
+			auto range = totalIndex->lowerUpperBound(low, high);
+			auto it = range.first;
+			auto itend = range.second;
+			while (it != itend) {
+				const RamDomain* data = *(it);
+				for (size_t i = 0; i < arity - 1; i++) {
+					high[i] = data[i];
+				}
+				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
+
+				// get iterator range
+				auto range_end = totalIndex->UpperBound(high);
+				//			RamDomain biggestLat = latAssoc->getBot();
+				RamDomain biggestLat = data[arity - 1];
+				++it;
+				for (; it != range_end; ++it) {
+					//				const RamDomain* data = *(it);
+					//				auto curlat = data[arity-1];
+					// TODO
+					RamDomain curlat = (*it)[arity - 1];
+					// set 2 input variables
+					std::vector<RamDomain> args = { biggestLat, curlat };
+					ctxt_temp.setArguments(args);
+
+					// evaluate binary constraint
+					for (const auto& cas : lub_func.getLatCase()) {
+						if (cas.match == nullptr
+								|| interpreter.evalCond(*cas.match,
+										ctxt_temp)) {
+							// get output if match
+							biggestLat = interpreter.evalVal(*cas.output,
+									ctxt_temp);
+							break;
+						}
+					}
+					//				biggestLat = latAssoc->applyLub(biggestLat, curlat);
+				}
+				high[arity - 1] = biggestLat;
+
+				OUT_Rel.insert(high);
+			}
+
 			return true;
 		}
 
@@ -1249,48 +1319,6 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 				}
 			}
 
-//			while (it != itend) {
-//				const RamDomain* data = *(it);
-//				for (size_t i = 0; i < arity - 1; i++) {
-//					high[i] = data[i];
-//				}
-//				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
-//
-//				// get iterator range
-//				auto range_end = totalIndex->UpperBound(high);
-//				//			RamDomain biggestLat = latAssoc->getBot();
-//				RamDomain biggestLat = data[arity - 1];
-//				++it;
-//				for (; it != range_end; ++it) {
-//					//				const RamDomain* data = *(it);
-//					//				auto curlat = data[arity-1];
-//					// TODO
-//					RamDomain curlat = (*it)[arity - 1];
-//					// set 2 input variables
-//					std::vector<RamDomain> args = { biggestLat, curlat };
-//					ctxt_temp.setArguments(args);
-//
-//					// evaluate binary constraint
-//					for (const auto& cas : lub_func.getLatCase()) {
-//						if (cas.match == nullptr
-//								|| interpreter.evalCond(*cas.match,
-//										ctxt_temp)) {
-//							// get output if match
-//							biggestLat = interpreter.evalVal(*cas.output,
-//									ctxt_temp);
-//							break;
-//						}
-//					}
-//					//				biggestLat = latAssoc->applyLub(biggestLat, curlat);
-//				}
-//				high[arity - 1] = biggestLat;
-//
-//				fst.insert(high);
-//				scd.insert(high);
-//			}
-
-//			fst.latnorm(scd, latticeAssoc);
-//			std::cout << "visitLatNorm finish.\n";
 			return true;
 		}
 
