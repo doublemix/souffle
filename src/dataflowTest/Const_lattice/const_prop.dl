@@ -5,7 +5,6 @@
 // notice: enum must be decalred before any use of 
 // enum element (because of symbol table offset)
 
-
 .def lub(x: Constant, y: Constant): Constant {
     case ("Bot", _)   => y,
     case (_, "Bot")   => x,
@@ -30,6 +29,22 @@
     case (_, _)	      => x+y
 }
 
+.def lat_minus(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x-y
+}
+
+.def lat_mult(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x*y
+}
+
 .def lat_div(x: Constant, y: Constant): Constant {
     case ("Bot", _)   => "Bot",
     case (_, "Bot")   => "Bot",
@@ -38,12 +53,17 @@
     case (_, _)	      => y=0 ? "Bot" : x/y
 }
 
+// assert lattice association
 .let Const<> = ("Bot", "Top", lub, glb)
 
 .decl setConstStm(l:number, r: symbol, c: number)         // r = c
 .input setConstStm
 .decl addStm(l:number, r: symbol, x: symbol, y: symbol) // r = x + y
 .input addStm
+.decl minusStm(l:number, r: symbol, x: symbol, y: symbol) // r = x - y
+.input minusStm
+.decl multStm(l:number, r: symbol, x: symbol, y: symbol) // r = x * y
+.input multStm
 .decl divStm(l:number, r: symbol, x: symbol, y: symbol) // r = x / y
 .input divStm
 
@@ -66,7 +86,15 @@ varExit(l, r, &lat_alpha(c)) :- setConstStm(l, r, c).
 varExit(l, r, &lat_sum(v1, v2)) :- addStm(l, r, x, y),
                             varEntry(l, x, v1),
                             varEntry(l, y, v2).
-// division statement
+// division statement: r = x - y
+varExit(l, r, &lat_minus(v1, v2)) :- minusStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2).
+// multiplication statement: r = x * y
+varExit(l, r, &lat_mult(v1, v2)) :- multStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2).
+// division statement: r = x / y
 varExit(l, r, &lat_div(v1, v2)) :- divStm(l, r, x, y),
                             varEntry(l, x, v1),
                             varEntry(l, y, v2).
@@ -75,34 +103,8 @@ varExit(l, r, &lat_div(v1, v2)) :- divStm(l, r, x, y),
 .decl assignVar(l:number, r: symbol) // this statement assign r to a new value
 assignVar(l, r) :- setConstStm(l, r, c).
 assignVar(l, r) :- addStm(l, r, x, y).
+assignVar(l, r) :- minusStm(l, r, x, y).
+assignVar(l, r) :- multStm(l, r, x, y).
 assignVar(l, r) :- divStm(l, r, x, y).
 varExit(l, r, v) :- varEntry(l, r, v), !assignVar(l, r).
 
-
-// lattice relation
-//.lat A(x: symbol, s: Constant)
-//.input A
-//.lat B(x: symbol, s: Constant)
-//.input B
-//.lat C(x: symbol, s: Constant)
-//.input C
-//.lat D(x: symbol, s: Constant)
-//.input D
-//.lat R(x: symbol, s: Constant)
-//.output R
-
-//R(x, s) :- A(x, s), B(x, s), C(x, s).
-//A(x, s) :- R(x, s), B(x, s).
-//R(x, s) :- A(x, s), D(x, s).
-//R(x, s) :- A(x, s), C(x, s).
-
-// normal relation
-//.decl P(x: symbol, s: symbol)
-//.input P
-//.decl Q(x: symbol, s: symbol)
-//.input Q
-//.decl S(x: symbol, s: symbol)
-//.output S
-//S(x, s) :- P(x, s), Q(x, s).
-//P(x, s) :- S(x, s).
-//Q(x, s) :- P(x, s).

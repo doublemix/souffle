@@ -1,0 +1,88 @@
+.enum Constant = {
+	case "Top",
+	case "Bot"
+}
+// notice: enum must be decalred before any use of 
+// enum element (because of symbol table offset)
+
+.def lub(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => y,
+    case (_, "Bot")   => x,
+    case (_, _)	      => x=y ? x : "Top"
+}
+
+.def glb(x: Constant, y: Constant): Constant {
+    case ("Top", _)   => y,
+    case (_, "Top")   => x,
+    case (_, _)	      => x=y ? x : "Bot"
+}
+
+.def lat_alpha(x: number): Constant {
+    case (_)	      => x
+}
+
+// assert lattice association
+.let Const<> = ("Bot", "Top", lub, glb)
+
+.lat varEntry(l:number, k: symbol, v: Constant)
+.output varEntry
+.lat varExit(l:number, k: symbol, v: Constant)
+.output varExit
+
+
+.decl setConstStm(l:number, r: symbol, c: number)         // r = c
+.input setConstStm
+.decl addStm(l:number, r: symbol, x: symbol, y: symbol) // r = x + y
+.input addStm
+.decl minusStm(l:number, r: symbol, x: symbol, y: symbol) // r = x - y
+.input minusStm
+.decl multStm(l:number, r: symbol, x: symbol, y: symbol) // r = x * y
+.input multStm
+.decl divStm(l:number, r: symbol, x: symbol, y: symbol) // r = x / y
+.input divStm
+
+.decl flow(l1: number, l2: number) // control flow from l1 to l2
+.input flow
+
+.decl varEntry_num(l:number, k: symbol, v: number)
+.decl varExit_num(l:number, k: symbol, v: number)
+
+
+// varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
+varEntry_num(l2, k, v) :- varExit_num(l1, k, v), flow(l1, l2).
+
+// statement: set to constant number
+varExit_num(l, r, c) :- setConstStm(l, r, c).
+
+// addition statement r = x+y, and the value of x is v1, the
+// value of y is v2
+varExit_num(l, r, v1+v2) :- addStm(l, r, x, y),
+                            varEntry_num(l, x, v1),
+                            varEntry_num(l, y, v2).
+// division statement: r = x - y
+varExit_num(l, r, v1-v2) :- minusStm(l, r, x, y),
+                            varEntry_num(l, x, v1),
+                            varEntry_num(l, y, v2).
+// multiplication statement: r = x * y
+varExit_num(l, r, v1*v2) :- multStm(l, r, x, y),
+                            varEntry_num(l, x, v1),
+                            varEntry_num(l, y, v2).
+// division statement: r = x / y
+// can not handle division correctly
+varExit_num(l, r, (v2=0? 0 : v1/v2)) :- divStm(l, r, x, y),
+                            varEntry_num(l, x, v1),
+                            varEntry_num(l, y, v2).
+
+// if the statement doesn't assign to r
+.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
+assignVar(l, r) :- setConstStm(l, r, c).
+assignVar(l, r) :- addStm(l, r, x, y).
+assignVar(l, r) :- minusStm(l, r, x, y).
+assignVar(l, r) :- multStm(l, r, x, y).
+assignVar(l, r) :- divStm(l, r, x, y).
+varExit_num(l, r, v) :- varEntry_num(l, r, v), !assignVar(l, r).
+
+// extract lattice from number
+varEntry(l, k, &lat_alpha(v)) :- varEntry_num(l, k, v).
+varExit(l, k, &lat_alpha(v)) :- varExit_num(l, k, v).
+

@@ -394,6 +394,11 @@ static bool hasUnnamedVariable(const AstArgument* arg) {
 		return any_of(ri->getArguments(),
 				(bool (*)(const AstArgument*))hasUnnamedVariable);
 	}
+	if (const auto* ri = dynamic_cast<const AstQuestionMark*>(arg)) {
+		return any_of(ri->getArguments(),
+				(bool (*)(const AstArgument*))hasUnnamedVariable);
+	}
+
 	if (dynamic_cast<const AstAggregator*>(arg)) {
 		return false;
 	}

@@ -87,9 +87,18 @@ public:
 
 	void setReturns(std::unique_ptr<AstArgument> r1,
 			std::unique_ptr<AstArgument> r2) {
-		assert(ret1==nullptr && ret2==nullptr);
+		assert(ret1 == nullptr && ret2 == nullptr);
 		ret1 = std::move(r1);
 		ret2 = std::move(r2);
+	}
+
+	std::vector<AstArgument*> getArguments() const {
+		std::vector<AstArgument*> args;
+		args.push_back(cond->getLHS());
+		args.push_back(cond->getRHS());
+		args.push_back(ret1.get());
+		args.push_back(ret2.get());
+		return args;
 	}
 
 	// -- others --

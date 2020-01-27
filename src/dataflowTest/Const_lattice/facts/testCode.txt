@@ -1,0 +1,72 @@
+0    a=50
+1    b=89
+2    c=45
+3    d=-80
+4    e=-33
+5    f=-59
+6    g=-3
+7    h=-40
+8    i=-58
+9    c=d+e
+10   f=h-c
+11   a=h+d
+12   IF (condition):
+13   	f=f+a
+14   	o=-69
+15   	c=h*e
+16   	i=d*g
+     ELSE:
+17   	r=70
+18   	s=33
+19   	i=d+b
+20   End IF
+21   b=i+b
+22   d=d-i
+23   b=b-b
+24   b=g+c
+25   g=i*f
+26   c=a+b
+27   zb=-58
+28   h=h+i
+29   h=g+f
+30   b=b+e
+31   g=g-i
+32   zg=-65
+33   g=b-d
+34   zi=36
+35   IF (condition):
+36   	a=b*d
+37   	f=e*f
+38   	zm=0
+39   	h=b-b
+40   	IF (condition):
+41   		d=f-h
+42   		g=b*c
+43   		c=f-d
+44   		e=c+g
+45   		zt=96
+46   		d=c*a
+47   		a=d-a
+48   		f=i-f
+49   		g=b+i
+     	ELSE:
+50   		zy=-47
+51   		i=i*b
+52   		b=f-d
+53   		c=f-i
+54   		f=c*d
+55   		zzd=68
+56   	End IF
+     ELSE:
+57   	i=d*h
+58   	g=b-g
+59   	zzh=15
+60   	h=h-g
+61   	zzj=-64
+62   	b=i*a
+63   	zzl=-81
+64   	f=e*a
+65   	e=i-e
+66   	b=c+g
+67   	i=f+i
+68   End IF
