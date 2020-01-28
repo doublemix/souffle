@@ -1072,6 +1072,8 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		bool visitLatNorm(const RamLatNorm& latnorm) override {
 			std::cout << "\n visit LatNorm here! relation: "
 					<< latnorm.getRelation_IN_Rel().getName() << std::endl;
+			RamDomain lat_Top =
+					interpreter.getTranslationUnit().getProgram()->getLattice()->getTop();
 			InterpreterRelation& IN_Rel = interpreter.getRelation(
 					latnorm.getRelation_IN_Rel());
 			InterpreterRelation& OUT_Rel = interpreter.getRelation(
@@ -1108,9 +1110,12 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 				RamDomain biggestLat = data[arity - 1];
 				++it;
 				for (; it != range_end; ++it) {
-					//				const RamDomain* data = *(it);
-					//				auto curlat = data[arity-1];
-					// TODO
+					// skip if obtain the top element
+					if (biggestLat == lat_Top) {
+						it = range_end;
+						break;
+					}
+
 					RamDomain curlat = (*it)[arity - 1];
 					// set 2 input variables
 					std::vector<RamDomain> args = { biggestLat, curlat };
@@ -1137,7 +1142,127 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			return true;
 		}
 
-		//
+		// Plan B
+		bool visitLatClean(const RamLatClean& latclean) override {
+			//			std::cout << "\n visit LatExt here! relation: " << latext.getRelation_IN_Origin().getName() << std::endl;
+			RamDomain lat_Top =
+					interpreter.getTranslationUnit().getProgram()->getLattice()->getTop();
+			// get involved relation
+			InterpreterRelation& IN_Origin = interpreter.getRelation(
+					latclean.getRelation_IN_Origin());
+			InterpreterRelation& IN_New = interpreter.getRelation(
+					latclean.getRelation_IN_New());
+			InterpreterRelation& OUT_New = interpreter.getRelation(
+					latclean.getRelation_OUT_New());
+
+			size_t arity = IN_Origin.getArity();
+
+			// Notice: there could be several elements for each cell in in_origin lattice relation!
+			// Find biggest lattice element in the same cell. If the biggest element does not
+			// exist in in_origin, then put it in out_new
+			RamDomain low[arity];
+			RamDomain high[arity];
+			for (size_t i = 0; i < arity; i++) {
+				low[i] = MIN_RAM_DOMAIN;
+				high[i] = MAX_RAM_DOMAIN;
+			}
+
+			InterpreterContext ctxt_temp;
+			const RamLatticeBinaryFunction& lub_func =
+					interpreter.getTranslationUnit().getProgram()->getLattice()->getLUB();
+
+			// obtain index
+			auto org_totalIndex = IN_Origin.getTotalIndex();
+			auto new_totalIndex = IN_New.getTotalIndex();
+
+			auto new_range = new_totalIndex->lowerUpperBound(low, high);
+			auto new_it = new_range.first;
+			auto new_itend = new_range.second;
+
+			// Traverse the whole new lattice relation
+			while (new_it != new_itend) {
+				const RamDomain* data = *new_it;
+
+				//				std::cout << "data: ";
+				//				for (size_t i = 0; i < arity; i++) {
+				//					std::cout << data[i] << " ";
+				//				}
+				//				std::cout << std::endl;
+
+				for (size_t i = 0; i < arity - 1; i++) {
+					low[i] = data[i];
+					high[i] = data[i];
+				}
+				low[arity - 1] = MIN_RAM_DOMAIN;
+				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
+				auto cell_new_end = new_totalIndex->UpperBound(high);
+
+				RamDomain biggestLat = data[arity - 1];
+				// 1. traverse the new lattice relation
+				for (++new_it; new_it != cell_new_end; ++new_it) {
+					// skip if obtain the top element
+					if (biggestLat == lat_Top) {
+						new_it = cell_new_end;
+						break;
+					}
+
+					RamDomain curlat = (*new_it)[arity - 1];
+					// set 2 input variables
+					ctxt_temp.setArguments( { biggestLat, curlat });
+					// evaluate binary constraint
+					for (const auto& cas : lub_func.getLatCase()) {
+						if (cas.match == nullptr
+								|| interpreter.evalCond(*cas.match,
+										ctxt_temp)) {
+							// get output if match
+							biggestLat = interpreter.evalVal(*cas.output,
+									ctxt_temp);
+							break;
+						}
+					}
+				}
+
+				// 2. traverse the cell in the original lattice relation
+				if (biggestLat != lat_Top) {
+					auto cell_org_range = org_totalIndex->lowerUpperBound(low,
+							high);
+					auto cell_org_it = cell_org_range.first;
+					auto cell_org_end = cell_org_range.second;
+					for (; cell_org_it != cell_org_end; ++cell_org_it) {
+						// skip if obtain the top element
+						if (biggestLat == lat_Top) {
+							break;
+						}
+
+						RamDomain curlat = (*cell_org_it)[arity - 1];
+						// set 2 input variables
+						ctxt_temp.setArguments( { biggestLat, curlat });
+						// evaluate binary constraint
+						for (const auto& cas : lub_func.getLatCase()) {
+							if (cas.match == nullptr
+									|| interpreter.evalCond(*cas.match,
+											ctxt_temp)) {
+								// get output if match
+								biggestLat = interpreter.evalVal(*cas.output,
+										ctxt_temp);
+								break;
+							}
+						}
+					}
+				}
+
+				// 3. put element into temp new relation
+				high[arity - 1] = biggestLat;
+				if (!IN_Origin.exists(high)) {
+					OUT_New.insert(high);
+				}
+
+			}
+
+			return true;
+		}
+
+		// Plan A TODO, use RamDomain lat_Top to optimize
 		bool visitLatExt(const RamLatExt& latext) override {
 //			std::cout << "\n visit LatExt here! relation: " << latext.getRelation_IN_Origin().getName() << std::endl;
 			// get involved relation

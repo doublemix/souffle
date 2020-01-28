@@ -1478,6 +1478,9 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 	std::unique_ptr<RamSequence> updateTable(new RamSequence());
 	std::unique_ptr<RamStatement> postamble;
 
+	// added by Qing Gong: clean the "new" relations in the loop, between updateTable and Exit
+	std::unique_ptr<RamStatement> beforeExit;
+
 	// --- create preamble ---
 
 	// mappings for temporary relations
@@ -1503,41 +1506,44 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 			relNew_lat[rel] = translateNewLatRelation(rel);
 		}
 
-		if (rrel[rel]->isLattice()) {
-			// added by Qing Gong
-			// if there is relation with lattice, need to normalize it.
-			appendStmt(updateRelTable,
-					std::make_unique<RamLatExt>(
-							std::unique_ptr<RamRelationReference>(
-									rrel[rel]->clone()),
-							std::unique_ptr<RamRelationReference>(
-									relNew[rel]->clone()),
-							std::unique_ptr<RamRelationReference>(
-									rrel_lat[rel]->clone()),
-							std::unique_ptr<RamRelationReference>(
-									relNew_lat[rel]->clone())));
-			// add swaps for them
-			appendStmt(updateRelTable,
-					std::make_unique<RamSwap>(
-							std::unique_ptr<RamRelationReference>(
-									rrel[rel]->clone()),
-							std::unique_ptr<RamRelationReference>(
-									rrel_lat[rel]->clone())));
-			appendStmt(updateRelTable,
-					std::make_unique<RamSwap>(
-							std::unique_ptr<RamRelationReference>(
-									relNew[rel]->clone()),
-							std::unique_ptr<RamRelationReference>(
-									relNew_lat[rel]->clone())));
-		} else {
-			/* create update statements for fixpoint (even iteration) */
-			appendStmt(updateRelTable,
-					std::make_unique<RamMerge>(
-							std::unique_ptr<RamRelationReference>(
-									rrel[rel]->clone()),
-							std::unique_ptr<RamRelationReference>(
-									relNew[rel]->clone())));
-		}
+		/** Code below by Qing Gong: use LatExt to reconstruct the
+		 * orgin and new relation, too slow! */
+		// Plan A
+//		if (rrel[rel]->isLattice()) {
+//			// added by Qing Gong
+//			// if there is relation with lattice, need to normalize it.
+//			appendStmt(updateRelTable,
+//					std::make_unique<RamLatExt>(
+//							std::unique_ptr<RamRelationReference>(
+//									rrel[rel]->clone()),
+//							std::unique_ptr<RamRelationReference>(
+//									relNew[rel]->clone()),
+//							std::unique_ptr<RamRelationReference>(
+//									rrel_lat[rel]->clone()),
+//							std::unique_ptr<RamRelationReference>(
+//									relNew_lat[rel]->clone())));
+//			// add swaps for them
+//			appendStmt(updateRelTable,
+//					std::make_unique<RamSwap>(
+//							std::unique_ptr<RamRelationReference>(
+//									rrel[rel]->clone()),
+//							std::unique_ptr<RamRelationReference>(
+//									rrel_lat[rel]->clone())));
+//			appendStmt(updateRelTable,
+//					std::make_unique<RamSwap>(
+//							std::unique_ptr<RamRelationReference>(
+//									relNew[rel]->clone()),
+//							std::unique_ptr<RamRelationReference>(
+//									relNew_lat[rel]->clone())));
+//		} else {
+		/* create update statements for fixpoint (even iteration) */
+		appendStmt(updateRelTable,
+				std::make_unique<RamMerge>(
+						std::unique_ptr<RamRelationReference>(
+								rrel[rel]->clone()),
+						std::unique_ptr<RamRelationReference>(
+								relNew[rel]->clone())));
+//		}
 
 		appendStmt(updateRelTable,
 				std::make_unique<RamSwap>(
@@ -1551,16 +1557,17 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 						std::unique_ptr<RamRelationReference>(
 								relNew[rel]->clone())));
 
-		if (rrel[rel]->isLattice()) {
-			appendStmt(updateRelTable,
-					std::make_unique<RamClear>(
-							std::unique_ptr<RamRelationReference>(
-									rrel_lat[rel]->clone())));
-			appendStmt(updateRelTable,
-					std::make_unique<RamClear>(
-							std::unique_ptr<RamRelationReference>(
-									relNew_lat[rel]->clone())));
-		}
+		// Plan A
+//		if (rrel[rel]->isLattice()) {
+//			appendStmt(updateRelTable,
+//					std::make_unique<RamClear>(
+//							std::unique_ptr<RamRelationReference>(
+//									rrel_lat[rel]->clone())));
+//			appendStmt(updateRelTable,
+//					std::make_unique<RamClear>(
+//							std::unique_ptr<RamRelationReference>(
+//									relNew_lat[rel]->clone())));
+//		}
 
 		/* measure update time for each relation */
 		if (Global::config().has("profile")) {
@@ -1570,6 +1577,23 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 							rel->getSrcLoc()),
 					std::unique_ptr<RamRelationReference>(
 							relNew[rel]->clone()));
+		}
+
+		// Plan B: latnorm the lattice relation in postamble
+		if (rel->isLattice()) {
+			appendStmt(postamble,
+					std::make_unique<RamLatNorm>(
+							std::unique_ptr<RamRelationReference>(
+									rrel[rel]->clone()),
+							std::unique_ptr<RamRelationReference>(
+									rrel_lat[rel]->clone())));
+			// add swaps for them
+			appendStmt(postamble,
+					std::make_unique<RamSwap>(
+							std::unique_ptr<RamRelationReference>(
+									rrel[rel]->clone()),
+							std::unique_ptr<RamRelationReference>(
+									rrel_lat[rel]->clone())));
 		}
 
 		/* drop temporary tables after recursion */
@@ -1608,6 +1632,30 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 
 		/* Add update operations of relations to parallel statements */
 		updateTable->add(std::move(updateRelTable));
+	}
+
+	// Plan B by Qing Gong: clean the "new" relations in the loop, between updateTable and Exit
+	for (const AstRelation* rel : scc) {
+		if (rrel[rel]->isLattice()) {
+			appendStmt(beforeExit,
+					std::make_unique<RamLatClean>(
+							std::unique_ptr<RamRelationReference>(
+									rrel[rel]->clone()),
+							std::unique_ptr<RamRelationReference>(
+									relNew[rel]->clone()),
+							std::unique_ptr<RamRelationReference>(
+									relNew_lat[rel]->clone())));
+			appendStmt(beforeExit,
+					std::make_unique<RamSwap>(
+							std::unique_ptr<RamRelationReference>(
+									relNew[rel]->clone()),
+							std::unique_ptr<RamRelationReference>(
+									relNew_lat[rel]->clone())));
+			appendStmt(beforeExit,
+					std::make_unique<RamClear>(
+							std::unique_ptr<RamRelationReference>(
+									relNew_lat[rel]->clone())));
+		}
 	}
 
 	// --- build main loop ---
@@ -1761,10 +1809,20 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 	if (preamble)
 		appendStmt(res, std::move(preamble));
 	if (!loopSeq->getStatements().empty() && exitCond && updateTable) {
-		appendStmt(res,
-				std::make_unique<RamLoop>(std::move(loopSeq),
-						std::make_unique<RamExit>(std::move(exitCond)),
-						std::move(updateTable)));
+		// Plan B
+		if (beforeExit) {
+			appendStmt(res,
+					std::make_unique<RamLoop>(std::move(loopSeq),
+							std::move(beforeExit),
+							std::make_unique<RamExit>(std::move(exitCond)),
+							std::move(updateTable)));
+		} else {
+			appendStmt(res,
+					std::make_unique<RamLoop>(std::move(loopSeq),
+							std::make_unique<RamExit>(std::move(exitCond)),
+							std::move(updateTable)));
+		}
+
 	}
 	if (postamble) {
 		appendStmt(res, std::move(postamble));

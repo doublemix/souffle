@@ -321,7 +321,8 @@ protected:
 public:
 	RamLatNorm(std::unique_ptr<RamRelationReference> I_rel,
 			std::unique_ptr<RamRelationReference> O_rel) :
-			RamStatement(RN_LatNorm), IN_Rel(std::move(I_rel)), OUT_Rel(std::move(O_rel)) {
+			RamStatement(RN_LatNorm), IN_Rel(std::move(I_rel)), OUT_Rel(
+					std::move(O_rel)) {
 		// TODO (#541): check not just for arity also for correct type!!
 		// Introduce an equivalence type-check for two ram relations
 		assert(IN_Rel->getArity() == OUT_Rel->getArity());
@@ -376,9 +377,90 @@ protected:
 	}
 };
 
+/**
+ * Clean the (temporary) new lattice relation using the original one,
+ * so that only the real new elements are kept
+ */
+class RamLatClean: public RamStatement {
+protected:
+	std::unique_ptr<RamRelationReference> IN_Origin;
+	std::unique_ptr<RamRelationReference> IN_New;
+	std::unique_ptr<RamRelationReference> OUT_New;
+
+public:
+	RamLatClean(std::unique_ptr<RamRelationReference> I_Org,
+			std::unique_ptr<RamRelationReference> I_n,
+			std::unique_ptr<RamRelationReference> O_n) :
+			RamStatement(RN_LatClean), IN_Origin(std::move(I_Org)), IN_New(
+					std::move(I_n)), OUT_New(std::move(O_n)) {
+		// TODO (#541): check not just for arity also for correct type!!
+		// Introduce an equivalence type-check for two ram relations
+		assert(IN_Origin->getArity() == IN_New->getArity());
+		assert(IN_Origin->getArity() == OUT_New->getArity());
+		assert(IN_Origin->isLattice());
+	}
+
+	/** Get source original relation */
+	const RamRelationReference& getRelation_IN_Origin() const {
+		return *IN_Origin;
+	}
+
+	/** Get source "new" relation */
+	const RamRelationReference& getRelation_IN_New() const {
+		return *IN_New;
+	}
+
+	/** Get target "new" relation */
+	const RamRelationReference& getRelation_OUT_New() const {
+		return *OUT_New;
+	}
+
+	/** Pretty print */
+	void print(std::ostream& os, int tabpos) const override {
+		os << std::string(tabpos, '\t');
+		os << "LATCLEAN ";
+		os << IN_New->getName();
+		os << " INTO ";
+		os << OUT_New->getName();
+		os << " USING ";
+		os << IN_Origin->getName();
+	}
+
+	/** Obtain list of child nodes */
+	std::vector<const RamNode*> getChildNodes() const override {
+		return std::vector<const RamNode*>( { IN_Origin.get(), IN_New.get(),
+				OUT_New.get() });
+	}
+
+	/** Create clone */
+	RamLatClean* clone() const override {
+		RamLatClean* res = new RamLatClean(
+				std::unique_ptr<RamRelationReference>(IN_Origin->clone()),
+				std::unique_ptr<RamRelationReference>(IN_New->clone()),
+				std::unique_ptr<RamRelationReference>(OUT_New->clone()));
+		return res;
+	}
+
+	/** Apply mapper */
+	void apply(const RamNodeMapper& map) override {
+		IN_Origin = map(std::move(IN_Origin));
+		IN_New = map(std::move(IN_New));
+		OUT_New = map(std::move(OUT_New));
+	}
+
+protected:
+	/** Check equality */
+	bool equal(const RamNode& node) const override {
+		assert(nullptr != dynamic_cast<const RamLatClean*>(&node));
+		const auto& other = static_cast<const RamLatClean&>(node);
+		return getRelation_IN_Origin() == other.getRelation_IN_Origin()
+				&& getRelation_IN_New() == other.getRelation_IN_New()
+				&& getRelation_OUT_New() == other.getRelation_OUT_New();
+	}
+};
 
 /**
- * Extract lattice elements from two latticerelations
+ * Extract lattice elements from two lattice relations
  */
 class RamLatExt: public RamStatement {
 protected:
