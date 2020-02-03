@@ -733,7 +733,7 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 //					move(OtherLBFtranslator.translate()));
 //		}
 //	}
-	std::cout << "RamLatticeAssociation generated.\n";
+//	std::cout << "RamLatticeAssociation generated.\n";
 	return std::unique_ptr<RamLatticeAssociation>(RamLat);
 }
 

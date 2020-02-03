@@ -5,7 +5,7 @@ PROG     = const_prop
 .PHONY: all clean
 
 all: 
-	./../../souffle $(PROG).dl --fact-dir=facts --output-dir=. --debug-report=$(PROG)_report.html
+	./../../souffle $(PROG).dl --fact-dir=facts --output-dir=. --debug-report=$(PROG)_report.html -p $(PROG)_profile.log
 	sort -k1 ./varEntry.csv > ./sortedVarEntry.csv
 	sort -k1 ./varExit.csv > ./sortedVarExit.csv
 
@@ -17,3 +17,6 @@ compile:
 
 help:
 	./../../souffle -help
+
+profile:
+	./../../souffle-profile $(PROG)_profile.log -j

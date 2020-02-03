@@ -101,10 +101,10 @@ varExit(l, r, &lat_div(v1, v2)) :- divStm(l, r, x, y),
 
 // if the statement doesn't assign to r
 .decl assignVar(l:number, r: symbol) // this statement assign r to a new value
-assignVar(l, r) :- setConstStm(l, r, c).
-assignVar(l, r) :- addStm(l, r, x, y).
-assignVar(l, r) :- minusStm(l, r, x, y).
-assignVar(l, r) :- multStm(l, r, x, y).
-assignVar(l, r) :- divStm(l, r, x, y).
+assignVar(l, r) :- setConstStm(l, r, _).
+assignVar(l, r) :- addStm(l, r, _, _).
+assignVar(l, r) :- minusStm(l, r, _, _).
+assignVar(l, r) :- multStm(l, r, _, _).
+assignVar(l, r) :- divStm(l, r, _, _).
 varExit(l, r, v) :- varEntry(l, r, v), !assignVar(l, r).
 

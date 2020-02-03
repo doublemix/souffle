@@ -1479,7 +1479,7 @@ namespace yy {
   case 6:
 #line 263 "./parser.yy" // lalr1.cc:859
     {
-    	std::cout << ".lat Lattice declaration here!\n";
+    	//std::cout << ".lat Lattice declaration here!\n";
     	for(const auto& cur : yystack_[0].value.as< std::vector<AstRelation *> > ()) driver.addRelation(std::unique_ptr<AstRelation>(cur));
   	}
 #line 1486 "parser.cc" // lalr1.cc:859
@@ -1488,7 +1488,7 @@ namespace yy {
   case 7:
 #line 267 "./parser.yy" // lalr1.cc:859
     {
-    	std::cout << ".let Lattice Asscoiation here!\n";
+    	//std::cout << ".let Lattice Asscoiation here!\n";
     	driver.addLatticeAssociation(std::unique_ptr<AstLatticeAssociation>(yystack_[0].value.as< AstLatticeAssociation * > ()));
   	}
 #line 1495 "parser.cc" // lalr1.cc:859
@@ -1497,7 +1497,7 @@ namespace yy {
   case 8:
 #line 271 "./parser.yy" // lalr1.cc:859
     {
-  		std::cout << ".def Lattice Unary function definition here!\n";
+  		//std::cout << ".def Lattice Unary function definition here!\n";
   		driver.addLatticeFunction(std::unique_ptr<AstLatticeUnaryFunction>(yystack_[0].value.as< AstLatticeUnaryFunction * > ()));
   	}
 #line 1504 "parser.cc" // lalr1.cc:859
@@ -1506,7 +1506,7 @@ namespace yy {
   case 9:
 #line 275 "./parser.yy" // lalr1.cc:859
     {
-  		std::cout << ".def Lattice Binary function definition here!\n";
+  		//std::cout << ".def Lattice Binary function definition here!\n";
   		driver.addLatticeFunction(std::unique_ptr<AstLatticeBinaryFunction>(yystack_[0].value.as< AstLatticeBinaryFunction * > ()));
   	}
 #line 1513 "parser.cc" // lalr1.cc:859
@@ -1673,7 +1673,7 @@ namespace yy {
   		yylhs.value.as< AstType * > () = yystack_[1].value.as< AstEnumType * > ();
   		yylhs.value.as< AstType * > ()->setName(yystack_[4].value.as< std::string > ());
         yylhs.value.as< AstType * > ()->setSrcLoc(yylhs.location);
-        std::cout<<"Enum type declaration here!\n";
+        //std::cout<<"Enum type declaration here!\n";
   	}
 #line 1679 "parser.cc" // lalr1.cc:859
     break;
@@ -2239,7 +2239,7 @@ namespace yy {
   case 88:
 #line 686 "./parser.yy" // lalr1.cc:859
     {
-  		std::cout << "explicit use of lattice unary functor here!\n";
+  		//std::cout << "explicit use of lattice unary functor here!\n";
   		yylhs.value.as< AstArgument * > () = new AstLatticeUnaryFunctor(yystack_[3].value.as< std::string > (), std::unique_ptr<AstArgument>(yystack_[1].value.as< AstArgument * > ()));
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }
@@ -2249,7 +2249,7 @@ namespace yy {
   case 89:
 #line 691 "./parser.yy" // lalr1.cc:859
     {
-  		std::cout << "explicit use of lattice binary functor here!\n";
+  		//std::cout << "explicit use of lattice binary functor here!\n";
   		yylhs.value.as< AstArgument * > () = new AstLatticeBinaryFunctor(yystack_[5].value.as< std::string > (), std::unique_ptr<AstArgument>(yystack_[3].value.as< AstArgument * > ()), std::unique_ptr<AstArgument>(yystack_[1].value.as< AstArgument * > ()));
         yylhs.value.as< AstArgument * > ()->setSrcLoc(yylhs.location);
     }

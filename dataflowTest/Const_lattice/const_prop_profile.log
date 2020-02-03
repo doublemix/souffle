@@ -1,0 +1,1061 @@
+{
+ "root": {
+  "program": {
+   "configuration": {
+    "": "const_prop.dl",
+    "debug-report": "const_prop_report.html",
+    "fact-dir": "facts",
+    "include-dir": " -I.",
+    "jobs": "1",
+    "output-dir": ".",
+    "profile": "const_prop_profile.log",
+    "relationCount": "9",
+    "ruleCount": "16",
+    "version": "1.5.1-285-gf77c0f1b"
+   },
+   "relation": {
+    "addStm": {
+     "loadtime": { "start": 1580357054961882, "end": 1580357054961979},
+     "num-tuples": 1,
+     "reads": 0,
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [61:7-61:56]"
+    },
+    "assignVar": {
+     "maxRSS": {
+      "post": 7148,
+      "pre": 7148
+     },
+     "non-recursive-rule": {
+      "assignVar(l,r) :- \n   addStm(l,r,_,_).": {
+       "atom-frequency": {
+        "assignVar(l,r) :- \n   addStm(l,r,_,_).": {
+         "addStm(l,r,_,_)": {
+          "level": 0,
+          "num-tuples": 1
+         }
+        }
+       },
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 1,
+       "runtime": { "start": 1580357054962258, "end": 1580357054962262},
+       "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [105:1-105:39]"
+      },
+      "assignVar(l,r) :- \n   divStm(l,r,_,_).": {
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "runtime": { "start": 1580357054962316, "end": 1580357054962330},
+       "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [108:1-108:39]"
+      },
+      "assignVar(l,r) :- \n   minusStm(l,r,_,_).": {
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "runtime": { "start": 1580357054962282, "end": 1580357054962284},
+       "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [106:1-106:41]"
+      },
+      "assignVar(l,r) :- \n   multStm(l,r,_,_).": {
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "runtime": { "start": 1580357054962308, "end": 1580357054962309},
+       "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [107:1-107:40]"
+      },
+      "assignVar(l,r) :- \n   setConstStm(l,r,_).": {
+       "atom-frequency": {
+        "assignVar(l,r) :- \n   setConstStm(l,r,_).": {
+         "setConstStm(l,r,_)": {
+          "level": 0,
+          "num-tuples": 2
+         }
+        }
+       },
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 2,
+       "runtime": { "start": 1580357054962227, "end": 1580357054962234},
+       "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [104:1-104:41]"
+      }
+     },
+     "num-tuples": 3,
+     "reads": 3,
+     "runtime": { "start": 1580357054962225, "end": 1580357054962337},
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [103:7-103:37]"
+    },
+    "divStm": {
+     "loadtime": { "start": 1580357054961999, "end": 1580357054962012},
+     "num-tuples": 0,
+     "reads": 0,
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [67:7-67:56]"
+    },
+    "flow": {
+     "loadtime": { "start": 1580357054962353, "end": 1580357054962399},
+     "num-tuples": 3,
+     "reads": 0,
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [70:7-70:35]"
+    },
+    "minusStm": {
+     "loadtime": { "start": 1580357054962064, "end": 1580357054962086},
+     "num-tuples": 0,
+     "reads": 0,
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [63:7-63:58]"
+    },
+    "multStm": {
+     "loadtime": { "start": 1580357054962114, "end": 1580357054962136},
+     "num-tuples": 0,
+     "reads": 0,
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [65:7-65:57]"
+    },
+    "setConstStm": {
+     "loadtime": { "start": 1580357054962178, "end": 1580357054962193},
+     "num-tuples": 2,
+     "reads": 0,
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [59:7-59:50]"
+    },
+    "varEntry": {
+     "iteration": {
+      "0": {
+       "copytime": { "start": 1580357054962719, "end": 1580357054962723},
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 2,
+       "recursive-rule": {
+        "varEntry(l2,k,v) :- \n   varExit(l1,k,v),\n   flow(l1,l2).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varEntry(l2,k,v) :- \n   @delta_varExit(l1,k,v),\n   flow(l1,l2),\n   !varEntry(l2,k,v).": {
+            "@delta_varExit(l1,k,v)": {
+             "level": 0,
+             "num-tuples": 2
+            },
+            "flow(l1,l2)": {
+             "level": 1,
+             "num-tuples": 6
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 2,
+          "runtime": { "start": 1580357054962571, "end": 1580357054962599},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [79:1-79:55]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054962568, "end": 1580357054962614}
+      },
+      "1": {
+       "copytime": { "start": 1580357054962864, "end": 1580357054962866},
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "recursive-rule": {
+        "varEntry(l2,k,v) :- \n   varExit(l1,k,v),\n   flow(l1,l2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962739, "end": 1580357054962742},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [79:1-79:55]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054962738, "end": 1580357054962752}
+      },
+      "2": {
+       "copytime": { "start": 1580357054962980, "end": 1580357054962982},
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 1,
+       "recursive-rule": {
+        "varEntry(l2,k,v) :- \n   varExit(l1,k,v),\n   flow(l1,l2).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varEntry(l2,k,v) :- \n   @delta_varExit(l1,k,v),\n   flow(l1,l2),\n   !varEntry(l2,k,v).": {
+            "@delta_varExit(l1,k,v)": {
+             "level": 0,
+             "num-tuples": 2
+            },
+            "flow(l1,l2)": {
+             "level": 1,
+             "num-tuples": 6
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 1,
+          "runtime": { "start": 1580357054962881, "end": 1580357054962889},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [79:1-79:55]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054962879, "end": 1580357054962898}
+      },
+      "3": {
+       "copytime": { "start": 1580357054963107, "end": 1580357054963109},
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "recursive-rule": {
+        "varEntry(l2,k,v) :- \n   varExit(l1,k,v),\n   flow(l1,l2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962996, "end": 1580357054962998},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [79:1-79:55]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054962994, "end": 1580357054963007}
+      },
+      "4": {
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "recursive-rule": {
+        "varEntry(l2,k,v) :- \n   varExit(l1,k,v),\n   flow(l1,l2).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varEntry(l2,k,v) :- \n   @delta_varExit(l1,k,v),\n   flow(l1,l2),\n   !varEntry(l2,k,v).": {
+            "@delta_varExit(l1,k,v)": {
+             "level": 0,
+             "num-tuples": 1
+            },
+            "flow(l1,l2)": {
+             "level": 1,
+             "num-tuples": 3
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963122, "end": 1580357054963126},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [79:1-79:55]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054963121, "end": 1580357054963136}
+      }
+     },
+     "num-tuples": 0,
+     "reads": 15,
+     "savetime": { "start": 1580357054963263, "end": 1580357054963337},
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [73:6-73:48]"
+    },
+    "varExit": {
+     "iteration": {
+      "0": {
+       "copytime": { "start": 1580357054962729, "end": 1580357054962731},
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "recursive-rule": {
+        "varExit(l,r,&lat_div(v1,v2)) :- \n   divStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962675, "end": 1580357054962677},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962685, "end": 1580357054962687},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         }
+        },
+        "varExit(l,r,&lat_minus(v1,v2)) :- \n   minusStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962634, "end": 1580357054962636},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962646, "end": 1580357054962648},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         }
+        },
+        "varExit(l,r,&lat_mult(v1,v2)) :- \n   multStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962655, "end": 1580357054962657},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962665, "end": 1580357054962667},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         }
+        },
+        "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   @delta_varEntry(l,x,v1),\n   varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)),\n   !@delta_varEntry(l,y,v2).": {
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962595, "end": 1580357054962599},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         },
+         "1": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   @delta_varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)).": {
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962621, "end": 1580357054962624},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         }
+        },
+        "varExit(l,r,v) :- \n   varEntry(l,r,v),\n   !assignVar(l,r).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962694, "end": 1580357054962696},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [109:1-109:57]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054962578, "end": 1580357054962705}
+      },
+      "1": {
+       "copytime": { "start": 1580357054962871, "end": 1580357054962874},
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 2,
+       "recursive-rule": {
+        "varExit(l,r,&lat_div(v1,v2)) :- \n   divStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962820, "end": 1580357054962821},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962829, "end": 1580357054962830},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         }
+        },
+        "varExit(l,r,&lat_minus(v1,v2)) :- \n   minusStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962781, "end": 1580357054962783},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962792, "end": 1580357054962794},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         }
+        },
+        "varExit(l,r,&lat_mult(v1,v2)) :- \n   multStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962801, "end": 1580357054962802},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962810, "end": 1580357054962811},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         }
+        },
+        "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   @delta_varEntry(l,x,v1),\n   varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)),\n   !@delta_varEntry(l,y,v2).": {
+            "@delta_varEntry(l,x,v1)": {
+             "level": 1,
+             "num-tuples": 2
+            },
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            },
+            "varEntry(l,y,v2)": {
+             "level": 2,
+             "num-tuples": 4
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962739, "end": 1580357054962755},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         },
+         "1": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   @delta_varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)).": {
+            "@delta_varEntry(l,y,v2)": {
+             "level": 2,
+             "num-tuples": 4
+            },
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            },
+            "varEntry(l,x,v1)": {
+             "level": 1,
+             "num-tuples": 2
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962764, "end": 1580357054962774},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         }
+        },
+        "varExit(l,r,v) :- \n   varEntry(l,r,v),\n   !assignVar(l,r).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varExit(l,r,v) :- \n   @delta_varEntry(l,r,v),\n   !assignVar(l,r),\n   !varExit(l,r,v).": {
+            "@delta_varEntry(l,r,v)": {
+             "level": 0,
+             "num-tuples": 2
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 2,
+          "runtime": { "start": 1580357054962837, "end": 1580357054962845},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [109:1-109:57]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054962738, "end": 1580357054962854}
+      },
+      "2": {
+       "copytime": { "start": 1580357054962987, "end": 1580357054962989},
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "recursive-rule": {
+        "varExit(l,r,&lat_div(v1,v2)) :- \n   divStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962943, "end": 1580357054962945},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962952, "end": 1580357054962954},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         }
+        },
+        "varExit(l,r,&lat_minus(v1,v2)) :- \n   minusStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962903, "end": 1580357054962905},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962914, "end": 1580357054962916},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         }
+        },
+        "varExit(l,r,&lat_mult(v1,v2)) :- \n   multStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962923, "end": 1580357054962925},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962932, "end": 1580357054962934},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         }
+        },
+        "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   @delta_varEntry(l,x,v1),\n   varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)),\n   !@delta_varEntry(l,y,v2).": {
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962881, "end": 1580357054962883},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         },
+         "1": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   @delta_varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)).": {
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            },
+            "varEntry(l,x,v1)": {
+             "level": 1,
+             "num-tuples": 2
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962892, "end": 1580357054962895},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         }
+        },
+        "varExit(l,r,v) :- \n   varEntry(l,r,v),\n   !assignVar(l,r).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962961, "end": 1580357054962962},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [109:1-109:57]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054962879, "end": 1580357054962971}
+      },
+      "3": {
+       "copytime": { "start": 1580357054963113, "end": 1580357054963115},
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 1,
+       "recursive-rule": {
+        "varExit(l,r,&lat_div(v1,v2)) :- \n   divStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963066, "end": 1580357054963068},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963076, "end": 1580357054963078},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         }
+        },
+        "varExit(l,r,&lat_minus(v1,v2)) :- \n   minusStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963030, "end": 1580357054963032},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963039, "end": 1580357054963041},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         }
+        },
+        "varExit(l,r,&lat_mult(v1,v2)) :- \n   multStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963049, "end": 1580357054963050},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963058, "end": 1580357054963059},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         }
+        },
+        "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   @delta_varEntry(l,x,v1),\n   varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)),\n   !@delta_varEntry(l,y,v2).": {
+            "@delta_varEntry(l,x,v1)": {
+             "level": 1,
+             "num-tuples": 1
+            },
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            },
+            "varEntry(l,y,v2)": {
+             "level": 2,
+             "num-tuples": 3
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054962996, "end": 1580357054963006},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         },
+         "1": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   @delta_varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)).": {
+            "@delta_varEntry(l,y,v2)": {
+             "level": 2,
+             "num-tuples": 3
+            },
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            },
+            "varEntry(l,x,v1)": {
+             "level": 1,
+             "num-tuples": 3
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963014, "end": 1580357054963023},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         }
+        },
+        "varExit(l,r,v) :- \n   varEntry(l,r,v),\n   !assignVar(l,r).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varExit(l,r,v) :- \n   @delta_varEntry(l,r,v),\n   !assignVar(l,r),\n   !varExit(l,r,v).": {
+            "@delta_varEntry(l,r,v)": {
+             "level": 0,
+             "num-tuples": 1
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 1,
+          "runtime": { "start": 1580357054963085, "end": 1580357054963090},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [109:1-109:57]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054962994, "end": 1580357054963099}
+      },
+      "4": {
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 0,
+       "recursive-rule": {
+        "varExit(l,r,&lat_div(v1,v2)) :- \n   divStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963180, "end": 1580357054963182},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963190, "end": 1580357054963192},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [98:1-100:48]"
+         }
+        },
+        "varExit(l,r,&lat_minus(v1,v2)) :- \n   minusStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963143, "end": 1580357054963145},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963152, "end": 1580357054963154},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [90:1-92:48]"
+         }
+        },
+        "varExit(l,r,&lat_mult(v1,v2)) :- \n   multStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963161, "end": 1580357054963163},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         },
+         "1": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963171, "end": 1580357054963173},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [94:1-96:48]"
+         }
+        },
+        "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).": {
+         "0": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   @delta_varEntry(l,x,v1),\n   varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)),\n   !@delta_varEntry(l,y,v2).": {
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963122, "end": 1580357054963125},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         },
+         "1": {
+          "atom-frequency": {
+           "@new_varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   @delta_varEntry(l,y,v2),\n   !varExit(l,r,&lat_sum(v1,v2)).": {
+            "addStm(l,r,x,y)": {
+             "level": 0,
+             "num-tuples": 1
+            },
+            "varEntry(l,x,v1)": {
+             "level": 1,
+             "num-tuples": 3
+            }
+           }
+          },
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963133, "end": 1580357054963136},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [86:1-88:48]"
+         }
+        },
+        "varExit(l,r,v) :- \n   varEntry(l,r,v),\n   !assignVar(l,r).": {
+         "0": {
+          "maxRSS": {
+           "post": 7148,
+           "pre": 7148
+          },
+          "num-tuples": 0,
+          "runtime": { "start": 1580357054963198, "end": 1580357054963200},
+          "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [109:1-109:57]"
+         }
+        }
+       },
+       "runtime": { "start": 1580357054963121, "end": 1580357054963208}
+      }
+     },
+     "maxRSS": {
+      "post": 7148,
+      "pre": 7148
+     },
+     "non-recursive-rule": {
+      "varExit(l,r,&lat_alpha(c)) :- \n   setConstStm(l,r,c).": {
+       "atom-frequency": {
+        "varExit(l,r,&lat_alpha(c)) :- \n   setConstStm(l,r,c).": {
+         "setConstStm(l,r,c)": {
+          "level": 0,
+          "num-tuples": 2
+         }
+        }
+       },
+       "maxRSS": {
+        "post": 7148,
+        "pre": 7148
+       },
+       "num-tuples": 2,
+       "runtime": { "start": 1580357054962476, "end": 1580357054962482},
+       "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [82:1-82:54]"
+      }
+     },
+     "num-tuples": 2,
+     "reads": 17,
+     "runtime": { "start": 1580357054962473, "end": 1580357054962504},
+     "savetime": { "start": 1580357054963343, "end": 1580357054963403},
+     "source-locator": "/home/gq/Programming/souffle/src/dataflowTest/Const_lattice/const_prop.dl [75:6-75:47]"
+    }
+   },
+   "runtime": { "start": 1580357054961866, "end": 1580357054963414},
+   "starttime": { "time": 1580357054961774},
+   "stratum": {
+    "0": {
+     "relation": {
+      "addStm": {
+       "arity": "4"
+      }
+     }
+    },
+    "1": {
+     "relation": {
+      "divStm": {
+       "arity": "4"
+      }
+     }
+    },
+    "2": {
+     "relation": {
+      "minusStm": {
+       "arity": "4"
+      }
+     }
+    },
+    "3": {
+     "relation": {
+      "multStm": {
+       "arity": "4"
+      }
+     }
+    },
+    "4": {
+     "relation": {
+      "setConstStm": {
+       "arity": "3"
+      }
+     }
+    },
+    "5": {
+     "relation": {
+      "assignVar": {
+       "arity": "2"
+      }
+     }
+    },
+    "6": {
+     "relation": {
+      "flow": {
+       "arity": "2"
+      }
+     }
+    },
+    "7": {
+     "relation": {
+      "varEntry": {
+       "arity": "3"
+      },
+      "varExit": {
+       "arity": "3"
+      }
+     }
+    }
+   },
+   "usage": {
+    "timepoint": {
+     "1580357054961806": {
+      "maxRSS": 7148,
+      "systemtime": 0,
+      "usertime": 16826
+     },
+     "1580357054961900": {
+      "maxRSS": 7148,
+      "systemtime": 0,
+      "usertime": 16995
+     },
+     "1580357054962046": {
+      "maxRSS": 7148,
+      "systemtime": 0,
+      "usertime": 17195
+     },
+     "1580357054962205": {
+      "maxRSS": 7148,
+      "systemtime": 0,
+      "usertime": 17488
+     },
+     "1580357054962313": {
+      "maxRSS": 7148,
+      "systemtime": 0,
+      "usertime": 17682
+     },
+     "1580357054962369": {
+      "maxRSS": 7148,
+      "systemtime": 0,
+      "usertime": 17764
+     },
+     "1580357054962477": {
+      "maxRSS": 7148,
+      "systemtime": 0,
+      "usertime": 17895
+     }
+    }
+   }
+  }
+ }
+}

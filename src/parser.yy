@@ -261,19 +261,19 @@ unit
         for(const auto& cur : $2) driver.addRelation(std::unique_ptr<AstRelation>(cur));
     }
   | unit lattice_decl {
-    	std::cout << ".lat Lattice declaration here!\n";
+    	//std::cout << ".lat Lattice declaration here!\n";
     	for(const auto& cur : $2) driver.addRelation(std::unique_ptr<AstRelation>(cur));
   	}
   | unit lattice_asscoiation {
-    	std::cout << ".let Lattice Asscoiation here!\n";
+    	//std::cout << ".let Lattice Asscoiation here!\n";
     	driver.addLatticeAssociation(std::unique_ptr<AstLatticeAssociation>($2));
   	}
   | unit lattice_unary_def {
-  		std::cout << ".def Lattice Unary function definition here!\n";
+  		//std::cout << ".def Lattice Unary function definition here!\n";
   		driver.addLatticeFunction(std::unique_ptr<AstLatticeUnaryFunction>($2));
   	}
   | unit lattice_binary_def {
-  		std::cout << ".def Lattice Binary function definition here!\n";
+  		//std::cout << ".def Lattice Binary function definition here!\n";
   		driver.addLatticeFunction(std::unique_ptr<AstLatticeBinaryFunction>($2));
   	}
   | unit load_head {
@@ -357,7 +357,7 @@ type
   		$$ = $5;
   		$$->setName($2);
         $$->setSrcLoc(@$);
-        std::cout<<"Enum type declaration here!\n";
+        //std::cout<<"Enum type declaration here!\n";
   	} 
 
 recordtype
@@ -684,12 +684,12 @@ arg
         $$->setSrcLoc(@$);
     }
   | AMPERSAND IDENT LPAREN arg RPAREN {
-  		std::cout << "explicit use of lattice unary functor here!\n";
+  		//std::cout << "explicit use of lattice unary functor here!\n";
   		$$ = new AstLatticeUnaryFunctor($2, std::unique_ptr<AstArgument>($4));
         $$->setSrcLoc(@$);
     }
   | AMPERSAND IDENT LPAREN arg COMMA arg RPAREN {
-  		std::cout << "explicit use of lattice binary functor here!\n";
+  		//std::cout << "explicit use of lattice binary functor here!\n";
   		$$ = new AstLatticeBinaryFunctor($2, std::unique_ptr<AstArgument>($4), std::unique_ptr<AstArgument>($6));
         $$->setSrcLoc(@$);
     }

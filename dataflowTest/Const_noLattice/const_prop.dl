@@ -24,14 +24,12 @@
 // assert lattice association
 .let Const<> = ("Bot", "Top", lub, glb)
 
-.lat varEntry(l:number, k: symbol, v: Constant)
-.output varEntry
-.lat varExit(l:number, k: symbol, v: Constant)
-.output varExit
 
-
+// input relations of statements
 .decl setConstStm(l:number, r: symbol, c: number)         // r = c
 .input setConstStm
+.decl increStm(l:number, r: symbol)			// r++
+.input increStm
 .decl addStm(l:number, r: symbol, x: symbol, y: symbol) // r = x + y
 .input addStm
 .decl minusStm(l:number, r: symbol, x: symbol, y: symbol) // r = x - y
@@ -40,13 +38,36 @@
 .input multStm
 .decl divStm(l:number, r: symbol, x: symbol, y: symbol) // r = x / y
 .input divStm
+.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
 
-.decl flow(l1: number, l2: number) // control flow from l1 to l2
+// control flow from l1 to l2
+.decl flow(l1: number, l2: number)
 .input flow
 
+// conditions
+//.decl condNotEqConst(l: number, k: symbol, p: number) // condition: (value of k != p)
+//.input condNotEqConst
+
+// control flow for While-Loop
+//.decl loopInAndEnd(l1: number, l2: number, l3: number)
+//.input loopInAndEnd
+//.decl loopBreak(l: number)
+
+// control flow for If-Else statement
+//.decl ifThenElse(l1: number, l2: number, l3: number)
+//.input ifThenElse
+//.decl ifThenPass(l1: number)
+//.decl ifElsePass(l1: number)
+
+// intermediate relations for all possible values of each variable
 .decl varEntry_num(l:number, k: symbol, v: number)
 .decl varExit_num(l:number, k: symbol, v: number)
 
+// lattice relations for output variables
+.lat varEntry(l:number, k: symbol, v: Constant)
+.output varEntry
+.lat varExit(l:number, k: symbol, v: Constant)
+.output varExit
 
 // varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
 varEntry_num(l2, k, v) :- varExit_num(l1, k, v), flow(l1, l2).
@@ -73,14 +94,24 @@ varExit_num(l, r, (v2=0? 0 : v1/v2)) :- divStm(l, r, x, y),
                             varEntry_num(l, x, v1),
                             varEntry_num(l, y, v2).
 
-// if the statement doesn't assign to r
-.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
-assignVar(l, r) :- setConstStm(l, r, c).
-assignVar(l, r) :- addStm(l, r, x, y).
-assignVar(l, r) :- minusStm(l, r, x, y).
-assignVar(l, r) :- multStm(l, r, x, y).
-assignVar(l, r) :- divStm(l, r, x, y).
+// whether the statement assigns to r
+assignVar(l, r) :- setConstStm(l, r, _).
+assignVar(l, r) :- addStm(l, r, _, _).
+assignVar(l, r) :- minusStm(l, r, _, _).
+assignVar(l, r) :- multStm(l, r, _, _).
+assignVar(l, r) :- divStm(l, r, _, _).
 varExit_num(l, r, v) :- varEntry_num(l, r, v), !assignVar(l, r).
+
+// While-Loop
+//loopBreak(l) :- varEntry_num(l, k, v), loopInAndEnd(l, _, _), condNotEqConst(l, k, p), v=p.
+//varEntry_num(l2, k, v) :- varExit_num(l1, k, v), loopInAndEnd(l1, l2, l3), !loopBreak(l1).
+//varEntry_num(l3, k, v) :- varExit_num(l1, k, v), loopInAndEnd(l1, l2, l3), loopBreak(l1).
+
+// If-Then-Else
+//ifThenPass(l) :- varEntry_num(l, k, v), ifThenElse(l, _, _), condNotEqConst(l, k, p), v!=p.
+//ifElsePass(l) :- varEntry_num(l, k, v), ifThenElse(l, _, _), condNotEqConst(l, k, p), v=p.
+//varEntry_num(l2, k, v) :- varExit_num(l1, k, v), ifThenElse(l1, l2, l3), ifThenPass(l1).
+//varEntry_num(l3, k, v) :- varExit_num(l1, k, v), ifThenElse(l1, l2, l3), ifElsePass(l1).
 
 // extract lattice from number
 varEntry(l, k, &lat_alpha(v)) :- varEntry_num(l, k, v).

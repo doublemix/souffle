@@ -934,7 +934,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 		bool visitStratum(const RamStratum& stratum) override {
 			// TODO (lyndonhenry): should enable strata as subprograms for interpreter here
-			std::cout << "visitStratum!\n";
+//			std::cout << "visitStratum!\n";
 			// Record relations created in each stratum
 			if (Global::config().has("profile")) {
 				std::map<std::string, size_t> relNames;
@@ -1005,7 +1005,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			return true;
 		}
 		bool visitStore(const RamStore& store) override {
-			std::cout << "start visitStore\n";
+//			std::cout << "start visitStore\n";
 			for (IODirectives ioDirectives : store.getIODirectives()) {
 				try {
 					IOSystem::getInstance().getWriter(
@@ -1019,7 +1019,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 					exit(1);
 				}
 			}
-			std::cout << "finish visitStore\n";
+//			std::cout << "finish visitStore\n";
 			return true;
 		}
 
@@ -1070,8 +1070,8 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		}
 
 		bool visitLatNorm(const RamLatNorm& latnorm) override {
-			std::cout << "\n visit LatNorm here! relation: "
-					<< latnorm.getRelation_IN_Rel().getName() << std::endl;
+//			std::cout << "\n visit LatNorm here! relation: "
+//					<< latnorm.getRelation_IN_Rel().getName() << std::endl;
 			RamDomain lat_Top =
 					interpreter.getTranslationUnit().getProgram()->getLattice()->getTop();
 			InterpreterRelation& IN_Rel = interpreter.getRelation(

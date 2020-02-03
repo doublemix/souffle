@@ -373,7 +373,7 @@ int main(int argc, char** argv) {
     DebugReport debugReport;
     std::unique_ptr<AstTranslationUnit> astTranslationUnit =
             ParserDriver::parseTranslationUnit("<stdin>", in, symTab, errReport, debugReport);
-    std::cout << "AST parseTranslationUnit completed.\n";
+//    std::cout << "AST parseTranslationUnit completed.\n";
     // close input pipe
     int preprocessor_status = pclose(in);
     if (preprocessor_status == -1) {
@@ -474,15 +474,15 @@ int main(int argc, char** argv) {
 
     // Apply all the transformations
     pipeline->apply(*astTranslationUnit);
-    astTranslationUnit->getSymbolTable().print(std::cout);
-    std::cout << "AST construction completed.\n";
-    std::cout << "\n";
+//    astTranslationUnit->getSymbolTable().print(std::cout);
+//    std::cout << "AST construction completed.\n";
+//    std::cout << "\n";
     // ------- execution -------------
 
     /* translate AST to RAM */
     std::unique_ptr<RamTranslationUnit> ramTranslationUnit =
             AstTranslator().translateUnit(*astTranslationUnit);
-    std::cout << "RAM construction -- phase 1 completed.\n";
+//    std::cout << "RAM construction -- phase 1 completed.\n";
     //ramTranslationUnit->getProgram()->getLattice()->print(std::cout);
 
     std::vector<std::unique_ptr<RamTransformer>> ramTransforms;
@@ -510,7 +510,7 @@ int main(int argc, char** argv) {
     if (!ramTranslationUnit->getProgram()->getMain()) {
         return 0;
     };
-    std::cout << "RAM construction -- phase 2 completed.\n";
+//    std::cout << "RAM construction -- phase 2 completed.\n";
 
     if (!Global::config().has("compile") && !Global::config().has("dl-program") &&
             !Global::config().has("generate")) {
@@ -518,7 +518,7 @@ int main(int argc, char** argv) {
 
         // configure interpreter
         std::unique_ptr<Interpreter> interpreter = std::make_unique<Interpreter>(*ramTranslationUnit);
-        std::cout << "RAM interpreter generated.\n";
+//        std::cout << "RAM interpreter generated.\n";
         std::thread profiler;
         // Start up profiler if needed
         if (Global::config().has("live-profile") && !Global::config().has("compile")) {
@@ -526,7 +526,7 @@ int main(int argc, char** argv) {
         }
         // execute translation unit
         interpreter->executeMain();
-        std::cout << "RAM interpreter completed.\n";
+//        std::cout << "RAM interpreter completed.\n";
         // If the profiler was started, join back here once it exits.
         if (profiler.joinable()) {
             profiler.join();
