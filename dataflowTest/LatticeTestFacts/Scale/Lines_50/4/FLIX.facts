@@ -1,0 +1,96 @@
+		SetConstStm("0", "a", -16).
+		SetConstStm("1", "b", 1).
+		SetConstStm("2", "c", 18).
+		SetConstStm("3", "d", 5).
+		SetConstStm("4", "e", -6).
+		SetConstStm("5", "f", -8).
+		SetConstStm("6", "g", 14).
+		SetConstStm("7", "h", -18).
+		SetConstStm("8", "i", 6).
+		SetConstStm("9", "j", -9).
+		SetConstStm("17", "b", -15).
+		SetConstStm("19", "j", -10).
+		SetConstStm("33", "j", 4).
+		SetConstStm("37", "e", -17).
+		SetConstStm("41", "e", -3).
+		SetConstStm("42", "j", -20).
+		SetConstStm("43", "c", 16).
+		AddStm("13", "f", "b", "c").
+		AddStm("18", "c", "e", "a").
+		AddStm("23", "a", "a", "d").
+		AddStm("34", "a", "b", "h").
+		AddStm("40", "h", "h", "i").
+		MinusStm("21", "i", "i", "c").
+		MinusStm("22", "i", "j", "b").
+		MinusStm("25", "d", "a", "c").
+		MinusStm("38", "b", "d", "i").
+		MinusStm("39", "b", "a", "i").
+		MinusStm("46", "j", "c", "a").
+		MinusStm("47", "i", "h", "i").
+		MinusStm("48", "b", "d", "h").
+		MinusStm("49", "a", "c", "j").
+		MultStm("10", "i", "j", "e").
+		MultStm("11", "a", "f", "j").
+		MultStm("12", "g", "c", "e").
+		MultStm("15", "f", "h", "g").
+		MultStm("24", "g", "a", "b").
+		MultStm("26", "i", "f", "a").
+		MultStm("29", "e", "c", "f").
+		MultStm("36", "j", "f", "h").
+		MultStm("44", "h", "i", "g").
+		MultStm("45", "c", "g", "d").
+		DivStm("14", "c", "h", "c").
+		DivStm("20", "c", "f", "e").
+		DivStm("28", "g", "g", "e").
+		DivStm("35", "g", "g", "i").
+		Flow("0", "1").
+		Flow("1", "2").
+		Flow("2", "3").
+		Flow("3", "4").
+		Flow("4", "5").
+		Flow("5", "6").
+		Flow("6", "7").
+		Flow("7", "8").
+		Flow("8", "9").
+		Flow("9", "10").
+		Flow("10", "11").
+		Flow("11", "12").
+		Flow("12", "13").
+		Flow("13", "14").
+		Flow("14", "15").
+		Flow("15", "16").
+		Flow("17", "18").
+		Flow("18", "19").
+		Flow("19", "20").
+		Flow("20", "21").
+		Flow("21", "22").
+		Flow("23", "24").
+		Flow("24", "25").
+		Flow("25", "26").
+		Flow("26", "27").
+		Flow("28", "29").
+		Flow("27", "28").
+		Flow("27", "30").
+		Flow("29", "31").
+		Flow("30", "31").
+		Flow("16", "17").
+		Flow("16", "23").
+		Flow("22", "32").
+		Flow("31", "32").
+		Flow("32", "33").
+		Flow("33", "34").
+		Flow("34", "35").
+		Flow("35", "36").
+		Flow("36", "37").
+		Flow("37", "38").
+		Flow("38", "39").
+		Flow("39", "40").
+		Flow("40", "41").
+		Flow("41", "42").
+		Flow("42", "43").
+		Flow("43", "44").
+		Flow("44", "45").
+		Flow("45", "46").
+		Flow("46", "47").
+		Flow("47", "48").
+		Flow("48", "49").

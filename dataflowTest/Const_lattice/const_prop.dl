@@ -75,6 +75,9 @@
 .lat varExit(l:number, k: symbol, v: Constant)
 .output varExit
 
+// initialize all variables to Bottom
+varEntry(0, k, "Bot") :- assignVar(_, k).
+
 // varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
 varEntry(l2, k, v) :- varExit(l1, k, v), flow(l1, l2).
 

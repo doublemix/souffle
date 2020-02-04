@@ -1,0 +1,194 @@
+		SetConstStm("0", "a", 13).
+		SetConstStm("1", "b", 15).
+		SetConstStm("2", "c", 13).
+		SetConstStm("3", "d", -17).
+		SetConstStm("4", "e", -3).
+		SetConstStm("5", "f", 15).
+		SetConstStm("6", "g", 17).
+		SetConstStm("7", "h", 20).
+		SetConstStm("8", "i", -9).
+		SetConstStm("9", "j", -9).
+		SetConstStm("26", "b", -6).
+		SetConstStm("35", "a", -20).
+		SetConstStm("36", "g", 8).
+		SetConstStm("38", "f", 10).
+		SetConstStm("43", "i", 15).
+		SetConstStm("63", "f", 7).
+		SetConstStm("98", "i", 0).
+		AddStm("30", "d", "j", "i").
+		AddStm("37", "c", "b", "j").
+		AddStm("46", "a", "i", "h").
+		AddStm("48", "d", "c", "c").
+		AddStm("62", "h", "i", "i").
+		AddStm("64", "d", "i", "j").
+		AddStm("74", "g", "b", "e").
+		AddStm("80", "g", "i", "c").
+		AddStm("81", "i", "c", "a").
+		MinusStm("11", "b", "e", "c").
+		MinusStm("16", "g", "e", "g").
+		MinusStm("20", "a", "f", "a").
+		MinusStm("28", "d", "b", "b").
+		MinusStm("32", "c", "d", "h").
+		MinusStm("40", "h", "g", "g").
+		MinusStm("42", "i", "i", "i").
+		MinusStm("44", "c", "c", "d").
+		MinusStm("50", "b", "b", "e").
+		MinusStm("53", "h", "h", "e").
+		MinusStm("59", "f", "g", "d").
+		MinusStm("72", "d", "f", "f").
+		MinusStm("75", "i", "h", "g").
+		MinusStm("76", "e", "h", "g").
+		MinusStm("77", "e", "e", "e").
+		MinusStm("78", "e", "f", "j").
+		MinusStm("83", "g", "a", "f").
+		MinusStm("88", "g", "i", "e").
+		MinusStm("91", "a", "f", "g").
+		MinusStm("97", "i", "g", "j").
+		MultStm("10", "g", "g", "f").
+		MultStm("14", "a", "c", "c").
+		MultStm("17", "e", "j", "j").
+		MultStm("21", "c", "c", "g").
+		MultStm("23", "e", "e", "a").
+		MultStm("29", "b", "h", "j").
+		MultStm("33", "g", "i", "i").
+		MultStm("34", "e", "i", "a").
+		MultStm("39", "d", "d", "e").
+		MultStm("45", "i", "h", "g").
+		MultStm("49", "a", "j", "d").
+		MultStm("51", "g", "j", "d").
+		MultStm("55", "j", "f", "b").
+		MultStm("58", "a", "d", "c").
+		MultStm("60", "j", "j", "d").
+		MultStm("66", "i", "f", "g").
+		MultStm("70", "f", "h", "h").
+		MultStm("73", "b", "j", "c").
+		MultStm("86", "b", "e", "b").
+		MultStm("87", "d", "e", "i").
+		MultStm("89", "h", "b", "g").
+		MultStm("93", "f", "e", "j").
+		MultStm("95", "g", "i", "g").
+		DivStm("12", "d", "d", "i").
+		DivStm("13", "e", "h", "j").
+		DivStm("25", "c", "g", "i").
+		DivStm("27", "i", "f", "f").
+		DivStm("31", "g", "i", "f").
+		DivStm("41", "f", "e", "a").
+		DivStm("47", "d", "c", "j").
+		DivStm("52", "i", "e", "h").
+		DivStm("54", "i", "a", "a").
+		DivStm("56", "j", "c", "e").
+		DivStm("61", "j", "j", "d").
+		DivStm("65", "f", "c", "d").
+		DivStm("67", "j", "d", "b").
+		DivStm("68", "h", "j", "c").
+		DivStm("69", "a", "c", "j").
+		DivStm("79", "g", "a", "f").
+		DivStm("82", "c", "b", "g").
+		DivStm("84", "i", "a", "a").
+		DivStm("85", "b", "a", "h").
+		DivStm("90", "c", "a", "d").
+		DivStm("92", "i", "a", "d").
+		DivStm("96", "e", "i", "a").
+		Flow("0", "1").
+		Flow("1", "2").
+		Flow("2", "3").
+		Flow("3", "4").
+		Flow("4", "5").
+		Flow("5", "6").
+		Flow("6", "7").
+		Flow("7", "8").
+		Flow("8", "9").
+		Flow("9", "10").
+		Flow("10", "11").
+		Flow("11", "12").
+		Flow("12", "13").
+		Flow("13", "14").
+		Flow("14", "15").
+		Flow("16", "17").
+		Flow("17", "18").
+		Flow("20", "21").
+		Flow("18", "19").
+		Flow("18", "20").
+		Flow("19", "22").
+		Flow("21", "22").
+		Flow("15", "16").
+		Flow("15", "23").
+		Flow("22", "24").
+		Flow("23", "24").
+		Flow("24", "25").
+		Flow("25", "26").
+		Flow("26", "27").
+		Flow("27", "28").
+		Flow("28", "29").
+		Flow("29", "30").
+		Flow("30", "31").
+		Flow("31", "32").
+		Flow("32", "33").
+		Flow("33", "34").
+		Flow("34", "35").
+		Flow("35", "36").
+		Flow("36", "37").
+		Flow("37", "38").
+		Flow("38", "39").
+		Flow("39", "40").
+		Flow("40", "41").
+		Flow("41", "42").
+		Flow("42", "43").
+		Flow("43", "44").
+		Flow("44", "45").
+		Flow("45", "46").
+		Flow("46", "47").
+		Flow("47", "48").
+		Flow("48", "49").
+		Flow("49", "50").
+		Flow("50", "51").
+		Flow("51", "52").
+		Flow("52", "53").
+		Flow("53", "54").
+		Flow("54", "55").
+		Flow("55", "56").
+		Flow("56", "57").
+		Flow("58", "59").
+		Flow("59", "60").
+		Flow("60", "61").
+		Flow("61", "62").
+		Flow("62", "63").
+		Flow("63", "64").
+		Flow("64", "65").
+		Flow("66", "67").
+		Flow("67", "68").
+		Flow("68", "69").
+		Flow("69", "70").
+		Flow("57", "58").
+		Flow("57", "66").
+		Flow("65", "71").
+		Flow("70", "71").
+		Flow("71", "72").
+		Flow("72", "73").
+		Flow("73", "74").
+		Flow("74", "75").
+		Flow("75", "76").
+		Flow("76", "77").
+		Flow("77", "78").
+		Flow("78", "79").
+		Flow("79", "80").
+		Flow("80", "81").
+		Flow("81", "82").
+		Flow("82", "83").
+		Flow("83", "84").
+		Flow("84", "85").
+		Flow("85", "86").
+		Flow("86", "87").
+		Flow("87", "88").
+		Flow("88", "89").
+		Flow("89", "90").
+		Flow("90", "91").
+		Flow("91", "92").
+		Flow("92", "93").
+		Flow("93", "94").
+		Flow("95", "96").
+		Flow("96", "97").
+		Flow("94", "95").
+		Flow("94", "98").
+		Flow("97", "99").
+		Flow("98", "99").

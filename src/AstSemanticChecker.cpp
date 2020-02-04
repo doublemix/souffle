@@ -166,7 +166,9 @@ void AstSemanticChecker::checkProgram(ErrorReport& report,
 	visitDepthFirst(nodes,
 			[&](const AstStringConstant& cnst) {
 				TypeSet types = typeAnalysis.getTypes(&cnst);
-				if (!isSymbolType(types)) {
+				// modified by Qing Gong: TODO -- not correct!
+				if (!isSymbolType(types) && !types.empty()) {
+					std::cout << types << std::endl;
 					report.addError("Symbol constant (type mismatch)", cnst.getSrcLoc());
 				}
 			});
@@ -175,7 +177,8 @@ void AstSemanticChecker::checkProgram(ErrorReport& report,
 	visitDepthFirst(nodes,
 			[&](const AstNumberConstant& cnst) {
 				TypeSet types = typeAnalysis.getTypes(&cnst);
-				if (!isNumberType(types)) {
+				// modified by Qing Gong: TODO-- not correct!
+				if (!isNumberType(types) && !types.empty()) {
 					report.addError("Number constant (type mismatch)", cnst.getSrcLoc());
 				}
 				AstDomain idx = cnst.getIndex();

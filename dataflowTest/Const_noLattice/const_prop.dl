@@ -90,9 +90,9 @@ varExit_num(l, r, v1*v2) :- multStm(l, r, x, y),
                             varEntry_num(l, y, v2).
 // division statement: r = x / y
 // can not handle division correctly
-varExit_num(l, r, (v2=0? 0 : v1/v2)) :- divStm(l, r, x, y),
+varExit_num(l, r, v1/v2) :- divStm(l, r, x, y),
                             varEntry_num(l, x, v1),
-                            varEntry_num(l, y, v2).
+                            varEntry_num(l, y, v2), v2!=0.
 
 // whether the statement assigns to r
 assignVar(l, r) :- setConstStm(l, r, _).
@@ -115,5 +115,7 @@ varExit_num(l, r, v) :- varEntry_num(l, r, v), !assignVar(l, r).
 
 // extract lattice from number
 varEntry(l, k, &lat_alpha(v)) :- varEntry_num(l, k, v).
+varEntry(l, k, "Bot") :- assignVar(_, k), (flow(l, _); flow(_, l)), !varEntry_num(l, k, _).
 varExit(l, k, &lat_alpha(v)) :- varExit_num(l, k, v).
+varExit(l, k, "Bot") :- assignVar(_, k), (flow(l, _); flow(_, l)), !varExit_num(l, k, _).
 

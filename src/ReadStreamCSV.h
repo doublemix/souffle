@@ -92,6 +92,7 @@ protected:
                 continue;
             }
             ++columnsFilled;
+            // Qing Gong: TODO -- not correct!
             if (symbolMask.isSymbol(column)) {
                 tuple[inputMap[column]] = symbolTable.unsafeLookup(element);
             } else {

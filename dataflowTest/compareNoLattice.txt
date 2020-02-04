@@ -1,0 +1,2 @@
+Due to division, the results of lattice and no_lattice may be different.
+Example: say there is a statement b=f/10, and variable f can be 4 or 5, then b is always 0 (Constant) in no_lattice. However for lattice, both f and b are Top.

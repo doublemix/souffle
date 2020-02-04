@@ -1144,7 +1144,8 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 		// Plan B
 		bool visitLatClean(const RamLatClean& latclean) override {
-			//			std::cout << "\n visit LatExt here! relation: " << latext.getRelation_IN_Origin().getName() << std::endl;
+//			std::cout << "\n visit LatClean here! relation: "
+//					<< latclean.getRelation_IN_Origin().getName() << std::endl;
 			RamDomain lat_Top =
 					interpreter.getTranslationUnit().getProgram()->getLattice()->getTop();
 			// get involved relation
@@ -1182,7 +1183,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 			// Traverse the whole new lattice relation
 			while (new_it != new_itend) {
 				const RamDomain* data = *new_it;
-
+				RamDomain biggestLat = data[arity - 1];
 				//				std::cout << "data: ";
 				//				for (size_t i = 0; i < arity; i++) {
 				//					std::cout << data[i] << " ";
@@ -1197,7 +1198,6 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
 				auto cell_new_end = new_totalIndex->UpperBound(high);
 
-				RamDomain biggestLat = data[arity - 1];
 				// 1. traverse the new lattice relation
 				for (++new_it; new_it != cell_new_end; ++new_it) {
 					// skip if obtain the top element
@@ -1208,7 +1208,8 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 					RamDomain curlat = (*new_it)[arity - 1];
 					// set 2 input variables
-					ctxt_temp.setArguments( { biggestLat, curlat });
+					std::vector<RamDomain> ctxt_args = { biggestLat, curlat };
+					ctxt_temp.setArguments(ctxt_args);
 					// evaluate binary constraint
 					for (const auto& cas : lub_func.getLatCase()) {
 						if (cas.match == nullptr
@@ -1221,6 +1222,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 						}
 					}
 				}
+
 
 				// 2. traverse the cell in the original lattice relation
 				if (biggestLat != lat_Top) {
@@ -1236,12 +1238,15 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
 						RamDomain curlat = (*cell_org_it)[arity - 1];
 						// set 2 input variables
-						ctxt_temp.setArguments( { biggestLat, curlat });
+						std::vector<RamDomain> ctxt_args =
+								{ biggestLat, curlat };
+						ctxt_temp.setArguments(ctxt_args);
 						// evaluate binary constraint
 						for (const auto& cas : lub_func.getLatCase()) {
 							if (cas.match == nullptr
 									|| interpreter.evalCond(*cas.match,
 											ctxt_temp)) {
+
 								// get output if match
 								biggestLat = interpreter.evalVal(*cas.output,
 										ctxt_temp);
@@ -1331,7 +1336,9 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 					for (; new_it != new_itend; ++new_it) {
 						RamDomain curlat = (*new_it)[arity - 1];
 						// set 2 input variables
-						ctxt_temp.setArguments( { biggestLat, curlat });
+						std::vector<RamDomain> ctxt_args =
+								{ biggestLat, curlat };
+						ctxt_temp.setArguments(ctxt_args);
 						// evaluate binary constraint
 						for (const auto& cas : lub_func.getLatCase()) {
 							if (cas.match == nullptr
@@ -1409,7 +1416,9 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 					for (++new_it; new_it != range_end; ++new_it) {
 						RamDomain curlat = (*new_it)[arity - 1];
 						// set 2 input variables
-						ctxt_temp.setArguments( { biggestLat, curlat });
+						std::vector<RamDomain> ctxt_args =
+								{ biggestLat, curlat };
+						ctxt_temp.setArguments(ctxt_args);
 						// evaluate binary constraint
 						for (const auto& cas : lub_func.getLatCase()) {
 							if (cas.match == nullptr

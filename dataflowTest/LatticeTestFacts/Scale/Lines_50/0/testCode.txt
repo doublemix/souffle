@@ -1,0 +1,52 @@
+0    a=1
+1    b=-4
+2    c=-6
+3    d=-12
+4    e=20
+5    f=11
+6    g=20
+7    h=16
+8    i=-3
+9    j=14
+10   c=-4
+11   c=-11
+12   f=h-j
+13   b=e*h
+14   c=e/h
+15   i=c/j
+16   f=f/g
+17   d=h+b
+18   g=c*a
+19   b=h/i
+20   h=b*f
+21   g=f+a
+22   e=b*b
+23   c=a-g
+24   a=c+i
+25   g=a/c
+26   c=5
+27   j=h*e
+28   a=c+c
+29   g=e/h
+30   f=c+b
+31   j=b*c
+32   j=h/j
+33   f=f*f
+34   b=g+c
+35   d=j-b
+36   i=-10
+37   e=c-j
+38   g=g+d
+39   g=9
+40   IF (condition):
+41   	d=5
+42   	IF (condition):
+43   		e=h*a
+     	ELSE:
+44   		b=-6
+45   		g=-19
+46   	End IF
+     ELSE:
+47   	
+48   End IF
+49   i=a/b
