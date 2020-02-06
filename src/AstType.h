@@ -358,7 +358,7 @@ public:
 
 	/** Prints a summary of this type to the given stream */
 	void print(std::ostream& os) const override {
-		os << ".type " << getName() << " = "
+		os << ".enum_type " << getName() << " = "
 				<< "{";
 		for (unsigned i = 0; i < cases.size(); i++) {
 			if (i != 0) {

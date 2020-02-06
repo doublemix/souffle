@@ -17,6 +17,7 @@
     case (_, _)	      => x=y ? x : "Bot"
 }
 
+// use function to transfer number or symbol to enum type
 .def lat_alpha(x: number): Constant {
     case (_)	      => x
 }
@@ -50,7 +51,7 @@
     case (_, "Bot")   => "Bot",
     case ("Top", _)   => "Top",
     case (_, "Top")   => "Top",
-    case (_, _)	      => y=0 ? "Bot" : x/y
+    case (_, _)	      => x/y	//y=0 ? "Bot" : 
 }
 
 // assert lattice association
@@ -76,7 +77,7 @@
 .output varExit
 
 // initialize all variables to Bottom
-varEntry(0, k, "Bot") :- assignVar(_, k).
+//varEntry(0, k, "Bot") :- assignVar(_, k).
 
 // varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
 varEntry(l2, k, v) :- varExit(l1, k, v), flow(l1, l2).
@@ -100,7 +101,7 @@ varExit(l, r, &lat_mult(v1, v2)) :- multStm(l, r, x, y),
 // division statement: r = x / y
 varExit(l, r, &lat_div(v1, v2)) :- divStm(l, r, x, y),
                             varEntry(l, x, v1),
-                            varEntry(l, y, v2).
+                            varEntry(l, y, v2), v2!=&lat_alpha(0).
 
 // if the statement doesn't assign to r
 .decl assignVar(l:number, r: symbol) // this statement assign r to a new value

@@ -1,107 +1,52 @@
-0    a=-17
-1    b=16
-2    c=-15
-3    d=2
-4    e=-18
-5    f=3
-6    g=-20
-7    h=-20
-8    i=17
-9    j=2
-10   e=h+a
-11   i=c-d
-12   c=g-e
-13   j=a/e
-14   h=g+f
-15   g=i/f
-16   i=d-f
-17   b=j-e
-18   i=b-g
-19   g=a+e
-20   c=f+i
-21   e=a/i
-22   j=13
-23   d=h/c
-24   h=h*d
-25   f=i+g
-26   e=f+i
-27   f=i-a
-28   IF (condition):
-29   	e=h+f
-30   	g=i-a
-31   	g=c+f
-32   	c=b*h
+0    a=17
+1    b=-7
+2    c=-16
+3    d=-9
+4    e=1
+5    f=1
+6    g=-10
+7    h=10
+8    i=-17
+9    j=-5
+10   g=d-j
+11   d=c/a
+12   e=c-i
+13   c=e*c
+14   IF (condition):
+15   	b=b-e
+16   	d=i-d
+17   	e=j/a
+18   	g=b/j
+19   	a=e*b
+20   	b=14
      ELSE:
-33   	
+21   	i=h*e
+22   	IF (condition):
+23   		j=9
+24   		i=h*h
+25   		d=i*b
+     	ELSE:
+26   		
+27   	End IF
+28   	e=-2
+29   	j=14
+30   	b=-11
+31   	i=a-f
+32   	g=b/i
+33   	f=11
 34   End IF
-35   b=-14
-36   b=a-j
-37   c=c-i
-38   c=i+c
-39   h=b/f
-40   e=e/a
-41   IF (condition):
-42   	a=h/b
-43   	e=g*g
-44   	i=e+h
-45   	f=a-j
-46   	i=c-b
-47   	e=i-f
-48   	d=j+g
-49   	i=e/j
-50   	a=h*b
-     ELSE:
-51   	e=h+c
-52   	i=j+j
-53   	e=c-j
-54   	e=d*a
-55   	g=j+e
-56   End IF
-57   b=b-d
-58   d=c+c
-59   f=j/c
-60   e=g/a
-61   i=-19
-62   IF (condition):
-63   	a=11
-64   	j=h/j
-65   	IF (condition):
-66   		IF (condition):
-67   			
-     		ELSE:
-68   			IF (condition):
-69   				a=16
-     			ELSE:
-70   				g=h-i
-71   			End IF
-72   		End IF
-     	ELSE:
-73   		e=9
-74   		h=-15
-75   		c=g+j
-76   		h=a*d
-77   		h=g+f
-78   	End IF
-79   	d=j-a
-80   	j=e-e
-81   	e=a-a
-82   	g=e*j
-83   	j=4
-84   	e=e*b
-85   	c=d-g
-     ELSE:
-86   	f=a/b
-87   	IF (condition):
-88   		e=d/h
-     	ELSE:
-89   		b=-9
-90   	End IF
-91   End IF
-92   a=a*b
-93   d=c*b
-94   a=b+e
-95   i=b+h
-96   e=h/d
-97   c=i*j
-98   d=e*e
-99   h=i/g
+35   f=d/f
+36   e=c+h
+37   b=g-h
+38   e=i+e
+39   j=b-i
+40   i=j+c
+41   f=h+d
+42   f=b*a
+43   b=f/f
+44   a=i-d
+45   f=d-g
+46   d=3
+47   g=d/d
+48   d=f/b
+49   h=j+e
