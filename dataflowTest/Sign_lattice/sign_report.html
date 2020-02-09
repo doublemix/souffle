@@ -1,0 +1,2987 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Souffle Debug Report</title>
+<style>
+ul { list-style-type: none; }
+ul > li.leaf { display: inline-block; padding: 0em 1em; }
+ul > li.nonleaf { padding: 0em 1em; }
+* { font-family: sans-serif; }
+pre { white-space: pre-wrap; font-family: monospace; }
+a:link { text-decoration: none; color: blue; }
+a:visited { text-decoration: none; color: blue; }
+div.headerdiv { background-color:lightgrey; margin:10px; padding-left:10px; padding-right:10px; padding-top:3px; padding-bottom:3px; border-radius:5px }
+.headerdiv h1 { display:inline; }
+.headerdiv a { float:right; }
+</style>
+<script type="text/javascript">
+function toggleVisibility(id) {
+  var element = document.getElementById(id);
+  if (element.style.display == 'none') {
+    element.style.display = 'block';
+  } else {
+    element.style.display = 'none';
+  }
+}
+</script>
+</head>
+<body>
+<div class='headerdiv'><h1>Souffle Debug Report</h1></div>
+<a href="#Parsing6">After Parsing (0.002474s)</a>
+<ul>
+<li class='leaf'><a href="#Parsing-dl0">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-ta1">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-tea2">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-prec-graph3">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-scc-graph4">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-topsort-scc-graph5">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#AstComponentChecker7">After AstComponentChecker (0.000035s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ComponentInstantiationTransformer14">After ComponentInstantiationTransformer (0.000027s)</a>
+<ul>
+<li class='leaf'><a href="#ComponentInstantiationTransformer-dl8">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-ta9">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-tea10">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-prec-graph11">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-scc-graph12">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-topsort-scc-graph13">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#UniqueAggregationVariablesTransformer15">After UniqueAggregationVariablesTransformer (0.000022s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#AstSemanticChecker16">After AstSemanticChecker (0.001159s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveBooleanConstraintsTransformer17">After RemoveBooleanConstraintsTransformer (0.000037s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ResolveAliasesTransformer24">After ResolveAliasesTransformer (0.000113s)</a>
+<ul>
+<li class='leaf'><a href="#ResolveAliasesTransformer-dl18">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-ta19">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-tea20">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-prec-graph21">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-scc-graph22">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-topsort-scc-graph23">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#MinimiseProgramTransformer25">After MinimiseProgramTransformer (0.000027s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#InlineRelationsTransformer26">After InlineRelationsTransformer (0.000040s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ResolveAliasesTransformer33">After ResolveAliasesTransformer (0.000114s)</a>
+<ul>
+<li class='leaf'><a href="#ResolveAliasesTransformer-dl27">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-ta28">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-tea29">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-prec-graph30">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-scc-graph31">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-topsort-scc-graph32">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#RemoveRedundantRelationsTransformer34">After RemoveRedundantRelationsTransformer (0.000075s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer35">After RemoveRelationCopiesTransformer (0.000002s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveEmptyRelationsTransformer36">After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReplaceSingletonVariablesTransformer37">After ReplaceSingletonVariablesTransformer (0.000048s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReduceExistentialsTransformer38">After ReduceExistentialsTransformer (0.000068s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRedundantRelationsTransformer39">After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer40">After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#PartitionBodyLiteralsTransformer41">After PartitionBodyLiteralsTransformer (0.000092s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MinimiseProgramTransformer42">After MinimiseProgramTransformer (0.000022s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer43">After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReorderLiteralsTransformer44">After ReorderLiteralsTransformer (0.000020s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MaterializeAggregationQueriesTransformer45">After MaterializeAggregationQueriesTransformer (0.000026s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveEmptyRelationsTransformer46">After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReorderLiteralsTransformer47">After ReorderLiteralsTransformer (0.000015s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#AstExecutionPlanChecker48">After AstExecutionPlanChecker (0.000049s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ram-program49">RAM Program (0.001165s)</a>
+<ul>
+</ul>
+<a id="Parsing6"></a>
+<div class='headerdiv'>
+<h1>After Parsing (0.002474s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="Parsing-dl0"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Sign = {Top:symbol,Neg:symbol,Zer:symbol,Pos:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Sign&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Sign{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Sign{
+(_)=>x > 0 ? "Pos" : x &lt; 0 ? "Neg" : "Zer"
+}
+
+
+// -- lat_div --
+LatticeBinaryFunction: &lat_div (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>"Zer"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>x = y ? "Pos" : "Neg"
+}
+
+
+// -- lat_minus --
+LatticeBinaryFunction: &lat_minus (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,"Zer")=>x
+("Zer","Neg")=>"Pos"
+("Zer","Pos")=>"Neg"
+(_,_)=>x = y ? "Top" : x
+}
+
+
+// -- lat_mult --
+LatticeBinaryFunction: &lat_mult (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>"Zer"
+(_,"Zer")=>"Zer"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>x = y ? "Pos" : "Neg"
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>y
+(_,"Zer")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Sign{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- addStm --
+.decl addStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {addStm}
+
+
+
+// -- assignVar --
+.decl assignVar(l:number,r:symbol)  
+
+assignVar(l,r) :- 
+   setConstStm(l,r,_).
+
+assignVar(l,r) :- 
+   addStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   minusStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   multStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   divStm(l,r,_,_).
+
+
+
+// -- divStm --
+.decl divStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {divStm}
+
+
+
+// -- flow --
+.decl flow(l1:number,l2:number)  
+
+.output {flow}
+
+
+
+// -- minusStm --
+.decl minusStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {minusStm}
+
+
+
+// -- multStm --
+.decl multStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {multStm}
+
+
+
+// -- setConstStm --
+.decl setConstStm(l:number,r:symbol,c:number)  
+
+.output {setConstStm}
+
+
+
+// -- varEntry --
+.lat varEntry(l:number,k:symbol,v:Sign)  
+
+varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+
+.output {varEntry}
+
+
+
+// -- varExit --
+.lat varExit(l:number,k:symbol,v:Sign)  
+
+varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+
+varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_minus(v1,v2)) :- 
+   minusStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_mult(v1,v2)) :- 
+   multStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_div(v1,v2)) :- 
+   divStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2),
+   v2 != &lat_alpha(0).
+
+varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+
+.output {varExit}
+
+</pre>
+
+</div>
+<a id="Parsing-ta1"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: assignVar(l,r) :- 
+   setConstStm(l,r,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: number
+}
+Solution:
+{var(r)->{symbol},var(l)->{number},var(_)->{number}}
+Clause: assignVar(l,r) :- 
+   addStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   minusStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   multStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(r)->{symbol},var(l)->{number},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   divStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+Problem:
+{
+	var(l2) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l1) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l1) &lt;: number,
+	var(l2) &lt;: number
+}
+Solution:
+{var(l1)->{number},var(l2)->{number},var(k)->{symbol},var(v)->{Sign}}
+Clause: varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(c)->{number},var(l)->{number},var(r)->{symbol},var(&lat_alpha(c))->{Sign}}
+Clause: varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_sum(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_minus(v1,v2)) :- 
+   minusStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_minus(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_minus(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_mult(v1,v2)) :- 
+   multStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_mult(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_mult(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_div(v1,v2)) :- 
+   divStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2),
+   v2 != &lat_alpha(0).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_div(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign,
+	var(v2) &lt;: var(&lat_alpha(0)),
+	var(&lat_alpha(0)) &lt;: var(v2),
+	var(0) &lt;: number
+}
+Solution:
+{var(0)->{number},var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(&lat_alpha(0))->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_div(v1,v2))->{Sign}}
+Clause: varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l) >: number,
+	var(r) >: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(v)->{Sign}}
+
+-- Result --
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},_&isin;{number}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   addStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   minusStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   multStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   divStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+varEntry(l2&isin;{number},k&isin;{symbol},v&isin;{Sign}) :- 
+   varExit(l1&isin;{number},k&isin;{symbol},v&isin;{Sign}),
+   flow(l1&isin;{number},l2&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},c&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_sum(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   addStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_minus(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   minusStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_mult(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   multStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_div(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   divStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}),
+   v2&isin;{Sign} != &lat_alpha(0).
+varExit(l&isin;{number},r&isin;{symbol},v&isin;{Sign}) :- 
+   varEntry(l&isin;{number},r&isin;{symbol},v&isin;{Sign}),
+   !assignVar(l&isin;{number},r&isin;{symbol}).
+</pre>
+
+</div>
+<a id="Parsing-tea2"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Sign = {Top:symbol,Neg:symbol,Zer:symbol,Pos:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="Parsing-prec-graph3"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNTIxcHQiIGhlaWdodD0iMjYwcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgNTIxLjI0IDI2MC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyNTYpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yNTYgNTE3LjI0MTYsLTI1NiA1MTcuMjQxNiw0IC00LDQiLz4KPCEtLSBhZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzguMzQ2NiIgY3k9Ii0yMzQiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIGFzc2lnblZhciAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hc3NpZ25WYXI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMjAuMzQ2NiIgY3k9Ii0xNjIiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjIwLjM0NjYiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YWRkU3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNjcuOTkzMSwtMjIyLjI3MTdDOTcuODc5NywtMjEwLjQ0ODQgMTQ0LjI5MjcsLTE5Mi4wODczIDE3OC4wNDA2LC0xNzguNzM2NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTc5LjYyNSwtMTgxLjg3MzYgMTg3LjYzNjMsLTE3NC45NDA0IDE3Ny4wNDk5LC0xNzUuMzY0NSAxNzkuNjI1LC0xODEuODczNiIvPgo8L2c+CjwhLS0gdmFyRXhpdCAtLT4KPGcgaWQ9Im5vZGU5IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT52YXJFeGl0PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjU3LjM0NjYiIGN5PSItOTAiIHJ4PSIzNi4yOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjU3LjM0NjYiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnZhckV4aXQ8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDt2YXJFeGl0IC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmFkZFN0bSYjNDU7Jmd0O3ZhckV4aXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik01NC40OTI0LC0yMTcuNDk5MkM3NC4wMjMzLC0xOTguMTY1OCAxMDguNTA4NCwtMTY1Ljk4NTUgMTQyLjM0NjYsLTE0NCAxNTYuMDU1OCwtMTM1LjA5MjggMTkyLjQ1LC0xMTguMzkzOSAyMjAuNjU5NywtMTA1LjkxNDEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIyMi4xMjU2LC0xMDkuMDkzIDIyOS44NjgxLC0xMDEuODYwOCAyMTkuMzA1NSwtMTAyLjY4NjEgMjIyLjEyNTYsLTEwOS4wOTMiLz4KPC9nPgo8IS0tIGFzc2lnblZhciYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YXNzaWduVmFyJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIyOS40OTI3LC0xNDQuMjAyMkMyMzMuNzQ5MiwtMTM1LjkxOTIgMjM4LjkwMjQsLTEyNS44OTE1IDI0My42MTMsLTExNi43MjQ4Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuODQ4LC0xMTguMDg3MSAyNDguMzA1NywtMTA3LjU5MyAyNDAuNjIyLC0xMTQuODg3NiAyNDYuODQ4LC0xMTguMDg3MSIvPgo8L2c+CjwhLS0gZGl2U3RtIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmRpdlN0bTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzMS4zNDY2IiBjeT0iLTIzNCIgcng9IjM2LjI5MzgiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIGRpdlN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5kaXZTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTAuNjU4MywtMjE4LjM3NzFDMTYyLjc2NjcsLTIwOC41ODE1IDE3OC41ODUxLC0xOTUuNzg0NiAxOTIuMDksLTE4NC44NTkzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxOTQuNTcyNywtMTg3LjM1MjcgMjAwLjE0NTksLTE3OC4zNDIxIDE5MC4xNzAxLC0xODEuOTEwNiAxOTQuNTcyNywtMTg3LjM1MjciLz4KPC9nPgo8IS0tIGRpdlN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZGl2U3RtJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEzNC40NDU3LC0yMTUuOTU0NkMxMzguNTkwOCwtMTk2LjM2NTggMTQ3LjU3OTMsLTE2NS4wNjc5IDE2NS4zNDY2LC0xNDQgMTc5LjU4MTEsLTEyNy4xMjEyIDIwMC41MTAxLC0xMTQuMjUyMSAyMTguODExMywtMTA1LjMxODUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIyMC40OTkyLC0xMDguMzkzNyAyMjguMDkyNywtMTAxLjAwNTIgMjE3LjU0OTEsLTEwMi4wNDU3IDIyMC40OTkyLC0xMDguMzkzNyIvPgo8L2c+CjwhLS0gZmxvdyAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5mbG93PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTc2LjM0NjYiIGN5PSItOTAiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE3Ni4zNDY2IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5mbG93PC90ZXh0Pgo8L2c+CjwhLS0gdmFyRW50cnkgLS0+CjxnIGlkPSJub2RlOCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+dmFyRW50cnk8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNTcuMzQ2NiIgY3k9Ii0xOCIgcng9IjQxLjY5MjgiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTcuMzQ2NiIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnk8L3RleHQ+CjwvZz4KPCEtLSBmbG93JiM0NTsmZ3Q7dmFyRW50cnkgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZmxvdyYjNDU7Jmd0O3ZhckVudHJ5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTkyLjczODIsLTc1LjQyOTdDMjAzLjg0LC02NS41NjE1IDIxOC43NDE3LC01Mi4zMTU0IDIzMS40MzYxLC00MS4wMzE1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyMzMuODUyNCwtNDMuNTY2NiAyMzkuMDAxMiwtMzQuMzA3IDIyOS4yMDE4LC0zOC4zMzQ3IDIzMy44NTI0LC00My41NjY2Ii8+CjwvZz4KPCEtLSBtaW51c1N0bSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5taW51c1N0bTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIzMy4zNDY2IiBjeT0iLTIzNCIgcng9IjQ3LjM5MTYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzMuMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1pbnVzU3RtPC90ZXh0Pgo8L2c+CjwhLS0gbWludXNTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWludXNTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMzAuMDY2MSwtMjE1LjgzMTRDMjI4LjY3NTgsLTIwOC4xMzEgMjI3LjAyMjUsLTE5OC45NzQzIDIyNS40Nzc0LC0xOTAuNDE2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjI4Ljg5MjQsLTE4OS42MzIyIDIyMy42NzEyLC0xODAuNDEzMyAyMjIuMDAzOCwtMTkwLjg3NjEgMjI4Ljg5MjQsLTE4OS42MzIyIi8+CjwvZz4KPCEtLSBtaW51c1N0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWludXNTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjUxLjUxODUsLTIxNi44NDU2QzI2MC41NjM3LC0yMDcuMDM0OSAyNzAuNTY3MSwtMTkzLjkzMDEgMjc1LjM0NjYsLTE4MCAyODIuNDE1MSwtMTU5LjM5ODUgMjc2LjgwMzgsLTEzNS4xMzg5IDI3MC4wMzc5LC0xMTcuMDAwOCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjczLjIzNCwtMTE1LjU2ODYgMjY2LjIzMzUsLTEwNy42MTYgMjY2Ljc0NjgsLTExOC4xOTg0IDI3My4yMzQsLTExNS41Njg2Ii8+CjwvZz4KPCEtLSBtdWx0U3RtIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm11bHRTdG08L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDEuMzQ2NiIgY3k9Ii0yMzQiIHJ4PSI0Mi40OTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzQxLjM0NjYiIHk9Ii0yMzAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5tdWx0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gbXVsdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U5IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5tdWx0U3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzE2LjU2ODUsLTIxOS4yNTZDMjk4LjcwMDksLTIwOC42MjQxIDI3NC4zNTcyLC0xOTQuMTM4NSAyNTQuNjI2NSwtMTgyLjM5OCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjU2LjMwOSwtMTc5LjMyNjQgMjQ1LjkyNTUsLTE3Ny4yMjA1IDI1Mi43Mjk1LC0xODUuMzQyIDI1Ni4zMDksLTE3OS4zMjY0Ii8+CjwvZz4KPCEtLSBtdWx0U3RtJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UxMCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bXVsdFN0bSYjNDU7Jmd0O3ZhckV4aXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zMzEuNTQ5NCwtMjE2LjMxMUMzMjEuNDA0OSwtMTk4LjA5MDYgMzA1LjAxNDksLTE2OC45MTc2IDI5MC4zNDY2LC0xNDQgMjg0Ljk2ODgsLTEzNC44NjQ2IDI3OC45NTcyLC0xMjQuOTQ0OCAyNzMuNTUzMywtMTE2LjEyOTQiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3Ni40MTYzLC0xMTQuMTAzNiAyNjguMTk0LC0xMDcuNDIxOSAyNzAuNDU1LC0xMTcuNzcyNyAyNzYuNDE2MywtMTE0LjEwMzYiLz4KPC9nPgo8IS0tIHNldENvbnN0U3RtIC0tPgo8ZyBpZD0ibm9kZTciIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNldENvbnN0U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDU3LjM0NjYiIGN5PSItMjM0IiByeD0iNTUuNzkwMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1Ny4zNDY2IiB5PSItMjMwLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c2V0Q29uc3RTdG08L3RleHQ+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2UxMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c2V0Q29uc3RTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik00MTYuNjA0OCwtMjIxLjYyMjhDMzc0Ljk4MTQsLTIwOC45Nzc3IDMxMC40NDE3LC0xODkuMzcwNyAyNjYuODQ0MSwtMTc2LjEyNTgiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI2Ny42NDM2LC0xNzIuNzEwOCAyNTcuMDU4LC0xNzMuMTUyOCAyNjUuNjA4OCwtMTc5LjQwODYgMjY3LjY0MzYsLTE3Mi43MTA4Ii8+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnNldENvbnN0U3RtJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQzNC40MDQxLC0yMTcuNDgxNEMzOTcuODg4NSwtMTkxLjE5MDEgMzI2LjU5MDYsLTEzOS44NTU3IDI4Ni41MDY3LC0xMTAuOTk1MyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjg4LjM3MzksLTEwOC4wMjY4IDI3OC4yMTM0LC0xMDUuMDI0MSAyODQuMjgzNywtMTEzLjcwNzYgMjg4LjM3MzksLTEwOC4wMjY4Ii8+CjwvZz4KPCEtLSB2YXJFbnRyeSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnZhckVudHJ5JiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTI2My4yNjY4LC0zNS44NDI1QzI2NC4wNTQ0LC00My43MjM2IDI2NC4yODE0LC01My4xNzc0IDI2My45NDc2LC02MS45NjQ3Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNjAuNDM4MSwtNjEuOTkwOCAyNjMuMjYyMywtNzIuMjAyMiAyNjcuNDIyNSwtNjIuNDU4MyAyNjAuNDM4MSwtNjEuOTkwOCIvPgo8L2c+CjwhLS0gdmFyRXhpdCYjNDU7Jmd0O3ZhckVudHJ5IC0tPgo8ZyBpZD0iZWRnZTE0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT52YXJFeGl0JiM0NTsmZ3Q7dmFyRW50cnk8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yNTEuNDMwOSwtNzIuMjAyMkMyNTAuNjQxMSwtNjQuMzI3MSAyNTAuNDEyMSwtNTQuODc1IDI1MC43NDM3LC00Ni4wODUyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNTQuMjUzNSwtNDYuMDUzMiAyNTEuNDI2NCwtMzUuODQyNSAyNDcuMjY5LC00NS41ODc2IDI1NC4yNTM1LC00Ni4wNTMyIi8+CjwvZz4KPC9nPgo8L3N2Zz4K'><br/>
+<a href="javascript:toggleVisibility('Parsing-prec-graph-source')">(show dot source)</a>
+<div id='Parsing-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"addStm" [label = "addStm"];
+	"assignVar" [label = "assignVar"];
+	"divStm" [label = "divStm"];
+	"flow" [label = "flow"];
+	"minusStm" [label = "minusStm"];
+	"multStm" [label = "multStm"];
+	"setConstStm" [label = "setConstStm"];
+	"varEntry" [label = "varEntry"];
+	"varExit" [label = "varExit"];
+	"addStm" -> "assignVar";
+	"addStm" -> "varExit";
+	"assignVar" -> "varExit";
+	"divStm" -> "assignVar";
+	"divStm" -> "varExit";
+	"flow" -> "varEntry";
+	"minusStm" -> "assignVar";
+	"minusStm" -> "varExit";
+	"multStm" -> "assignVar";
+	"multStm" -> "varExit";
+	"setConstStm" -> "assignVar";
+	"setConstStm" -> "varExit";
+	"varEntry" -> "varExit";
+	"varExit" -> "varEntry";
+}
+</pre>
+</div>
+
+</div>
+<a id="Parsing-scc-graph4"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNTIxcHQiIGhlaWdodD0iMjA2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgNTIxLjI0IDIwNS43NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyMDEuNzQwMSkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTIwMS43NDAxIDUxNy4yNDE2LC0yMDEuNzQwMSA1MTcuMjQxNiw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjM4LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIF81IC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl81PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjIzLjM0NjYiIGN5PSItMTA3Ljc0MDEiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjIzLjM0NjYiIHk9Ii0xMDQuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBfMCYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8wJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik02OC4wNywtMTY4LjE3MjFDOTguNjkyNiwtMTU2LjI1NDEgMTQ2LjY5NTIsLTEzNy41NzIgMTgxLjIyMjksLTEyNC4xMzQyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxODIuNTI4OSwtMTI3LjM4MTcgMTkwLjU3ODYsLTEyMC40OTMxIDE3OS45OSwtMTIwLjg1ODMgMTgyLjUyODksLTEyNy4zODE3Ii8+CjwvZz4KPCEtLSBfNyAtLT4KPGcgaWQ9Im5vZGU4IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNzwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjI5Ny4zNDY2IiBjeT0iLTI2Ljg3MDEiIHJ4PSI0OC4xNjY3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyOTcuMzQ2NiIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnksPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyOTcuMzQ2NiIgeT0iLTE1LjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRXhpdDwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzcgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfNzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTUzLjk1MDUsLTE2My4yNjkzQzczLjIyNDgsLTE0My42NjgyIDEwNy43MjcsLTExMC45MzQ1IDE0Mi4zNDY2LC04OS43NDAxIDE3NC42MzkyLC02OS45NzAzIDIxNC4yNDY0LC01NC4wMjk2IDI0NS4zMzk3LC00My4xNDYxIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuNzkzLC00Ni4zNDc5IDI1NS4xMTU3LC0zOS43OTE4IDI0NC41MjExLC0zOS43MjY4IDI0Ni43OTMsLTQ2LjM0NzkiLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTMxLjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzNi4yOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTMxLjM0NjYiIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5kaXZTdG08L3RleHQ+CjwvZz4KPCEtLSBfMSYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8xJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTAuODU3NCwtMTY0LjQ3MDhDMTYzLjU1NTksLTE1NC41MzI4IDE4MC4zMzk5LC0xNDEuMzk3NSAxOTQuNTU5NiwtMTMwLjI2OTEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjE5Ni44NjczLC0xMzIuOTA3NSAyMDIuNTg1MywtMTIzLjk4ODEgMTkyLjU1MzEsLTEyNy4zOTQ5IDE5Ni44NjczLC0xMzIuOTA3NSIvPgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM0LjczNDUsLTE2MS43NzI3QzEzOS4yOTU0LC0xNDEuOTYwNyAxNDkuMTU1NSwtMTEwLjE4OSAxNjguMzQ2NiwtODkuNzQwMSAxODguOTA3LC02Ny44MzIyIDIxOC43MjI2LC01Mi42MTMzIDI0NC41MTEyLC00Mi42NDI5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuMDAxOSwtNDUuODIzNSAyNTQuMTcsLTM5LjA3NTcgMjQzLjU3NjcsLTM5LjI1NyAyNDYuMDAxOSwtNDUuODIzNSIvPgo8L2c+CjwhLS0gXzIgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMzMuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjQ3LjM5MTYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzMuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1pbnVzU3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzImIzQ1OyZndDtfNSAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMiYjNDU7Jmd0O181PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjMwLjgyMzIsLTE2MS41NzE1QzIyOS43NTM3LC0xNTMuODcxMSAyMjguNDgxOSwtMTQ0LjcxNDUgMjI3LjI5MzQsLTEzNi4xNTY3Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyMzAuNzQ2NSwtMTM1LjU3NjggMjI1LjkwNCwtMTI2LjE1MzQgMjIzLjgxMywtMTM2LjUzOTggMjMwLjc0NjUsLTEzNS41NzY4Ii8+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTYiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7Xzc8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yNTEuMjgyNCwtMTYyLjg1ODJDMjYwLjc2MTIsLTE1Mi45MzU0IDI3MS43NjUyLC0xMzkuNjM2OSAyNzguMzQ2NiwtMTI1Ljc0MDEgMjg3LjQzNjQsLTEwNi41NDY3IDI5Mi4xNzc4LC04My4zMDEyIDI5NC42NTA5LC02NC4xNzMzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyOTguMTUyOSwtNjQuMzUzNSAyOTUuODA0NywtNTQuMDIyMSAyOTEuMTk3NywtNjMuNTYyOSAyOTguMTUyOSwtNjQuMzUzNSIvPgo8L2c+CjwhLS0gXzMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDEuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjQyLjQ5MzkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNDEuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm11bHRTdG08L3RleHQ+CjwvZz4KPCEtLSBfMyYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTciIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8zJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zMTYuODk2OSwtMTY0LjgyMTdDMjk5LjY0NzEsLTE1NC4yOTY0IDI3Ni4zMTM1LC0xNDAuMDU4OSAyNTcuMjY1NCwtMTI4LjQzNjQiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI1OC45Mzg2LC0xMjUuMzU3MiAyNDguNTc5MSwtMTIzLjEzNjIgMjU1LjI5MjUsLTEzMS4zMzI3IDI1OC45Mzg2LC0xMjUuMzU3MiIvPgo8L2c+CjwhLS0gXzMmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2U4IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMyYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzM2LjEyNjQsLTE2MS42MDM2QzMyOS4xOTMyLC0xMzcuNTE1NCAzMTYuNzg1OSwtOTQuNDA4NCAzMDcuODcwNiwtNjMuNDMzNyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzExLjEyMzQsLTYyLjA4MTEgMzA0Ljk5MzksLTUzLjQzOTMgMzA0LjM5NjUsLTY0LjAxNzMgMzExLjEyMzQsLTYyLjA4MTEiLz4KPC9nPgo8IS0tIF80IC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl80PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDU3LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSI1NS43OTAzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDU3LjM0NjYiIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5zZXRDb25zdFN0bTwvdGV4dD4KPC9nPgo8IS0tIF80JiM0NTsmZ3Q7XzUgLS0+CjxnIGlkPSJlZGdlOSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzQmIzQ1OyZndDtfNTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQxNi44NTQxLC0xNjcuMjgwOUMzNzUuODM1OSwtMTU0LjY1OTkgMzEyLjQ3NzMsLTEzNS4xNjQ5IDI2OS41Mjg3LC0xMjEuOTUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3MC40NzExLC0xMTguNTc4MSAyNTkuODg0LC0xMTguOTgyNCAyNjguNDEyNSwtMTI1LjI2ODUgMjcwLjQ3MTEsLTExOC41NzgxIi8+CjwvZz4KPCEtLSBfNCYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTEwIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fNCYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDM2LjA1MzcsLTE2My4wNTIxQzQyMy4xMDksLTE1Mi42NjM5IDQwNi40MTgxLC0xMzguODMwNSAzOTIuMzQ2NiwtMTI1Ljc0MDEgMzY5LjI2NjgsLTEwNC4yNjk2IDM0NC42NDQ4LC03OC41NTY1IDMyNi4yNTE2LC01OC43MzQ5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzMjguNjI5MSwtNTYuMTUwNCAzMTkuMjc0MywtNTEuMTc2NSAzMjMuNDg1NSwtNjAuODk4NSAzMjguNjI5MSwtNTYuMTUwNCIvPgo8L2c+CjwhLS0gXzUmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2UxMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzUmIzQ1OyZndDtfNzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIzOS4wNDAxLC05MC41ODk3QzI0Ny41ODg5LC04MS4yNDcyIDI1OC40Mzk3LC02OS4zODkgMjY4LjQ1NjQsLTU4LjQ0MjMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3MS4wNTA3LC02MC43OTE5IDI3NS4yMTkzLC01MS4wNTE2IDI2NS44ODY0LC01Ni4wNjYzIDI3MS4wNTA3LC02MC43OTE5Ii8+CjwvZz4KPCEtLSBfNiAtLT4KPGcgaWQ9Im5vZGU3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQyOC4zNDY2IiBjeT0iLTEwNy43NDAxIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MjguMzQ2NiIgeT0iLTEwNC4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmZsb3c8L3RleHQ+CjwvZz4KPCEtLSBfNiYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTEyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fNiYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDA4LjQ1MDUsLTk1LjQ1NzdDMzg5LjkxOCwtODQuMDE3IDM2MS43MTU4LC02Ni42MDcgMzM4LjM2MzYsLTUyLjE5MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzQwLjAyOTEsLTQ5LjEwNiAzMjkuNjgxMywtNDYuODMxMiAzMzYuMzUyLC01NS4wNjI1IDM0MC4wMjkxLC00OS4xMDYiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('Parsing-scc-graph-source')">(show dot source)</a>
+<div id='Parsing-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "addStm" ];
+	_1[label = "divStm" ];
+	_2[label = "minusStm" ];
+	_3[label = "multStm" ];
+	_4[label = "setConstStm" ];
+	_5[label = "assignVar" ];
+	_6[label = "flow" ];
+	_7[label = "varEntry,\nvarExit" ];
+	_0 -> _5;
+	_0 -> _7;
+	_1 -> _5;
+	_1 -> _7;
+	_2 -> _5;
+	_2 -> _7;
+	_3 -> _5;
+	_3 -> _7;
+	_4 -> _5;
+	_4 -> _7;
+	_5 -> _7;
+	_6 -> _7;
+}</pre>
+</div>
+
+</div>
+<a id="Parsing-topsort-scc-graph5"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 5
+0 7
+1 5
+1 7
+2 5
+2 7
+3 5
+3 7
+4 5
+4 7
+5 7
+6 7
+--- total order with relations of each strata ---
+0: [addStm]
+1: [divStm]
+2: [minusStm]
+3: [multStm]
+4: [setConstStm]
+5: [assignVar]
+6: [flow]
+7: [varEntry, varExit]
+
+--- statistics of topological order ---
+cost: 10
+</pre>
+
+</div>
+</div>
+<a id="AstComponentChecker7"></a>
+<div class='headerdiv'>
+<h1>After AstComponentChecker (0.000035s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ComponentInstantiationTransformer14"></a>
+<div class='headerdiv'>
+<h1>After ComponentInstantiationTransformer (0.000027s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="ComponentInstantiationTransformer-dl8"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Sign = {Top:symbol,Neg:symbol,Zer:symbol,Pos:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Sign&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Sign{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Sign{
+(_)=>x > 0 ? "Pos" : x &lt; 0 ? "Neg" : "Zer"
+}
+
+
+// -- lat_div --
+LatticeBinaryFunction: &lat_div (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>"Zer"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>x = y ? "Pos" : "Neg"
+}
+
+
+// -- lat_minus --
+LatticeBinaryFunction: &lat_minus (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,"Zer")=>x
+("Zer","Neg")=>"Pos"
+("Zer","Pos")=>"Neg"
+(_,_)=>x = y ? "Top" : x
+}
+
+
+// -- lat_mult --
+LatticeBinaryFunction: &lat_mult (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>"Zer"
+(_,"Zer")=>"Zer"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>x = y ? "Pos" : "Neg"
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>y
+(_,"Zer")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Sign{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- addStm --
+.decl addStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {addStm}
+
+
+
+// -- assignVar --
+.decl assignVar(l:number,r:symbol)  
+
+assignVar(l,r) :- 
+   setConstStm(l,r,_).
+
+assignVar(l,r) :- 
+   addStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   minusStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   multStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   divStm(l,r,_,_).
+
+
+
+// -- divStm --
+.decl divStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {divStm}
+
+
+
+// -- flow --
+.decl flow(l1:number,l2:number)  
+
+.output {flow}
+
+
+
+// -- minusStm --
+.decl minusStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {minusStm}
+
+
+
+// -- multStm --
+.decl multStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {multStm}
+
+
+
+// -- setConstStm --
+.decl setConstStm(l:number,r:symbol,c:number)  
+
+.output {setConstStm}
+
+
+
+// -- varEntry --
+.lat varEntry(l:number,k:symbol,v:Sign)  
+
+varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+
+.output {varEntry}
+
+
+
+// -- varExit --
+.lat varExit(l:number,k:symbol,v:Sign)  
+
+varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+
+varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_minus(v1,v2)) :- 
+   minusStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_mult(v1,v2)) :- 
+   multStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_div(v1,v2)) :- 
+   divStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2),
+   v2 != &lat_alpha(0).
+
+varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+
+.output {varExit}
+
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-ta9"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: assignVar(l,r) :- 
+   setConstStm(l,r,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: number
+}
+Solution:
+{var(r)->{symbol},var(l)->{number},var(_)->{number}}
+Clause: assignVar(l,r) :- 
+   addStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   minusStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   multStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(r)->{symbol},var(l)->{number},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   divStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+Problem:
+{
+	var(l2) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l1) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l1) &lt;: number,
+	var(l2) &lt;: number
+}
+Solution:
+{var(l1)->{number},var(l2)->{number},var(k)->{symbol},var(v)->{Sign}}
+Clause: varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(c)->{number},var(l)->{number},var(r)->{symbol},var(&lat_alpha(c))->{Sign}}
+Clause: varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_sum(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_minus(v1,v2)) :- 
+   minusStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_minus(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_minus(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_mult(v1,v2)) :- 
+   multStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_mult(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_mult(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_div(v1,v2)) :- 
+   divStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2),
+   v2 != &lat_alpha(0).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_div(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign,
+	var(v2) &lt;: var(&lat_alpha(0)),
+	var(&lat_alpha(0)) &lt;: var(v2),
+	var(0) &lt;: number
+}
+Solution:
+{var(0)->{number},var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(&lat_alpha(0))->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_div(v1,v2))->{Sign}}
+Clause: varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l) >: number,
+	var(r) >: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(v)->{Sign}}
+
+-- Result --
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},_&isin;{number}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   addStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   minusStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   multStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   divStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+varEntry(l2&isin;{number},k&isin;{symbol},v&isin;{Sign}) :- 
+   varExit(l1&isin;{number},k&isin;{symbol},v&isin;{Sign}),
+   flow(l1&isin;{number},l2&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},c&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_sum(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   addStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_minus(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   minusStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_mult(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   multStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_div(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   divStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}),
+   v2&isin;{Sign} != &lat_alpha(0).
+varExit(l&isin;{number},r&isin;{symbol},v&isin;{Sign}) :- 
+   varEntry(l&isin;{number},r&isin;{symbol},v&isin;{Sign}),
+   !assignVar(l&isin;{number},r&isin;{symbol}).
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-tea10"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Sign = {Top:symbol,Neg:symbol,Zer:symbol,Pos:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-prec-graph11"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNTIxcHQiIGhlaWdodD0iMjYwcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgNTIxLjI0IDI2MC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyNTYpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yNTYgNTE3LjI0MTYsLTI1NiA1MTcuMjQxNiw0IC00LDQiLz4KPCEtLSBhZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzguMzQ2NiIgY3k9Ii0yMzQiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIGFzc2lnblZhciAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hc3NpZ25WYXI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMjAuMzQ2NiIgY3k9Ii0xNjIiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjIwLjM0NjYiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YWRkU3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNjcuOTkzMSwtMjIyLjI3MTdDOTcuODc5NywtMjEwLjQ0ODQgMTQ0LjI5MjcsLTE5Mi4wODczIDE3OC4wNDA2LC0xNzguNzM2NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTc5LjYyNSwtMTgxLjg3MzYgMTg3LjYzNjMsLTE3NC45NDA0IDE3Ny4wNDk5LC0xNzUuMzY0NSAxNzkuNjI1LC0xODEuODczNiIvPgo8L2c+CjwhLS0gdmFyRXhpdCAtLT4KPGcgaWQ9Im5vZGU5IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT52YXJFeGl0PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjU3LjM0NjYiIGN5PSItOTAiIHJ4PSIzNi4yOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjU3LjM0NjYiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnZhckV4aXQ8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDt2YXJFeGl0IC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmFkZFN0bSYjNDU7Jmd0O3ZhckV4aXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik01NC40OTI0LC0yMTcuNDk5MkM3NC4wMjMzLC0xOTguMTY1OCAxMDguNTA4NCwtMTY1Ljk4NTUgMTQyLjM0NjYsLTE0NCAxNTYuMDU1OCwtMTM1LjA5MjggMTkyLjQ1LC0xMTguMzkzOSAyMjAuNjU5NywtMTA1LjkxNDEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIyMi4xMjU2LC0xMDkuMDkzIDIyOS44NjgxLC0xMDEuODYwOCAyMTkuMzA1NSwtMTAyLjY4NjEgMjIyLjEyNTYsLTEwOS4wOTMiLz4KPC9nPgo8IS0tIGFzc2lnblZhciYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YXNzaWduVmFyJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIyOS40OTI3LC0xNDQuMjAyMkMyMzMuNzQ5MiwtMTM1LjkxOTIgMjM4LjkwMjQsLTEyNS44OTE1IDI0My42MTMsLTExNi43MjQ4Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuODQ4LC0xMTguMDg3MSAyNDguMzA1NywtMTA3LjU5MyAyNDAuNjIyLC0xMTQuODg3NiAyNDYuODQ4LC0xMTguMDg3MSIvPgo8L2c+CjwhLS0gZGl2U3RtIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmRpdlN0bTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzMS4zNDY2IiBjeT0iLTIzNCIgcng9IjM2LjI5MzgiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIGRpdlN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5kaXZTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTAuNjU4MywtMjE4LjM3NzFDMTYyLjc2NjcsLTIwOC41ODE1IDE3OC41ODUxLC0xOTUuNzg0NiAxOTIuMDksLTE4NC44NTkzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxOTQuNTcyNywtMTg3LjM1MjcgMjAwLjE0NTksLTE3OC4zNDIxIDE5MC4xNzAxLC0xODEuOTEwNiAxOTQuNTcyNywtMTg3LjM1MjciLz4KPC9nPgo8IS0tIGRpdlN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZGl2U3RtJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEzNC40NDU3LC0yMTUuOTU0NkMxMzguNTkwOCwtMTk2LjM2NTggMTQ3LjU3OTMsLTE2NS4wNjc5IDE2NS4zNDY2LC0xNDQgMTc5LjU4MTEsLTEyNy4xMjEyIDIwMC41MTAxLC0xMTQuMjUyMSAyMTguODExMywtMTA1LjMxODUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIyMC40OTkyLC0xMDguMzkzNyAyMjguMDkyNywtMTAxLjAwNTIgMjE3LjU0OTEsLTEwMi4wNDU3IDIyMC40OTkyLC0xMDguMzkzNyIvPgo8L2c+CjwhLS0gZmxvdyAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5mbG93PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTc2LjM0NjYiIGN5PSItOTAiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE3Ni4zNDY2IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5mbG93PC90ZXh0Pgo8L2c+CjwhLS0gdmFyRW50cnkgLS0+CjxnIGlkPSJub2RlOCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+dmFyRW50cnk8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNTcuMzQ2NiIgY3k9Ii0xOCIgcng9IjQxLjY5MjgiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTcuMzQ2NiIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnk8L3RleHQ+CjwvZz4KPCEtLSBmbG93JiM0NTsmZ3Q7dmFyRW50cnkgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZmxvdyYjNDU7Jmd0O3ZhckVudHJ5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTkyLjczODIsLTc1LjQyOTdDMjAzLjg0LC02NS41NjE1IDIxOC43NDE3LC01Mi4zMTU0IDIzMS40MzYxLC00MS4wMzE1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyMzMuODUyNCwtNDMuNTY2NiAyMzkuMDAxMiwtMzQuMzA3IDIyOS4yMDE4LC0zOC4zMzQ3IDIzMy44NTI0LC00My41NjY2Ii8+CjwvZz4KPCEtLSBtaW51c1N0bSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5taW51c1N0bTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIzMy4zNDY2IiBjeT0iLTIzNCIgcng9IjQ3LjM5MTYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzMuMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1pbnVzU3RtPC90ZXh0Pgo8L2c+CjwhLS0gbWludXNTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWludXNTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMzAuMDY2MSwtMjE1LjgzMTRDMjI4LjY3NTgsLTIwOC4xMzEgMjI3LjAyMjUsLTE5OC45NzQzIDIyNS40Nzc0LC0xOTAuNDE2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjI4Ljg5MjQsLTE4OS42MzIyIDIyMy42NzEyLC0xODAuNDEzMyAyMjIuMDAzOCwtMTkwLjg3NjEgMjI4Ljg5MjQsLTE4OS42MzIyIi8+CjwvZz4KPCEtLSBtaW51c1N0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWludXNTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjUxLjUxODUsLTIxNi44NDU2QzI2MC41NjM3LC0yMDcuMDM0OSAyNzAuNTY3MSwtMTkzLjkzMDEgMjc1LjM0NjYsLTE4MCAyODIuNDE1MSwtMTU5LjM5ODUgMjc2LjgwMzgsLTEzNS4xMzg5IDI3MC4wMzc5LC0xMTcuMDAwOCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjczLjIzNCwtMTE1LjU2ODYgMjY2LjIzMzUsLTEwNy42MTYgMjY2Ljc0NjgsLTExOC4xOTg0IDI3My4yMzQsLTExNS41Njg2Ii8+CjwvZz4KPCEtLSBtdWx0U3RtIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm11bHRTdG08L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDEuMzQ2NiIgY3k9Ii0yMzQiIHJ4PSI0Mi40OTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzQxLjM0NjYiIHk9Ii0yMzAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5tdWx0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gbXVsdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U5IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5tdWx0U3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzE2LjU2ODUsLTIxOS4yNTZDMjk4LjcwMDksLTIwOC42MjQxIDI3NC4zNTcyLC0xOTQuMTM4NSAyNTQuNjI2NSwtMTgyLjM5OCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjU2LjMwOSwtMTc5LjMyNjQgMjQ1LjkyNTUsLTE3Ny4yMjA1IDI1Mi43Mjk1LC0xODUuMzQyIDI1Ni4zMDksLTE3OS4zMjY0Ii8+CjwvZz4KPCEtLSBtdWx0U3RtJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UxMCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bXVsdFN0bSYjNDU7Jmd0O3ZhckV4aXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zMzEuNTQ5NCwtMjE2LjMxMUMzMjEuNDA0OSwtMTk4LjA5MDYgMzA1LjAxNDksLTE2OC45MTc2IDI5MC4zNDY2LC0xNDQgMjg0Ljk2ODgsLTEzNC44NjQ2IDI3OC45NTcyLC0xMjQuOTQ0OCAyNzMuNTUzMywtMTE2LjEyOTQiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3Ni40MTYzLC0xMTQuMTAzNiAyNjguMTk0LC0xMDcuNDIxOSAyNzAuNDU1LC0xMTcuNzcyNyAyNzYuNDE2MywtMTE0LjEwMzYiLz4KPC9nPgo8IS0tIHNldENvbnN0U3RtIC0tPgo8ZyBpZD0ibm9kZTciIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNldENvbnN0U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDU3LjM0NjYiIGN5PSItMjM0IiByeD0iNTUuNzkwMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1Ny4zNDY2IiB5PSItMjMwLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c2V0Q29uc3RTdG08L3RleHQ+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2UxMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c2V0Q29uc3RTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik00MTYuNjA0OCwtMjIxLjYyMjhDMzc0Ljk4MTQsLTIwOC45Nzc3IDMxMC40NDE3LC0xODkuMzcwNyAyNjYuODQ0MSwtMTc2LjEyNTgiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI2Ny42NDM2LC0xNzIuNzEwOCAyNTcuMDU4LC0xNzMuMTUyOCAyNjUuNjA4OCwtMTc5LjQwODYgMjY3LjY0MzYsLTE3Mi43MTA4Ii8+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnNldENvbnN0U3RtJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQzNC40MDQxLC0yMTcuNDgxNEMzOTcuODg4NSwtMTkxLjE5MDEgMzI2LjU5MDYsLTEzOS44NTU3IDI4Ni41MDY3LC0xMTAuOTk1MyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjg4LjM3MzksLTEwOC4wMjY4IDI3OC4yMTM0LC0xMDUuMDI0MSAyODQuMjgzNywtMTEzLjcwNzYgMjg4LjM3MzksLTEwOC4wMjY4Ii8+CjwvZz4KPCEtLSB2YXJFbnRyeSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnZhckVudHJ5JiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTI2My4yNjY4LC0zNS44NDI1QzI2NC4wNTQ0LC00My43MjM2IDI2NC4yODE0LC01My4xNzc0IDI2My45NDc2LC02MS45NjQ3Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNjAuNDM4MSwtNjEuOTkwOCAyNjMuMjYyMywtNzIuMjAyMiAyNjcuNDIyNSwtNjIuNDU4MyAyNjAuNDM4MSwtNjEuOTkwOCIvPgo8L2c+CjwhLS0gdmFyRXhpdCYjNDU7Jmd0O3ZhckVudHJ5IC0tPgo8ZyBpZD0iZWRnZTE0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT52YXJFeGl0JiM0NTsmZ3Q7dmFyRW50cnk8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yNTEuNDMwOSwtNzIuMjAyMkMyNTAuNjQxMSwtNjQuMzI3MSAyNTAuNDEyMSwtNTQuODc1IDI1MC43NDM3LC00Ni4wODUyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNTQuMjUzNSwtNDYuMDUzMiAyNTEuNDI2NCwtMzUuODQyNSAyNDcuMjY5LC00NS41ODc2IDI1NC4yNTM1LC00Ni4wNTMyIi8+CjwvZz4KPC9nPgo8L3N2Zz4K'><br/>
+<a href="javascript:toggleVisibility('ComponentInstantiationTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ComponentInstantiationTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"addStm" [label = "addStm"];
+	"assignVar" [label = "assignVar"];
+	"divStm" [label = "divStm"];
+	"flow" [label = "flow"];
+	"minusStm" [label = "minusStm"];
+	"multStm" [label = "multStm"];
+	"setConstStm" [label = "setConstStm"];
+	"varEntry" [label = "varEntry"];
+	"varExit" [label = "varExit"];
+	"addStm" -> "assignVar";
+	"addStm" -> "varExit";
+	"assignVar" -> "varExit";
+	"divStm" -> "assignVar";
+	"divStm" -> "varExit";
+	"flow" -> "varEntry";
+	"minusStm" -> "assignVar";
+	"minusStm" -> "varExit";
+	"multStm" -> "assignVar";
+	"multStm" -> "varExit";
+	"setConstStm" -> "assignVar";
+	"setConstStm" -> "varExit";
+	"varEntry" -> "varExit";
+	"varExit" -> "varEntry";
+}
+</pre>
+</div>
+
+</div>
+<a id="ComponentInstantiationTransformer-scc-graph12"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNTIxcHQiIGhlaWdodD0iMjA2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgNTIxLjI0IDIwNS43NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyMDEuNzQwMSkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTIwMS43NDAxIDUxNy4yNDE2LC0yMDEuNzQwMSA1MTcuMjQxNiw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjM4LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIF81IC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl81PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjIzLjM0NjYiIGN5PSItMTA3Ljc0MDEiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjIzLjM0NjYiIHk9Ii0xMDQuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBfMCYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8wJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik02OC4wNywtMTY4LjE3MjFDOTguNjkyNiwtMTU2LjI1NDEgMTQ2LjY5NTIsLTEzNy41NzIgMTgxLjIyMjksLTEyNC4xMzQyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxODIuNTI4OSwtMTI3LjM4MTcgMTkwLjU3ODYsLTEyMC40OTMxIDE3OS45OSwtMTIwLjg1ODMgMTgyLjUyODksLTEyNy4zODE3Ii8+CjwvZz4KPCEtLSBfNyAtLT4KPGcgaWQ9Im5vZGU4IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNzwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjI5Ny4zNDY2IiBjeT0iLTI2Ljg3MDEiIHJ4PSI0OC4xNjY3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyOTcuMzQ2NiIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnksPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyOTcuMzQ2NiIgeT0iLTE1LjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRXhpdDwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzcgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfNzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTUzLjk1MDUsLTE2My4yNjkzQzczLjIyNDgsLTE0My42NjgyIDEwNy43MjcsLTExMC45MzQ1IDE0Mi4zNDY2LC04OS43NDAxIDE3NC42MzkyLC02OS45NzAzIDIxNC4yNDY0LC01NC4wMjk2IDI0NS4zMzk3LC00My4xNDYxIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuNzkzLC00Ni4zNDc5IDI1NS4xMTU3LC0zOS43OTE4IDI0NC41MjExLC0zOS43MjY4IDI0Ni43OTMsLTQ2LjM0NzkiLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTMxLjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzNi4yOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTMxLjM0NjYiIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5kaXZTdG08L3RleHQ+CjwvZz4KPCEtLSBfMSYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8xJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTAuODU3NCwtMTY0LjQ3MDhDMTYzLjU1NTksLTE1NC41MzI4IDE4MC4zMzk5LC0xNDEuMzk3NSAxOTQuNTU5NiwtMTMwLjI2OTEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjE5Ni44NjczLC0xMzIuOTA3NSAyMDIuNTg1MywtMTIzLjk4ODEgMTkyLjU1MzEsLTEyNy4zOTQ5IDE5Ni44NjczLC0xMzIuOTA3NSIvPgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM0LjczNDUsLTE2MS43NzI3QzEzOS4yOTU0LC0xNDEuOTYwNyAxNDkuMTU1NSwtMTEwLjE4OSAxNjguMzQ2NiwtODkuNzQwMSAxODguOTA3LC02Ny44MzIyIDIxOC43MjI2LC01Mi42MTMzIDI0NC41MTEyLC00Mi42NDI5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuMDAxOSwtNDUuODIzNSAyNTQuMTcsLTM5LjA3NTcgMjQzLjU3NjcsLTM5LjI1NyAyNDYuMDAxOSwtNDUuODIzNSIvPgo8L2c+CjwhLS0gXzIgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMzMuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjQ3LjM5MTYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzMuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1pbnVzU3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzImIzQ1OyZndDtfNSAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMiYjNDU7Jmd0O181PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjMwLjgyMzIsLTE2MS41NzE1QzIyOS43NTM3LC0xNTMuODcxMSAyMjguNDgxOSwtMTQ0LjcxNDUgMjI3LjI5MzQsLTEzNi4xNTY3Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyMzAuNzQ2NSwtMTM1LjU3NjggMjI1LjkwNCwtMTI2LjE1MzQgMjIzLjgxMywtMTM2LjUzOTggMjMwLjc0NjUsLTEzNS41NzY4Ii8+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTYiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7Xzc8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yNTEuMjgyNCwtMTYyLjg1ODJDMjYwLjc2MTIsLTE1Mi45MzU0IDI3MS43NjUyLC0xMzkuNjM2OSAyNzguMzQ2NiwtMTI1Ljc0MDEgMjg3LjQzNjQsLTEwNi41NDY3IDI5Mi4xNzc4LC04My4zMDEyIDI5NC42NTA5LC02NC4xNzMzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyOTguMTUyOSwtNjQuMzUzNSAyOTUuODA0NywtNTQuMDIyMSAyOTEuMTk3NywtNjMuNTYyOSAyOTguMTUyOSwtNjQuMzUzNSIvPgo8L2c+CjwhLS0gXzMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDEuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjQyLjQ5MzkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNDEuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm11bHRTdG08L3RleHQ+CjwvZz4KPCEtLSBfMyYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTciIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8zJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zMTYuODk2OSwtMTY0LjgyMTdDMjk5LjY0NzEsLTE1NC4yOTY0IDI3Ni4zMTM1LC0xNDAuMDU4OSAyNTcuMjY1NCwtMTI4LjQzNjQiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI1OC45Mzg2LC0xMjUuMzU3MiAyNDguNTc5MSwtMTIzLjEzNjIgMjU1LjI5MjUsLTEzMS4zMzI3IDI1OC45Mzg2LC0xMjUuMzU3MiIvPgo8L2c+CjwhLS0gXzMmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2U4IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMyYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzM2LjEyNjQsLTE2MS42MDM2QzMyOS4xOTMyLC0xMzcuNTE1NCAzMTYuNzg1OSwtOTQuNDA4NCAzMDcuODcwNiwtNjMuNDMzNyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzExLjEyMzQsLTYyLjA4MTEgMzA0Ljk5MzksLTUzLjQzOTMgMzA0LjM5NjUsLTY0LjAxNzMgMzExLjEyMzQsLTYyLjA4MTEiLz4KPC9nPgo8IS0tIF80IC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl80PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDU3LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSI1NS43OTAzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDU3LjM0NjYiIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5zZXRDb25zdFN0bTwvdGV4dD4KPC9nPgo8IS0tIF80JiM0NTsmZ3Q7XzUgLS0+CjxnIGlkPSJlZGdlOSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzQmIzQ1OyZndDtfNTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQxNi44NTQxLC0xNjcuMjgwOUMzNzUuODM1OSwtMTU0LjY1OTkgMzEyLjQ3NzMsLTEzNS4xNjQ5IDI2OS41Mjg3LC0xMjEuOTUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3MC40NzExLC0xMTguNTc4MSAyNTkuODg0LC0xMTguOTgyNCAyNjguNDEyNSwtMTI1LjI2ODUgMjcwLjQ3MTEsLTExOC41NzgxIi8+CjwvZz4KPCEtLSBfNCYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTEwIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fNCYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDM2LjA1MzcsLTE2My4wNTIxQzQyMy4xMDksLTE1Mi42NjM5IDQwNi40MTgxLC0xMzguODMwNSAzOTIuMzQ2NiwtMTI1Ljc0MDEgMzY5LjI2NjgsLTEwNC4yNjk2IDM0NC42NDQ4LC03OC41NTY1IDMyNi4yNTE2LC01OC43MzQ5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzMjguNjI5MSwtNTYuMTUwNCAzMTkuMjc0MywtNTEuMTc2NSAzMjMuNDg1NSwtNjAuODk4NSAzMjguNjI5MSwtNTYuMTUwNCIvPgo8L2c+CjwhLS0gXzUmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2UxMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzUmIzQ1OyZndDtfNzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIzOS4wNDAxLC05MC41ODk3QzI0Ny41ODg5LC04MS4yNDcyIDI1OC40Mzk3LC02OS4zODkgMjY4LjQ1NjQsLTU4LjQ0MjMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3MS4wNTA3LC02MC43OTE5IDI3NS4yMTkzLC01MS4wNTE2IDI2NS44ODY0LC01Ni4wNjYzIDI3MS4wNTA3LC02MC43OTE5Ii8+CjwvZz4KPCEtLSBfNiAtLT4KPGcgaWQ9Im5vZGU3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQyOC4zNDY2IiBjeT0iLTEwNy43NDAxIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MjguMzQ2NiIgeT0iLTEwNC4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmZsb3c8L3RleHQ+CjwvZz4KPCEtLSBfNiYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTEyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fNiYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDA4LjQ1MDUsLTk1LjQ1NzdDMzg5LjkxOCwtODQuMDE3IDM2MS43MTU4LC02Ni42MDcgMzM4LjM2MzYsLTUyLjE5MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzQwLjAyOTEsLTQ5LjEwNiAzMjkuNjgxMywtNDYuODMxMiAzMzYuMzUyLC01NS4wNjI1IDM0MC4wMjkxLC00OS4xMDYiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('ComponentInstantiationTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ComponentInstantiationTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "addStm" ];
+	_1[label = "divStm" ];
+	_2[label = "minusStm" ];
+	_3[label = "multStm" ];
+	_4[label = "setConstStm" ];
+	_5[label = "assignVar" ];
+	_6[label = "flow" ];
+	_7[label = "varEntry,\nvarExit" ];
+	_0 -> _5;
+	_0 -> _7;
+	_1 -> _5;
+	_1 -> _7;
+	_2 -> _5;
+	_2 -> _7;
+	_3 -> _5;
+	_3 -> _7;
+	_4 -> _5;
+	_4 -> _7;
+	_5 -> _7;
+	_6 -> _7;
+}</pre>
+</div>
+
+</div>
+<a id="ComponentInstantiationTransformer-topsort-scc-graph13"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 5
+0 7
+1 5
+1 7
+2 5
+2 7
+3 5
+3 7
+4 5
+4 7
+5 7
+6 7
+--- total order with relations of each strata ---
+0: [addStm]
+1: [divStm]
+2: [minusStm]
+3: [multStm]
+4: [setConstStm]
+5: [assignVar]
+6: [flow]
+7: [varEntry, varExit]
+
+--- statistics of topological order ---
+cost: 10
+</pre>
+
+</div>
+</div>
+<a id="UniqueAggregationVariablesTransformer15"></a>
+<div class='headerdiv'>
+<h1>After UniqueAggregationVariablesTransformer (0.000022s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="AstSemanticChecker16"></a>
+<div class='headerdiv'>
+<h1>After AstSemanticChecker (0.001159s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveBooleanConstraintsTransformer17"></a>
+<div class='headerdiv'>
+<h1>After RemoveBooleanConstraintsTransformer (0.000037s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ResolveAliasesTransformer24"></a>
+<div class='headerdiv'>
+<h1>After ResolveAliasesTransformer (0.000113s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="ResolveAliasesTransformer-dl18"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Sign = {Top:symbol,Neg:symbol,Zer:symbol,Pos:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Sign&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Sign{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Sign{
+(_)=>x > 0 ? "Pos" : x &lt; 0 ? "Neg" : "Zer"
+}
+
+
+// -- lat_div --
+LatticeBinaryFunction: &lat_div (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>"Zer"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>x = y ? "Pos" : "Neg"
+}
+
+
+// -- lat_minus --
+LatticeBinaryFunction: &lat_minus (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,"Zer")=>x
+("Zer","Neg")=>"Pos"
+("Zer","Pos")=>"Neg"
+(_,_)=>x = y ? "Top" : x
+}
+
+
+// -- lat_mult --
+LatticeBinaryFunction: &lat_mult (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>"Zer"
+(_,"Zer")=>"Zer"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>x = y ? "Pos" : "Neg"
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>y
+(_,"Zer")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Sign{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- addStm --
+.decl addStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {addStm}
+
+
+
+// -- assignVar --
+.decl assignVar(l:number,r:symbol)  
+
+assignVar(l,r) :- 
+   setConstStm(l,r,_).
+
+assignVar(l,r) :- 
+   addStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   minusStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   multStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   divStm(l,r,_,_).
+
+
+
+// -- divStm --
+.decl divStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {divStm}
+
+
+
+// -- flow --
+.decl flow(l1:number,l2:number)  
+
+.output {flow}
+
+
+
+// -- minusStm --
+.decl minusStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {minusStm}
+
+
+
+// -- multStm --
+.decl multStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {multStm}
+
+
+
+// -- setConstStm --
+.decl setConstStm(l:number,r:symbol,c:number)  
+
+.output {setConstStm}
+
+
+
+// -- varEntry --
+.lat varEntry(l:number,k:symbol,v:Sign)  
+
+varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+
+.output {varEntry}
+
+
+
+// -- varExit --
+.lat varExit(l:number,k:symbol,v:Sign)  
+
+varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_minus(v1,v2)) :- 
+   minusStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_mult(v1,v2)) :- 
+   multStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+
+varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+
+varExit(l,r,&lat_div(v1,v2)) :- 
+   divStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2),
+   v2 != &lat_alpha(0).
+
+.output {varExit}
+
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-ta19"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: assignVar(l,r) :- 
+   setConstStm(l,r,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: number
+}
+Solution:
+{var(r)->{symbol},var(l)->{number},var(_)->{number}}
+Clause: assignVar(l,r) :- 
+   addStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   minusStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   multStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(r)->{symbol},var(l)->{number},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   divStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+Problem:
+{
+	var(l2) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l1) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l1) &lt;: number,
+	var(l2) &lt;: number
+}
+Solution:
+{var(l1)->{number},var(l2)->{number},var(k)->{symbol},var(v)->{Sign}}
+Clause: varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_sum(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_minus(v1,v2)) :- 
+   minusStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_minus(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_minus(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_mult(v1,v2)) :- 
+   multStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_mult(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_mult(v1,v2))->{Sign}}
+Clause: varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l) >: number,
+	var(r) >: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(v)->{Sign}}
+Clause: varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(&lat_alpha(c))->{Sign},var(r)->{symbol},var(l)->{number},var(c)->{number}}
+Clause: varExit(l,r,&lat_div(v1,v2)) :- 
+   divStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2),
+   v2 != &lat_alpha(0).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_div(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign,
+	var(v2) &lt;: var(&lat_alpha(0)),
+	var(&lat_alpha(0)) &lt;: var(v2),
+	var(0) &lt;: number
+}
+Solution:
+{var(&lat_alpha(0))->{Sign},var(0)->{number},var(v1)->{Sign},var(l)->{number},var(x)->{symbol},var(&lat_div(v1,v2))->{Sign},var(y)->{symbol},var(r)->{symbol},var(v2)->{Sign}}
+
+-- Result --
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},_&isin;{number}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   addStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   minusStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   multStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   divStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+varEntry(l2&isin;{number},k&isin;{symbol},v&isin;{Sign}) :- 
+   varExit(l1&isin;{number},k&isin;{symbol},v&isin;{Sign}),
+   flow(l1&isin;{number},l2&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_sum(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   addStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_minus(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   minusStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_mult(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   multStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},v&isin;{Sign}) :- 
+   varEntry(l&isin;{number},r&isin;{symbol},v&isin;{Sign}),
+   !assignVar(l&isin;{number},r&isin;{symbol}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},c&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_div(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   divStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}),
+   v2&isin;{Sign} != &lat_alpha(0).
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-tea20"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Sign = {Top:symbol,Neg:symbol,Zer:symbol,Pos:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-prec-graph21"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNTIxcHQiIGhlaWdodD0iMjYwcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgNTIxLjI0IDI2MC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyNTYpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yNTYgNTE3LjI0MTYsLTI1NiA1MTcuMjQxNiw0IC00LDQiLz4KPCEtLSBhZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzguMzQ2NiIgY3k9Ii0yMzQiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIGFzc2lnblZhciAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hc3NpZ25WYXI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMjAuMzQ2NiIgY3k9Ii0xNjIiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjIwLjM0NjYiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YWRkU3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNjcuOTkzMSwtMjIyLjI3MTdDOTcuODc5NywtMjEwLjQ0ODQgMTQ0LjI5MjcsLTE5Mi4wODczIDE3OC4wNDA2LC0xNzguNzM2NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTc5LjYyNSwtMTgxLjg3MzYgMTg3LjYzNjMsLTE3NC45NDA0IDE3Ny4wNDk5LC0xNzUuMzY0NSAxNzkuNjI1LC0xODEuODczNiIvPgo8L2c+CjwhLS0gdmFyRXhpdCAtLT4KPGcgaWQ9Im5vZGU5IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT52YXJFeGl0PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjU3LjM0NjYiIGN5PSItOTAiIHJ4PSIzNi4yOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjU3LjM0NjYiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnZhckV4aXQ8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDt2YXJFeGl0IC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmFkZFN0bSYjNDU7Jmd0O3ZhckV4aXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik01NC40OTI0LC0yMTcuNDk5MkM3NC4wMjMzLC0xOTguMTY1OCAxMDguNTA4NCwtMTY1Ljk4NTUgMTQyLjM0NjYsLTE0NCAxNTYuMDU1OCwtMTM1LjA5MjggMTkyLjQ1LC0xMTguMzkzOSAyMjAuNjU5NywtMTA1LjkxNDEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIyMi4xMjU2LC0xMDkuMDkzIDIyOS44NjgxLC0xMDEuODYwOCAyMTkuMzA1NSwtMTAyLjY4NjEgMjIyLjEyNTYsLTEwOS4wOTMiLz4KPC9nPgo8IS0tIGFzc2lnblZhciYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YXNzaWduVmFyJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIyOS40OTI3LC0xNDQuMjAyMkMyMzMuNzQ5MiwtMTM1LjkxOTIgMjM4LjkwMjQsLTEyNS44OTE1IDI0My42MTMsLTExNi43MjQ4Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuODQ4LC0xMTguMDg3MSAyNDguMzA1NywtMTA3LjU5MyAyNDAuNjIyLC0xMTQuODg3NiAyNDYuODQ4LC0xMTguMDg3MSIvPgo8L2c+CjwhLS0gZGl2U3RtIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmRpdlN0bTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzMS4zNDY2IiBjeT0iLTIzNCIgcng9IjM2LjI5MzgiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIGRpdlN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5kaXZTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTAuNjU4MywtMjE4LjM3NzFDMTYyLjc2NjcsLTIwOC41ODE1IDE3OC41ODUxLC0xOTUuNzg0NiAxOTIuMDksLTE4NC44NTkzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxOTQuNTcyNywtMTg3LjM1MjcgMjAwLjE0NTksLTE3OC4zNDIxIDE5MC4xNzAxLC0xODEuOTEwNiAxOTQuNTcyNywtMTg3LjM1MjciLz4KPC9nPgo8IS0tIGRpdlN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZGl2U3RtJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEzNC40NDU3LC0yMTUuOTU0NkMxMzguNTkwOCwtMTk2LjM2NTggMTQ3LjU3OTMsLTE2NS4wNjc5IDE2NS4zNDY2LC0xNDQgMTc5LjU4MTEsLTEyNy4xMjEyIDIwMC41MTAxLC0xMTQuMjUyMSAyMTguODExMywtMTA1LjMxODUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIyMC40OTkyLC0xMDguMzkzNyAyMjguMDkyNywtMTAxLjAwNTIgMjE3LjU0OTEsLTEwMi4wNDU3IDIyMC40OTkyLC0xMDguMzkzNyIvPgo8L2c+CjwhLS0gZmxvdyAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5mbG93PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTc2LjM0NjYiIGN5PSItOTAiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE3Ni4zNDY2IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5mbG93PC90ZXh0Pgo8L2c+CjwhLS0gdmFyRW50cnkgLS0+CjxnIGlkPSJub2RlOCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+dmFyRW50cnk8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNTcuMzQ2NiIgY3k9Ii0xOCIgcng9IjQxLjY5MjgiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTcuMzQ2NiIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnk8L3RleHQ+CjwvZz4KPCEtLSBmbG93JiM0NTsmZ3Q7dmFyRW50cnkgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZmxvdyYjNDU7Jmd0O3ZhckVudHJ5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTkyLjczODIsLTc1LjQyOTdDMjAzLjg0LC02NS41NjE1IDIxOC43NDE3LC01Mi4zMTU0IDIzMS40MzYxLC00MS4wMzE1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyMzMuODUyNCwtNDMuNTY2NiAyMzkuMDAxMiwtMzQuMzA3IDIyOS4yMDE4LC0zOC4zMzQ3IDIzMy44NTI0LC00My41NjY2Ii8+CjwvZz4KPCEtLSBtaW51c1N0bSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5taW51c1N0bTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIzMy4zNDY2IiBjeT0iLTIzNCIgcng9IjQ3LjM5MTYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzMuMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1pbnVzU3RtPC90ZXh0Pgo8L2c+CjwhLS0gbWludXNTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWludXNTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMzAuMDY2MSwtMjE1LjgzMTRDMjI4LjY3NTgsLTIwOC4xMzEgMjI3LjAyMjUsLTE5OC45NzQzIDIyNS40Nzc0LC0xOTAuNDE2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjI4Ljg5MjQsLTE4OS42MzIyIDIyMy42NzEyLC0xODAuNDEzMyAyMjIuMDAzOCwtMTkwLjg3NjEgMjI4Ljg5MjQsLTE4OS42MzIyIi8+CjwvZz4KPCEtLSBtaW51c1N0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWludXNTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjUxLjUxODUsLTIxNi44NDU2QzI2MC41NjM3LC0yMDcuMDM0OSAyNzAuNTY3MSwtMTkzLjkzMDEgMjc1LjM0NjYsLTE4MCAyODIuNDE1MSwtMTU5LjM5ODUgMjc2LjgwMzgsLTEzNS4xMzg5IDI3MC4wMzc5LC0xMTcuMDAwOCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjczLjIzNCwtMTE1LjU2ODYgMjY2LjIzMzUsLTEwNy42MTYgMjY2Ljc0NjgsLTExOC4xOTg0IDI3My4yMzQsLTExNS41Njg2Ii8+CjwvZz4KPCEtLSBtdWx0U3RtIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm11bHRTdG08L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDEuMzQ2NiIgY3k9Ii0yMzQiIHJ4PSI0Mi40OTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzQxLjM0NjYiIHk9Ii0yMzAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5tdWx0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gbXVsdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U5IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5tdWx0U3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzE2LjU2ODUsLTIxOS4yNTZDMjk4LjcwMDksLTIwOC42MjQxIDI3NC4zNTcyLC0xOTQuMTM4NSAyNTQuNjI2NSwtMTgyLjM5OCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjU2LjMwOSwtMTc5LjMyNjQgMjQ1LjkyNTUsLTE3Ny4yMjA1IDI1Mi43Mjk1LC0xODUuMzQyIDI1Ni4zMDksLTE3OS4zMjY0Ii8+CjwvZz4KPCEtLSBtdWx0U3RtJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UxMCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bXVsdFN0bSYjNDU7Jmd0O3ZhckV4aXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zMzEuNTQ5NCwtMjE2LjMxMUMzMjEuNDA0OSwtMTk4LjA5MDYgMzA1LjAxNDksLTE2OC45MTc2IDI5MC4zNDY2LC0xNDQgMjg0Ljk2ODgsLTEzNC44NjQ2IDI3OC45NTcyLC0xMjQuOTQ0OCAyNzMuNTUzMywtMTE2LjEyOTQiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3Ni40MTYzLC0xMTQuMTAzNiAyNjguMTk0LC0xMDcuNDIxOSAyNzAuNDU1LC0xMTcuNzcyNyAyNzYuNDE2MywtMTE0LjEwMzYiLz4KPC9nPgo8IS0tIHNldENvbnN0U3RtIC0tPgo8ZyBpZD0ibm9kZTciIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNldENvbnN0U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDU3LjM0NjYiIGN5PSItMjM0IiByeD0iNTUuNzkwMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1Ny4zNDY2IiB5PSItMjMwLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c2V0Q29uc3RTdG08L3RleHQ+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2UxMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c2V0Q29uc3RTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik00MTYuNjA0OCwtMjIxLjYyMjhDMzc0Ljk4MTQsLTIwOC45Nzc3IDMxMC40NDE3LC0xODkuMzcwNyAyNjYuODQ0MSwtMTc2LjEyNTgiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI2Ny42NDM2LC0xNzIuNzEwOCAyNTcuMDU4LC0xNzMuMTUyOCAyNjUuNjA4OCwtMTc5LjQwODYgMjY3LjY0MzYsLTE3Mi43MTA4Ii8+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnNldENvbnN0U3RtJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQzNC40MDQxLC0yMTcuNDgxNEMzOTcuODg4NSwtMTkxLjE5MDEgMzI2LjU5MDYsLTEzOS44NTU3IDI4Ni41MDY3LC0xMTAuOTk1MyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjg4LjM3MzksLTEwOC4wMjY4IDI3OC4yMTM0LC0xMDUuMDI0MSAyODQuMjgzNywtMTEzLjcwNzYgMjg4LjM3MzksLTEwOC4wMjY4Ii8+CjwvZz4KPCEtLSB2YXJFbnRyeSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnZhckVudHJ5JiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTI2My4yNjY4LC0zNS44NDI1QzI2NC4wNTQ0LC00My43MjM2IDI2NC4yODE0LC01My4xNzc0IDI2My45NDc2LC02MS45NjQ3Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNjAuNDM4MSwtNjEuOTkwOCAyNjMuMjYyMywtNzIuMjAyMiAyNjcuNDIyNSwtNjIuNDU4MyAyNjAuNDM4MSwtNjEuOTkwOCIvPgo8L2c+CjwhLS0gdmFyRXhpdCYjNDU7Jmd0O3ZhckVudHJ5IC0tPgo8ZyBpZD0iZWRnZTE0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT52YXJFeGl0JiM0NTsmZ3Q7dmFyRW50cnk8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yNTEuNDMwOSwtNzIuMjAyMkMyNTAuNjQxMSwtNjQuMzI3MSAyNTAuNDEyMSwtNTQuODc1IDI1MC43NDM3LC00Ni4wODUyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNTQuMjUzNSwtNDYuMDUzMiAyNTEuNDI2NCwtMzUuODQyNSAyNDcuMjY5LC00NS41ODc2IDI1NC4yNTM1LC00Ni4wNTMyIi8+CjwvZz4KPC9nPgo8L3N2Zz4K'><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"addStm" [label = "addStm"];
+	"assignVar" [label = "assignVar"];
+	"divStm" [label = "divStm"];
+	"flow" [label = "flow"];
+	"minusStm" [label = "minusStm"];
+	"multStm" [label = "multStm"];
+	"setConstStm" [label = "setConstStm"];
+	"varEntry" [label = "varEntry"];
+	"varExit" [label = "varExit"];
+	"addStm" -> "assignVar";
+	"addStm" -> "varExit";
+	"assignVar" -> "varExit";
+	"divStm" -> "assignVar";
+	"divStm" -> "varExit";
+	"flow" -> "varEntry";
+	"minusStm" -> "assignVar";
+	"minusStm" -> "varExit";
+	"multStm" -> "assignVar";
+	"multStm" -> "varExit";
+	"setConstStm" -> "assignVar";
+	"setConstStm" -> "varExit";
+	"varEntry" -> "varExit";
+	"varExit" -> "varEntry";
+}
+</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-scc-graph22"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNTIxcHQiIGhlaWdodD0iMjA2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgNTIxLjI0IDIwNS43NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyMDEuNzQwMSkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTIwMS43NDAxIDUxNy4yNDE2LC0yMDEuNzQwMSA1MTcuMjQxNiw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjM4LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIF81IC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl81PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjIzLjM0NjYiIGN5PSItMTA3Ljc0MDEiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjIzLjM0NjYiIHk9Ii0xMDQuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBfMCYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8wJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik02OC4wNywtMTY4LjE3MjFDOTguNjkyNiwtMTU2LjI1NDEgMTQ2LjY5NTIsLTEzNy41NzIgMTgxLjIyMjksLTEyNC4xMzQyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxODIuNTI4OSwtMTI3LjM4MTcgMTkwLjU3ODYsLTEyMC40OTMxIDE3OS45OSwtMTIwLjg1ODMgMTgyLjUyODksLTEyNy4zODE3Ii8+CjwvZz4KPCEtLSBfNyAtLT4KPGcgaWQ9Im5vZGU4IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNzwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjI5Ny4zNDY2IiBjeT0iLTI2Ljg3MDEiIHJ4PSI0OC4xNjY3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyOTcuMzQ2NiIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnksPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyOTcuMzQ2NiIgeT0iLTE1LjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRXhpdDwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzcgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfNzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTUzLjk1MDUsLTE2My4yNjkzQzczLjIyNDgsLTE0My42NjgyIDEwNy43MjcsLTExMC45MzQ1IDE0Mi4zNDY2LC04OS43NDAxIDE3NC42MzkyLC02OS45NzAzIDIxNC4yNDY0LC01NC4wMjk2IDI0NS4zMzk3LC00My4xNDYxIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuNzkzLC00Ni4zNDc5IDI1NS4xMTU3LC0zOS43OTE4IDI0NC41MjExLC0zOS43MjY4IDI0Ni43OTMsLTQ2LjM0NzkiLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTMxLjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzNi4yOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTMxLjM0NjYiIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5kaXZTdG08L3RleHQ+CjwvZz4KPCEtLSBfMSYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8xJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTAuODU3NCwtMTY0LjQ3MDhDMTYzLjU1NTksLTE1NC41MzI4IDE4MC4zMzk5LC0xNDEuMzk3NSAxOTQuNTU5NiwtMTMwLjI2OTEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjE5Ni44NjczLC0xMzIuOTA3NSAyMDIuNTg1MywtMTIzLjk4ODEgMTkyLjU1MzEsLTEyNy4zOTQ5IDE5Ni44NjczLC0xMzIuOTA3NSIvPgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM0LjczNDUsLTE2MS43NzI3QzEzOS4yOTU0LC0xNDEuOTYwNyAxNDkuMTU1NSwtMTEwLjE4OSAxNjguMzQ2NiwtODkuNzQwMSAxODguOTA3LC02Ny44MzIyIDIxOC43MjI2LC01Mi42MTMzIDI0NC41MTEyLC00Mi42NDI5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuMDAxOSwtNDUuODIzNSAyNTQuMTcsLTM5LjA3NTcgMjQzLjU3NjcsLTM5LjI1NyAyNDYuMDAxOSwtNDUuODIzNSIvPgo8L2c+CjwhLS0gXzIgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMzMuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjQ3LjM5MTYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzMuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1pbnVzU3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzImIzQ1OyZndDtfNSAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMiYjNDU7Jmd0O181PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjMwLjgyMzIsLTE2MS41NzE1QzIyOS43NTM3LC0xNTMuODcxMSAyMjguNDgxOSwtMTQ0LjcxNDUgMjI3LjI5MzQsLTEzNi4xNTY3Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyMzAuNzQ2NSwtMTM1LjU3NjggMjI1LjkwNCwtMTI2LjE1MzQgMjIzLjgxMywtMTM2LjUzOTggMjMwLjc0NjUsLTEzNS41NzY4Ii8+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTYiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7Xzc8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yNTEuMjgyNCwtMTYyLjg1ODJDMjYwLjc2MTIsLTE1Mi45MzU0IDI3MS43NjUyLC0xMzkuNjM2OSAyNzguMzQ2NiwtMTI1Ljc0MDEgMjg3LjQzNjQsLTEwNi41NDY3IDI5Mi4xNzc4LC04My4zMDEyIDI5NC42NTA5LC02NC4xNzMzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyOTguMTUyOSwtNjQuMzUzNSAyOTUuODA0NywtNTQuMDIyMSAyOTEuMTk3NywtNjMuNTYyOSAyOTguMTUyOSwtNjQuMzUzNSIvPgo8L2c+CjwhLS0gXzMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDEuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjQyLjQ5MzkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNDEuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm11bHRTdG08L3RleHQ+CjwvZz4KPCEtLSBfMyYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTciIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8zJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zMTYuODk2OSwtMTY0LjgyMTdDMjk5LjY0NzEsLTE1NC4yOTY0IDI3Ni4zMTM1LC0xNDAuMDU4OSAyNTcuMjY1NCwtMTI4LjQzNjQiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI1OC45Mzg2LC0xMjUuMzU3MiAyNDguNTc5MSwtMTIzLjEzNjIgMjU1LjI5MjUsLTEzMS4zMzI3IDI1OC45Mzg2LC0xMjUuMzU3MiIvPgo8L2c+CjwhLS0gXzMmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2U4IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMyYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzM2LjEyNjQsLTE2MS42MDM2QzMyOS4xOTMyLC0xMzcuNTE1NCAzMTYuNzg1OSwtOTQuNDA4NCAzMDcuODcwNiwtNjMuNDMzNyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzExLjEyMzQsLTYyLjA4MTEgMzA0Ljk5MzksLTUzLjQzOTMgMzA0LjM5NjUsLTY0LjAxNzMgMzExLjEyMzQsLTYyLjA4MTEiLz4KPC9nPgo8IS0tIF80IC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl80PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDU3LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSI1NS43OTAzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDU3LjM0NjYiIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5zZXRDb25zdFN0bTwvdGV4dD4KPC9nPgo8IS0tIF80JiM0NTsmZ3Q7XzUgLS0+CjxnIGlkPSJlZGdlOSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzQmIzQ1OyZndDtfNTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQxNi44NTQxLC0xNjcuMjgwOUMzNzUuODM1OSwtMTU0LjY1OTkgMzEyLjQ3NzMsLTEzNS4xNjQ5IDI2OS41Mjg3LC0xMjEuOTUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3MC40NzExLC0xMTguNTc4MSAyNTkuODg0LC0xMTguOTgyNCAyNjguNDEyNSwtMTI1LjI2ODUgMjcwLjQ3MTEsLTExOC41NzgxIi8+CjwvZz4KPCEtLSBfNCYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTEwIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fNCYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDM2LjA1MzcsLTE2My4wNTIxQzQyMy4xMDksLTE1Mi42NjM5IDQwNi40MTgxLC0xMzguODMwNSAzOTIuMzQ2NiwtMTI1Ljc0MDEgMzY5LjI2NjgsLTEwNC4yNjk2IDM0NC42NDQ4LC03OC41NTY1IDMyNi4yNTE2LC01OC43MzQ5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzMjguNjI5MSwtNTYuMTUwNCAzMTkuMjc0MywtNTEuMTc2NSAzMjMuNDg1NSwtNjAuODk4NSAzMjguNjI5MSwtNTYuMTUwNCIvPgo8L2c+CjwhLS0gXzUmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2UxMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzUmIzQ1OyZndDtfNzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIzOS4wNDAxLC05MC41ODk3QzI0Ny41ODg5LC04MS4yNDcyIDI1OC40Mzk3LC02OS4zODkgMjY4LjQ1NjQsLTU4LjQ0MjMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3MS4wNTA3LC02MC43OTE5IDI3NS4yMTkzLC01MS4wNTE2IDI2NS44ODY0LC01Ni4wNjYzIDI3MS4wNTA3LC02MC43OTE5Ii8+CjwvZz4KPCEtLSBfNiAtLT4KPGcgaWQ9Im5vZGU3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQyOC4zNDY2IiBjeT0iLTEwNy43NDAxIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MjguMzQ2NiIgeT0iLTEwNC4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmZsb3c8L3RleHQ+CjwvZz4KPCEtLSBfNiYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTEyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fNiYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDA4LjQ1MDUsLTk1LjQ1NzdDMzg5LjkxOCwtODQuMDE3IDM2MS43MTU4LC02Ni42MDcgMzM4LjM2MzYsLTUyLjE5MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzQwLjAyOTEsLTQ5LjEwNiAzMjkuNjgxMywtNDYuODMxMiAzMzYuMzUyLC01NS4wNjI1IDM0MC4wMjkxLC00OS4xMDYiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "addStm" ];
+	_1[label = "divStm" ];
+	_2[label = "minusStm" ];
+	_3[label = "multStm" ];
+	_4[label = "setConstStm" ];
+	_5[label = "assignVar" ];
+	_6[label = "flow" ];
+	_7[label = "varEntry,\nvarExit" ];
+	_0 -> _5;
+	_0 -> _7;
+	_1 -> _5;
+	_1 -> _7;
+	_2 -> _5;
+	_2 -> _7;
+	_3 -> _5;
+	_3 -> _7;
+	_4 -> _5;
+	_4 -> _7;
+	_5 -> _7;
+	_6 -> _7;
+}</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-topsort-scc-graph23"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 5
+0 7
+1 5
+1 7
+2 5
+2 7
+3 5
+3 7
+4 5
+4 7
+5 7
+6 7
+--- total order with relations of each strata ---
+0: [addStm]
+1: [divStm]
+2: [minusStm]
+3: [multStm]
+4: [setConstStm]
+5: [assignVar]
+6: [flow]
+7: [varEntry, varExit]
+
+--- statistics of topological order ---
+cost: 10
+</pre>
+
+</div>
+</div>
+<a id="MinimiseProgramTransformer25"></a>
+<div class='headerdiv'>
+<h1>After MinimiseProgramTransformer (0.000027s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="InlineRelationsTransformer26"></a>
+<div class='headerdiv'>
+<h1>After InlineRelationsTransformer (0.000040s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ResolveAliasesTransformer33"></a>
+<div class='headerdiv'>
+<h1>After ResolveAliasesTransformer (0.000114s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="ResolveAliasesTransformer-dl27"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Sign = {Top:symbol,Neg:symbol,Zer:symbol,Pos:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Sign&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Sign{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Sign{
+(_)=>x > 0 ? "Pos" : x &lt; 0 ? "Neg" : "Zer"
+}
+
+
+// -- lat_div --
+LatticeBinaryFunction: &lat_div (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>"Zer"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>x = y ? "Pos" : "Neg"
+}
+
+
+// -- lat_minus --
+LatticeBinaryFunction: &lat_minus (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,"Zer")=>x
+("Zer","Neg")=>"Pos"
+("Zer","Pos")=>"Neg"
+(_,_)=>x = y ? "Top" : x
+}
+
+
+// -- lat_mult --
+LatticeBinaryFunction: &lat_mult (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>"Zer"
+(_,"Zer")=>"Zer"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>x = y ? "Pos" : "Neg"
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Sign{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Zer",_)=>y
+(_,"Zer")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Sign{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- addStm --
+.decl addStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {addStm}
+
+
+
+// -- assignVar --
+.decl assignVar(l:number,r:symbol)  
+
+assignVar(l,r) :- 
+   setConstStm(l,r,_).
+
+assignVar(l,r) :- 
+   addStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   minusStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   multStm(l,r,_,_).
+
+assignVar(l,r) :- 
+   divStm(l,r,_,_).
+
+
+
+// -- divStm --
+.decl divStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {divStm}
+
+
+
+// -- flow --
+.decl flow(l1:number,l2:number)  
+
+.output {flow}
+
+
+
+// -- minusStm --
+.decl minusStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {minusStm}
+
+
+
+// -- multStm --
+.decl multStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+.output {multStm}
+
+
+
+// -- setConstStm --
+.decl setConstStm(l:number,r:symbol,c:number)  
+
+.output {setConstStm}
+
+
+
+// -- varEntry --
+.lat varEntry(l:number,k:symbol,v:Sign)  
+
+varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+
+.output {varEntry}
+
+
+
+// -- varExit --
+.lat varExit(l:number,k:symbol,v:Sign)  
+
+varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_minus(v1,v2)) :- 
+   minusStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,&lat_mult(v1,v2)) :- 
+   multStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+
+varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+
+varExit(l,r,&lat_div(v1,v2)) :- 
+   divStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2),
+   v2 != &lat_alpha(0).
+
+.output {varExit}
+
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-ta28"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: assignVar(l,r) :- 
+   setConstStm(l,r,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: number
+}
+Solution:
+{var(r)->{symbol},var(l)->{number},var(_)->{number}}
+Clause: assignVar(l,r) :- 
+   addStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   minusStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   multStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(r)->{symbol},var(l)->{number},var(_)->{symbol},var(_)->{symbol}}
+Clause: assignVar(l,r) :- 
+   divStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(_)->{symbol},var(_)->{symbol}}
+Clause: varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+Problem:
+{
+	var(l2) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l1) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l1) &lt;: number,
+	var(l2) &lt;: number
+}
+Solution:
+{var(l1)->{number},var(l2)->{number},var(k)->{symbol},var(v)->{Sign}}
+Clause: varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_sum(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_minus(v1,v2)) :- 
+   minusStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_minus(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_minus(v1,v2))->{Sign}}
+Clause: varExit(l,r,&lat_mult(v1,v2)) :- 
+   multStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_mult(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Sign},var(v2)->{Sign},var(l)->{number},var(r)->{symbol},var(&lat_mult(v1,v2))->{Sign}}
+Clause: varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Sign,
+	var(l) >: number,
+	var(r) >: symbol
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(v)->{Sign}}
+Clause: varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(r)->{symbol},var(&lat_alpha(c))->{Sign},var(l)->{number},var(c)->{number}}
+Clause: varExit(l,r,&lat_div(v1,v2)) :- 
+   divStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2),
+   v2 != &lat_alpha(0).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_div(v1,v2)) &lt;: Sign,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Sign,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Sign,
+	var(v2) &lt;: var(&lat_alpha(0)),
+	var(&lat_alpha(0)) &lt;: var(v2),
+	var(0) &lt;: number
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(0)->{number},var(&lat_alpha(0))->{Sign},var(v2)->{Sign},var(x)->{symbol},var(v1)->{Sign},var(y)->{symbol},var(&lat_div(v1,v2))->{Sign}}
+
+-- Result --
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},_&isin;{number}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   addStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   minusStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   multStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   divStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+varEntry(l2&isin;{number},k&isin;{symbol},v&isin;{Sign}) :- 
+   varExit(l1&isin;{number},k&isin;{symbol},v&isin;{Sign}),
+   flow(l1&isin;{number},l2&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_sum(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   addStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_minus(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   minusStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_mult(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   multStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}).
+varExit(l&isin;{number},r&isin;{symbol},v&isin;{Sign}) :- 
+   varEntry(l&isin;{number},r&isin;{symbol},v&isin;{Sign}),
+   !assignVar(l&isin;{number},r&isin;{symbol}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},c&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_div(v1&isin;{Sign},v2&isin;{Sign})) :- 
+   divStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Sign}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Sign}),
+   v2&isin;{Sign} != &lat_alpha(0).
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-tea29"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Sign = {Top:symbol,Neg:symbol,Zer:symbol,Pos:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-prec-graph30"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNTIxcHQiIGhlaWdodD0iMjYwcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgNTIxLjI0IDI2MC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyNTYpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yNTYgNTE3LjI0MTYsLTI1NiA1MTcuMjQxNiw0IC00LDQiLz4KPCEtLSBhZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzguMzQ2NiIgY3k9Ii0yMzQiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIGFzc2lnblZhciAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hc3NpZ25WYXI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMjAuMzQ2NiIgY3k9Ii0xNjIiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjIwLjM0NjYiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YWRkU3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNjcuOTkzMSwtMjIyLjI3MTdDOTcuODc5NywtMjEwLjQ0ODQgMTQ0LjI5MjcsLTE5Mi4wODczIDE3OC4wNDA2LC0xNzguNzM2NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTc5LjYyNSwtMTgxLjg3MzYgMTg3LjYzNjMsLTE3NC45NDA0IDE3Ny4wNDk5LC0xNzUuMzY0NSAxNzkuNjI1LC0xODEuODczNiIvPgo8L2c+CjwhLS0gdmFyRXhpdCAtLT4KPGcgaWQ9Im5vZGU5IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT52YXJFeGl0PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjU3LjM0NjYiIGN5PSItOTAiIHJ4PSIzNi4yOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjU3LjM0NjYiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnZhckV4aXQ8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDt2YXJFeGl0IC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmFkZFN0bSYjNDU7Jmd0O3ZhckV4aXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik01NC40OTI0LC0yMTcuNDk5MkM3NC4wMjMzLC0xOTguMTY1OCAxMDguNTA4NCwtMTY1Ljk4NTUgMTQyLjM0NjYsLTE0NCAxNTYuMDU1OCwtMTM1LjA5MjggMTkyLjQ1LC0xMTguMzkzOSAyMjAuNjU5NywtMTA1LjkxNDEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIyMi4xMjU2LC0xMDkuMDkzIDIyOS44NjgxLC0xMDEuODYwOCAyMTkuMzA1NSwtMTAyLjY4NjEgMjIyLjEyNTYsLTEwOS4wOTMiLz4KPC9nPgo8IS0tIGFzc2lnblZhciYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YXNzaWduVmFyJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIyOS40OTI3LC0xNDQuMjAyMkMyMzMuNzQ5MiwtMTM1LjkxOTIgMjM4LjkwMjQsLTEyNS44OTE1IDI0My42MTMsLTExNi43MjQ4Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuODQ4LC0xMTguMDg3MSAyNDguMzA1NywtMTA3LjU5MyAyNDAuNjIyLC0xMTQuODg3NiAyNDYuODQ4LC0xMTguMDg3MSIvPgo8L2c+CjwhLS0gZGl2U3RtIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmRpdlN0bTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzMS4zNDY2IiBjeT0iLTIzNCIgcng9IjM2LjI5MzgiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmRpdlN0bTwvdGV4dD4KPC9nPgo8IS0tIGRpdlN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5kaXZTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTAuNjU4MywtMjE4LjM3NzFDMTYyLjc2NjcsLTIwOC41ODE1IDE3OC41ODUxLC0xOTUuNzg0NiAxOTIuMDksLTE4NC44NTkzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxOTQuNTcyNywtMTg3LjM1MjcgMjAwLjE0NTksLTE3OC4zNDIxIDE5MC4xNzAxLC0xODEuOTEwNiAxOTQuNTcyNywtMTg3LjM1MjciLz4KPC9nPgo8IS0tIGRpdlN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZGl2U3RtJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEzNC40NDU3LC0yMTUuOTU0NkMxMzguNTkwOCwtMTk2LjM2NTggMTQ3LjU3OTMsLTE2NS4wNjc5IDE2NS4zNDY2LC0xNDQgMTc5LjU4MTEsLTEyNy4xMjEyIDIwMC41MTAxLC0xMTQuMjUyMSAyMTguODExMywtMTA1LjMxODUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIyMC40OTkyLC0xMDguMzkzNyAyMjguMDkyNywtMTAxLjAwNTIgMjE3LjU0OTEsLTEwMi4wNDU3IDIyMC40OTkyLC0xMDguMzkzNyIvPgo8L2c+CjwhLS0gZmxvdyAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5mbG93PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTc2LjM0NjYiIGN5PSItOTAiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE3Ni4zNDY2IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5mbG93PC90ZXh0Pgo8L2c+CjwhLS0gdmFyRW50cnkgLS0+CjxnIGlkPSJub2RlOCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+dmFyRW50cnk8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNTcuMzQ2NiIgY3k9Ii0xOCIgcng9IjQxLjY5MjgiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTcuMzQ2NiIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnk8L3RleHQ+CjwvZz4KPCEtLSBmbG93JiM0NTsmZ3Q7dmFyRW50cnkgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZmxvdyYjNDU7Jmd0O3ZhckVudHJ5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTkyLjczODIsLTc1LjQyOTdDMjAzLjg0LC02NS41NjE1IDIxOC43NDE3LC01Mi4zMTU0IDIzMS40MzYxLC00MS4wMzE1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyMzMuODUyNCwtNDMuNTY2NiAyMzkuMDAxMiwtMzQuMzA3IDIyOS4yMDE4LC0zOC4zMzQ3IDIzMy44NTI0LC00My41NjY2Ii8+CjwvZz4KPCEtLSBtaW51c1N0bSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5taW51c1N0bTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjIzMy4zNDY2IiBjeT0iLTIzNCIgcng9IjQ3LjM5MTYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzMuMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1pbnVzU3RtPC90ZXh0Pgo8L2c+CjwhLS0gbWludXNTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWludXNTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yMzAuMDY2MSwtMjE1LjgzMTRDMjI4LjY3NTgsLTIwOC4xMzEgMjI3LjAyMjUsLTE5OC45NzQzIDIyNS40Nzc0LC0xOTAuNDE2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjI4Ljg5MjQsLTE4OS42MzIyIDIyMy42NzEyLC0xODAuNDEzMyAyMjIuMDAzOCwtMTkwLjg3NjEgMjI4Ljg5MjQsLTE4OS42MzIyIi8+CjwvZz4KPCEtLSBtaW51c1N0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWludXNTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjUxLjUxODUsLTIxNi44NDU2QzI2MC41NjM3LC0yMDcuMDM0OSAyNzAuNTY3MSwtMTkzLjkzMDEgMjc1LjM0NjYsLTE4MCAyODIuNDE1MSwtMTU5LjM5ODUgMjc2LjgwMzgsLTEzNS4xMzg5IDI3MC4wMzc5LC0xMTcuMDAwOCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjczLjIzNCwtMTE1LjU2ODYgMjY2LjIzMzUsLTEwNy42MTYgMjY2Ljc0NjgsLTExOC4xOTg0IDI3My4yMzQsLTExNS41Njg2Ii8+CjwvZz4KPCEtLSBtdWx0U3RtIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm11bHRTdG08L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDEuMzQ2NiIgY3k9Ii0yMzQiIHJ4PSI0Mi40OTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzQxLjM0NjYiIHk9Ii0yMzAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5tdWx0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gbXVsdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U5IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5tdWx0U3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzE2LjU2ODUsLTIxOS4yNTZDMjk4LjcwMDksLTIwOC42MjQxIDI3NC4zNTcyLC0xOTQuMTM4NSAyNTQuNjI2NSwtMTgyLjM5OCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjU2LjMwOSwtMTc5LjMyNjQgMjQ1LjkyNTUsLTE3Ny4yMjA1IDI1Mi43Mjk1LC0xODUuMzQyIDI1Ni4zMDksLTE3OS4zMjY0Ii8+CjwvZz4KPCEtLSBtdWx0U3RtJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UxMCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bXVsdFN0bSYjNDU7Jmd0O3ZhckV4aXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zMzEuNTQ5NCwtMjE2LjMxMUMzMjEuNDA0OSwtMTk4LjA5MDYgMzA1LjAxNDksLTE2OC45MTc2IDI5MC4zNDY2LC0xNDQgMjg0Ljk2ODgsLTEzNC44NjQ2IDI3OC45NTcyLC0xMjQuOTQ0OCAyNzMuNTUzMywtMTE2LjEyOTQiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3Ni40MTYzLC0xMTQuMTAzNiAyNjguMTk0LC0xMDcuNDIxOSAyNzAuNDU1LC0xMTcuNzcyNyAyNzYuNDE2MywtMTE0LjEwMzYiLz4KPC9nPgo8IS0tIHNldENvbnN0U3RtIC0tPgo8ZyBpZD0ibm9kZTciIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNldENvbnN0U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDU3LjM0NjYiIGN5PSItMjM0IiByeD0iNTUuNzkwMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1Ny4zNDY2IiB5PSItMjMwLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c2V0Q29uc3RTdG08L3RleHQ+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2UxMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c2V0Q29uc3RTdG0mIzQ1OyZndDthc3NpZ25WYXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik00MTYuNjA0OCwtMjIxLjYyMjhDMzc0Ljk4MTQsLTIwOC45Nzc3IDMxMC40NDE3LC0xODkuMzcwNyAyNjYuODQ0MSwtMTc2LjEyNTgiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI2Ny42NDM2LC0xNzIuNzEwOCAyNTcuMDU4LC0xNzMuMTUyOCAyNjUuNjA4OCwtMTc5LjQwODYgMjY3LjY0MzYsLTE3Mi43MTA4Ii8+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnNldENvbnN0U3RtJiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQzNC40MDQxLC0yMTcuNDgxNEMzOTcuODg4NSwtMTkxLjE5MDEgMzI2LjU5MDYsLTEzOS44NTU3IDI4Ni41MDY3LC0xMTAuOTk1MyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjg4LjM3MzksLTEwOC4wMjY4IDI3OC4yMTM0LC0xMDUuMDI0MSAyODQuMjgzNywtMTEzLjcwNzYgMjg4LjM3MzksLTEwOC4wMjY4Ii8+CjwvZz4KPCEtLSB2YXJFbnRyeSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlMTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnZhckVudHJ5JiM0NTsmZ3Q7dmFyRXhpdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTI2My4yNjY4LC0zNS44NDI1QzI2NC4wNTQ0LC00My43MjM2IDI2NC4yODE0LC01My4xNzc0IDI2My45NDc2LC02MS45NjQ3Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNjAuNDM4MSwtNjEuOTkwOCAyNjMuMjYyMywtNzIuMjAyMiAyNjcuNDIyNSwtNjIuNDU4MyAyNjAuNDM4MSwtNjEuOTkwOCIvPgo8L2c+CjwhLS0gdmFyRXhpdCYjNDU7Jmd0O3ZhckVudHJ5IC0tPgo8ZyBpZD0iZWRnZTE0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT52YXJFeGl0JiM0NTsmZ3Q7dmFyRW50cnk8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yNTEuNDMwOSwtNzIuMjAyMkMyNTAuNjQxMSwtNjQuMzI3MSAyNTAuNDEyMSwtNTQuODc1IDI1MC43NDM3LC00Ni4wODUyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNTQuMjUzNSwtNDYuMDUzMiAyNTEuNDI2NCwtMzUuODQyNSAyNDcuMjY5LC00NS41ODc2IDI1NC4yNTM1LC00Ni4wNTMyIi8+CjwvZz4KPC9nPgo8L3N2Zz4K'><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"addStm" [label = "addStm"];
+	"assignVar" [label = "assignVar"];
+	"divStm" [label = "divStm"];
+	"flow" [label = "flow"];
+	"minusStm" [label = "minusStm"];
+	"multStm" [label = "multStm"];
+	"setConstStm" [label = "setConstStm"];
+	"varEntry" [label = "varEntry"];
+	"varExit" [label = "varExit"];
+	"addStm" -> "assignVar";
+	"addStm" -> "varExit";
+	"assignVar" -> "varExit";
+	"divStm" -> "assignVar";
+	"divStm" -> "varExit";
+	"flow" -> "varEntry";
+	"minusStm" -> "assignVar";
+	"minusStm" -> "varExit";
+	"multStm" -> "assignVar";
+	"multStm" -> "varExit";
+	"setConstStm" -> "assignVar";
+	"setConstStm" -> "varExit";
+	"varEntry" -> "varExit";
+	"varExit" -> "varEntry";
+}
+</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-scc-graph31"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNTIxcHQiIGhlaWdodD0iMjA2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgNTIxLjI0IDIwNS43NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyMDEuNzQwMSkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTIwMS43NDAxIDUxNy4yNDE2LC0yMDEuNzQwMSA1MTcuMjQxNiw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjM4LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIF81IC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl81PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjIzLjM0NjYiIGN5PSItMTA3Ljc0MDEiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjIzLjM0NjYiIHk9Ii0xMDQuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBfMCYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8wJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik02OC4wNywtMTY4LjE3MjFDOTguNjkyNiwtMTU2LjI1NDEgMTQ2LjY5NTIsLTEzNy41NzIgMTgxLjIyMjksLTEyNC4xMzQyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxODIuNTI4OSwtMTI3LjM4MTcgMTkwLjU3ODYsLTEyMC40OTMxIDE3OS45OSwtMTIwLjg1ODMgMTgyLjUyODksLTEyNy4zODE3Ii8+CjwvZz4KPCEtLSBfNyAtLT4KPGcgaWQ9Im5vZGU4IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNzwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjI5Ny4zNDY2IiBjeT0iLTI2Ljg3MDEiIHJ4PSI0OC4xNjY3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyOTcuMzQ2NiIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnksPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyOTcuMzQ2NiIgeT0iLTE1LjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRXhpdDwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzcgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfNzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTUzLjk1MDUsLTE2My4yNjkzQzczLjIyNDgsLTE0My42NjgyIDEwNy43MjcsLTExMC45MzQ1IDE0Mi4zNDY2LC04OS43NDAxIDE3NC42MzkyLC02OS45NzAzIDIxNC4yNDY0LC01NC4wMjk2IDI0NS4zMzk3LC00My4xNDYxIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuNzkzLC00Ni4zNDc5IDI1NS4xMTU3LC0zOS43OTE4IDI0NC41MjExLC0zOS43MjY4IDI0Ni43OTMsLTQ2LjM0NzkiLz4KPC9nPgo8IS0tIF8xIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8xPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTMxLjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzNi4yOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTMxLjM0NjYiIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5kaXZTdG08L3RleHQ+CjwvZz4KPCEtLSBfMSYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8xJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTAuODU3NCwtMTY0LjQ3MDhDMTYzLjU1NTksLTE1NC41MzI4IDE4MC4zMzk5LC0xNDEuMzk3NSAxOTQuNTU5NiwtMTMwLjI2OTEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjE5Ni44NjczLC0xMzIuOTA3NSAyMDIuNTg1MywtMTIzLjk4ODEgMTkyLjU1MzEsLTEyNy4zOTQ5IDE5Ni44NjczLC0xMzIuOTA3NSIvPgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM0LjczNDUsLTE2MS43NzI3QzEzOS4yOTU0LC0xNDEuOTYwNyAxNDkuMTU1NSwtMTEwLjE4OSAxNjguMzQ2NiwtODkuNzQwMSAxODguOTA3LC02Ny44MzIyIDIxOC43MjI2LC01Mi42MTMzIDI0NC41MTEyLC00Mi42NDI5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyNDYuMDAxOSwtNDUuODIzNSAyNTQuMTcsLTM5LjA3NTcgMjQzLjU3NjcsLTM5LjI1NyAyNDYuMDAxOSwtNDUuODIzNSIvPgo8L2c+CjwhLS0gXzIgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyMzMuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjQ3LjM5MTYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzMuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1pbnVzU3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzImIzQ1OyZndDtfNSAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMiYjNDU7Jmd0O181PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjMwLjgyMzIsLTE2MS41NzE1QzIyOS43NTM3LC0xNTMuODcxMSAyMjguNDgxOSwtMTQ0LjcxNDUgMjI3LjI5MzQsLTEzNi4xNTY3Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyMzAuNzQ2NSwtMTM1LjU3NjggMjI1LjkwNCwtMTI2LjE1MzQgMjIzLjgxMywtMTM2LjUzOTggMjMwLjc0NjUsLTEzNS41NzY4Ii8+CjwvZz4KPCEtLSBfMiYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTYiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8yJiM0NTsmZ3Q7Xzc8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0yNTEuMjgyNCwtMTYyLjg1ODJDMjYwLjc2MTIsLTE1Mi45MzU0IDI3MS43NjUyLC0xMzkuNjM2OSAyNzguMzQ2NiwtMTI1Ljc0MDEgMjg3LjQzNjQsLTEwNi41NDY3IDI5Mi4xNzc4LC04My4zMDEyIDI5NC42NTA5LC02NC4xNzMzIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIyOTguMTUyOSwtNjQuMzUzNSAyOTUuODA0NywtNTQuMDIyMSAyOTEuMTk3NywtNjMuNTYyOSAyOTguMTUyOSwtNjQuMzUzNSIvPgo8L2c+CjwhLS0gXzMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIzNDEuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjQyLjQ5MzkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNDEuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm11bHRTdG08L3RleHQ+CjwvZz4KPCEtLSBfMyYjNDU7Jmd0O181IC0tPgo8ZyBpZD0iZWRnZTciIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8zJiM0NTsmZ3Q7XzU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zMTYuODk2OSwtMTY0LjgyMTdDMjk5LjY0NzEsLTE1NC4yOTY0IDI3Ni4zMTM1LC0xNDAuMDU4OSAyNTcuMjY1NCwtMTI4LjQzNjQiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI1OC45Mzg2LC0xMjUuMzU3MiAyNDguNTc5MSwtMTIzLjEzNjIgMjU1LjI5MjUsLTEzMS4zMzI3IDI1OC45Mzg2LC0xMjUuMzU3MiIvPgo8L2c+CjwhLS0gXzMmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2U4IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMyYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzM2LjEyNjQsLTE2MS42MDM2QzMyOS4xOTMyLC0xMzcuNTE1NCAzMTYuNzg1OSwtOTQuNDA4NCAzMDcuODcwNiwtNjMuNDMzNyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzExLjEyMzQsLTYyLjA4MTEgMzA0Ljk5MzksLTUzLjQzOTMgMzA0LjM5NjUsLTY0LjAxNzMgMzExLjEyMzQsLTYyLjA4MTEiLz4KPC9nPgo8IS0tIF80IC0tPgo8ZyBpZD0ibm9kZTUiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl80PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDU3LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSI1NS43OTAzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDU3LjM0NjYiIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5zZXRDb25zdFN0bTwvdGV4dD4KPC9nPgo8IS0tIF80JiM0NTsmZ3Q7XzUgLS0+CjxnIGlkPSJlZGdlOSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzQmIzQ1OyZndDtfNTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQxNi44NTQxLC0xNjcuMjgwOUMzNzUuODM1OSwtMTU0LjY1OTkgMzEyLjQ3NzMsLTEzNS4xNjQ5IDI2OS41Mjg3LC0xMjEuOTUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3MC40NzExLC0xMTguNTc4MSAyNTkuODg0LC0xMTguOTgyNCAyNjguNDEyNSwtMTI1LjI2ODUgMjcwLjQ3MTEsLTExOC41NzgxIi8+CjwvZz4KPCEtLSBfNCYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTEwIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fNCYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDM2LjA1MzcsLTE2My4wNTIxQzQyMy4xMDksLTE1Mi42NjM5IDQwNi40MTgxLC0xMzguODMwNSAzOTIuMzQ2NiwtMTI1Ljc0MDEgMzY5LjI2NjgsLTEwNC4yNjk2IDM0NC42NDQ4LC03OC41NTY1IDMyNi4yNTE2LC01OC43MzQ5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzMjguNjI5MSwtNTYuMTUwNCAzMTkuMjc0MywtNTEuMTc2NSAzMjMuNDg1NSwtNjAuODk4NSAzMjguNjI5MSwtNTYuMTUwNCIvPgo8L2c+CjwhLS0gXzUmIzQ1OyZndDtfNyAtLT4KPGcgaWQ9ImVkZ2UxMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzUmIzQ1OyZndDtfNzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIzOS4wNDAxLC05MC41ODk3QzI0Ny41ODg5LC04MS4yNDcyIDI1OC40Mzk3LC02OS4zODkgMjY4LjQ1NjQsLTU4LjQ0MjMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjI3MS4wNTA3LC02MC43OTE5IDI3NS4yMTkzLC01MS4wNTE2IDI2NS44ODY0LC01Ni4wNjYzIDI3MS4wNTA3LC02MC43OTE5Ii8+CjwvZz4KPCEtLSBfNiAtLT4KPGcgaWQ9Im5vZGU3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQyOC4zNDY2IiBjeT0iLTEwNy43NDAxIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MjguMzQ2NiIgeT0iLTEwNC4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmZsb3c8L3RleHQ+CjwvZz4KPCEtLSBfNiYjNDU7Jmd0O183IC0tPgo8ZyBpZD0iZWRnZTEyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fNiYjNDU7Jmd0O183PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNDA4LjQ1MDUsLTk1LjQ1NzdDMzg5LjkxOCwtODQuMDE3IDM2MS43MTU4LC02Ni42MDcgMzM4LjM2MzYsLTUyLjE5MSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMzQwLjAyOTEsLTQ5LjEwNiAzMjkuNjgxMywtNDYuODMxMiAzMzYuMzUyLC01NS4wNjI1IDM0MC4wMjkxLC00OS4xMDYiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "addStm" ];
+	_1[label = "divStm" ];
+	_2[label = "minusStm" ];
+	_3[label = "multStm" ];
+	_4[label = "setConstStm" ];
+	_5[label = "assignVar" ];
+	_6[label = "flow" ];
+	_7[label = "varEntry,\nvarExit" ];
+	_0 -> _5;
+	_0 -> _7;
+	_1 -> _5;
+	_1 -> _7;
+	_2 -> _5;
+	_2 -> _7;
+	_3 -> _5;
+	_3 -> _7;
+	_4 -> _5;
+	_4 -> _7;
+	_5 -> _7;
+	_6 -> _7;
+}</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-topsort-scc-graph32"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 5
+0 7
+1 5
+1 7
+2 5
+2 7
+3 5
+3 7
+4 5
+4 7
+5 7
+6 7
+--- total order with relations of each strata ---
+0: [addStm]
+1: [divStm]
+2: [minusStm]
+3: [multStm]
+4: [setConstStm]
+5: [assignVar]
+6: [flow]
+7: [varEntry, varExit]
+
+--- statistics of topological order ---
+cost: 10
+</pre>
+
+</div>
+</div>
+<a id="RemoveRedundantRelationsTransformer34"></a>
+<div class='headerdiv'>
+<h1>After RemoveRedundantRelationsTransformer (0.000075s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer35"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000002s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveEmptyRelationsTransformer36"></a>
+<div class='headerdiv'>
+<h1>After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReplaceSingletonVariablesTransformer37"></a>
+<div class='headerdiv'>
+<h1>After ReplaceSingletonVariablesTransformer (0.000048s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReduceExistentialsTransformer38"></a>
+<div class='headerdiv'>
+<h1>After ReduceExistentialsTransformer (0.000068s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRedundantRelationsTransformer39"></a>
+<div class='headerdiv'>
+<h1>After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer40"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="PartitionBodyLiteralsTransformer41"></a>
+<div class='headerdiv'>
+<h1>After PartitionBodyLiteralsTransformer (0.000092s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="MinimiseProgramTransformer42"></a>
+<div class='headerdiv'>
+<h1>After MinimiseProgramTransformer (0.000022s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer43"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReorderLiteralsTransformer44"></a>
+<div class='headerdiv'>
+<h1>After ReorderLiteralsTransformer (0.000020s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="MaterializeAggregationQueriesTransformer45"></a>
+<div class='headerdiv'>
+<h1>After MaterializeAggregationQueriesTransformer (0.000026s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveEmptyRelationsTransformer46"></a>
+<div class='headerdiv'>
+<h1>After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReorderLiteralsTransformer47"></a>
+<div class='headerdiv'>
+<h1>After ReorderLiteralsTransformer (0.000015s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="AstExecutionPlanChecker48"></a>
+<div class='headerdiv'>
+<h1>After AstExecutionPlanChecker (0.000049s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ram-program49"></a>
+<div class='headerdiv'>
+<h1>RAM Program (0.001165s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>DECLARATION 
+@delta_varEntry(l,k,v) @delta_varExit(l,k,v) @lat_temp_addStm(l,r,x,y) @lat_temp_assignVar(l,r) @lat_temp_divStm(l,r,x,y) @lat_temp_flow(l1,l2) @lat_temp_minusStm(l,r,x,y) @lat_temp_multStm(l,r,x,y) @lat_temp_setConstStm(l,r,c) @lat_temp_varEntry(l,k,v) @lat_temp_varExit(l,k,v) @new_lat_varEntry(l,k,v) @new_lat_varExit(l,k,v) @new_varEntry(l,k,v) @new_varExit(l,k,v) @org_lat_varEntry(l,k,v) @org_lat_varExit(l,k,v) addStm(l,r,x,y) assignVar(l,r) divStm(l,r,x,y) flow(l1,l2) minusStm(l,r,x,y) multStm(l,r,x,y) setConstStm(l,r,c) varEntry(l,k,v) varExit(l,k,v) LATTICE ASSOCIATION DEFINITION. 
+lub: 
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418115)), output:argument(1)
+match:(argument(1) = number(2147418115)), output:argument(0)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418111)
+glb: 
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418111)), output:argument(1)
+match:(argument(1) = number(2147418111)), output:argument(0)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418115)
+END DECLARATION 
+PROGRAM
+BEGIN_STRATUM_0
+	CREATE addStm(l,r,x,y) ;
+	LOAD DATA FOR addStm FROM {{{"IO","file"},{"filename","facts/addStm.facts"},{"name","addStm"}}[{{"IO","file"},{"filename","facts/addStm.facts"},{"name","addStm"}}]}
+END_STRATUM_0;
+BEGIN_STRATUM_1
+	CREATE divStm(l,r,x,y) ;
+	LOAD DATA FOR divStm FROM {{{"IO","file"},{"filename","facts/divStm.facts"},{"name","divStm"}}[{{"IO","file"},{"filename","facts/divStm.facts"},{"name","divStm"}}]}
+END_STRATUM_1;
+BEGIN_STRATUM_2
+	CREATE minusStm(l,r,x,y) ;
+	LOAD DATA FOR minusStm FROM {{{"IO","file"},{"filename","facts/minusStm.facts"},{"name","minusStm"}}[{{"IO","file"},{"filename","facts/minusStm.facts"},{"name","minusStm"}}]}
+END_STRATUM_2;
+BEGIN_STRATUM_3
+	CREATE multStm(l,r,x,y) ;
+	LOAD DATA FOR multStm FROM {{{"IO","file"},{"filename","facts/multStm.facts"},{"name","multStm"}}[{{"IO","file"},{"filename","facts/multStm.facts"},{"name","multStm"}}]}
+END_STRATUM_3;
+BEGIN_STRATUM_4
+	CREATE setConstStm(l,r,c) ;
+	LOAD DATA FOR setConstStm FROM {{{"IO","file"},{"filename","facts/setConstStm.facts"},{"name","setConstStm"}}[{{"IO","file"},{"filename","facts/setConstStm.facts"},{"name","setConstStm"}}]}
+END_STRATUM_4;
+BEGIN_STRATUM_5
+	CREATE assignVar(l,r) ;
+	BEGIN_DEBUG "assignVar(l,r) :- \n   setConstStm(l,r,_).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [118:1-118:41]"
+		INSERT 
+			for t0 in setConstStm {
+					PROJECT (t0.l, t0.r) INTO assignVar			}
+
+	END_DEBUG;
+	BEGIN_DEBUG "assignVar(l,r) :- \n   addStm(l,r,_,_).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [119:1-119:39]"
+		INSERT 
+			for t0 in addStm {
+					PROJECT (t0.l, t0.r) INTO assignVar			}
+
+	END_DEBUG;
+	BEGIN_DEBUG "assignVar(l,r) :- \n   minusStm(l,r,_,_).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [120:1-120:41]"
+		INSERT 
+			for t0 in minusStm {
+					PROJECT (t0.l, t0.r) INTO assignVar			}
+
+	END_DEBUG;
+	BEGIN_DEBUG "assignVar(l,r) :- \n   multStm(l,r,_,_).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [121:1-121:40]"
+		INSERT 
+			for t0 in multStm {
+					PROJECT (t0.l, t0.r) INTO assignVar			}
+
+	END_DEBUG;
+	BEGIN_DEBUG "assignVar(l,r) :- \n   divStm(l,r,_,_).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [122:1-122:39]"
+		INSERT 
+			for t0 in divStm {
+					PROJECT (t0.l, t0.r) INTO assignVar			}
+
+	END_DEBUG
+END_STRATUM_5;
+BEGIN_STRATUM_6
+	CREATE flow(l1,l2) ;
+	LOAD DATA FOR flow FROM {{{"IO","file"},{"filename","facts/flow.facts"},{"name","flow"}}[{{"IO","file"},{"filename","facts/flow.facts"},{"name","flow"}}]}
+END_STRATUM_6;
+BEGIN_STRATUM_7
+	CREATE varEntry(l,k,v) ;
+	CREATE @delta_varEntry(l,k,v) ;
+	CREATE @new_varEntry(l,k,v) ;
+	CREATE @org_lat_varEntry(l,k,v) ;
+	CREATE @new_lat_varEntry(l,k,v) ;
+	CREATE varExit(l,k,v) ;
+	CREATE @delta_varExit(l,k,v) ;
+	CREATE @new_varExit(l,k,v) ;
+	CREATE @org_lat_varExit(l,k,v) ;
+	CREATE @new_lat_varExit(l,k,v) ;
+	MERGE @delta_varEntry WITH varEntry;
+	BEGIN_DEBUG "varExit(l,r,&lat_alpha(c)) :- \n   setConstStm(l,r,c).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [96:1-96:54]"
+		INSERT 
+			for t0 in setConstStm {
+					PROJECT_LAT (t0.l, t0.r, lat_alpha( t0.c )) INTO varExit			}
+
+	END_DEBUG;
+	CREATE @lat_temp_varExit(l,k,v) ;
+	LATNORM varExit INTO @lat_temp_varExit;
+	SWAP (varExit, @lat_temp_varExit);
+	DROP @lat_temp_varExit;
+	MERGE @delta_varExit WITH varExit;
+	LOOP
+		PARALLEL
+			BEGIN_DEBUG "varEntry(l2,k,v) :- \n   varExit(l1,k,v),\n   flow(l1,l2).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [93:1-93:55]"
+				INSERT 
+					for t0 in @delta_varExit {
+							for t1 in flow {
+									IF (not (t1.l2,t0.k,t0.v) ∈ varEntry) {
+											IF (t0.l = t1.l1) {
+													PROJECT_LAT (t1.l2, t0.k, t0.v) INTO @new_varEntry											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [100:1-102:48]"
+				INSERT 
+					for t0 in addStm {
+							for t1 in @delta_varEntry {
+									for t2 in varEntry {
+											IF (not (t0.l,t0.y,t2.v) ∈ @delta_varEntry) {
+													IF (not (t0.l,t0.r,lat_sum( t1.v, t2.v )) ∈ varExit) {
+															IF (t0.y = t2.k) {
+																	IF (t0.x = t1.k) {
+																			IF (t0.l = t2.l) {
+																					IF (t0.l = t1.l) {
+																							PROJECT_LAT (t0.l, t0.r, lat_sum( t1.v, t2.v )) INTO @new_varExit																					}
+																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [100:1-102:48]"
+				INSERT 
+					for t0 in addStm {
+							for t1 in varEntry {
+									for t2 in @delta_varEntry {
+											IF (not (t0.l,t0.r,lat_sum( t1.v, t2.v )) ∈ varExit) {
+													IF (t0.y = t2.k) {
+															IF (t0.x = t1.k) {
+																	IF (t0.l = t2.l) {
+																			IF (t0.l = t1.l) {
+																					PROJECT_LAT (t0.l, t0.r, lat_sum( t1.v, t2.v )) INTO @new_varExit																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_minus(v1,v2)) :- \n   minusStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [104:1-106:48]"
+				INSERT 
+					for t0 in minusStm {
+							for t1 in @delta_varEntry {
+									for t2 in varEntry {
+											IF (not (t0.l,t0.y,t2.v) ∈ @delta_varEntry) {
+													IF (not (t0.l,t0.r,lat_minus( t1.v, t2.v )) ∈ varExit) {
+															IF (t0.y = t2.k) {
+																	IF (t0.x = t1.k) {
+																			IF (t0.l = t2.l) {
+																					IF (t0.l = t1.l) {
+																							PROJECT_LAT (t0.l, t0.r, lat_minus( t1.v, t2.v )) INTO @new_varExit																					}
+																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_minus(v1,v2)) :- \n   minusStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [104:1-106:48]"
+				INSERT 
+					for t0 in minusStm {
+							for t1 in varEntry {
+									for t2 in @delta_varEntry {
+											IF (not (t0.l,t0.r,lat_minus( t1.v, t2.v )) ∈ varExit) {
+													IF (t0.y = t2.k) {
+															IF (t0.x = t1.k) {
+																	IF (t0.l = t2.l) {
+																			IF (t0.l = t1.l) {
+																					PROJECT_LAT (t0.l, t0.r, lat_minus( t1.v, t2.v )) INTO @new_varExit																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_mult(v1,v2)) :- \n   multStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [108:1-110:48]"
+				INSERT 
+					for t0 in multStm {
+							for t1 in @delta_varEntry {
+									for t2 in varEntry {
+											IF (not (t0.l,t0.y,t2.v) ∈ @delta_varEntry) {
+													IF (not (t0.l,t0.r,lat_mult( t1.v, t2.v )) ∈ varExit) {
+															IF (t0.y = t2.k) {
+																	IF (t0.x = t1.k) {
+																			IF (t0.l = t2.l) {
+																					IF (t0.l = t1.l) {
+																							PROJECT_LAT (t0.l, t0.r, lat_mult( t1.v, t2.v )) INTO @new_varExit																					}
+																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_mult(v1,v2)) :- \n   multStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [108:1-110:48]"
+				INSERT 
+					for t0 in multStm {
+							for t1 in varEntry {
+									for t2 in @delta_varEntry {
+											IF (not (t0.l,t0.r,lat_mult( t1.v, t2.v )) ∈ varExit) {
+													IF (t0.y = t2.k) {
+															IF (t0.x = t1.k) {
+																	IF (t0.l = t2.l) {
+																			IF (t0.l = t1.l) {
+																					PROJECT_LAT (t0.l, t0.r, lat_mult( t1.v, t2.v )) INTO @new_varExit																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,v) :- \n   varEntry(l,r,v),\n   !assignVar(l,r).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [123:1-123:57]"
+				INSERT 
+					for t0 in @delta_varEntry {
+							IF (not (t0.l,t0.k,t0.v) ∈ varExit) {
+									IF (not (t0.l,t0.k) ∈ assignVar) {
+											PROJECT_LAT (t0.l, t0.k, t0.v) INTO @new_varExit									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_div(v1,v2)) :- \n   divStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2),\n   v2 != &lat_alpha(0).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [112:1-114:67]"
+				INSERT 
+					for t0 in divStm {
+							for t1 in @delta_varEntry {
+									for t2 in varEntry {
+											IF (t2.v != lat_alpha( number(0) )) {
+													IF (not (t0.l,t0.y,t2.v) ∈ @delta_varEntry) {
+															IF (not (t0.l,t0.r,lat_div( t1.v, t2.v )) ∈ varExit) {
+																	IF (t0.y = t2.k) {
+																			IF (t0.x = t1.k) {
+																					IF (t0.l = t2.l) {
+																							IF (t0.l = t1.l) {
+																									PROJECT_LAT (t0.l, t0.r, lat_div( t1.v, t2.v )) INTO @new_varExit																							}
+																					}
+																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_div(v1,v2)) :- \n   divStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2),\n   v2 != &lat_alpha(0).\nin file /home/gq/Programming/souffle/dataflowTest/Sign_lattice/sign.dl [112:1-114:67]"
+				INSERT 
+					for t0 in divStm {
+							for t1 in varEntry {
+									for t2 in @delta_varEntry {
+											IF (t2.v != lat_alpha( number(0) )) {
+													IF (not (t0.l,t0.r,lat_div( t1.v, t2.v )) ∈ varExit) {
+															IF (t0.y = t2.k) {
+																	IF (t0.x = t1.k) {
+																			IF (t0.l = t2.l) {
+																					IF (t0.l = t1.l) {
+																							PROJECT_LAT (t0.l, t0.r, lat_div( t1.v, t2.v )) INTO @new_varExit																					}
+																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG		END PARALLEL;
+		LATCLEAN @new_varEntry INTO @new_lat_varEntry USING varEntry;
+		SWAP (@new_varEntry, @new_lat_varEntry);
+		CLEAR @new_lat_varEntry;
+		LATCLEAN @new_varExit INTO @new_lat_varExit USING varExit;
+		SWAP (@new_varExit, @new_lat_varExit);
+		CLEAR @new_lat_varExit;
+		EXIT ((@new_varEntry = ∅) and (@new_varExit = ∅));
+		MERGE varEntry WITH @new_varEntry;
+		SWAP (@delta_varEntry, @new_varEntry);
+		CLEAR @new_varEntry;
+		MERGE varExit WITH @new_varExit;
+		SWAP (@delta_varExit, @new_varExit);
+		CLEAR @new_varExit
+	END LOOP;
+	LATNORM varEntry INTO @org_lat_varEntry;
+	SWAP (varEntry, @org_lat_varEntry);
+	DROP @delta_varEntry;
+	DROP @new_varEntry;
+	DROP @org_lat_varEntry;
+	DROP @new_lat_varEntry;
+	LATNORM varExit INTO @org_lat_varExit;
+	SWAP (varExit, @org_lat_varExit);
+	DROP @delta_varExit;
+	DROP @new_varExit;
+	DROP @org_lat_varExit;
+	DROP @new_lat_varExit;
+	STORE DATA FOR varEntry TO {{{"IO","file"},{"attributeNames","l\tk\tv"},{"filename","./varEntry.csv"},{"name","varEntry"}}};
+	STORE DATA FOR varExit TO {{{"IO","file"},{"attributeNames","l\tk\tv"},{"filename","./varExit.csv"},{"name","varExit"}}};
+	DROP setConstStm;
+	DROP addStm;
+	DROP minusStm;
+	DROP multStm;
+	DROP divStm;
+	DROP flow;
+	DROP varEntry;
+	DROP varExit;
+	DROP assignVar
+END_STRATUM_7
+END PROGRAM
+</pre>
+
+</div>
+<a href='#'>(return to top)</a>
+</body>
+</html>

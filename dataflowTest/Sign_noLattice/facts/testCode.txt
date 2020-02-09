@@ -1,0 +1,30 @@
+0    a=-2
+1    b=0
+2    c=0
+3    d=-1
+4    e=-1
+5    b=d+b
+6    c=e-b
+7    b=-2
+8    d=b-c
+9    c=a/d
+10   d=c-d
+11   a=a-c
+12   d=c+b
+13   c=b/d
+14   e=e*d
+15   IF (condition):
+16   	
+     ELSE:
+17   	b=0
+18   	a=a-d
+19   	c=-1
+20   	a=e-d
+21   	d=0
+22   End IF
+23   IF (condition):
+24   	a=c-c
+25   	b=d-a
+     ELSE:
+26   	
+27   End IF

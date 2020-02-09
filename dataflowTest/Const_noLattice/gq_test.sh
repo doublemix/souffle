@@ -1,16 +1,9 @@
 #!/bin/bash
-#PBS -l walltime=11:54:59
-#PBS -l pmem=10gb
-#PBS -l nodes=1:ppn=8:basic
-#PBS -A open
-#PBS -j oe
-
-cd $PBS_O_WORKDIR
 
 PROG=const_prop
-echo "Job Started on $PBS_O_HOST at $(date)"
+echo "Job Started at $(date)"
 
-for Line in 25 50 75 #100 150 200
+for Line in 75 #25 50 75
 do
 	for Var in 5
 	do

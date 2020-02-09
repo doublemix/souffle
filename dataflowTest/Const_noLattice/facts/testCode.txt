@@ -1,52 +1,157 @@
-0    a=17
-1    b=-7
-2    c=-16
-3    d=-9
-4    e=1
-5    f=1
-6    g=-10
-7    h=10
-8    i=-17
-9    j=-5
-10   g=d-j
-11   d=c/a
-12   e=c-i
-13   c=e*c
-14   IF (condition):
-15   	b=b-e
-16   	d=i-d
-17   	e=j/a
-18   	g=b/j
-19   	a=e*b
-20   	b=14
-     ELSE:
-21   	i=h*e
-22   	IF (condition):
-23   		j=9
-24   		i=h*h
-25   		d=i*b
+0    a=2
+1    b=-2
+2    b=a+a
+3    a=-2
+4    a=b-b
+5    a=b*a
+6    a=-2
+7    a=a/a
+8    a=a*a
+9    b=a/b
+10   a=a-b
+11   a=b*b
+12   a=a+b
+13   a=b*b
+14   a=b*a
+15   b=b+b
+16   b=a*a
+17   IF (condition):
+18   	a=b/b
+19   	IF (condition):
+20   		a=b+b
+21   		b=2
      	ELSE:
-26   		
-27   	End IF
-28   	e=-2
-29   	j=14
-30   	b=-11
-31   	i=a-f
-32   	g=b/i
-33   	f=11
-34   End IF
-35   f=d/f
-36   e=c+h
-37   b=g-h
-38   e=i+e
-39   j=b-i
-40   i=j+c
-41   f=h+d
-42   f=b*a
-43   b=f/f
-44   a=i-d
-45   f=d-g
-46   d=3
-47   g=d/d
-48   d=f/b
-49   h=j+e
+22   		a=b-a
+23   		a=b/a
+24   		a=b-a
+25   		a=a*b
+26   		a=a/b
+27   		a=b*a
+28   		b=a*a
+29   		b=a+b
+30   	End IF
+31   	b=b/b
+32   	a=a/a
+33   	IF (condition):
+34   		a=0
+35   		a=a-a
+36   		a=b-a
+     	ELSE:
+37   		b=b+a
+38   	End IF
+39   	b=a*a
+     ELSE:
+40   	b=b-b
+41   	b=a/a
+42   	b=a/a
+43   	a=a-a
+44   	b=a/a
+45   	b=a/b
+46   End IF
+47   b=1
+48   b=a+a
+49   a=a+b
+50   a=a+b
+51   IF (condition):
+52   	
+     ELSE:
+53   	b=a+b
+54   	a=a+a
+55   	b=b-a
+56   	a=b/a
+57   	b=a*a
+58   	a=a/a
+59   	a=a/a
+60   End IF
+61   b=a-a
+62   a=2
+63   a=b+b
+64   a=a+b
+65   a=a/b
+66   b=a/a
+67   b=a*a
+68   a=b-b
+69   b=a*b
+70   a=b-b
+71   b=b/a
+72   b=a-b
+73   b=b/b
+74   a=a-a
+75   b=b-a
+76   b=a-b
+77   a=-2
+78   a=b/b
+79   b=a*b
+80   b=b+a
+81   a=b*a
+82   b=a+b
+83   a=a-a
+84   b=b/a
+85   b=a/a
+86   b=a/a
+87   b=a*b
+88   b=b+a
+89   a=0
+90   a=b/b
+91   b=a+a
+92   a=2
+93   b=a-b
+94   a=a+a
+95   a=a/a
+96   a=-1
+97   b=a-b
+98   IF (condition):
+99   	a=a/a
+100  	IF (condition):
+101  		
+     	ELSE:
+102  		a=b-a
+103  		a=a+b
+104  	End IF
+     ELSE:
+105  	a=b/b
+106  	b=1
+107  	a=b/a
+108  	b=-2
+109  	a=a-b
+110  	a=2
+111  	a=a+a
+112  	b=a+b
+113  	b=b+b
+114  	a=b-b
+115  	b=b-b
+116  	b=a+a
+117  	a=b-a
+118  	a=0
+119  	a=a/a
+120  	a=a/a
+121  	b=b+a
+122  	b=a*b
+123  	b=b/a
+124  End IF
+125  b=a/b
+126  a=b/b
+127  a=a*b
+128  b=a+a
+129  b=a*b
+130  b=b/a
+131  a=a*b
+132  b=b-b
+133  IF (condition):
+134  	b=b+b
+135  	b=b/b
+136  	a=b+a
+137  	a=a/a
+138  	b=2
+     ELSE:
+139  	b=b-b
+140  	b=a+b
+141  	a=a*a
+142  	a=b*a
+143  	b=2
+144  	a=-1
+145  	a=a+b
+146  	a=b/a
+147  	a=a-b
+148  End IF
+149  a=2

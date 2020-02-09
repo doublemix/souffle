@@ -1,0 +1,145 @@
+.enum Sign = {
+              case "Top",
+
+    case "Neg", case "Zer", case "Pos",
+
+              case "Bot"
+}
+
+/// Next, we define all the components that constitute the lattice:
+
+
+/// The least upper bound relation on the lattice elements.
+.def lub(x: Sign, y: Sign): Sign {
+    case ("Bot", _)   => y,
+    case (_, "Bot")   => x,
+    case (_, _)	      => x=y ? x : "Top"
+}
+
+/// The greatest lower bound relation on the lattice elements.
+.def glb(x: Sign, y: Sign): Sign {
+    case ("Top", _)   => y,
+    case (_, "Top")   => x,
+    case (_, _)	      => x=y ? x : "Bot"
+}
+
+// transfer symbol to enum type
+.def lat_symbol(x: symbol): Sign {
+    case (_)	      => x
+}
+
+// use function to transfer number to symbol
+.def nolat_alpha(x: number): symbol {
+    case (_)	      => x>0 ? "Pos" : (x<0 ? "Neg" : "Zer")
+}
+
+
+// sum
+.def nolat_sum(x: symbol, y: symbol): symbol {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Zer", _)   => y,
+    case (_, "Zer")   => x,
+    case (_, _)	      => x=y ? x : "Top"
+}
+
+// minus
+.def nolat_minus(x: symbol, y: symbol): symbol {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, "Zer")   => x,
+    case ("Zer", "Neg")   => "Pos",
+    case ("Zer", "Pos")   => "Neg",
+    case (_, _)	      => x=y ? "Top" : x
+}
+
+// multiplication
+.def nolat_mult(x: symbol, y: symbol): symbol {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Zer", _)   => "Zer",
+    case (_, "Zer")   => "Zer",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x=y ? "Pos" : "Neg"
+}
+
+// division
+.def nolat_div(x: symbol, y: symbol): symbol {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Zer", _)   => "Zer",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x=y ? "Pos" : "Neg" // not very sound, could be zero
+}
+
+// assert lattice association
+.let Sign<> = ("Bot", "Top", lub, glb)
+
+.decl setConstStm(l:number, r: symbol, c: number)         // r = c
+.input setConstStm
+.decl addStm(l:number, r: symbol, x: symbol, y: symbol) // r = x + y
+.input addStm
+.decl minusStm(l:number, r: symbol, x: symbol, y: symbol) // r = x - y
+.input minusStm
+.decl multStm(l:number, r: symbol, x: symbol, y: symbol) // r = x * y
+.input multStm
+.decl divStm(l:number, r: symbol, x: symbol, y: symbol) // r = x / y
+.input divStm
+.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
+
+.decl flow(l1: number, l2: number) // control flow from l1 to l2
+.input flow
+
+// intermediate relations for all possible values of each variable
+.decl varEntry_symbol(l:number, k: symbol, v: symbol)
+.output varEntry_symbol
+.decl varExit_symbol(l:number, k: symbol, v: symbol)
+.output varExit_symbol
+
+.lat varEntry(l:number, k: symbol, v: Sign)
+.output varEntry
+.lat varExit(l:number, k: symbol, v: Sign)
+.output varExit
+
+// if the statement doesn't assign to r
+assignVar(l, r) :- setConstStm(l, r, _).
+assignVar(l, r) :- addStm(l, r, _, _).
+assignVar(l, r) :- minusStm(l, r, _, _).
+assignVar(l, r) :- multStm(l, r, _, _).
+assignVar(l, r) :- divStm(l, r, _, _).
+
+// varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
+varEntry_symbol(l2, k, v) :- varExit_symbol(l1, k, v), flow(l1, l2).
+
+// statement: set to constant number
+varExit_symbol(l, r, &nolat_alpha(c)) :- setConstStm(l, r, c).
+
+// addition statement r = x+y, and the value of x is v1, the
+// value of y is v2
+varExit_symbol(l, r, &nolat_sum(v1, v2)) :- addStm(l, r, x, y),
+                            varEntry_symbol(l, x, v1),
+                            varEntry_symbol(l, y, v2).
+// division statement: r = x - y
+varExit_symbol(l, r, &nolat_minus(v1, v2)) :- minusStm(l, r, x, y),
+                            varEntry_symbol(l, x, v1),
+                            varEntry_symbol(l, y, v2).
+// multiplication statement: r = x * y
+varExit_symbol(l, r, &nolat_mult(v1, v2)) :- multStm(l, r, x, y),
+                            varEntry_symbol(l, x, v1),
+                            varEntry_symbol(l, y, v2).
+// division statement: r = x / y
+varExit_symbol(l, r, &nolat_div(v1, v2)) :- divStm(l, r, x, y),
+                            varEntry_symbol(l, x, v1),
+                            varEntry_symbol(l, y, v2), v2!="Zer".
+
+// r is not re-assigned
+varExit_symbol(l, r, v) :- varEntry_symbol(l, r, v), !assignVar(l, r).
+
+
+// extract lattice from number
+varEntry(l, k, &lat_symbol(v)) :- varEntry_symbol(l, k, v).
+varExit(l, k, &lat_symbol(v)) :- varExit_symbol(l, k, v).

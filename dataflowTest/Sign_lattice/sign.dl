@@ -1,61 +1,74 @@
-.enum Constant = {
-	case "Top",
-	case "Bot"
-}
-// notice: enum must be decalred before any use of 
-// enum element (because of symbol table offset)
+.enum Sign = {
+              case "Top",
 
-.def lub(x: Constant, y: Constant): Constant {
+    case "Neg", case "Zer", case "Pos",
+
+              case "Bot"
+}
+
+/// Next, we define all the components that constitute the lattice:
+
+
+/// The least upper bound relation on the lattice elements.
+.def lub(x: Sign, y: Sign): Sign {
     case ("Bot", _)   => y,
     case (_, "Bot")   => x,
     case (_, _)	      => x=y ? x : "Top"
 }
 
-.def glb(x: Constant, y: Constant): Constant {
+/// The greatest lower bound relation on the lattice elements.
+.def glb(x: Sign, y: Sign): Sign {
     case ("Top", _)   => y,
     case (_, "Top")   => x,
     case (_, _)	      => x=y ? x : "Bot"
 }
 
+
 // use function to transfer number or symbol to enum type
-.def lat_alpha(x: number): Constant {
-    case (_)	      => x
+.def lat_alpha(x: number): Sign {
+    case (_)	      => x>0 ? "Pos" : (x<0 ? "Neg" : "Zer")
 }
 
-.def lat_sum(x: Constant, y: Constant): Constant {
+.def lat_sum(x: Sign, y: Sign): Sign {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Zer", _)   => y,
+    case (_, "Zer")   => x,
+    case (_, _)	      => x=y ? x : "Top"
+}
+
+.def lat_minus(x: Sign, y: Sign): Sign {
     case ("Bot", _)   => "Bot",
     case (_, "Bot")   => "Bot",
     case ("Top", _)   => "Top",
     case (_, "Top")   => "Top",
-    case (_, _)	      => x+y
+    case (_, "Zer")   => x,
+    case ("Zer", "Neg")   => "Pos",
+    case ("Zer", "Pos")   => "Neg",
+    case (_, _)	      => x=y ? "Top" : x
 }
 
-.def lat_minus(x: Constant, y: Constant): Constant {
+.def lat_mult(x: Sign, y: Sign): Sign {
     case ("Bot", _)   => "Bot",
     case (_, "Bot")   => "Bot",
+    case ("Zer", _)   => "Zer",
+    case (_, "Zer")   => "Zer",
     case ("Top", _)   => "Top",
     case (_, "Top")   => "Top",
-    case (_, _)	      => x-y
+    case (_, _)	      => x=y ? "Pos" : "Neg"
 }
 
-.def lat_mult(x: Constant, y: Constant): Constant {
+.def lat_div(x: Sign, y: Sign): Sign {
     case ("Bot", _)   => "Bot",
     case (_, "Bot")   => "Bot",
+    case ("Zer", _)   => "Zer",
     case ("Top", _)   => "Top",
     case (_, "Top")   => "Top",
-    case (_, _)	      => x*y
-}
-
-.def lat_div(x: Constant, y: Constant): Constant {
-    case ("Bot", _)   => "Bot",
-    case (_, "Bot")   => "Bot",
-    case ("Top", _)   => "Top",
-    case (_, "Top")   => "Top",
-    case (_, _)	      => x/y	//y=0 ? "Bot" : 
+    case (_, _)	      => x=y ? "Pos" : "Neg" // not very sound, could be zero
 }
 
 // assert lattice association
-.let Const<> = ("Bot", "Top", lub, glb)
+.let Sign<> = ("Bot", "Top", lub, glb)
 
 .decl setConstStm(l:number, r: symbol, c: number)         // r = c
 .input setConstStm
@@ -67,25 +80,14 @@
 .input multStm
 .decl divStm(l:number, r: symbol, x: symbol, y: symbol) // r = x / y
 .input divStm
-.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
 
 .decl flow(l1: number, l2: number) // control flow from l1 to l2
 .input flow
 
-.lat varEntry(l:number, k: symbol, v: Constant)
+.lat varEntry(l:number, k: symbol, v: Sign)
 .output varEntry
-.lat varExit(l:number, k: symbol, v: Constant)
+.lat varExit(l:number, k: symbol, v: Sign)
 .output varExit
-
-// if the statement doesn't assign to r
-assignVar(l, r) :- setConstStm(l, r, _).
-assignVar(l, r) :- addStm(l, r, _, _).
-assignVar(l, r) :- minusStm(l, r, _, _).
-assignVar(l, r) :- multStm(l, r, _, _).
-assignVar(l, r) :- divStm(l, r, _, _).
-
-// initialize all variables to Bottom
-//varEntry(0, k, "Bot") :- assignVar(_, k).
 
 // varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
 varEntry(l2, k, v) :- varExit(l1, k, v), flow(l1, l2).
@@ -111,6 +113,12 @@ varExit(l, r, &lat_div(v1, v2)) :- divStm(l, r, x, y),
                             varEntry(l, x, v1),
                             varEntry(l, y, v2), v2!=&lat_alpha(0).
 
-// r is not re-assigned
+// if the statement doesn't assign to r
+.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
+assignVar(l, r) :- setConstStm(l, r, _).
+assignVar(l, r) :- addStm(l, r, _, _).
+assignVar(l, r) :- minusStm(l, r, _, _).
+assignVar(l, r) :- multStm(l, r, _, _).
+assignVar(l, r) :- divStm(l, r, _, _).
 varExit(l, r, v) :- varEntry(l, r, v), !assignVar(l, r).
 

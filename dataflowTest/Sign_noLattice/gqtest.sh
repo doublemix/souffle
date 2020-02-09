@@ -1,16 +1,8 @@
 #!/bin/bash
-#PBS -l walltime=11:54:59
-#PBS -l pmem=10gb
-#PBS -l nodes=1:ppn=8:basic
-#PBS -A open
-#PBS -j oe
 
-cd $PBS_O_WORKDIR
-
-PROG=const_prop
-echo "Job Started on $PBS_O_HOST at $(date)"
-
-for Line in 25 50 75 #100 150 200
+PROG=sign
+echo "Job Started at $(date)"
+for Line in 25 50 75 100 # 150 200
 do
 	for Var in 5
 	do
@@ -31,8 +23,8 @@ do
 			sort -k1 $outdir/varEntry.csv > $outdir/sortedVarEntry.csv
 			sort -k1 $outdir/varExit.csv > $outdir/sortedVarExit.csv
 
-			sort -k1 $outdir/varEntry_num.csv > $outdir/sorted_varEntry_num.csv
-			sort -k1 $outdir/varExit_num.csv > $outdir/sorted_varExit_num.csv
+			sort -k1 $outdir/varEntry_symbol.csv > $outdir/sorted_varEntry_symbol.csv
+			sort -k1 $outdir/varExit_symbol.csv > $outdir/sorted_varExit_symbol.csv
 		done
 	done
 done
