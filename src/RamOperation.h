@@ -600,13 +600,15 @@ public:
 	void print(std::ostream& os, int tabpos) const override {
 		const std::string tabs(tabpos, '\t');
 
-		if (relation->getRelation()->isLattice()) {
-			os << tabs << "PROJECT_LAT (" << join(values, ", ", print_deref<std::unique_ptr<RamValue>>()) << ") INTO "
-					<< relation->getName();
-		} else {
-			os << tabs << "PROJECT (" << join(values, ", ", print_deref<std::unique_ptr<RamValue>>()) << ") INTO "
-					<< relation->getName();
-		}
+		os << tabs << "PROJECT (" << join(values, ", ", print_deref<std::unique_ptr<RamValue>>()) << ") INTO "
+							<< relation->getName();
+
+//		if (relation->getRelation()->isLattice()) {
+//			os << tabs << "PROJECT_LAT (" << join(values, ", ", print_deref<std::unique_ptr<RamValue>>()) << ") INTO "
+//					<< relation->getName();
+//		} else {
+//
+//		}
 
 	}
 

@@ -1,0 +1,14 @@
+.decl a(x:number)
+.decl b(x:number)
+.decl c(x:number)
+.decl d(x:number)
+
+.output a, b, c
+
+a(1).
+b(1).
+d(1).
+
+a(x) :- b(x), d(x).
+b(x) :- a(x), d(x).
+c(x) :- a(x), b(x).
