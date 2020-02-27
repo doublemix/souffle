@@ -1,0 +1,41 @@
+.enum Simple = {
+        case "Top",
+
+    case "yes", case "no",
+
+        case "Bot"
+}
+
+.def lub(x: Simple, y: Simple): Simple {
+    case ("Bot", _)     => y,
+    case (_, "Bot")     => x,
+    case ("yes", "yes") => "yes",
+    case ("no", "no")   => "no",
+    case (_, _)	        => "Top"
+}
+
+.def glb(x: Simple, y:Simple): Simple {
+    case ("Top", _)     => y,
+    case (_, "Top")     => x,
+    case ("yes", "yes") => "yes",
+    case ("no", "no")   => "no",
+    case (_, _)         => "Bot"
+}
+
+// assert lattice association
+.let Simple<> = ("Bot", "Top", lub, glb)
+
+.lat a(x:Simple)
+.lat b(x:Simple)
+.lat c(x:Simple)
+.lat d(x:Simple)
+
+.output a, b, c
+
+a("yes").
+b("no").
+d("no").
+
+a(x) :- b(x), d(x).
+b(x) :- a(x), d(x).
+c(x) :- a(x), b(x).

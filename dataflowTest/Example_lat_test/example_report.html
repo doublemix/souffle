@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Souffle Debug Report</title>
+<style>
+ul { list-style-type: none; }
+ul > li.leaf { display: inline-block; padding: 0em 1em; }
+ul > li.nonleaf { padding: 0em 1em; }
+* { font-family: sans-serif; }
+pre { white-space: pre-wrap; font-family: monospace; }
+a:link { text-decoration: none; color: blue; }
+a:visited { text-decoration: none; color: blue; }
+div.headerdiv { background-color:lightgrey; margin:10px; padding-left:10px; padding-right:10px; padding-top:3px; padding-bottom:3px; border-radius:5px }
+.headerdiv h1 { display:inline; }
+.headerdiv a { float:right; }
+</style>
+<script type="text/javascript">
+function toggleVisibility(id) {
+  var element = document.getElementById(id);
+  if (element.style.display == 'none') {
+    element.style.display = 'block';
+  } else {
+    element.style.display = 'none';
+  }
+}
+</script>
+</head>
+<body>
+<div class='headerdiv'><h1>Souffle Debug Report</h1></div>
+<a href="#Parsing6">After Parsing (0.005900s)</a>
+<ul>
+<li class='leaf'><a href="#Parsing-dl0">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-ta1">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-tea2">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-prec-graph3">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-scc-graph4">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-topsort-scc-graph5">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#AstComponentChecker7">After AstComponentChecker (0.000021s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ComponentInstantiationTransformer14">After ComponentInstantiationTransformer (0.000012s)</a>
+<ul>
+<li class='leaf'><a href="#ComponentInstantiationTransformer-dl8">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-ta9">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-tea10">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-prec-graph11">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-scc-graph12">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-topsort-scc-graph13">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#UniqueAggregationVariablesTransformer15">After UniqueAggregationVariablesTransformer (0.000009s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#AstSemanticChecker16">After AstSemanticChecker (0.000312s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveBooleanConstraintsTransformer17">After RemoveBooleanConstraintsTransformer (0.000011s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ResolveAliasesTransformer18">After ResolveAliasesTransformer (0.000028s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MinimiseProgramTransformer19">After MinimiseProgramTransformer (0.000004s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#InlineRelationsTransformer20">After InlineRelationsTransformer (0.000008s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ResolveAliasesTransformer21">After ResolveAliasesTransformer (0.000022s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRedundantRelationsTransformer22">After RemoveRedundantRelationsTransformer (0.000004s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer23">After RemoveRelationCopiesTransformer (0.000002s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveEmptyRelationsTransformer24">After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReplaceSingletonVariablesTransformer25">After ReplaceSingletonVariablesTransformer (0.000009s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReduceExistentialsTransformer26">After ReduceExistentialsTransformer (0.000021s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRedundantRelationsTransformer27">After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer28">After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#PartitionBodyLiteralsTransformer29">After PartitionBodyLiteralsTransformer (0.000011s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MinimiseProgramTransformer30">After MinimiseProgramTransformer (0.000003s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer31">After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReorderLiteralsTransformer32">After ReorderLiteralsTransformer (0.000006s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MaterializeAggregationQueriesTransformer33">After MaterializeAggregationQueriesTransformer (0.000006s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveEmptyRelationsTransformer34">After RemoveEmptyRelationsTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReorderLiteralsTransformer35">After ReorderLiteralsTransformer (0.000003s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#AstExecutionPlanChecker36">After AstExecutionPlanChecker (0.000016s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ram-program37">RAM Program (0.000354s)</a>
+<ul>
+</ul>
+<a id="Parsing6"></a>
+<div class='headerdiv'>
+<h1>After Parsing (0.005900s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="Parsing-dl0"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Simple = {Top:symbol,yes:symbol,no:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Simple&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Simple{
+("Top",_)=>y
+(_,"Top")=>x
+("yes","yes")=>"yes"
+("no","no")=>"no"
+(_,_)=>"Bot"
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Simple{
+("Bot",_)=>y
+(_,"Bot")=>x
+("yes","yes")=>"yes"
+("no","no")=>"no"
+(_,_)=>"Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- a --
+.lat a(x:Simple)  
+
+a("yes").
+
+a(x) :- 
+   b(x),
+   d(x).
+
+.output {a}
+
+
+
+// -- b --
+.lat b(x:Simple)  
+
+b("no").
+
+b(x) :- 
+   a(x),
+   d(x).
+
+.output {b}
+
+
+
+// -- c --
+.lat c(x:Simple)  
+
+c(x) :- 
+   a(x),
+   b(x).
+
+.output {c}
+
+
+
+// -- d --
+.lat d(x:Simple)  
+
+d("no").
+
+</pre>
+
+</div>
+<a id="Parsing-ta1"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: a("yes").
+Problem:
+{
+	var("yes") &lt;: Simple,
+	var("yes") &lt;: symbol
+}
+Solution:
+{var("yes")->{}}
+Clause: a(x) :- 
+   b(x),
+   d(x).
+Problem:
+{
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple
+}
+Solution:
+{var(x)->{Simple}}
+Clause: b("no").
+Problem:
+{
+	var("no") &lt;: Simple,
+	var("no") &lt;: symbol
+}
+Solution:
+{var("no")->{}}
+Clause: b(x) :- 
+   a(x),
+   d(x).
+Problem:
+{
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple
+}
+Solution:
+{var(x)->{Simple}}
+Clause: c(x) :- 
+   a(x),
+   b(x).
+Problem:
+{
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple
+}
+Solution:
+{var(x)->{Simple}}
+Clause: d("no").
+Problem:
+{
+	var("no") &lt;: Simple,
+	var("no") &lt;: symbol
+}
+Solution:
+{var("no")->{}}
+
+-- Result --
+a("yes").
+a(x&isin;{Simple}) :- 
+   b(x&isin;{Simple}),
+   d(x&isin;{Simple}).
+b("no").
+b(x&isin;{Simple}) :- 
+   a(x&isin;{Simple}),
+   d(x&isin;{Simple}).
+c(x&isin;{Simple}) :- 
+   a(x&isin;{Simple}),
+   b(x&isin;{Simple}).
+d("no").
+</pre>
+
+</div>
+<a id="Parsing-tea2"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Simple = {Top:symbol,yes:symbol,no:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="Parsing-prec-graph3"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iOTBwdCIgaGVpZ2h0PSIyNjBwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCA5MC4wMCAyNjAuMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDQgMjU2KSI+Cjx0aXRsZT4lMzwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0idHJhbnNwYXJlbnQiIHBvaW50cz0iLTQsNCAtNCwtMjU2IDg2LC0yNTYgODYsNCAtNCw0Ii8+CjwhLS0gYSAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNTUiIGN5PSItMTYyIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1NSIgeT0iLTE1OC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmE8L3RleHQ+CjwvZz4KPCEtLSBiIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNyIgY3k9Ii05MCIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjciIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmI8L3RleHQ+CjwvZz4KPCEtLSBhJiM0NTsmZ3Q7YiAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hJiM0NTsmZ3Q7YjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQyLjg4NTUsLTE0NS42NjIxQzM4Ljc2MzcsLTEzNy40MzUzIDM0LjUxODcsLTEyNy4yMzI1IDMxLjIyNTUsLTExNy44MTc5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzNC40NzQxLC0xMTYuNDg3NSAyOC4wNzY0LC0xMDguMDQyMyAyNy44MTEzLC0xMTguNjMzOSAzNC40NzQxLC0xMTYuNDg3NSIvPgo8L2c+CjwhLS0gYyAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5jPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNTQiIGN5PSItMTgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU0IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5jPC90ZXh0Pgo8L2c+CjwhLS0gYSYjNDU7Jmd0O2MgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YSYjNDU7Jmd0O2M8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik01OC4zMzE1LC0xNDQuMDczNkM2MC4xMDg3LC0xMzMuNTk4MiA2Mi4xMDg3LC0xMjAuMDk4MiA2MywtMTA4IDY0LjE3NTYsLTkyLjA0MzIgNjQuMzE5NywtODcuOTQ1NSA2MywtNzIgNjIuMjk0NSwtNjMuNDc1MyA2MC45NzI3LC01NC4yNzAzIDU5LjU1NTEsLTQ1LjkxNyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNjIuOTY4OSwtNDUuMTI1OCA1Ny43NDc0LC0zNS45MDY5IDU2LjA4MDMsLTQ2LjM2OTggNjIuOTY4OSwtNDUuMTI1OCIvPgo8L2c+CjwhLS0gYiYjNDU7Jmd0O2EgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YiYjNDU7Jmd0O2E8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zOS4xNjUyLC0xMDYuNDM5M0M0My4yNjA2LC0xMTQuNjI3MyA0Ny40NzMyLC0xMjQuNzU0MSA1MC43NDkzLC0xMzQuMTEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjQ3LjQ4NDUsLTEzNS4zODk4IDUzLjg4NjgsLTE0My44MzE0IDU0LjE0NjEsLTEzMy4yMzk3IDQ3LjQ4NDUsLTEzNS4zODk4Ii8+CjwvZz4KPCEtLSBiJiM0NTsmZ3Q7YyAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5iJiM0NTsmZ3Q7YzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzLjY3NDIsLTcyLjIwMjJDMzYuNzQ3NiwtNjQuMDA2NCA0MC40NjE2LC01NC4xMDI0IDQzLjg2OTUsLTQ1LjAxNDUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjQ3LjE2ODUsLTQ2LjE4NTMgNDcuNDAyNiwtMzUuNTkzIDQwLjYxNDIsLTQzLjcyNzQgNDcuMTY4NSwtNDYuMTg1MyIvPgo8L2c+CjwhLS0gZCAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5kPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjciIGN5PSItMjM0IiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNyIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmQ8L3RleHQ+CjwvZz4KPCEtLSBkJiM0NTsmZ3Q7YSAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5kJiM0NTsmZ3Q7YTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzLjc3OCwtMjE2LjU3MDhDMzYuOTg3MiwtMjA4LjMxODcgNDAuODkzNSwtMTk4LjI3MzggNDQuNDc1OCwtMTg5LjA2MjMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjQ3LjgyNDgsLTE5MC4xMDY5IDQ4LjE4NzQsLTE3OS41MTgyIDQxLjMwMDgsLTE4Ny41Njk3IDQ3LjgyNDgsLTE5MC4xMDY5Ii8+CjwvZz4KPCEtLSBkJiM0NTsmZ3Q7YiAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5kJiM0NTsmZ3Q7YjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIzLjY2ODUsLTIxNi4wNzM2QzIxLjg5MTMsLTIwNS41OTgyIDE5Ljg5MTMsLTE5Mi4wOTgyIDE5LC0xODAgMTcuODI0NCwtMTY0LjA0MzIgMTcuODI0NCwtMTU5Ljk1NjggMTksLTE0NCAxOS42MjY3LC0xMzUuNDkzNSAyMC44MDE1LC0xMjYuMjkzOSAyMi4wNjE2LC0xMTcuOTM5OSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjUuNTM5OCwtMTE4LjM1NDYgMjMuNjY4NSwtMTA3LjkyNjQgMTguNjI4MiwtMTE3LjI0NTUgMjUuNTM5OCwtMTE4LjM1NDYiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('Parsing-prec-graph-source')">(show dot source)</a>
+<div id='Parsing-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"a" [label = "a"];
+	"b" [label = "b"];
+	"c" [label = "c"];
+	"d" [label = "d"];
+	"a" -> "b";
+	"a" -> "c";
+	"b" -> "a";
+	"b" -> "c";
+	"d" -> "a";
+	"d" -> "b";
+}
+</pre>
+</div>
+
+</div>
+<a id="Parsing-scc-graph4"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNjJwdCIgaGVpZ2h0PSIyMDZwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCA2Mi4wMCAyMDUuNzQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDQgMjAxLjc0MDEpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yMDEuNzQwMSA1OCwtMjAxLjc0MDEgNTgsNCAtNCw0Ii8+CjwhLS0gXzAgLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzA8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNyIgY3k9Ii0xNzkuNzQwMSIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjciIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5kPC90ZXh0Pgo8L2c+CjwhLS0gXzEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzE8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNyIgY3k9Ii05OC44NzAxIiByeD0iMjciIHJ5PSIyNi43NDA3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI3IiB5PSItMTAyLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YSw8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI3IiB5PSItODcuNjcwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5iPC90ZXh0Pgo8L2c+CjwhLS0gXzAmIzQ1OyZndDtfMSAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMCYjNDU7Jmd0O18xPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjcsLTE2MS4zODk0QzI3LC0xNTMuODE5NiAyNywtMTQ0Ljc2MDEgMjcsLTEzNS45MTgyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzMC41MDAxLC0xMzUuNzQwNiAyNywtMTI1Ljc0MDcgMjMuNTAwMSwtMTM1Ljc0MDcgMzAuNTAwMSwtMTM1Ljc0MDYiLz4KPC9nPgo8IS0tIF8yIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8yPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjciIGN5PSItMTgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI3IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5jPC90ZXh0Pgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjcsLTcxLjk0MTVDMjcsLTYzLjY3MDkgMjcsLTU0LjU0ODcgMjcsLTQ2LjE5NTciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjMwLjUwMDEsLTQ2LjE0ODggMjcsLTM2LjE0ODggMjMuNTAwMSwtNDYuMTQ4OSAzMC41MDAxLC00Ni4xNDg4Ii8+CjwvZz4KPC9nPgo8L3N2Zz4K'><br/>
+<a href="javascript:toggleVisibility('Parsing-scc-graph-source')">(show dot source)</a>
+<div id='Parsing-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "d" ];
+	_1[label = "a,\nb" ];
+	_2[label = "c" ];
+	_0 -> _1;
+	_1 -> _2;
+}</pre>
+</div>
+
+</div>
+<a id="Parsing-topsort-scc-graph5"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 1
+1 2
+--- total order with relations of each strata ---
+0: [d]
+1: [a, b]
+2: [c]
+
+--- statistics of topological order ---
+cost: 1
+</pre>
+
+</div>
+</div>
+<a id="AstComponentChecker7"></a>
+<div class='headerdiv'>
+<h1>After AstComponentChecker (0.000021s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ComponentInstantiationTransformer14"></a>
+<div class='headerdiv'>
+<h1>After ComponentInstantiationTransformer (0.000012s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="ComponentInstantiationTransformer-dl8"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Simple = {Top:symbol,yes:symbol,no:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Simple&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Simple{
+("Top",_)=>y
+(_,"Top")=>x
+("yes","yes")=>"yes"
+("no","no")=>"no"
+(_,_)=>"Bot"
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Simple{
+("Bot",_)=>y
+(_,"Bot")=>x
+("yes","yes")=>"yes"
+("no","no")=>"no"
+(_,_)=>"Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- a --
+.lat a(x:Simple)  
+
+a("yes").
+
+a(x) :- 
+   b(x),
+   d(x).
+
+.output {a}
+
+
+
+// -- b --
+.lat b(x:Simple)  
+
+b("no").
+
+b(x) :- 
+   a(x),
+   d(x).
+
+.output {b}
+
+
+
+// -- c --
+.lat c(x:Simple)  
+
+c(x) :- 
+   a(x),
+   b(x).
+
+.output {c}
+
+
+
+// -- d --
+.lat d(x:Simple)  
+
+d("no").
+
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-ta9"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: a("yes").
+Problem:
+{
+	var("yes") &lt;: Simple,
+	var("yes") &lt;: symbol
+}
+Solution:
+{var("yes")->{}}
+Clause: a(x) :- 
+   b(x),
+   d(x).
+Problem:
+{
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple
+}
+Solution:
+{var(x)->{Simple}}
+Clause: b("no").
+Problem:
+{
+	var("no") &lt;: Simple,
+	var("no") &lt;: symbol
+}
+Solution:
+{var("no")->{}}
+Clause: b(x) :- 
+   a(x),
+   d(x).
+Problem:
+{
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple
+}
+Solution:
+{var(x)->{Simple}}
+Clause: c(x) :- 
+   a(x),
+   b(x).
+Problem:
+{
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple,
+	var(x) &lt;: Simple
+}
+Solution:
+{var(x)->{Simple}}
+Clause: d("no").
+Problem:
+{
+	var("no") &lt;: Simple,
+	var("no") &lt;: symbol
+}
+Solution:
+{var("no")->{}}
+
+-- Result --
+a("yes").
+a(x&isin;{Simple}) :- 
+   b(x&isin;{Simple}),
+   d(x&isin;{Simple}).
+b("no").
+b(x&isin;{Simple}) :- 
+   a(x&isin;{Simple}),
+   d(x&isin;{Simple}).
+c(x&isin;{Simple}) :- 
+   a(x&isin;{Simple}),
+   b(x&isin;{Simple}).
+d("no").
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-tea10"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Simple = {Top:symbol,yes:symbol,no:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-prec-graph11"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iOTBwdCIgaGVpZ2h0PSIyNjBwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCA5MC4wMCAyNjAuMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDQgMjU2KSI+Cjx0aXRsZT4lMzwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0idHJhbnNwYXJlbnQiIHBvaW50cz0iLTQsNCAtNCwtMjU2IDg2LC0yNTYgODYsNCAtNCw0Ii8+CjwhLS0gYSAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNTUiIGN5PSItMTYyIiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1NSIgeT0iLTE1OC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmE8L3RleHQ+CjwvZz4KPCEtLSBiIC0tPgo8ZyBpZD0ibm9kZTIiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNyIgY3k9Ii05MCIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjciIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmI8L3RleHQ+CjwvZz4KPCEtLSBhJiM0NTsmZ3Q7YiAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hJiM0NTsmZ3Q7YjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQyLjg4NTUsLTE0NS42NjIxQzM4Ljc2MzcsLTEzNy40MzUzIDM0LjUxODcsLTEyNy4yMzI1IDMxLjIyNTUsLTExNy44MTc5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzNC40NzQxLC0xMTYuNDg3NSAyOC4wNzY0LC0xMDguMDQyMyAyNy44MTEzLC0xMTguNjMzOSAzNC40NzQxLC0xMTYuNDg3NSIvPgo8L2c+CjwhLS0gYyAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5jPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNTQiIGN5PSItMTgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU0IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5jPC90ZXh0Pgo8L2c+CjwhLS0gYSYjNDU7Jmd0O2MgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YSYjNDU7Jmd0O2M8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik01OC4zMzE1LC0xNDQuMDczNkM2MC4xMDg3LC0xMzMuNTk4MiA2Mi4xMDg3LC0xMjAuMDk4MiA2MywtMTA4IDY0LjE3NTYsLTkyLjA0MzIgNjQuMzE5NywtODcuOTQ1NSA2MywtNzIgNjIuMjk0NSwtNjMuNDc1MyA2MC45NzI3LC01NC4yNzAzIDU5LjU1NTEsLTQ1LjkxNyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNjIuOTY4OSwtNDUuMTI1OCA1Ny43NDc0LC0zNS45MDY5IDU2LjA4MDMsLTQ2LjM2OTggNjIuOTY4OSwtNDUuMTI1OCIvPgo8L2c+CjwhLS0gYiYjNDU7Jmd0O2EgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YiYjNDU7Jmd0O2E8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0zOS4xNjUyLC0xMDYuNDM5M0M0My4yNjA2LC0xMTQuNjI3MyA0Ny40NzMyLC0xMjQuNzU0MSA1MC43NDkzLC0xMzQuMTEiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjQ3LjQ4NDUsLTEzNS4zODk4IDUzLjg4NjgsLTE0My44MzE0IDU0LjE0NjEsLTEzMy4yMzk3IDQ3LjQ4NDUsLTEzNS4zODk4Ii8+CjwvZz4KPCEtLSBiJiM0NTsmZ3Q7YyAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5iJiM0NTsmZ3Q7YzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzLjY3NDIsLTcyLjIwMjJDMzYuNzQ3NiwtNjQuMDA2NCA0MC40NjE2LC01NC4xMDI0IDQzLjg2OTUsLTQ1LjAxNDUiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjQ3LjE2ODUsLTQ2LjE4NTMgNDcuNDAyNiwtMzUuNTkzIDQwLjYxNDIsLTQzLjcyNzQgNDcuMTY4NSwtNDYuMTg1MyIvPgo8L2c+CjwhLS0gZCAtLT4KPGcgaWQ9Im5vZGU0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5kPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjciIGN5PSItMjM0IiByeD0iMjciIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNyIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmQ8L3RleHQ+CjwvZz4KPCEtLSBkJiM0NTsmZ3Q7YSAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5kJiM0NTsmZ3Q7YTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzLjc3OCwtMjE2LjU3MDhDMzYuOTg3MiwtMjA4LjMxODcgNDAuODkzNSwtMTk4LjI3MzggNDQuNDc1OCwtMTg5LjA2MjMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjQ3LjgyNDgsLTE5MC4xMDY5IDQ4LjE4NzQsLTE3OS41MTgyIDQxLjMwMDgsLTE4Ny41Njk3IDQ3LjgyNDgsLTE5MC4xMDY5Ii8+CjwvZz4KPCEtLSBkJiM0NTsmZ3Q7YiAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5kJiM0NTsmZ3Q7YjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIzLjY2ODUsLTIxNi4wNzM2QzIxLjg5MTMsLTIwNS41OTgyIDE5Ljg5MTMsLTE5Mi4wOTgyIDE5LC0xODAgMTcuODI0NCwtMTY0LjA0MzIgMTcuODI0NCwtMTU5Ljk1NjggMTksLTE0NCAxOS42MjY3LC0xMzUuNDkzNSAyMC44MDE1LC0xMjYuMjkzOSAyMi4wNjE2LC0xMTcuOTM5OSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMjUuNTM5OCwtMTE4LjM1NDYgMjMuNjY4NSwtMTA3LjkyNjQgMTguNjI4MiwtMTE3LjI0NTUgMjUuNTM5OCwtMTE4LjM1NDYiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo='><br/>
+<a href="javascript:toggleVisibility('ComponentInstantiationTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ComponentInstantiationTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"a" [label = "a"];
+	"b" [label = "b"];
+	"c" [label = "c"];
+	"d" [label = "d"];
+	"a" -> "b";
+	"a" -> "c";
+	"b" -> "a";
+	"b" -> "c";
+	"d" -> "a";
+	"d" -> "b";
+}
+</pre>
+</div>
+
+</div>
+<a id="ComponentInstantiationTransformer-scc-graph12"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iNjJwdCIgaGVpZ2h0PSIyMDZwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCA2Mi4wMCAyMDUuNzQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDQgMjAxLjc0MDEpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yMDEuNzQwMSA1OCwtMjAxLjc0MDEgNTgsNCAtNCw0Ii8+CjwhLS0gXzAgLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzA8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNyIgY3k9Ii0xNzkuNzQwMSIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjciIHk9Ii0xNzYuMDQwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5kPC90ZXh0Pgo8L2c+CjwhLS0gXzEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzE8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIyNyIgY3k9Ii05OC44NzAxIiByeD0iMjciIHJ5PSIyNi43NDA3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI3IiB5PSItMTAyLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YSw8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI3IiB5PSItODcuNjcwMSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5iPC90ZXh0Pgo8L2c+CjwhLS0gXzAmIzQ1OyZndDtfMSAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMCYjNDU7Jmd0O18xPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjcsLTE2MS4zODk0QzI3LC0xNTMuODE5NiAyNywtMTQ0Ljc2MDEgMjcsLTEzNS45MTgyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzMC41MDAxLC0xMzUuNzQwNiAyNywtMTI1Ljc0MDcgMjMuNTAwMSwtMTM1Ljc0MDcgMzAuNTAwMSwtMTM1Ljc0MDYiLz4KPC9nPgo8IS0tIF8yIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8yPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjciIGN5PSItMTgiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI3IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5jPC90ZXh0Pgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMjcsLTcxLjk0MTVDMjcsLTYzLjY3MDkgMjcsLTU0LjU0ODcgMjcsLTQ2LjE5NTciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjMwLjUwMDEsLTQ2LjE0ODggMjcsLTM2LjE0ODggMjMuNTAwMSwtNDYuMTQ4OSAzMC41MDAxLC00Ni4xNDg4Ii8+CjwvZz4KPC9nPgo8L3N2Zz4K'><br/>
+<a href="javascript:toggleVisibility('ComponentInstantiationTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ComponentInstantiationTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "d" ];
+	_1[label = "a,\nb" ];
+	_2[label = "c" ];
+	_0 -> _1;
+	_1 -> _2;
+}</pre>
+</div>
+
+</div>
+<a id="ComponentInstantiationTransformer-topsort-scc-graph13"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 1
+1 2
+--- total order with relations of each strata ---
+0: [d]
+1: [a, b]
+2: [c]
+
+--- statistics of topological order ---
+cost: 1
+</pre>
+
+</div>
+</div>
+<a id="UniqueAggregationVariablesTransformer15"></a>
+<div class='headerdiv'>
+<h1>After UniqueAggregationVariablesTransformer (0.000009s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="AstSemanticChecker16"></a>
+<div class='headerdiv'>
+<h1>After AstSemanticChecker (0.000312s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveBooleanConstraintsTransformer17"></a>
+<div class='headerdiv'>
+<h1>After RemoveBooleanConstraintsTransformer (0.000011s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ResolveAliasesTransformer18"></a>
+<div class='headerdiv'>
+<h1>After ResolveAliasesTransformer (0.000028s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="MinimiseProgramTransformer19"></a>
+<div class='headerdiv'>
+<h1>After MinimiseProgramTransformer (0.000004s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="InlineRelationsTransformer20"></a>
+<div class='headerdiv'>
+<h1>After InlineRelationsTransformer (0.000008s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ResolveAliasesTransformer21"></a>
+<div class='headerdiv'>
+<h1>After ResolveAliasesTransformer (0.000022s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRedundantRelationsTransformer22"></a>
+<div class='headerdiv'>
+<h1>After RemoveRedundantRelationsTransformer (0.000004s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer23"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000002s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveEmptyRelationsTransformer24"></a>
+<div class='headerdiv'>
+<h1>After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReplaceSingletonVariablesTransformer25"></a>
+<div class='headerdiv'>
+<h1>After ReplaceSingletonVariablesTransformer (0.000009s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReduceExistentialsTransformer26"></a>
+<div class='headerdiv'>
+<h1>After ReduceExistentialsTransformer (0.000021s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRedundantRelationsTransformer27"></a>
+<div class='headerdiv'>
+<h1>After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer28"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="PartitionBodyLiteralsTransformer29"></a>
+<div class='headerdiv'>
+<h1>After PartitionBodyLiteralsTransformer (0.000011s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="MinimiseProgramTransformer30"></a>
+<div class='headerdiv'>
+<h1>After MinimiseProgramTransformer (0.000003s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer31"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReorderLiteralsTransformer32"></a>
+<div class='headerdiv'>
+<h1>After ReorderLiteralsTransformer (0.000006s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="MaterializeAggregationQueriesTransformer33"></a>
+<div class='headerdiv'>
+<h1>After MaterializeAggregationQueriesTransformer (0.000006s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveEmptyRelationsTransformer34"></a>
+<div class='headerdiv'>
+<h1>After RemoveEmptyRelationsTransformer (0.000000s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReorderLiteralsTransformer35"></a>
+<div class='headerdiv'>
+<h1>After ReorderLiteralsTransformer (0.000003s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="AstExecutionPlanChecker36"></a>
+<div class='headerdiv'>
+<h1>After AstExecutionPlanChecker (0.000016s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ram-program37"></a>
+<div class='headerdiv'>
+<h1>RAM Program (0.000354s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>DECLARATION 
+@delta_a(x) @delta_b(x) @lat_temp_a(x) @lat_temp_b(x) @lat_temp_c(x) @lat_temp_d(x) @new_a(x) @new_b(x) @new_lat_a(x) @new_lat_b(x) @org_lat_a(x) @org_lat_b(x) a(x) b(x) c(x) d(x) LATTICE ASSOCIATION DEFINITION. 
+lub: 
+LATTICE BINARY FUNCTION 
+size: 5
+match:(argument(0) = number(2147418114)), output:argument(1)
+match:(argument(1) = number(2147418114)), output:argument(0)
+match:((argument(0) = number(2147418112)) and (argument(1) = number(2147418112))), output:number(2147418112)
+match:((argument(0) = number(2147418113)) and (argument(1) = number(2147418113))), output:number(2147418113)
+match:True, output:number(2147418111)
+glb: 
+LATTICE BINARY FUNCTION 
+size: 5
+match:(argument(0) = number(2147418111)), output:argument(1)
+match:(argument(1) = number(2147418111)), output:argument(0)
+match:((argument(0) = number(2147418112)) and (argument(1) = number(2147418112))), output:number(2147418112)
+match:((argument(0) = number(2147418113)) and (argument(1) = number(2147418113))), output:number(2147418113)
+match:True, output:number(2147418114)
+END DECLARATION 
+PROGRAM
+BEGIN_STRATUM_0
+	CREATE d(x) ;
+	BEGIN_DEBUG "d(\"no\").\nin file /home/gq/Programming/souffle/dataflowTest/Example_lat_test/example.dl [37:1-37:9]"
+		INSERT (number(2147418113)) INTO d
+	END_DEBUG;
+	CREATE @lat_temp_d(x) ;
+	LATNORM d INTO @lat_temp_d;
+	SWAP (d, @lat_temp_d);
+	DROP @lat_temp_d
+END_STRATUM_0;
+BEGIN_STRATUM_1
+	CREATE a(x) ;
+	CREATE @delta_a(x) ;
+	CREATE @new_a(x) ;
+	CREATE @org_lat_a(x) ;
+	CREATE @new_lat_a(x) ;
+	CREATE b(x) ;
+	CREATE @delta_b(x) ;
+	CREATE @new_b(x) ;
+	CREATE @org_lat_b(x) ;
+	CREATE @new_lat_b(x) ;
+	BEGIN_DEBUG "a(\"yes\").\nin file /home/gq/Programming/souffle/dataflowTest/Example_lat_test/example.dl [35:1-35:10]"
+		INSERT (number(2147418112)) INTO a
+	END_DEBUG;
+	CREATE @lat_temp_a(x) ;
+	LATNORM a INTO @lat_temp_a;
+	SWAP (a, @lat_temp_a);
+	DROP @lat_temp_a;
+	MERGE @delta_a WITH a;
+	BEGIN_DEBUG "b(\"no\").\nin file /home/gq/Programming/souffle/dataflowTest/Example_lat_test/example.dl [36:1-36:9]"
+		INSERT (number(2147418113)) INTO b
+	END_DEBUG;
+	CREATE @lat_temp_b(x) ;
+	LATNORM b INTO @lat_temp_b;
+	SWAP (b, @lat_temp_b);
+	DROP @lat_temp_b;
+	MERGE @delta_b WITH b;
+	LOOP
+		PARALLEL
+			BEGIN_DEBUG "a(x) :- \n   b(x),\n   d(x).\nin file /home/gq/Programming/souffle/dataflowTest/Example_lat_test/example.dl [39:1-39:20]"
+				INSERT 
+					for t0 in @delta_b {
+							for t1 in d {
+									IF (not (glb( t0.x, t1.x )) ∈ a) {
+											PROJECT (glb( t0.x, t1.x )) INTO @new_a									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "b(x) :- \n   a(x),\n   d(x).\nin file /home/gq/Programming/souffle/dataflowTest/Example_lat_test/example.dl [40:1-40:20]"
+				INSERT 
+					for t0 in @delta_a {
+							for t1 in d {
+									IF (not (glb( t0.x, t1.x )) ∈ b) {
+											PROJECT (glb( t0.x, t1.x )) INTO @new_b									}
+							}
+					}
+
+			END_DEBUG		END PARALLEL;
+		LATCLEAN @new_a INTO @new_lat_a USING a;
+		SWAP (@new_a, @new_lat_a);
+		CLEAR @new_lat_a;
+		LATCLEAN @new_b INTO @new_lat_b USING b;
+		SWAP (@new_b, @new_lat_b);
+		CLEAR @new_lat_b;
+		EXIT ((@new_a = ∅) and (@new_b = ∅));
+		MERGE a WITH @new_a;
+		SWAP (@delta_a, @new_a);
+		CLEAR @new_a;
+		MERGE b WITH @new_b;
+		SWAP (@delta_b, @new_b);
+		CLEAR @new_b
+	END LOOP;
+	LATNORM a INTO @org_lat_a;
+	SWAP (a, @org_lat_a);
+	DROP @delta_a;
+	DROP @new_a;
+	DROP @org_lat_a;
+	DROP @new_lat_a;
+	LATNORM b INTO @org_lat_b;
+	SWAP (b, @org_lat_b);
+	DROP @delta_b;
+	DROP @new_b;
+	DROP @org_lat_b;
+	DROP @new_lat_b;
+	STORE DATA FOR a TO {{{"IO","file"},{"attributeNames","x"},{"filename","./a.csv"},{"name","a"}}};
+	STORE DATA FOR b TO {{{"IO","file"},{"attributeNames","x"},{"filename","./b.csv"},{"name","b"}}};
+	DROP d
+END_STRATUM_1;
+BEGIN_STRATUM_2
+	CREATE c(x) ;
+	BEGIN_DEBUG "c(x) :- \n   a(x),\n   b(x).\nin file /home/gq/Programming/souffle/dataflowTest/Example_lat_test/example.dl [41:1-41:20]"
+		INSERT 
+			for t0 in a {
+					for t1 in b {
+							PROJECT (glb( t0.x, t1.x )) INTO c					}
+			}
+
+	END_DEBUG;
+	CREATE @lat_temp_c(x) ;
+	LATNORM c INTO @lat_temp_c;
+	SWAP (c, @lat_temp_c);
+	DROP @lat_temp_c;
+	STORE DATA FOR c TO {{{"IO","file"},{"attributeNames","x"},{"filename","./c.csv"},{"name","c"}}};
+	DROP a;
+	DROP b
+END_STRATUM_2
+END PROGRAM
+</pre>
+
+</div>
+<a href='#'>(return to top)</a>
+</body>
+</html>

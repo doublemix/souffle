@@ -1,6 +1,6 @@
 # usage: call "make TEST=<test>" to run on test
 
-PROG = sample
+PROG = example
 
 
 .PHONY: all clean
