@@ -1268,187 +1268,187 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 		}
 
 		// Plan A TODO, use RamDomain lat_Top to optimize
-		bool visitLatExt(const RamLatExt& latext) override {
-//			std::cout << "\n visit LatExt here! relation: " << latext.getRelation_IN_Origin().getName() << std::endl;
-			// get involved relation
-			InterpreterRelation& IN_Origin = interpreter.getRelation(
-					latext.getRelation_IN_Origin());
-			InterpreterRelation& IN_New = interpreter.getRelation(
-					latext.getRelation_IN_New());
-			InterpreterRelation& OUT_Origin = interpreter.getRelation(
-					latext.getRelation_OUT_Origin());
-			InterpreterRelation& OUT_New = interpreter.getRelation(
-					latext.getRelation_OUT_New());
-
-			size_t arity = IN_Origin.getArity();
-
-			// Require: there is only one element for each cell in in_origin lattice relation!
-			// Find biggest lattice element in the same cell, and
-			// put it into out_origin. If the biggest element does not
-			// exist in in_origin, also put it in out_new
-			RamDomain low[arity];
-			RamDomain high[arity];
-			for (size_t i = 0; i < arity; i++) {
-				low[i] = MIN_RAM_DOMAIN;
-				high[i] = MAX_RAM_DOMAIN;
-			}
-
-			InterpreterContext ctxt_temp;
-			const RamLatticeBinaryFunction& lub_func =
-					interpreter.getTranslationUnit().getProgram()->getLattice()->getLUB();
-
-			// obtain index
-			auto org_totalIndex = IN_Origin.getTotalIndex();
-			auto new_totalIndex = IN_New.getTotalIndex();
-
-			auto org_range = org_totalIndex->lowerUpperBound(low, high);
-			auto org_it = org_range.first;
-			auto org_itend = org_range.second;
-
-//			std::cout << "Step 1\n";
-			// Step 1: Traverse the whole original relation, require that only 1 element in 1 cell!
-			for (; org_it != org_itend; ++org_it) {
-				const RamDomain* data = *org_it;
-
-//				std::cout << "data: ";
-//				for (size_t i = 0; i < arity; i++) {
-//					std::cout << data[i] << " ";
+//		bool visitLatExt(const RamLatExt& latext) override {
+////			std::cout << "\n visit LatExt here! relation: " << latext.getRelation_IN_Origin().getName() << std::endl;
+//			// get involved relation
+//			InterpreterRelation& IN_Origin = interpreter.getRelation(
+//					latext.getRelation_IN_Origin());
+//			InterpreterRelation& IN_New = interpreter.getRelation(
+//					latext.getRelation_IN_New());
+//			InterpreterRelation& OUT_Origin = interpreter.getRelation(
+//					latext.getRelation_OUT_Origin());
+//			InterpreterRelation& OUT_New = interpreter.getRelation(
+//					latext.getRelation_OUT_New());
+//
+//			size_t arity = IN_Origin.getArity();
+//
+//			// Require: there is only one element for each cell in in_origin lattice relation!
+//			// Find biggest lattice element in the same cell, and
+//			// put it into out_origin. If the biggest element does not
+//			// exist in in_origin, also put it in out_new
+//			RamDomain low[arity];
+//			RamDomain high[arity];
+//			for (size_t i = 0; i < arity; i++) {
+//				low[i] = MIN_RAM_DOMAIN;
+//				high[i] = MAX_RAM_DOMAIN;
+//			}
+//
+//			InterpreterContext ctxt_temp;
+//			const RamLatticeBinaryFunction& lub_func =
+//					interpreter.getTranslationUnit().getProgram()->getLattice()->getLUB();
+//
+//			// obtain index
+//			auto org_totalIndex = IN_Origin.getTotalIndex();
+//			auto new_totalIndex = IN_New.getTotalIndex();
+//
+//			auto org_range = org_totalIndex->lowerUpperBound(low, high);
+//			auto org_it = org_range.first;
+//			auto org_itend = org_range.second;
+//
+////			std::cout << "Step 1\n";
+//			// Step 1: Traverse the whole original relation, require that only 1 element in 1 cell!
+//			for (; org_it != org_itend; ++org_it) {
+//				const RamDomain* data = *org_it;
+//
+////				std::cout << "data: ";
+////				for (size_t i = 0; i < arity; i++) {
+////					std::cout << data[i] << " ";
+////				}
+////				std::cout << std::endl;
+//
+//				for (size_t i = 0; i < arity - 1; i++) {
+//					low[i] = data[i];
+//					high[i] = data[i];
 //				}
-//				std::cout << std::endl;
-
-				for (size_t i = 0; i < arity - 1; i++) {
-					low[i] = data[i];
-					high[i] = data[i];
-				}
-				low[arity - 1] = MIN_RAM_DOMAIN;
-				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
-
-				auto new_range = new_totalIndex->lowerUpperBound(low, high);
-				auto new_it = new_range.first;
-				auto new_itend = new_range.second;
-
-				if (new_it != new_itend) {
-					// the cell exists in the new lattice relation
-					RamDomain Org_Lat = data[arity - 1];
-					RamDomain biggestLat = Org_Lat;
-
-					// search the cell in new lattice relation
-					for (; new_it != new_itend; ++new_it) {
-						RamDomain curlat = (*new_it)[arity - 1];
-						// set 2 input variables
-						std::vector<RamDomain> ctxt_args =
-								{ biggestLat, curlat };
-						ctxt_temp.setArguments(ctxt_args);
-						// evaluate binary constraint
-						for (const auto& cas : lub_func.getLatCase()) {
-							if (cas.match == nullptr
-									|| interpreter.evalCond(*cas.match,
-											ctxt_temp)) {
-								// get output if match
-								biggestLat = interpreter.evalVal(*cas.output,
-										ctxt_temp);
-								break;
-							}
-						}
-					}
-					high[arity - 1] = biggestLat;
-//					std::cout << "biggestLat: " << biggestLat << " Org_Lat:" << Org_Lat << std::endl;
-					OUT_Origin.insert(high);
-					if (biggestLat != Org_Lat) {
-						OUT_New.insert(high);
-					}
-
-//					std::cout << "insert - exist in new: ";
+//				low[arity - 1] = MIN_RAM_DOMAIN;
+//				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
+//
+//				auto new_range = new_totalIndex->lowerUpperBound(low, high);
+//				auto new_it = new_range.first;
+//				auto new_itend = new_range.second;
+//
+//				if (new_it != new_itend) {
+//					// the cell exists in the new lattice relation
+//					RamDomain Org_Lat = data[arity - 1];
+//					RamDomain biggestLat = Org_Lat;
+//
+//					// search the cell in new lattice relation
+//					for (; new_it != new_itend; ++new_it) {
+//						RamDomain curlat = (*new_it)[arity - 1];
+//						// set 2 input variables
+//						std::vector<RamDomain> ctxt_args =
+//								{ biggestLat, curlat };
+//						ctxt_temp.setArguments(ctxt_args);
+//						// evaluate binary constraint
+//						for (const auto& cas : lub_func.getLatCase()) {
+//							if (cas.match == nullptr
+//									|| interpreter.evalCond(*cas.match,
+//											ctxt_temp)) {
+//								// get output if match
+//								biggestLat = interpreter.evalVal(*cas.output,
+//										ctxt_temp);
+//								break;
+//							}
+//						}
+//					}
+//					high[arity - 1] = biggestLat;
+////					std::cout << "biggestLat: " << biggestLat << " Org_Lat:" << Org_Lat << std::endl;
+//					OUT_Origin.insert(high);
 //					if (biggestLat != Org_Lat) {
-//						std::cout << "(both) ";
+//						OUT_New.insert(high);
 //					}
-//					for (size_t i = 0; i < arity; i++) {
-//						std::cout << high[i] << " ";
-//					}
-//					std::cout << std::endl;
-
-				} else {
-					// the cell does not exist in the new lattice relation
-					OUT_Origin.insert(data);
-
-//					std::cout << "insert - not exist in new: ";
-//					for (size_t i = 0; i < arity; i++) {
-//						std::cout << data[i] << " ";
-//					}
-//					std::cout << std::endl;
-				}
-
-			}
-
-			// Step 2: Traverse the whole new lattice relation
-
-//			std::cout << "Step 2\n";
-			for (size_t i = 0; i < arity; i++) {
-				low[i] = MIN_RAM_DOMAIN;
-				high[i] = MAX_RAM_DOMAIN;
-			}
-			auto new_range = new_totalIndex->lowerUpperBound(low, high);
-			auto new_it = new_range.first;
-			auto new_itend = new_range.second;
-			while (new_it != new_itend) {
-				const RamDomain* data = *new_it;
-
-//				std::cout << "data: ";
-//				for (size_t i = 0; i < arity; i++) {
-//					std::cout << data[i] << " ";
+//
+////					std::cout << "insert - exist in new: ";
+////					if (biggestLat != Org_Lat) {
+////						std::cout << "(both) ";
+////					}
+////					for (size_t i = 0; i < arity; i++) {
+////						std::cout << high[i] << " ";
+////					}
+////					std::cout << std::endl;
+//
+//				} else {
+//					// the cell does not exist in the new lattice relation
+//					OUT_Origin.insert(data);
+//
+////					std::cout << "insert - not exist in new: ";
+////					for (size_t i = 0; i < arity; i++) {
+////						std::cout << data[i] << " ";
+////					}
+////					std::cout << std::endl;
 //				}
-//				std::cout << std::endl;
-
-				for (size_t i = 0; i < arity - 1; i++) {
-					low[i] = data[i];
-					high[i] = data[i];
-				}
-				low[arity - 1] = MIN_RAM_DOMAIN;
-				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
-				auto range_end = new_totalIndex->UpperBound(high);
-
-				if (org_totalIndex->LowerBound(low)
-						== org_totalIndex->UpperBound(high)) {
-					// the cell does not exist in original lattice relation, need to handle
-//					std::cout
-//							<< "the cell does not exist in original lattice relation\n";
-					RamDomain biggestLat = data[arity - 1];
-					for (++new_it; new_it != range_end; ++new_it) {
-						RamDomain curlat = (*new_it)[arity - 1];
-						// set 2 input variables
-						std::vector<RamDomain> ctxt_args =
-								{ biggestLat, curlat };
-						ctxt_temp.setArguments(ctxt_args);
-						// evaluate binary constraint
-						for (const auto& cas : lub_func.getLatCase()) {
-							if (cas.match == nullptr
-									|| interpreter.evalCond(*cas.match,
-											ctxt_temp)) {
-								// get output if match
-								biggestLat = interpreter.evalVal(*cas.output,
-										ctxt_temp);
-								break;
-							}
-						}
-					}
-					high[arity - 1] = biggestLat;
-					OUT_Origin.insert(high);
-					OUT_New.insert(high);
-
-//					std::cout << "insert both: ";
-//					for (size_t i = 0; i < arity; i++) {
-//						std::cout << high[i] << " ";
+//
+//			}
+//
+//			// Step 2: Traverse the whole new lattice relation
+//
+////			std::cout << "Step 2\n";
+//			for (size_t i = 0; i < arity; i++) {
+//				low[i] = MIN_RAM_DOMAIN;
+//				high[i] = MAX_RAM_DOMAIN;
+//			}
+//			auto new_range = new_totalIndex->lowerUpperBound(low, high);
+//			auto new_it = new_range.first;
+//			auto new_itend = new_range.second;
+//			while (new_it != new_itend) {
+//				const RamDomain* data = *new_it;
+//
+////				std::cout << "data: ";
+////				for (size_t i = 0; i < arity; i++) {
+////					std::cout << data[i] << " ";
+////				}
+////				std::cout << std::endl;
+//
+//				for (size_t i = 0; i < arity - 1; i++) {
+//					low[i] = data[i];
+//					high[i] = data[i];
+//				}
+//				low[arity - 1] = MIN_RAM_DOMAIN;
+//				high[arity - 1] = MAX_RAM_DOMAIN; // must keep this
+//				auto range_end = new_totalIndex->UpperBound(high);
+//
+//				if (org_totalIndex->LowerBound(low)
+//						== org_totalIndex->UpperBound(high)) {
+//					// the cell does not exist in original lattice relation, need to handle
+////					std::cout
+////							<< "the cell does not exist in original lattice relation\n";
+//					RamDomain biggestLat = data[arity - 1];
+//					for (++new_it; new_it != range_end; ++new_it) {
+//						RamDomain curlat = (*new_it)[arity - 1];
+//						// set 2 input variables
+//						std::vector<RamDomain> ctxt_args =
+//								{ biggestLat, curlat };
+//						ctxt_temp.setArguments(ctxt_args);
+//						// evaluate binary constraint
+//						for (const auto& cas : lub_func.getLatCase()) {
+//							if (cas.match == nullptr
+//									|| interpreter.evalCond(*cas.match,
+//											ctxt_temp)) {
+//								// get output if match
+//								biggestLat = interpreter.evalVal(*cas.output,
+//										ctxt_temp);
+//								break;
+//							}
+//						}
 //					}
-//					std::cout << std::endl;
-
-				} else {
-					// the cell exists in original lattice relation, already handled
-					new_it = range_end;
-				}
-			}
-
-			return true;
-		}
+//					high[arity - 1] = biggestLat;
+//					OUT_Origin.insert(high);
+//					OUT_New.insert(high);
+//
+////					std::cout << "insert both: ";
+////					for (size_t i = 0; i < arity; i++) {
+////						std::cout << high[i] << " ";
+////					}
+////					std::cout << std::endl;
+//
+//				} else {
+//					// the cell exists in original lattice relation, already handled
+//					new_it = range_end;
+//				}
+//			}
+//
+//			return true;
+//		}
 
 		bool visitSwap(const RamSwap& swap) override {
 			interpreter.swapRelation(swap.getFirstRelation(),

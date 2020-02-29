@@ -462,93 +462,93 @@ protected:
 /**
  * Extract lattice elements from two lattice relations
  */
-class RamLatExt: public RamStatement {
-protected:
-	std::unique_ptr<RamRelationReference> IN_Origin;
-	std::unique_ptr<RamRelationReference> IN_New;
-	std::unique_ptr<RamRelationReference> OUT_Origin;
-	std::unique_ptr<RamRelationReference> OUT_New;
-
-public:
-	RamLatExt(std::unique_ptr<RamRelationReference> I_Org,
-			std::unique_ptr<RamRelationReference> I_n,
-			std::unique_ptr<RamRelationReference> O_Org,
-			std::unique_ptr<RamRelationReference> O_n) :
-			RamStatement(RN_LatExt), IN_Origin(std::move(I_Org)), IN_New(
-					std::move(I_n)), OUT_Origin(std::move(O_Org)), OUT_New(
-					std::move(O_n)) {
-		// TODO (#541): check not just for arity also for correct type!!
-		// Introduce an equivalence type-check for two ram relations
-		assert(IN_Origin->getArity() == IN_New->getArity());
-		assert(IN_Origin->getArity() == OUT_Origin->getArity());
-		assert(IN_Origin->getArity() == OUT_New->getArity());
-		assert(IN_Origin->isLattice() && OUT_Origin->isLattice());
-	}
-
-	/** Get source original relation */
-	const RamRelationReference& getRelation_IN_Origin() const {
-		return *IN_Origin;
-	}
-
-	/** Get source "new" relation */
-	const RamRelationReference& getRelation_IN_New() const {
-		return *IN_New;
-	}
-
-	/** Get target original relation */
-	const RamRelationReference& getRelation_OUT_Origin() const {
-		return *OUT_Origin;
-	}
-
-	/** Get target "new" relation */
-	const RamRelationReference& getRelation_OUT_New() const {
-		return *OUT_New;
-	}
-
-	/** Pretty print */
-	void print(std::ostream& os, int tabpos) const override {
-		os << std::string(tabpos, '\t');
-		os << "LATEXT ";
-		os << "(" << IN_Origin->getName() << ", " << IN_New->getName() << ")";
-		os << " INTO ";
-		os << "(" << OUT_Origin->getName() << ", " << OUT_New->getName() << ")";
-	}
-
-	/** Obtain list of child nodes */
-	std::vector<const RamNode*> getChildNodes() const override {
-		return std::vector<const RamNode*>( { IN_Origin.get(), IN_New.get(),
-				OUT_Origin.get(), OUT_New.get() });
-	}
-
-	/** Create clone */
-	RamLatExt* clone() const override {
-		RamLatExt* res = new RamLatExt(
-				std::unique_ptr<RamRelationReference>(IN_Origin->clone()),
-				std::unique_ptr<RamRelationReference>(IN_New->clone()),
-				std::unique_ptr<RamRelationReference>(OUT_Origin->clone()),
-				std::unique_ptr<RamRelationReference>(OUT_New->clone()));
-		return res;
-	}
-
-	/** Apply mapper */
-	void apply(const RamNodeMapper& map) override {
-		IN_Origin = map(std::move(IN_Origin));
-		IN_New = map(std::move(IN_New));
-		OUT_Origin = map(std::move(OUT_Origin));
-		OUT_New = map(std::move(OUT_New));
-	}
-
-protected:
-	/** Check equality */
-	bool equal(const RamNode& node) const override {
-		assert(nullptr != dynamic_cast<const RamLatExt*>(&node));
-		const auto& other = static_cast<const RamLatExt&>(node);
-		return getRelation_IN_Origin() == other.getRelation_IN_Origin()
-				&& getRelation_IN_New() == other.getRelation_IN_New()
-				&& getRelation_OUT_Origin() == other.getRelation_OUT_Origin()
-				&& getRelation_OUT_New() == other.getRelation_OUT_New();
-	}
-};
+//class RamLatExt: public RamStatement {
+//protected:
+//	std::unique_ptr<RamRelationReference> IN_Origin;
+//	std::unique_ptr<RamRelationReference> IN_New;
+//	std::unique_ptr<RamRelationReference> OUT_Origin;
+//	std::unique_ptr<RamRelationReference> OUT_New;
+//
+//public:
+//	RamLatExt(std::unique_ptr<RamRelationReference> I_Org,
+//			std::unique_ptr<RamRelationReference> I_n,
+//			std::unique_ptr<RamRelationReference> O_Org,
+//			std::unique_ptr<RamRelationReference> O_n) :
+//			RamStatement(RN_LatExt), IN_Origin(std::move(I_Org)), IN_New(
+//					std::move(I_n)), OUT_Origin(std::move(O_Org)), OUT_New(
+//					std::move(O_n)) {
+//		// TODO (#541): check not just for arity also for correct type!!
+//		// Introduce an equivalence type-check for two ram relations
+//		assert(IN_Origin->getArity() == IN_New->getArity());
+//		assert(IN_Origin->getArity() == OUT_Origin->getArity());
+//		assert(IN_Origin->getArity() == OUT_New->getArity());
+//		assert(IN_Origin->isLattice() && OUT_Origin->isLattice());
+//	}
+//
+//	/** Get source original relation */
+//	const RamRelationReference& getRelation_IN_Origin() const {
+//		return *IN_Origin;
+//	}
+//
+//	/** Get source "new" relation */
+//	const RamRelationReference& getRelation_IN_New() const {
+//		return *IN_New;
+//	}
+//
+//	/** Get target original relation */
+//	const RamRelationReference& getRelation_OUT_Origin() const {
+//		return *OUT_Origin;
+//	}
+//
+//	/** Get target "new" relation */
+//	const RamRelationReference& getRelation_OUT_New() const {
+//		return *OUT_New;
+//	}
+//
+//	/** Pretty print */
+//	void print(std::ostream& os, int tabpos) const override {
+//		os << std::string(tabpos, '\t');
+//		os << "LATEXT ";
+//		os << "(" << IN_Origin->getName() << ", " << IN_New->getName() << ")";
+//		os << " INTO ";
+//		os << "(" << OUT_Origin->getName() << ", " << OUT_New->getName() << ")";
+//	}
+//
+//	/** Obtain list of child nodes */
+//	std::vector<const RamNode*> getChildNodes() const override {
+//		return std::vector<const RamNode*>( { IN_Origin.get(), IN_New.get(),
+//				OUT_Origin.get(), OUT_New.get() });
+//	}
+//
+//	/** Create clone */
+//	RamLatExt* clone() const override {
+//		RamLatExt* res = new RamLatExt(
+//				std::unique_ptr<RamRelationReference>(IN_Origin->clone()),
+//				std::unique_ptr<RamRelationReference>(IN_New->clone()),
+//				std::unique_ptr<RamRelationReference>(OUT_Origin->clone()),
+//				std::unique_ptr<RamRelationReference>(OUT_New->clone()));
+//		return res;
+//	}
+//
+//	/** Apply mapper */
+//	void apply(const RamNodeMapper& map) override {
+//		IN_Origin = map(std::move(IN_Origin));
+//		IN_New = map(std::move(IN_New));
+//		OUT_Origin = map(std::move(OUT_Origin));
+//		OUT_New = map(std::move(OUT_New));
+//	}
+//
+//protected:
+//	/** Check equality */
+//	bool equal(const RamNode& node) const override {
+//		assert(nullptr != dynamic_cast<const RamLatExt*>(&node));
+//		const auto& other = static_cast<const RamLatExt&>(node);
+//		return getRelation_IN_Origin() == other.getRelation_IN_Origin()
+//				&& getRelation_IN_New() == other.getRelation_IN_New()
+//				&& getRelation_OUT_Origin() == other.getRelation_OUT_Origin()
+//				&& getRelation_OUT_New() == other.getRelation_OUT_New();
+//	}
+//};
 
 /**
  * Swap operation two relations
