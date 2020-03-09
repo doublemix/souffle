@@ -1,0 +1,44 @@
+.enum Sign = {
+              case "Top",
+
+    case "Neg", case "Zer", case "Pos",
+
+              case "Bot"
+}
+
+/// Next, we define all the components that constitute the lattice:
+
+
+/// The least upper bound relation on the lattice elements.
+.def lub(x: Sign, y: Sign): Sign {
+    case ("Bot", _)   => y,
+    case (_, "Bot")   => x,
+    case (_, _)	      => x=y ? x : "Top"
+}
+
+/// The greatest lower bound relation on the lattice elements.
+.def glb(x: Sign, y: Sign): Sign {
+    case ("Top", _)   => y,
+    case (_, "Top")   => x,
+    case (_, _)	      => x=y ? x : "Bot"
+}
+
+// assert lattice association
+.let Sign<> = ("Bot", "Top", lub, glb)
+
+.lat A(v: Sign)
+.lat B(v: Sign)
+.lat C(v: Sign)
+.lat R(v: Sign)
+.lat T(v: Sign)
+
+.output R
+.output T
+
+A("Top").
+B("Top").
+C("Pos").
+T("Neg").
+
+R(x) :- A(x), B(x), C(x).
+T(x) :- R(x).

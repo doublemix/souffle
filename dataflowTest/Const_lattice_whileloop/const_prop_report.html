@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Souffle Debug Report</title>
+<style>
+ul { list-style-type: none; }
+ul > li.leaf { display: inline-block; padding: 0em 1em; }
+ul > li.nonleaf { padding: 0em 1em; }
+* { font-family: sans-serif; }
+pre { white-space: pre-wrap; font-family: monospace; }
+a:link { text-decoration: none; color: blue; }
+a:visited { text-decoration: none; color: blue; }
+div.headerdiv { background-color:lightgrey; margin:10px; padding-left:10px; padding-right:10px; padding-top:3px; padding-bottom:3px; border-radius:5px }
+.headerdiv h1 { display:inline; }
+.headerdiv a { float:right; }
+</style>
+<script type="text/javascript">
+function toggleVisibility(id) {
+  var element = document.getElementById(id);
+  if (element.style.display == 'none') {
+    element.style.display = 'block';
+  } else {
+    element.style.display = 'none';
+  }
+}
+</script>
+</head>
+<body>
+<div class='headerdiv'><h1>Souffle Debug Report</h1></div>
+<a href="#Parsing6">After Parsing (0.001937s)</a>
+<ul>
+<li class='leaf'><a href="#Parsing-dl0">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-ta1">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-tea2">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-prec-graph3">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-scc-graph4">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#Parsing-topsort-scc-graph5">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#AstComponentChecker7">After AstComponentChecker (0.000026s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ComponentInstantiationTransformer14">After ComponentInstantiationTransformer (0.000024s)</a>
+<ul>
+<li class='leaf'><a href="#ComponentInstantiationTransformer-dl8">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-ta9">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-tea10">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-prec-graph11">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-scc-graph12">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ComponentInstantiationTransformer-topsort-scc-graph13">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#UniqueAggregationVariablesTransformer15">After UniqueAggregationVariablesTransformer (0.000042s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#AstSemanticChecker16">After AstSemanticChecker (0.000792s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveBooleanConstraintsTransformer17">After RemoveBooleanConstraintsTransformer (0.000024s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ResolveAliasesTransformer24">After ResolveAliasesTransformer (0.000080s)</a>
+<ul>
+<li class='leaf'><a href="#ResolveAliasesTransformer-dl18">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-ta19">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-tea20">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-prec-graph21">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-scc-graph22">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-topsort-scc-graph23">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#MinimiseProgramTransformer25">After MinimiseProgramTransformer (0.000034s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#InlineRelationsTransformer26">After InlineRelationsTransformer (0.000026s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ResolveAliasesTransformer33">After ResolveAliasesTransformer (0.000079s)</a>
+<ul>
+<li class='leaf'><a href="#ResolveAliasesTransformer-dl27">Datalog</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-ta28">Type Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-tea29">Type Environment Analysis</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-prec-graph30">Precedence Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-scc-graph31">SCC Graph</a>
+<ul>
+</ul>
+</li><li class='leaf'><a href="#ResolveAliasesTransformer-topsort-scc-graph32">SCC Topological Sort Order</a>
+<ul>
+</ul>
+</li></ul>
+<a href="#RemoveRedundantRelationsTransformer34">After RemoveRedundantRelationsTransformer (0.000050s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer35">After RemoveRelationCopiesTransformer (0.000003s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveEmptyRelationsTransformer36">After RemoveEmptyRelationsTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReplaceSingletonVariablesTransformer37">After ReplaceSingletonVariablesTransformer (0.000034s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReduceExistentialsTransformer38">After ReduceExistentialsTransformer (0.000044s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRedundantRelationsTransformer39">After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer40">After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#PartitionBodyLiteralsTransformer41">After PartitionBodyLiteralsTransformer (0.000057s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MinimiseProgramTransformer42">After MinimiseProgramTransformer (0.000029s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveRelationCopiesTransformer43">After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReorderLiteralsTransformer44">After ReorderLiteralsTransformer (0.000011s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#MaterializeAggregationQueriesTransformer45">After MaterializeAggregationQueriesTransformer (0.000020s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#RemoveEmptyRelationsTransformer46">After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ReorderLiteralsTransformer47">After ReorderLiteralsTransformer (0.000008s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#AstExecutionPlanChecker48">After AstExecutionPlanChecker (0.000032s) (unchanged)</a>
+<ul>
+</ul>
+<a href="#ram-program49">RAM Program (0.000649s)</a>
+<ul>
+</ul>
+<a id="Parsing6"></a>
+<div class='headerdiv'>
+<h1>After Parsing (0.001937s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="Parsing-dl0"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Constant = {Top:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Const&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Constant{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Constant{
+(_)=>x
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>Intrsc(x + y)
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Constant{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- addStm --
+.decl addStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+addStm(3,"a","a","b").
+
+
+
+// -- assignVar --
+.decl assignVar(l:number,r:symbol)  
+
+assignVar(l,r) :- 
+   setConstStm(l,r,_).
+
+assignVar(l,r) :- 
+   addStm(l,r,_,_).
+
+
+
+// -- flow --
+.decl flow(l1:number,l2:number)  
+
+flow(0,1).
+
+flow(1,2).
+
+flow(2,3).
+
+flow(3,2).
+
+flow(2,4).
+
+
+
+// -- setConstStm --
+.decl setConstStm(l:number,r:symbol,c:number)  
+
+setConstStm(0,"a",1).
+
+setConstStm(1,"b",1).
+
+
+
+// -- varEntry --
+.lat varEntry(l:number,k:symbol,v:Constant)  
+
+varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+
+.output {varEntry}
+
+
+
+// -- varExit --
+.lat varExit(l:number,k:symbol,v:Constant)  
+
+varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+
+varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+
+.output {varExit}
+
+</pre>
+
+</div>
+<a id="Parsing-ta1"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: addStm(3,"a","a","b").
+Problem:
+{
+	var(3) &lt;: number,
+	var("a") &lt;: symbol,
+	var("a") &lt;: symbol,
+	var("b") &lt;: symbol,
+	var(3) &lt;: number,
+	var("a") &lt;: symbol,
+	var("a") &lt;: symbol,
+	var("b") &lt;: symbol
+}
+Solution:
+{var(3)->{number},var("a")->{symbol},var("a")->{symbol},var("b")->{symbol}}
+Clause: assignVar(l,r) :- 
+   setConstStm(l,r,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: number
+}
+Solution:
+{var(l)->{number},var(_)->{number},var(r)->{symbol}}
+Clause: assignVar(l,r) :- 
+   addStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(_)->{symbol},var(_)->{symbol},var(r)->{symbol}}
+Clause: flow(0,1).
+Problem:
+{
+	var(0) &lt;: number,
+	var(1) &lt;: number,
+	var(0) &lt;: number,
+	var(1) &lt;: number
+}
+Solution:
+{var(0)->{number},var(1)->{number}}
+Clause: flow(1,2).
+Problem:
+{
+	var(1) &lt;: number,
+	var(2) &lt;: number,
+	var(1) &lt;: number,
+	var(2) &lt;: number
+}
+Solution:
+{var(1)->{number},var(2)->{number}}
+Clause: flow(2,3).
+Problem:
+{
+	var(2) &lt;: number,
+	var(3) &lt;: number,
+	var(2) &lt;: number,
+	var(3) &lt;: number
+}
+Solution:
+{var(2)->{number},var(3)->{number}}
+Clause: flow(3,2).
+Problem:
+{
+	var(3) &lt;: number,
+	var(2) &lt;: number,
+	var(3) &lt;: number,
+	var(2) &lt;: number
+}
+Solution:
+{var(3)->{number},var(2)->{number}}
+Clause: flow(2,4).
+Problem:
+{
+	var(2) &lt;: number,
+	var(4) &lt;: number,
+	var(2) &lt;: number,
+	var(4) &lt;: number
+}
+Solution:
+{var(2)->{number},var(4)->{number}}
+Clause: setConstStm(0,"a",1).
+Problem:
+{
+	var(0) &lt;: number,
+	var("a") &lt;: symbol,
+	var(1) &lt;: number,
+	var(0) &lt;: number,
+	var("a") &lt;: symbol,
+	var(1) &lt;: number
+}
+Solution:
+{var(0)->{number},var("a")->{symbol},var(1)->{number}}
+Clause: setConstStm(1,"b",1).
+Problem:
+{
+	var(1) &lt;: number,
+	var("b") &lt;: symbol,
+	var(1) &lt;: number,
+	var(1) &lt;: number,
+	var("b") &lt;: symbol,
+	var(1) &lt;: number
+}
+Solution:
+{var(1)->{number},var("b")->{symbol},var(1)->{number}}
+Clause: varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+Problem:
+{
+	var(l2) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l1) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l1) &lt;: number,
+	var(l2) &lt;: number
+}
+Solution:
+{var(l1)->{number},var(l2)->{number},var(k)->{symbol},var(v)->{Constant}}
+Clause: varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(l)->{number},var(c)->{number},var(r)->{symbol},var(&lat_alpha(c))->{Constant}}
+Clause: varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Constant,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(l)->{number},var(r)->{symbol},var(&lat_sum(v1,v2))->{Constant}}
+Clause: varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l) >: number,
+	var(r) >: symbol
+}
+Solution:
+{var(v)->{Constant},var(l)->{number},var(r)->{symbol}}
+
+-- Result --
+addStm(3,"a","a","b").
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},_&isin;{number}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   addStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+flow(0,1).
+flow(1,2).
+flow(2,3).
+flow(3,2).
+flow(2,4).
+setConstStm(0,"a",1).
+setConstStm(1,"b",1).
+varEntry(l2&isin;{number},k&isin;{symbol},v&isin;{Constant}) :- 
+   varExit(l1&isin;{number},k&isin;{symbol},v&isin;{Constant}),
+   flow(l1&isin;{number},l2&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},c&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_sum(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   addStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Constant}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Constant}).
+varExit(l&isin;{number},r&isin;{symbol},v&isin;{Constant}) :- 
+   varEntry(l&isin;{number},r&isin;{symbol},v&isin;{Constant}),
+   !assignVar(l&isin;{number},r&isin;{symbol}).
+</pre>
+
+</div>
+<a id="Parsing-tea2"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Constant = {Top:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="Parsing-prec-graph3"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjMycHQiIGhlaWdodD0iMjYwcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjMyLjI0IDI2MC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyNTYpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yNTYgMjI4LjI0MTYsLTI1NiAyMjguMjQxNiw0IC00LDQiLz4KPCEtLSBhZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzguMzQ2NiIgY3k9Ii0yMzQiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIGFzc2lnblZhciAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hc3NpZ25WYXI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxMDMuMzQ2NiIgY3k9Ii0xNjIiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTAzLjM0NjYiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YWRkU3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTMuNDIyMywtMjE3LjMwMDhDNjEuNjcwNywtMjA4LjE2NDEgNzIuMDQ0OSwtMTk2LjY3MjYgODEuMTk2NywtMTg2LjUzNTMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjgzLjc5ODIsLTE4OC44NzY3IDg3LjkwMTMsLTE3OS4xMDg2IDc4LjYwMjMsLTE4NC4xODYgODMuNzk4MiwtMTg4Ljg3NjciLz4KPC9nPgo8IS0tIHZhckV4aXQgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+dmFyRXhpdDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEwMy4zNDY2IiBjeT0iLTkwIiByeD0iMzYuMjkzOCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMy4zNDY2IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj52YXJFeGl0PC90ZXh0Pgo8L2c+CjwhLS0gYWRkU3RtJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hZGRTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzYuODk2MywtMjE1Ljc3MjFDMzYuMTYyOCwtMTk2Ljg2MDYgMzcuMjA4OSwtMTY2LjkwMzggNDguMzQ2NiwtMTQ0IDU0LjM5NTcsLTEzMS41NjA2IDY0LjUyNjgsLTEyMC4zNjI4IDc0LjQ1NzMsLTExMS40MzE5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSI3Ni45Mzk0LC0xMTMuOTE1OSA4Mi4yOTY1LC0xMDQuNzc1MSA3Mi40MDg0LC0xMDguNTgwMSA3Ni45Mzk0LC0xMTMuOTE1OSIvPgo8L2c+CjwhLS0gYXNzaWduVmFyJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hc3NpZ25WYXImIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTAzLjM0NjYsLTE0My44MzE0QzEwMy4zNDY2LC0xMzYuMTMxIDEwMy4zNDY2LC0xMjYuOTc0MyAxMDMuMzQ2NiwtMTE4LjQxNjYiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjEwNi44NDY3LC0xMTguNDEzMiAxMDMuMzQ2NiwtMTA4LjQxMzMgOTkuODQ2NywtMTE4LjQxMzMgMTA2Ljg0NjcsLTExOC40MTMyIi8+CjwvZz4KPCEtLSBmbG93IC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmZsb3c8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxODQuMzQ2NiIgY3k9Ii05MCIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTg0LjM0NjYiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmZsb3c8L3RleHQ+CjwvZz4KPCEtLSB2YXJFbnRyeSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT52YXJFbnRyeTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEwMy4zNDY2IiBjeT0iLTE4IiByeD0iNDEuNjkyOCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMy4zNDY2IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj52YXJFbnRyeTwvdGV4dD4KPC9nPgo8IS0tIGZsb3cmIzQ1OyZndDt2YXJFbnRyeSAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5mbG93JiM0NTsmZ3Q7dmFyRW50cnk8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNjcuOTU1LC03NS40Mjk3QzE1Ni44NTMyLC02NS41NjE1IDE0MS45NTE1LC01Mi4zMTU0IDEyOS4yNTcxLC00MS4wMzE1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMzEuNDkxNCwtMzguMzM0NyAxMjEuNjkyLC0zNC4zMDcgMTI2Ljg0MDgsLTQzLjU2NjYgMTMxLjQ5MTQsLTM4LjMzNDciLz4KPC9nPgo8IS0tIHNldENvbnN0U3RtIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNldENvbnN0U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTY4LjM0NjYiIGN5PSItMjM0IiByeD0iNTUuNzkwMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE2OC4zNDY2IiB5PSItMjMwLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c2V0Q29uc3RTdG08L3RleHQ+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5zZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE1Mi42MTE5LC0yMTYuNTcwOEMxNDQuNTQ4LC0yMDcuNjM4NSAxMzQuNTg3OCwtMTk2LjYwNTYgMTI1LjczODEsLTE4Ni44MDI5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMjguMjM1NCwtMTg0LjM0NiAxMTguOTM2NCwtMTc5LjI2ODcgMTIzLjAzOTUsLTE4OS4wMzY4IDEyOC4yMzU0LC0xODQuMzQ2Ii8+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c2V0Q29uc3RTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTY5Ljc5NjksLTIxNS43NzIxQzE3MC41MzA0LC0xOTYuODYwNiAxNjkuNDg0MywtMTY2LjkwMzggMTU4LjM0NjYsLTE0NCAxNTIuMjk3NSwtMTMxLjU2MDYgMTQyLjE2NjQsLTEyMC4zNjI4IDEzMi4yMzU5LC0xMTEuNDMxOSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTM0LjI4NDgsLTEwOC41ODAxIDEyNC4zOTY3LC0xMDQuNzc1MSAxMjkuNzUzOCwtMTEzLjkxNTkgMTM0LjI4NDgsLTEwOC41ODAxIi8+CjwvZz4KPCEtLSB2YXJFbnRyeSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+dmFyRW50cnkmIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTA5LjI2NjgsLTM1Ljg0MjVDMTEwLjA1NDQsLTQzLjcyMzYgMTEwLjI4MTQsLTUzLjE3NzQgMTA5Ljk0NzYsLTYxLjk2NDciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjEwNi40MzgxLC02MS45OTA4IDEwOS4yNjIzLC03Mi4yMDIyIDExMy40MjI1LC02Mi40NTgzIDEwNi40MzgxLC02MS45OTA4Ii8+CjwvZz4KPCEtLSB2YXJFeGl0JiM0NTsmZ3Q7dmFyRW50cnkgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+dmFyRXhpdCYjNDU7Jmd0O3ZhckVudHJ5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNOTcuNDMwOSwtNzIuMjAyMkM5Ni42NDExLC02NC4zMjcxIDk2LjQxMjEsLTU0Ljg3NSA5Ni43NDM3LC00Ni4wODUyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMDAuMjUzNSwtNDYuMDUzMiA5Ny40MjY0LC0zNS44NDI1IDkzLjI2OSwtNDUuNTg3NiAxMDAuMjUzNSwtNDYuMDUzMiIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=='><br/>
+<a href="javascript:toggleVisibility('Parsing-prec-graph-source')">(show dot source)</a>
+<div id='Parsing-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"addStm" [label = "addStm"];
+	"assignVar" [label = "assignVar"];
+	"flow" [label = "flow"];
+	"setConstStm" [label = "setConstStm"];
+	"varEntry" [label = "varEntry"];
+	"varExit" [label = "varExit"];
+	"addStm" -> "assignVar";
+	"addStm" -> "varExit";
+	"assignVar" -> "varExit";
+	"flow" -> "varEntry";
+	"setConstStm" -> "assignVar";
+	"setConstStm" -> "varExit";
+	"varEntry" -> "varExit";
+	"varExit" -> "varEntry";
+}
+</pre>
+</div>
+
+</div>
+<a id="Parsing-scc-graph4"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjU4cHQiIGhlaWdodD0iMjA2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjU4LjM1IDIwNS43NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyMDEuNzQwMSkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTIwMS43NDAxIDI1NC4zNDY2LC0yMDEuNzQwMSAyNTQuMzQ2Niw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjM4LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIF8yIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8yPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iOTQuMzQ2NiIgY3k9Ii0xMDcuNzQwMSIgcng9IjQ2LjI5MjMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5NC4zNDY2IiB5PSItMTA0LjA0MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YXNzaWduVmFyPC90ZXh0Pgo8L2c+CjwhLS0gXzAmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMCYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTEuNjE3OCwtMTYyLjY3NzFDNTguNDIyMSwtMTUzLjkyODcgNjYuODQ4NywtMTQzLjA5NDYgNzQuNDE1NiwtMTMzLjM2NTciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9Ijc3LjQwNDksLTEzNS4yMjMxIDgwLjc4MTYsLTEyNS4xODA4IDcxLjg3OTQsLTEzMC45MjU1IDc3LjQwNDksLTEzNS4yMjMxIi8+CjwvZz4KPCEtLSBfNCAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzMS4zNDY2IiBjeT0iLTI2Ljg3MDEiIHJ4PSI0OC4xNjY3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnksPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTE1LjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRXhpdDwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzLjg4OTksLTE2MS42MjlDMzAuMjEyMSwtMTQyLjU0NDggMjcuMzMyMywtMTEyLjE5ODggMzkuMzQ2NiwtODkuNzQwMSA0OC45ODIzLC03MS43Mjc4IDY2LjMyMTUsLTU3Ljg3ODMgODMuMzY5OCwtNDcuODIyMSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iODUuMTc0NiwtNTAuODIzNCA5Mi4yMTYyLC00Mi45MDcxIDgxLjc3NDksLTQ0LjcwNDMgODUuMTc0NiwtNTAuODIzNCIvPgo8L2c+CjwhLS0gXzEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzE8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxNTkuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjU1Ljc5MDMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNTkuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnNldENvbnN0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTQzLjYxMTksLTE2Mi4zMTA5QzEzNS41NDgsLTE1My4zNzg2IDEyNS41ODc4LC0xNDIuMzQ1OCAxMTYuNzM4MSwtMTMyLjU0MyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTE5LjIzNTQsLTEzMC4wODYxIDEwOS45MzY0LC0xMjUuMDA4OCAxMTQuMDM5NSwtMTM0Ljc3NjkgMTE5LjIzNTQsLTEzMC4wODYxIi8+CjwvZz4KPCEtLSBfMSYjNDU7Jmd0O180IC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8xJiM0NTsmZ3Q7XzQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTguMjM2MiwtMTYxLjY3NDdDMTU2LjkwMzcsLTE0My40MDUxIDE1NC4yMTQ0LC0xMTQuNDE4NCAxNDkuMzQ2NiwtODkuNzQwMSAxNDcuNjQxMSwtODEuMDkzNiAxNDUuMzE0OCwtNzEuOTEwMiAxNDIuOTAxMiwtNjMuMzEwNSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTQ2LjIxNTUsLTYyLjE3MzMgMTQwLjA1OTUsLTUzLjU1MDQgMTM5LjQ5NDYsLTY0LjEzMDIgMTQ2LjIxNTUsLTYyLjE3MzMiLz4KPC9nPgo8IS0tIF8yJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzImIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEwMi41NTgxLC04OS43OTI0QzEwNi4yNjI2LC04MS42OTU3IDExMC43NzQsLTcxLjgzNSAxMTUuMTE2MiwtNjIuMzQ0NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTE4LjM4NzksLTYzLjYwNjEgMTE5LjM2NTcsLTUzLjA1NjQgMTEyLjAyMjUsLTYwLjY5MzcgMTE4LjM4NzksLTYzLjYwNjEiLz4KPC9nPgo8IS0tIF8zIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8zPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjIzLjM0NjYiIGN5PSItMTA3Ljc0MDEiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyMy4zNDY2IiB5PSItMTA0LjA0MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+ZmxvdzwvdGV4dD4KPC9nPgo8IS0tIF8zJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzMmIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIwNi44OTg4LC05My4yODIyQzE5NS4yOTg5LC04My4wODU2IDE3OS4zNTEsLTY5LjA2NyAxNjUuMDk2MSwtNTYuNTM2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3LjIxMDcsLTUzLjczNTQgMTU3LjM4OTIsLTQ5Ljc2MjEgMTYyLjU4OTIsLTU4Ljk5MyAxNjcuMjEwNywtNTMuNzM1NCIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=='><br/>
+<a href="javascript:toggleVisibility('Parsing-scc-graph-source')">(show dot source)</a>
+<div id='Parsing-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "addStm" ];
+	_1[label = "setConstStm" ];
+	_2[label = "assignVar" ];
+	_3[label = "flow" ];
+	_4[label = "varEntry,\nvarExit" ];
+	_0 -> _2;
+	_0 -> _4;
+	_1 -> _2;
+	_1 -> _4;
+	_2 -> _4;
+	_3 -> _4;
+}</pre>
+</div>
+
+</div>
+<a id="Parsing-topsort-scc-graph5"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 2
+0 4
+1 2
+1 4
+2 4
+3 4
+--- total order with relations of each strata ---
+0: [addStm]
+1: [setConstStm]
+2: [assignVar]
+3: [flow]
+4: [varEntry, varExit]
+
+--- statistics of topological order ---
+cost: 4
+</pre>
+
+</div>
+</div>
+<a id="AstComponentChecker7"></a>
+<div class='headerdiv'>
+<h1>After AstComponentChecker (0.000026s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ComponentInstantiationTransformer14"></a>
+<div class='headerdiv'>
+<h1>After ComponentInstantiationTransformer (0.000024s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="ComponentInstantiationTransformer-dl8"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Constant = {Top:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Const&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Constant{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Constant{
+(_)=>x
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>Intrsc(x + y)
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Constant{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- addStm --
+.decl addStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+addStm(3,"a","a","b").
+
+
+
+// -- assignVar --
+.decl assignVar(l:number,r:symbol)  
+
+assignVar(l,r) :- 
+   setConstStm(l,r,_).
+
+assignVar(l,r) :- 
+   addStm(l,r,_,_).
+
+
+
+// -- flow --
+.decl flow(l1:number,l2:number)  
+
+flow(0,1).
+
+flow(1,2).
+
+flow(2,3).
+
+flow(3,2).
+
+flow(2,4).
+
+
+
+// -- setConstStm --
+.decl setConstStm(l:number,r:symbol,c:number)  
+
+setConstStm(0,"a",1).
+
+setConstStm(1,"b",1).
+
+
+
+// -- varEntry --
+.lat varEntry(l:number,k:symbol,v:Constant)  
+
+varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+
+.output {varEntry}
+
+
+
+// -- varExit --
+.lat varExit(l:number,k:symbol,v:Constant)  
+
+varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+
+varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+
+.output {varExit}
+
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-ta9"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: addStm(3,"a","a","b").
+Problem:
+{
+	var(3) &lt;: number,
+	var("a") &lt;: symbol,
+	var("a") &lt;: symbol,
+	var("b") &lt;: symbol,
+	var(3) &lt;: number,
+	var("a") &lt;: symbol,
+	var("a") &lt;: symbol,
+	var("b") &lt;: symbol
+}
+Solution:
+{var(3)->{number},var("a")->{symbol},var("a")->{symbol},var("b")->{symbol}}
+Clause: assignVar(l,r) :- 
+   setConstStm(l,r,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: number
+}
+Solution:
+{var(l)->{number},var(_)->{number},var(r)->{symbol}}
+Clause: assignVar(l,r) :- 
+   addStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(_)->{symbol},var(_)->{symbol},var(r)->{symbol}}
+Clause: flow(0,1).
+Problem:
+{
+	var(0) &lt;: number,
+	var(1) &lt;: number,
+	var(0) &lt;: number,
+	var(1) &lt;: number
+}
+Solution:
+{var(0)->{number},var(1)->{number}}
+Clause: flow(1,2).
+Problem:
+{
+	var(1) &lt;: number,
+	var(2) &lt;: number,
+	var(1) &lt;: number,
+	var(2) &lt;: number
+}
+Solution:
+{var(1)->{number},var(2)->{number}}
+Clause: flow(2,3).
+Problem:
+{
+	var(2) &lt;: number,
+	var(3) &lt;: number,
+	var(2) &lt;: number,
+	var(3) &lt;: number
+}
+Solution:
+{var(2)->{number},var(3)->{number}}
+Clause: flow(3,2).
+Problem:
+{
+	var(3) &lt;: number,
+	var(2) &lt;: number,
+	var(3) &lt;: number,
+	var(2) &lt;: number
+}
+Solution:
+{var(3)->{number},var(2)->{number}}
+Clause: flow(2,4).
+Problem:
+{
+	var(2) &lt;: number,
+	var(4) &lt;: number,
+	var(2) &lt;: number,
+	var(4) &lt;: number
+}
+Solution:
+{var(2)->{number},var(4)->{number}}
+Clause: setConstStm(0,"a",1).
+Problem:
+{
+	var(0) &lt;: number,
+	var("a") &lt;: symbol,
+	var(1) &lt;: number,
+	var(0) &lt;: number,
+	var("a") &lt;: symbol,
+	var(1) &lt;: number
+}
+Solution:
+{var(0)->{number},var("a")->{symbol},var(1)->{number}}
+Clause: setConstStm(1,"b",1).
+Problem:
+{
+	var(1) &lt;: number,
+	var("b") &lt;: symbol,
+	var(1) &lt;: number,
+	var(1) &lt;: number,
+	var("b") &lt;: symbol,
+	var(1) &lt;: number
+}
+Solution:
+{var(1)->{number},var("b")->{symbol},var(1)->{number}}
+Clause: varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+Problem:
+{
+	var(l2) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l1) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l1) &lt;: number,
+	var(l2) &lt;: number
+}
+Solution:
+{var(l1)->{number},var(l2)->{number},var(k)->{symbol},var(v)->{Constant}}
+Clause: varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(l)->{number},var(c)->{number},var(r)->{symbol},var(&lat_alpha(c))->{Constant}}
+Clause: varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Constant,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(l)->{number},var(r)->{symbol},var(&lat_sum(v1,v2))->{Constant}}
+Clause: varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l) >: number,
+	var(r) >: symbol
+}
+Solution:
+{var(v)->{Constant},var(l)->{number},var(r)->{symbol}}
+
+-- Result --
+addStm(3,"a","a","b").
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},_&isin;{number}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   addStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+flow(0,1).
+flow(1,2).
+flow(2,3).
+flow(3,2).
+flow(2,4).
+setConstStm(0,"a",1).
+setConstStm(1,"b",1).
+varEntry(l2&isin;{number},k&isin;{symbol},v&isin;{Constant}) :- 
+   varExit(l1&isin;{number},k&isin;{symbol},v&isin;{Constant}),
+   flow(l1&isin;{number},l2&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},c&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_sum(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   addStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Constant}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Constant}).
+varExit(l&isin;{number},r&isin;{symbol},v&isin;{Constant}) :- 
+   varEntry(l&isin;{number},r&isin;{symbol},v&isin;{Constant}),
+   !assignVar(l&isin;{number},r&isin;{symbol}).
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-tea10"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Constant = {Top:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ComponentInstantiationTransformer-prec-graph11"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjMycHQiIGhlaWdodD0iMjYwcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjMyLjI0IDI2MC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyNTYpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yNTYgMjI4LjI0MTYsLTI1NiAyMjguMjQxNiw0IC00LDQiLz4KPCEtLSBhZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzguMzQ2NiIgY3k9Ii0yMzQiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIGFzc2lnblZhciAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hc3NpZ25WYXI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxMDMuMzQ2NiIgY3k9Ii0xNjIiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTAzLjM0NjYiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YWRkU3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTMuNDIyMywtMjE3LjMwMDhDNjEuNjcwNywtMjA4LjE2NDEgNzIuMDQ0OSwtMTk2LjY3MjYgODEuMTk2NywtMTg2LjUzNTMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjgzLjc5ODIsLTE4OC44NzY3IDg3LjkwMTMsLTE3OS4xMDg2IDc4LjYwMjMsLTE4NC4xODYgODMuNzk4MiwtMTg4Ljg3NjciLz4KPC9nPgo8IS0tIHZhckV4aXQgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+dmFyRXhpdDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEwMy4zNDY2IiBjeT0iLTkwIiByeD0iMzYuMjkzOCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMy4zNDY2IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj52YXJFeGl0PC90ZXh0Pgo8L2c+CjwhLS0gYWRkU3RtJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hZGRTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzYuODk2MywtMjE1Ljc3MjFDMzYuMTYyOCwtMTk2Ljg2MDYgMzcuMjA4OSwtMTY2LjkwMzggNDguMzQ2NiwtMTQ0IDU0LjM5NTcsLTEzMS41NjA2IDY0LjUyNjgsLTEyMC4zNjI4IDc0LjQ1NzMsLTExMS40MzE5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSI3Ni45Mzk0LC0xMTMuOTE1OSA4Mi4yOTY1LC0xMDQuNzc1MSA3Mi40MDg0LC0xMDguNTgwMSA3Ni45Mzk0LC0xMTMuOTE1OSIvPgo8L2c+CjwhLS0gYXNzaWduVmFyJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hc3NpZ25WYXImIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTAzLjM0NjYsLTE0My44MzE0QzEwMy4zNDY2LC0xMzYuMTMxIDEwMy4zNDY2LC0xMjYuOTc0MyAxMDMuMzQ2NiwtMTE4LjQxNjYiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjEwNi44NDY3LC0xMTguNDEzMiAxMDMuMzQ2NiwtMTA4LjQxMzMgOTkuODQ2NywtMTE4LjQxMzMgMTA2Ljg0NjcsLTExOC40MTMyIi8+CjwvZz4KPCEtLSBmbG93IC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmZsb3c8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxODQuMzQ2NiIgY3k9Ii05MCIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTg0LjM0NjYiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmZsb3c8L3RleHQ+CjwvZz4KPCEtLSB2YXJFbnRyeSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT52YXJFbnRyeTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEwMy4zNDY2IiBjeT0iLTE4IiByeD0iNDEuNjkyOCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMy4zNDY2IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj52YXJFbnRyeTwvdGV4dD4KPC9nPgo8IS0tIGZsb3cmIzQ1OyZndDt2YXJFbnRyeSAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5mbG93JiM0NTsmZ3Q7dmFyRW50cnk8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNjcuOTU1LC03NS40Mjk3QzE1Ni44NTMyLC02NS41NjE1IDE0MS45NTE1LC01Mi4zMTU0IDEyOS4yNTcxLC00MS4wMzE1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMzEuNDkxNCwtMzguMzM0NyAxMjEuNjkyLC0zNC4zMDcgMTI2Ljg0MDgsLTQzLjU2NjYgMTMxLjQ5MTQsLTM4LjMzNDciLz4KPC9nPgo8IS0tIHNldENvbnN0U3RtIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNldENvbnN0U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTY4LjM0NjYiIGN5PSItMjM0IiByeD0iNTUuNzkwMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE2OC4zNDY2IiB5PSItMjMwLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c2V0Q29uc3RTdG08L3RleHQ+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5zZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE1Mi42MTE5LC0yMTYuNTcwOEMxNDQuNTQ4LC0yMDcuNjM4NSAxMzQuNTg3OCwtMTk2LjYwNTYgMTI1LjczODEsLTE4Ni44MDI5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMjguMjM1NCwtMTg0LjM0NiAxMTguOTM2NCwtMTc5LjI2ODcgMTIzLjAzOTUsLTE4OS4wMzY4IDEyOC4yMzU0LC0xODQuMzQ2Ii8+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c2V0Q29uc3RTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTY5Ljc5NjksLTIxNS43NzIxQzE3MC41MzA0LC0xOTYuODYwNiAxNjkuNDg0MywtMTY2LjkwMzggMTU4LjM0NjYsLTE0NCAxNTIuMjk3NSwtMTMxLjU2MDYgMTQyLjE2NjQsLTEyMC4zNjI4IDEzMi4yMzU5LC0xMTEuNDMxOSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTM0LjI4NDgsLTEwOC41ODAxIDEyNC4zOTY3LC0xMDQuNzc1MSAxMjkuNzUzOCwtMTEzLjkxNTkgMTM0LjI4NDgsLTEwOC41ODAxIi8+CjwvZz4KPCEtLSB2YXJFbnRyeSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+dmFyRW50cnkmIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTA5LjI2NjgsLTM1Ljg0MjVDMTEwLjA1NDQsLTQzLjcyMzYgMTEwLjI4MTQsLTUzLjE3NzQgMTA5Ljk0NzYsLTYxLjk2NDciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjEwNi40MzgxLC02MS45OTA4IDEwOS4yNjIzLC03Mi4yMDIyIDExMy40MjI1LC02Mi40NTgzIDEwNi40MzgxLC02MS45OTA4Ii8+CjwvZz4KPCEtLSB2YXJFeGl0JiM0NTsmZ3Q7dmFyRW50cnkgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+dmFyRXhpdCYjNDU7Jmd0O3ZhckVudHJ5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNOTcuNDMwOSwtNzIuMjAyMkM5Ni42NDExLC02NC4zMjcxIDk2LjQxMjEsLTU0Ljg3NSA5Ni43NDM3LC00Ni4wODUyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMDAuMjUzNSwtNDYuMDUzMiA5Ny40MjY0LC0zNS44NDI1IDkzLjI2OSwtNDUuNTg3NiAxMDAuMjUzNSwtNDYuMDUzMiIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=='><br/>
+<a href="javascript:toggleVisibility('ComponentInstantiationTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ComponentInstantiationTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"addStm" [label = "addStm"];
+	"assignVar" [label = "assignVar"];
+	"flow" [label = "flow"];
+	"setConstStm" [label = "setConstStm"];
+	"varEntry" [label = "varEntry"];
+	"varExit" [label = "varExit"];
+	"addStm" -> "assignVar";
+	"addStm" -> "varExit";
+	"assignVar" -> "varExit";
+	"flow" -> "varEntry";
+	"setConstStm" -> "assignVar";
+	"setConstStm" -> "varExit";
+	"varEntry" -> "varExit";
+	"varExit" -> "varEntry";
+}
+</pre>
+</div>
+
+</div>
+<a id="ComponentInstantiationTransformer-scc-graph12"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjU4cHQiIGhlaWdodD0iMjA2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjU4LjM1IDIwNS43NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyMDEuNzQwMSkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTIwMS43NDAxIDI1NC4zNDY2LC0yMDEuNzQwMSAyNTQuMzQ2Niw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjM4LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIF8yIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8yPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iOTQuMzQ2NiIgY3k9Ii0xMDcuNzQwMSIgcng9IjQ2LjI5MjMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5NC4zNDY2IiB5PSItMTA0LjA0MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YXNzaWduVmFyPC90ZXh0Pgo8L2c+CjwhLS0gXzAmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMCYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTEuNjE3OCwtMTYyLjY3NzFDNTguNDIyMSwtMTUzLjkyODcgNjYuODQ4NywtMTQzLjA5NDYgNzQuNDE1NiwtMTMzLjM2NTciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9Ijc3LjQwNDksLTEzNS4yMjMxIDgwLjc4MTYsLTEyNS4xODA4IDcxLjg3OTQsLTEzMC45MjU1IDc3LjQwNDksLTEzNS4yMjMxIi8+CjwvZz4KPCEtLSBfNCAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzMS4zNDY2IiBjeT0iLTI2Ljg3MDEiIHJ4PSI0OC4xNjY3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnksPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTE1LjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRXhpdDwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzLjg4OTksLTE2MS42MjlDMzAuMjEyMSwtMTQyLjU0NDggMjcuMzMyMywtMTEyLjE5ODggMzkuMzQ2NiwtODkuNzQwMSA0OC45ODIzLC03MS43Mjc4IDY2LjMyMTUsLTU3Ljg3ODMgODMuMzY5OCwtNDcuODIyMSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iODUuMTc0NiwtNTAuODIzNCA5Mi4yMTYyLC00Mi45MDcxIDgxLjc3NDksLTQ0LjcwNDMgODUuMTc0NiwtNTAuODIzNCIvPgo8L2c+CjwhLS0gXzEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzE8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxNTkuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjU1Ljc5MDMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNTkuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnNldENvbnN0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTQzLjYxMTksLTE2Mi4zMTA5QzEzNS41NDgsLTE1My4zNzg2IDEyNS41ODc4LC0xNDIuMzQ1OCAxMTYuNzM4MSwtMTMyLjU0MyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTE5LjIzNTQsLTEzMC4wODYxIDEwOS45MzY0LC0xMjUuMDA4OCAxMTQuMDM5NSwtMTM0Ljc3NjkgMTE5LjIzNTQsLTEzMC4wODYxIi8+CjwvZz4KPCEtLSBfMSYjNDU7Jmd0O180IC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8xJiM0NTsmZ3Q7XzQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTguMjM2MiwtMTYxLjY3NDdDMTU2LjkwMzcsLTE0My40MDUxIDE1NC4yMTQ0LC0xMTQuNDE4NCAxNDkuMzQ2NiwtODkuNzQwMSAxNDcuNjQxMSwtODEuMDkzNiAxNDUuMzE0OCwtNzEuOTEwMiAxNDIuOTAxMiwtNjMuMzEwNSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTQ2LjIxNTUsLTYyLjE3MzMgMTQwLjA1OTUsLTUzLjU1MDQgMTM5LjQ5NDYsLTY0LjEzMDIgMTQ2LjIxNTUsLTYyLjE3MzMiLz4KPC9nPgo8IS0tIF8yJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzImIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEwMi41NTgxLC04OS43OTI0QzEwNi4yNjI2LC04MS42OTU3IDExMC43NzQsLTcxLjgzNSAxMTUuMTE2MiwtNjIuMzQ0NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTE4LjM4NzksLTYzLjYwNjEgMTE5LjM2NTcsLTUzLjA1NjQgMTEyLjAyMjUsLTYwLjY5MzcgMTE4LjM4NzksLTYzLjYwNjEiLz4KPC9nPgo8IS0tIF8zIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8zPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjIzLjM0NjYiIGN5PSItMTA3Ljc0MDEiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyMy4zNDY2IiB5PSItMTA0LjA0MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+ZmxvdzwvdGV4dD4KPC9nPgo8IS0tIF8zJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzMmIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIwNi44OTg4LC05My4yODIyQzE5NS4yOTg5LC04My4wODU2IDE3OS4zNTEsLTY5LjA2NyAxNjUuMDk2MSwtNTYuNTM2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3LjIxMDcsLTUzLjczNTQgMTU3LjM4OTIsLTQ5Ljc2MjEgMTYyLjU4OTIsLTU4Ljk5MyAxNjcuMjEwNywtNTMuNzM1NCIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=='><br/>
+<a href="javascript:toggleVisibility('ComponentInstantiationTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ComponentInstantiationTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "addStm" ];
+	_1[label = "setConstStm" ];
+	_2[label = "assignVar" ];
+	_3[label = "flow" ];
+	_4[label = "varEntry,\nvarExit" ];
+	_0 -> _2;
+	_0 -> _4;
+	_1 -> _2;
+	_1 -> _4;
+	_2 -> _4;
+	_3 -> _4;
+}</pre>
+</div>
+
+</div>
+<a id="ComponentInstantiationTransformer-topsort-scc-graph13"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 2
+0 4
+1 2
+1 4
+2 4
+3 4
+--- total order with relations of each strata ---
+0: [addStm]
+1: [setConstStm]
+2: [assignVar]
+3: [flow]
+4: [varEntry, varExit]
+
+--- statistics of topological order ---
+cost: 4
+</pre>
+
+</div>
+</div>
+<a id="UniqueAggregationVariablesTransformer15"></a>
+<div class='headerdiv'>
+<h1>After UniqueAggregationVariablesTransformer (0.000042s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="AstSemanticChecker16"></a>
+<div class='headerdiv'>
+<h1>After AstSemanticChecker (0.000792s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveBooleanConstraintsTransformer17"></a>
+<div class='headerdiv'>
+<h1>After RemoveBooleanConstraintsTransformer (0.000024s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ResolveAliasesTransformer24"></a>
+<div class='headerdiv'>
+<h1>After ResolveAliasesTransformer (0.000080s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="ResolveAliasesTransformer-dl18"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Constant = {Top:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Const&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Constant{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Constant{
+(_)=>x
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>Intrsc(x + y)
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Constant{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- addStm --
+.decl addStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+addStm(3,"a","a","b").
+
+
+
+// -- assignVar --
+.decl assignVar(l:number,r:symbol)  
+
+assignVar(l,r) :- 
+   setConstStm(l,r,_).
+
+assignVar(l,r) :- 
+   addStm(l,r,_,_).
+
+
+
+// -- flow --
+.decl flow(l1:number,l2:number)  
+
+flow(0,1).
+
+flow(1,2).
+
+flow(2,3).
+
+flow(3,2).
+
+flow(2,4).
+
+
+
+// -- setConstStm --
+.decl setConstStm(l:number,r:symbol,c:number)  
+
+setConstStm(0,"a",1).
+
+setConstStm(1,"b",1).
+
+
+
+// -- varEntry --
+.lat varEntry(l:number,k:symbol,v:Constant)  
+
+varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+
+.output {varEntry}
+
+
+
+// -- varExit --
+.lat varExit(l:number,k:symbol,v:Constant)  
+
+varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+
+varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+
+.output {varExit}
+
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-ta19"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: addStm(3,"a","a","b").
+Problem:
+{
+	var(3) &lt;: number,
+	var("a") &lt;: symbol,
+	var("a") &lt;: symbol,
+	var("b") &lt;: symbol,
+	var(3) &lt;: number,
+	var("a") &lt;: symbol,
+	var("a") &lt;: symbol,
+	var("b") &lt;: symbol
+}
+Solution:
+{var(3)->{number},var("a")->{symbol},var("a")->{symbol},var("b")->{symbol}}
+Clause: assignVar(l,r) :- 
+   setConstStm(l,r,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: number
+}
+Solution:
+{var(l)->{number},var(_)->{number},var(r)->{symbol}}
+Clause: assignVar(l,r) :- 
+   addStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(_)->{symbol},var(_)->{symbol},var(r)->{symbol}}
+Clause: flow(0,1).
+Problem:
+{
+	var(0) &lt;: number,
+	var(1) &lt;: number,
+	var(0) &lt;: number,
+	var(1) &lt;: number
+}
+Solution:
+{var(0)->{number},var(1)->{number}}
+Clause: flow(1,2).
+Problem:
+{
+	var(1) &lt;: number,
+	var(2) &lt;: number,
+	var(1) &lt;: number,
+	var(2) &lt;: number
+}
+Solution:
+{var(1)->{number},var(2)->{number}}
+Clause: flow(2,3).
+Problem:
+{
+	var(2) &lt;: number,
+	var(3) &lt;: number,
+	var(2) &lt;: number,
+	var(3) &lt;: number
+}
+Solution:
+{var(2)->{number},var(3)->{number}}
+Clause: flow(3,2).
+Problem:
+{
+	var(3) &lt;: number,
+	var(2) &lt;: number,
+	var(3) &lt;: number,
+	var(2) &lt;: number
+}
+Solution:
+{var(3)->{number},var(2)->{number}}
+Clause: flow(2,4).
+Problem:
+{
+	var(2) &lt;: number,
+	var(4) &lt;: number,
+	var(2) &lt;: number,
+	var(4) &lt;: number
+}
+Solution:
+{var(2)->{number},var(4)->{number}}
+Clause: setConstStm(0,"a",1).
+Problem:
+{
+	var(0) &lt;: number,
+	var("a") &lt;: symbol,
+	var(1) &lt;: number,
+	var(0) &lt;: number,
+	var("a") &lt;: symbol,
+	var(1) &lt;: number
+}
+Solution:
+{var(0)->{number},var("a")->{symbol},var(1)->{number}}
+Clause: setConstStm(1,"b",1).
+Problem:
+{
+	var(1) &lt;: number,
+	var("b") &lt;: symbol,
+	var(1) &lt;: number,
+	var(1) &lt;: number,
+	var("b") &lt;: symbol,
+	var(1) &lt;: number
+}
+Solution:
+{var(1)->{number},var("b")->{symbol},var(1)->{number}}
+Clause: varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+Problem:
+{
+	var(l2) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l1) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l1) &lt;: number,
+	var(l2) &lt;: number
+}
+Solution:
+{var(l1)->{number},var(l2)->{number},var(k)->{symbol},var(v)->{Constant}}
+Clause: varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Constant,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(l)->{number},var(r)->{symbol},var(&lat_sum(v1,v2))->{Constant}}
+Clause: varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l) >: number,
+	var(r) >: symbol
+}
+Solution:
+{var(v)->{Constant},var(l)->{number},var(r)->{symbol}}
+Clause: varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(&lat_alpha(c))->{Constant},var(r)->{symbol},var(l)->{number},var(c)->{number}}
+
+-- Result --
+addStm(3,"a","a","b").
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},_&isin;{number}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   addStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+flow(0,1).
+flow(1,2).
+flow(2,3).
+flow(3,2).
+flow(2,4).
+setConstStm(0,"a",1).
+setConstStm(1,"b",1).
+varEntry(l2&isin;{number},k&isin;{symbol},v&isin;{Constant}) :- 
+   varExit(l1&isin;{number},k&isin;{symbol},v&isin;{Constant}),
+   flow(l1&isin;{number},l2&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_sum(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   addStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Constant}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Constant}).
+varExit(l&isin;{number},r&isin;{symbol},v&isin;{Constant}) :- 
+   varEntry(l&isin;{number},r&isin;{symbol},v&isin;{Constant}),
+   !assignVar(l&isin;{number},r&isin;{symbol}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},c&isin;{number}).
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-tea20"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Constant = {Top:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-prec-graph21"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjMycHQiIGhlaWdodD0iMjYwcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjMyLjI0IDI2MC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyNTYpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yNTYgMjI4LjI0MTYsLTI1NiAyMjguMjQxNiw0IC00LDQiLz4KPCEtLSBhZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzguMzQ2NiIgY3k9Ii0yMzQiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIGFzc2lnblZhciAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hc3NpZ25WYXI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxMDMuMzQ2NiIgY3k9Ii0xNjIiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTAzLjM0NjYiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YWRkU3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTMuNDIyMywtMjE3LjMwMDhDNjEuNjcwNywtMjA4LjE2NDEgNzIuMDQ0OSwtMTk2LjY3MjYgODEuMTk2NywtMTg2LjUzNTMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjgzLjc5ODIsLTE4OC44NzY3IDg3LjkwMTMsLTE3OS4xMDg2IDc4LjYwMjMsLTE4NC4xODYgODMuNzk4MiwtMTg4Ljg3NjciLz4KPC9nPgo8IS0tIHZhckV4aXQgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+dmFyRXhpdDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEwMy4zNDY2IiBjeT0iLTkwIiByeD0iMzYuMjkzOCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMy4zNDY2IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj52YXJFeGl0PC90ZXh0Pgo8L2c+CjwhLS0gYWRkU3RtJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hZGRTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzYuODk2MywtMjE1Ljc3MjFDMzYuMTYyOCwtMTk2Ljg2MDYgMzcuMjA4OSwtMTY2LjkwMzggNDguMzQ2NiwtMTQ0IDU0LjM5NTcsLTEzMS41NjA2IDY0LjUyNjgsLTEyMC4zNjI4IDc0LjQ1NzMsLTExMS40MzE5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSI3Ni45Mzk0LC0xMTMuOTE1OSA4Mi4yOTY1LC0xMDQuNzc1MSA3Mi40MDg0LC0xMDguNTgwMSA3Ni45Mzk0LC0xMTMuOTE1OSIvPgo8L2c+CjwhLS0gYXNzaWduVmFyJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hc3NpZ25WYXImIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTAzLjM0NjYsLTE0My44MzE0QzEwMy4zNDY2LC0xMzYuMTMxIDEwMy4zNDY2LC0xMjYuOTc0MyAxMDMuMzQ2NiwtMTE4LjQxNjYiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjEwNi44NDY3LC0xMTguNDEzMiAxMDMuMzQ2NiwtMTA4LjQxMzMgOTkuODQ2NywtMTE4LjQxMzMgMTA2Ljg0NjcsLTExOC40MTMyIi8+CjwvZz4KPCEtLSBmbG93IC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmZsb3c8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxODQuMzQ2NiIgY3k9Ii05MCIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTg0LjM0NjYiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmZsb3c8L3RleHQ+CjwvZz4KPCEtLSB2YXJFbnRyeSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT52YXJFbnRyeTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEwMy4zNDY2IiBjeT0iLTE4IiByeD0iNDEuNjkyOCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMy4zNDY2IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj52YXJFbnRyeTwvdGV4dD4KPC9nPgo8IS0tIGZsb3cmIzQ1OyZndDt2YXJFbnRyeSAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5mbG93JiM0NTsmZ3Q7dmFyRW50cnk8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNjcuOTU1LC03NS40Mjk3QzE1Ni44NTMyLC02NS41NjE1IDE0MS45NTE1LC01Mi4zMTU0IDEyOS4yNTcxLC00MS4wMzE1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMzEuNDkxNCwtMzguMzM0NyAxMjEuNjkyLC0zNC4zMDcgMTI2Ljg0MDgsLTQzLjU2NjYgMTMxLjQ5MTQsLTM4LjMzNDciLz4KPC9nPgo8IS0tIHNldENvbnN0U3RtIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNldENvbnN0U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTY4LjM0NjYiIGN5PSItMjM0IiByeD0iNTUuNzkwMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE2OC4zNDY2IiB5PSItMjMwLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c2V0Q29uc3RTdG08L3RleHQ+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5zZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE1Mi42MTE5LC0yMTYuNTcwOEMxNDQuNTQ4LC0yMDcuNjM4NSAxMzQuNTg3OCwtMTk2LjYwNTYgMTI1LjczODEsLTE4Ni44MDI5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMjguMjM1NCwtMTg0LjM0NiAxMTguOTM2NCwtMTc5LjI2ODcgMTIzLjAzOTUsLTE4OS4wMzY4IDEyOC4yMzU0LC0xODQuMzQ2Ii8+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c2V0Q29uc3RTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTY5Ljc5NjksLTIxNS43NzIxQzE3MC41MzA0LC0xOTYuODYwNiAxNjkuNDg0MywtMTY2LjkwMzggMTU4LjM0NjYsLTE0NCAxNTIuMjk3NSwtMTMxLjU2MDYgMTQyLjE2NjQsLTEyMC4zNjI4IDEzMi4yMzU5LC0xMTEuNDMxOSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTM0LjI4NDgsLTEwOC41ODAxIDEyNC4zOTY3LC0xMDQuNzc1MSAxMjkuNzUzOCwtMTEzLjkxNTkgMTM0LjI4NDgsLTEwOC41ODAxIi8+CjwvZz4KPCEtLSB2YXJFbnRyeSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+dmFyRW50cnkmIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTA5LjI2NjgsLTM1Ljg0MjVDMTEwLjA1NDQsLTQzLjcyMzYgMTEwLjI4MTQsLTUzLjE3NzQgMTA5Ljk0NzYsLTYxLjk2NDciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjEwNi40MzgxLC02MS45OTA4IDEwOS4yNjIzLC03Mi4yMDIyIDExMy40MjI1LC02Mi40NTgzIDEwNi40MzgxLC02MS45OTA4Ii8+CjwvZz4KPCEtLSB2YXJFeGl0JiM0NTsmZ3Q7dmFyRW50cnkgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+dmFyRXhpdCYjNDU7Jmd0O3ZhckVudHJ5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNOTcuNDMwOSwtNzIuMjAyMkM5Ni42NDExLC02NC4zMjcxIDk2LjQxMjEsLTU0Ljg3NSA5Ni43NDM3LC00Ni4wODUyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMDAuMjUzNSwtNDYuMDUzMiA5Ny40MjY0LC0zNS44NDI1IDkzLjI2OSwtNDUuNTg3NiAxMDAuMjUzNSwtNDYuMDUzMiIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"addStm" [label = "addStm"];
+	"assignVar" [label = "assignVar"];
+	"flow" [label = "flow"];
+	"setConstStm" [label = "setConstStm"];
+	"varEntry" [label = "varEntry"];
+	"varExit" [label = "varExit"];
+	"addStm" -> "assignVar";
+	"addStm" -> "varExit";
+	"assignVar" -> "varExit";
+	"flow" -> "varEntry";
+	"setConstStm" -> "assignVar";
+	"setConstStm" -> "varExit";
+	"varEntry" -> "varExit";
+	"varExit" -> "varEntry";
+}
+</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-scc-graph22"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjU4cHQiIGhlaWdodD0iMjA2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjU4LjM1IDIwNS43NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyMDEuNzQwMSkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTIwMS43NDAxIDI1NC4zNDY2LC0yMDEuNzQwMSAyNTQuMzQ2Niw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjM4LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIF8yIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8yPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iOTQuMzQ2NiIgY3k9Ii0xMDcuNzQwMSIgcng9IjQ2LjI5MjMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5NC4zNDY2IiB5PSItMTA0LjA0MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YXNzaWduVmFyPC90ZXh0Pgo8L2c+CjwhLS0gXzAmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMCYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTEuNjE3OCwtMTYyLjY3NzFDNTguNDIyMSwtMTUzLjkyODcgNjYuODQ4NywtMTQzLjA5NDYgNzQuNDE1NiwtMTMzLjM2NTciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9Ijc3LjQwNDksLTEzNS4yMjMxIDgwLjc4MTYsLTEyNS4xODA4IDcxLjg3OTQsLTEzMC45MjU1IDc3LjQwNDksLTEzNS4yMjMxIi8+CjwvZz4KPCEtLSBfNCAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzMS4zNDY2IiBjeT0iLTI2Ljg3MDEiIHJ4PSI0OC4xNjY3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnksPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTE1LjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRXhpdDwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzLjg4OTksLTE2MS42MjlDMzAuMjEyMSwtMTQyLjU0NDggMjcuMzMyMywtMTEyLjE5ODggMzkuMzQ2NiwtODkuNzQwMSA0OC45ODIzLC03MS43Mjc4IDY2LjMyMTUsLTU3Ljg3ODMgODMuMzY5OCwtNDcuODIyMSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iODUuMTc0NiwtNTAuODIzNCA5Mi4yMTYyLC00Mi45MDcxIDgxLjc3NDksLTQ0LjcwNDMgODUuMTc0NiwtNTAuODIzNCIvPgo8L2c+CjwhLS0gXzEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzE8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxNTkuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjU1Ljc5MDMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNTkuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnNldENvbnN0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTQzLjYxMTksLTE2Mi4zMTA5QzEzNS41NDgsLTE1My4zNzg2IDEyNS41ODc4LC0xNDIuMzQ1OCAxMTYuNzM4MSwtMTMyLjU0MyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTE5LjIzNTQsLTEzMC4wODYxIDEwOS45MzY0LC0xMjUuMDA4OCAxMTQuMDM5NSwtMTM0Ljc3NjkgMTE5LjIzNTQsLTEzMC4wODYxIi8+CjwvZz4KPCEtLSBfMSYjNDU7Jmd0O180IC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8xJiM0NTsmZ3Q7XzQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTguMjM2MiwtMTYxLjY3NDdDMTU2LjkwMzcsLTE0My40MDUxIDE1NC4yMTQ0LC0xMTQuNDE4NCAxNDkuMzQ2NiwtODkuNzQwMSAxNDcuNjQxMSwtODEuMDkzNiAxNDUuMzE0OCwtNzEuOTEwMiAxNDIuOTAxMiwtNjMuMzEwNSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTQ2LjIxNTUsLTYyLjE3MzMgMTQwLjA1OTUsLTUzLjU1MDQgMTM5LjQ5NDYsLTY0LjEzMDIgMTQ2LjIxNTUsLTYyLjE3MzMiLz4KPC9nPgo8IS0tIF8yJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzImIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEwMi41NTgxLC04OS43OTI0QzEwNi4yNjI2LC04MS42OTU3IDExMC43NzQsLTcxLjgzNSAxMTUuMTE2MiwtNjIuMzQ0NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTE4LjM4NzksLTYzLjYwNjEgMTE5LjM2NTcsLTUzLjA1NjQgMTEyLjAyMjUsLTYwLjY5MzcgMTE4LjM4NzksLTYzLjYwNjEiLz4KPC9nPgo8IS0tIF8zIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8zPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjIzLjM0NjYiIGN5PSItMTA3Ljc0MDEiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyMy4zNDY2IiB5PSItMTA0LjA0MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+ZmxvdzwvdGV4dD4KPC9nPgo8IS0tIF8zJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzMmIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIwNi44OTg4LC05My4yODIyQzE5NS4yOTg5LC04My4wODU2IDE3OS4zNTEsLTY5LjA2NyAxNjUuMDk2MSwtNTYuNTM2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3LjIxMDcsLTUzLjczNTQgMTU3LjM4OTIsLTQ5Ljc2MjEgMTYyLjU4OTIsLTU4Ljk5MyAxNjcuMjEwNywtNTMuNzM1NCIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "addStm" ];
+	_1[label = "setConstStm" ];
+	_2[label = "assignVar" ];
+	_3[label = "flow" ];
+	_4[label = "varEntry,\nvarExit" ];
+	_0 -> _2;
+	_0 -> _4;
+	_1 -> _2;
+	_1 -> _4;
+	_2 -> _4;
+	_3 -> _4;
+}</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-topsort-scc-graph23"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 2
+0 4
+1 2
+1 4
+2 4
+3 4
+--- total order with relations of each strata ---
+0: [addStm]
+1: [setConstStm]
+2: [assignVar]
+3: [flow]
+4: [varEntry, varExit]
+
+--- statistics of topological order ---
+cost: 4
+</pre>
+
+</div>
+</div>
+<a id="MinimiseProgramTransformer25"></a>
+<div class='headerdiv'>
+<h1>After MinimiseProgramTransformer (0.000034s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="InlineRelationsTransformer26"></a>
+<div class='headerdiv'>
+<h1>After InlineRelationsTransformer (0.000026s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ResolveAliasesTransformer33"></a>
+<div class='headerdiv'>
+<h1>After ResolveAliasesTransformer (0.000079s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+<a id="ResolveAliasesTransformer-dl27"></a>
+<div class='headerdiv'>
+<h1>Datalog</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>// ----- Types -----
+.enum_type Constant = {Top:symbol,Bot:symbol}
+
+// ----- Lattice -----
+Lattice Association: Const&lt;> = (
+Bottom element: Bot
+Top element: Top
+lub function name: lub
+glb function name: glb
+)
+
+
+// -- glb --
+LatticeBinaryFunction: &glb (x,y):Constant{
+("Top",_)=>y
+(_,"Top")=>x
+(_,_)=>x = y ? x : "Bot"
+}
+
+
+// -- lat_alpha --
+LatticeUnaryFunction: &lat_alpha (x):Constant{
+(_)=>x
+}
+
+
+// -- lat_sum --
+LatticeBinaryFunction: &lat_sum (x,y):Constant{
+("Bot",_)=>"Bot"
+(_,"Bot")=>"Bot"
+("Top",_)=>"Top"
+(_,"Top")=>"Top"
+(_,_)=>Intrsc(x + y)
+}
+
+
+// -- lub --
+LatticeBinaryFunction: &lub (x,y):Constant{
+("Bot",_)=>y
+(_,"Bot")=>x
+(_,_)=>x = y ? x : "Top"
+}
+
+// ----- Functors -----
+
+// ----- Relations -----
+
+
+// -- addStm --
+.decl addStm(l:number,r:symbol,x:symbol,y:symbol)  
+
+addStm(3,"a","a","b").
+
+
+
+// -- assignVar --
+.decl assignVar(l:number,r:symbol)  
+
+assignVar(l,r) :- 
+   setConstStm(l,r,_).
+
+assignVar(l,r) :- 
+   addStm(l,r,_,_).
+
+
+
+// -- flow --
+.decl flow(l1:number,l2:number)  
+
+flow(0,1).
+
+flow(1,2).
+
+flow(2,3).
+
+flow(3,2).
+
+flow(2,4).
+
+
+
+// -- setConstStm --
+.decl setConstStm(l:number,r:symbol,c:number)  
+
+setConstStm(0,"a",1).
+
+setConstStm(1,"b",1).
+
+
+
+// -- varEntry --
+.lat varEntry(l:number,k:symbol,v:Constant)  
+
+varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+
+.output {varEntry}
+
+
+
+// -- varExit --
+.lat varExit(l:number,k:symbol,v:Constant)  
+
+varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+
+varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+
+varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+
+.output {varExit}
+
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-ta28"></a>
+<div class='headerdiv'>
+<h1>Type Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>-- Analysis logs --
+Clause: addStm(3,"a","a","b").
+Problem:
+{
+	var(3) &lt;: number,
+	var("a") &lt;: symbol,
+	var("a") &lt;: symbol,
+	var("b") &lt;: symbol,
+	var(3) &lt;: number,
+	var("a") &lt;: symbol,
+	var("a") &lt;: symbol,
+	var("b") &lt;: symbol
+}
+Solution:
+{var(3)->{number},var("a")->{symbol},var("a")->{symbol},var("b")->{symbol}}
+Clause: assignVar(l,r) :- 
+   setConstStm(l,r,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: number
+}
+Solution:
+{var(l)->{number},var(_)->{number},var(r)->{symbol}}
+Clause: assignVar(l,r) :- 
+   addStm(l,r,_,_).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(_) &lt;: symbol,
+	var(_) &lt;: symbol
+}
+Solution:
+{var(l)->{number},var(_)->{symbol},var(_)->{symbol},var(r)->{symbol}}
+Clause: flow(0,1).
+Problem:
+{
+	var(0) &lt;: number,
+	var(1) &lt;: number,
+	var(0) &lt;: number,
+	var(1) &lt;: number
+}
+Solution:
+{var(0)->{number},var(1)->{number}}
+Clause: flow(1,2).
+Problem:
+{
+	var(1) &lt;: number,
+	var(2) &lt;: number,
+	var(1) &lt;: number,
+	var(2) &lt;: number
+}
+Solution:
+{var(1)->{number},var(2)->{number}}
+Clause: flow(2,3).
+Problem:
+{
+	var(2) &lt;: number,
+	var(3) &lt;: number,
+	var(2) &lt;: number,
+	var(3) &lt;: number
+}
+Solution:
+{var(2)->{number},var(3)->{number}}
+Clause: flow(3,2).
+Problem:
+{
+	var(3) &lt;: number,
+	var(2) &lt;: number,
+	var(3) &lt;: number,
+	var(2) &lt;: number
+}
+Solution:
+{var(3)->{number},var(2)->{number}}
+Clause: flow(2,4).
+Problem:
+{
+	var(2) &lt;: number,
+	var(4) &lt;: number,
+	var(2) &lt;: number,
+	var(4) &lt;: number
+}
+Solution:
+{var(2)->{number},var(4)->{number}}
+Clause: setConstStm(0,"a",1).
+Problem:
+{
+	var(0) &lt;: number,
+	var("a") &lt;: symbol,
+	var(1) &lt;: number,
+	var(0) &lt;: number,
+	var("a") &lt;: symbol,
+	var(1) &lt;: number
+}
+Solution:
+{var(0)->{number},var("a")->{symbol},var(1)->{number}}
+Clause: setConstStm(1,"b",1).
+Problem:
+{
+	var(1) &lt;: number,
+	var("b") &lt;: symbol,
+	var(1) &lt;: number,
+	var(1) &lt;: number,
+	var("b") &lt;: symbol,
+	var(1) &lt;: number
+}
+Solution:
+{var(1)->{number},var("b")->{symbol},var(1)->{number}}
+Clause: varEntry(l2,k,v) :- 
+   varExit(l1,k,v),
+   flow(l1,l2).
+Problem:
+{
+	var(l2) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l1) &lt;: number,
+	var(k) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l1) &lt;: number,
+	var(l2) &lt;: number
+}
+Solution:
+{var(l1)->{number},var(l2)->{number},var(k)->{symbol},var(v)->{Constant}}
+Clause: varExit(l,r,&lat_sum(v1,v2)) :- 
+   addStm(l,r,x,y),
+   varEntry(l,x,v1),
+   varEntry(l,y,v2).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_sum(v1,v2)) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(x) &lt;: symbol,
+	var(y) &lt;: symbol,
+	var(l) &lt;: number,
+	var(x) &lt;: symbol,
+	var(v1) &lt;: Constant,
+	var(l) &lt;: number,
+	var(y) &lt;: symbol,
+	var(v2) &lt;: Constant
+}
+Solution:
+{var(x)->{symbol},var(y)->{symbol},var(v1)->{Constant},var(v2)->{Constant},var(l)->{number},var(r)->{symbol},var(&lat_sum(v1,v2))->{Constant}}
+Clause: varExit(l,r,v) :- 
+   varEntry(l,r,v),
+   !assignVar(l,r).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(v) &lt;: Constant,
+	var(l) >: number,
+	var(r) >: symbol
+}
+Solution:
+{var(v)->{Constant},var(l)->{number},var(r)->{symbol}}
+Clause: varExit(l,r,&lat_alpha(c)) :- 
+   setConstStm(l,r,c).
+Problem:
+{
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(&lat_alpha(c)) &lt;: Constant,
+	var(l) &lt;: number,
+	var(r) &lt;: symbol,
+	var(c) &lt;: number
+}
+Solution:
+{var(l)->{number},var(r)->{symbol},var(&lat_alpha(c))->{Constant},var(c)->{number}}
+
+-- Result --
+addStm(3,"a","a","b").
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},_&isin;{number}).
+assignVar(l&isin;{number},r&isin;{symbol}) :- 
+   addStm(l&isin;{number},r&isin;{symbol},_&isin;{symbol},_&isin;{symbol}).
+flow(0,1).
+flow(1,2).
+flow(2,3).
+flow(3,2).
+flow(2,4).
+setConstStm(0,"a",1).
+setConstStm(1,"b",1).
+varEntry(l2&isin;{number},k&isin;{symbol},v&isin;{Constant}) :- 
+   varExit(l1&isin;{number},k&isin;{symbol},v&isin;{Constant}),
+   flow(l1&isin;{number},l2&isin;{number}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_sum(v1&isin;{Constant},v2&isin;{Constant})) :- 
+   addStm(l&isin;{number},r&isin;{symbol},x&isin;{symbol},y&isin;{symbol}),
+   varEntry(l&isin;{number},x&isin;{symbol},v1&isin;{Constant}),
+   varEntry(l&isin;{number},y&isin;{symbol},v2&isin;{Constant}).
+varExit(l&isin;{number},r&isin;{symbol},v&isin;{Constant}) :- 
+   varEntry(l&isin;{number},r&isin;{symbol},v&isin;{Constant}),
+   !assignVar(l&isin;{number},r&isin;{symbol}).
+varExit(l&isin;{number},r&isin;{symbol},&lat_alpha(c&isin;{number})) :- 
+   setConstStm(l&isin;{number},r&isin;{symbol},c&isin;{number}).
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-tea29"></a>
+<div class='headerdiv'>
+<h1>Type Environment Analysis</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>Types:
+	.type Constant = {Top:symbol,Bot:symbol}
+	number
+	symbol
+</pre>
+
+</div>
+<a id="ResolveAliasesTransformer-prec-graph30"></a>
+<div class='headerdiv'>
+<h1>Precedence Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjMycHQiIGhlaWdodD0iMjYwcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjMyLjI0IDI2MC4wMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyNTYpIj4KPHRpdGxlPiUzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC0yNTYgMjI4LjI0MTYsLTI1NiAyMjguMjQxNiw0IC00LDQiLz4KPCEtLSBhZGRTdG0gLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YWRkU3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzguMzQ2NiIgY3k9Ii0yMzQiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTIzMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIGFzc2lnblZhciAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5hc3NpZ25WYXI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxMDMuMzQ2NiIgY3k9Ii0xNjIiIHJ4PSI0Ni4yOTIzIiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTAzLjM0NjYiIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hc3NpZ25WYXI8L3RleHQ+CjwvZz4KPCEtLSBhZGRTdG0mIzQ1OyZndDthc3NpZ25WYXIgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YWRkU3RtJiM0NTsmZ3Q7YXNzaWduVmFyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTMuNDIyMywtMjE3LjMwMDhDNjEuNjcwNywtMjA4LjE2NDEgNzIuMDQ0OSwtMTk2LjY3MjYgODEuMTk2NywtMTg2LjUzNTMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjgzLjc5ODIsLTE4OC44NzY3IDg3LjkwMTMsLTE3OS4xMDg2IDc4LjYwMjMsLTE4NC4xODYgODMuNzk4MiwtMTg4Ljg3NjciLz4KPC9nPgo8IS0tIHZhckV4aXQgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+dmFyRXhpdDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEwMy4zNDY2IiBjeT0iLTkwIiByeD0iMzYuMjkzOCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMy4zNDY2IiB5PSItODYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj52YXJFeGl0PC90ZXh0Pgo8L2c+CjwhLS0gYWRkU3RtJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hZGRTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMzYuODk2MywtMjE1Ljc3MjFDMzYuMTYyOCwtMTk2Ljg2MDYgMzcuMjA4OSwtMTY2LjkwMzggNDguMzQ2NiwtMTQ0IDU0LjM5NTcsLTEzMS41NjA2IDY0LjUyNjgsLTEyMC4zNjI4IDc0LjQ1NzMsLTExMS40MzE5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSI3Ni45Mzk0LC0xMTMuOTE1OSA4Mi4yOTY1LC0xMDQuNzc1MSA3Mi40MDg0LC0xMDguNTgwMSA3Ni45Mzk0LC0xMTMuOTE1OSIvPgo8L2c+CjwhLS0gYXNzaWduVmFyJiM0NTsmZ3Q7dmFyRXhpdCAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hc3NpZ25WYXImIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTAzLjM0NjYsLTE0My44MzE0QzEwMy4zNDY2LC0xMzYuMTMxIDEwMy4zNDY2LC0xMjYuOTc0MyAxMDMuMzQ2NiwtMTE4LjQxNjYiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjEwNi44NDY3LC0xMTguNDEzMiAxMDMuMzQ2NiwtMTA4LjQxMzMgOTkuODQ2NywtMTE4LjQxMzMgMTA2Ljg0NjcsLTExOC40MTMyIi8+CjwvZz4KPCEtLSBmbG93IC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmZsb3c8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxODQuMzQ2NiIgY3k9Ii05MCIgcng9IjI3IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTg0LjM0NjYiIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmZsb3c8L3RleHQ+CjwvZz4KPCEtLSB2YXJFbnRyeSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT52YXJFbnRyeTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEwMy4zNDY2IiBjeT0iLTE4IiByeD0iNDEuNjkyOCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMy4zNDY2IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj52YXJFbnRyeTwvdGV4dD4KPC9nPgo8IS0tIGZsb3cmIzQ1OyZndDt2YXJFbnRyeSAtLT4KPGcgaWQ9ImVkZ2U0IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5mbG93JiM0NTsmZ3Q7dmFyRW50cnk8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNjcuOTU1LC03NS40Mjk3QzE1Ni44NTMyLC02NS41NjE1IDE0MS45NTE1LC01Mi4zMTU0IDEyOS4yNTcxLC00MS4wMzE1Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMzEuNDkxNCwtMzguMzM0NyAxMjEuNjkyLC0zNC4zMDcgMTI2Ljg0MDgsLTQzLjU2NjYgMTMxLjQ5MTQsLTM4LjMzNDciLz4KPC9nPgo8IS0tIHNldENvbnN0U3RtIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNldENvbnN0U3RtPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTY4LjM0NjYiIGN5PSItMjM0IiByeD0iNTUuNzkwMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE2OC4zNDY2IiB5PSItMjMwLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c2V0Q29uc3RTdG08L3RleHQ+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhciAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5zZXRDb25zdFN0bSYjNDU7Jmd0O2Fzc2lnblZhcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE1Mi42MTE5LC0yMTYuNTcwOEMxNDQuNTQ4LC0yMDcuNjM4NSAxMzQuNTg3OCwtMTk2LjYwNTYgMTI1LjczODEsLTE4Ni44MDI5Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMjguMjM1NCwtMTg0LjM0NiAxMTguOTM2NCwtMTc5LjI2ODcgMTIzLjAzOTUsLTE4OS4wMzY4IDEyOC4yMzU0LC0xODQuMzQ2Ii8+CjwvZz4KPCEtLSBzZXRDb25zdFN0bSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c2V0Q29uc3RTdG0mIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTY5Ljc5NjksLTIxNS43NzIxQzE3MC41MzA0LC0xOTYuODYwNiAxNjkuNDg0MywtMTY2LjkwMzggMTU4LjM0NjYsLTE0NCAxNTIuMjk3NSwtMTMxLjU2MDYgMTQyLjE2NjQsLTEyMC4zNjI4IDEzMi4yMzU5LC0xMTEuNDMxOSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTM0LjI4NDgsLTEwOC41ODAxIDEyNC4zOTY3LC0xMDQuNzc1MSAxMjkuNzUzOCwtMTEzLjkxNTkgMTM0LjI4NDgsLTEwOC41ODAxIi8+CjwvZz4KPCEtLSB2YXJFbnRyeSYjNDU7Jmd0O3ZhckV4aXQgLS0+CjxnIGlkPSJlZGdlNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+dmFyRW50cnkmIzQ1OyZndDt2YXJFeGl0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTA5LjI2NjgsLTM1Ljg0MjVDMTEwLjA1NDQsLTQzLjcyMzYgMTEwLjI4MTQsLTUzLjE3NzQgMTA5Ljk0NzYsLTYxLjk2NDciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjEwNi40MzgxLC02MS45OTA4IDEwOS4yNjIzLC03Mi4yMDIyIDExMy40MjI1LC02Mi40NTgzIDEwNi40MzgxLC02MS45OTA4Ii8+CjwvZz4KPCEtLSB2YXJFeGl0JiM0NTsmZ3Q7dmFyRW50cnkgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+dmFyRXhpdCYjNDU7Jmd0O3ZhckVudHJ5PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNOTcuNDMwOSwtNzIuMjAyMkM5Ni42NDExLC02NC4zMjcxIDk2LjQxMjEsLTU0Ljg3NSA5Ni43NDM3LC00Ni4wODUyIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxMDAuMjUzNSwtNDYuMDUzMiA5Ny40MjY0LC0zNS44NDI1IDkzLjI2OSwtNDUuNTg3NiAxMDAuMjUzNSwtNDYuMDUzMiIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-prec-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-prec-graph-source' style='display:none'>
+<pre>digraph {
+	"addStm" [label = "addStm"];
+	"assignVar" [label = "assignVar"];
+	"flow" [label = "flow"];
+	"setConstStm" [label = "setConstStm"];
+	"varEntry" [label = "varEntry"];
+	"varExit" [label = "varExit"];
+	"addStm" -> "assignVar";
+	"addStm" -> "varExit";
+	"assignVar" -> "varExit";
+	"flow" -> "varEntry";
+	"setConstStm" -> "assignVar";
+	"setConstStm" -> "varExit";
+	"varEntry" -> "varExit";
+	"varExit" -> "varEntry";
+}
+</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-scc-graph31"></a>
+<div class='headerdiv'>
+<h1>SCC Graph</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<img alt='graph image' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMjAxNjEyMjUuMDMwNCkKIC0tPgo8IS0tIFRpdGxlOiAlMyBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMjU4cHQiIGhlaWdodD0iMjA2cHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMjU4LjM1IDIwNS43NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxnIGlkPSJncmFwaDAiIGNsYXNzPSJncmFwaCIgdHJhbnNmb3JtPSJzY2FsZSgxIDEpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoNCAyMDEuNzQwMSkiPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTIwMS43NDAxIDI1NC4zNDY2LC0yMDEuNzQwMSAyNTQuMzQ2Niw0IC00LDQiLz4KPCEtLSBfMCAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjM4LjM0NjYiIGN5PSItMTc5Ljc0MDEiIHJ4PSIzOC4xOTM4IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzguMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFkZFN0bTwvdGV4dD4KPC9nPgo8IS0tIF8yIC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8yPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iOTQuMzQ2NiIgY3k9Ii0xMDcuNzQwMSIgcng9IjQ2LjI5MjMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5NC4zNDY2IiB5PSItMTA0LjA0MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YXNzaWduVmFyPC90ZXh0Pgo8L2c+CjwhLS0gXzAmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMCYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNNTEuNjE3OCwtMTYyLjY3NzFDNTguNDIyMSwtMTUzLjkyODcgNjYuODQ4NywtMTQzLjA5NDYgNzQuNDE1NiwtMTMzLjM2NTciLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9Ijc3LjQwNDksLTEzNS4yMjMxIDgwLjc4MTYsLTEyNS4xODA4IDcxLjg3OTQsLTEzMC45MjU1IDc3LjQwNDksLTEzNS4yMjMxIi8+CjwvZz4KPCEtLSBfNCAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5fNDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjEzMS4zNDY2IiBjeT0iLTI2Ljg3MDEiIHJ4PSI0OC4xNjY3IiByeT0iMjYuNzQwNyIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTMwLjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRW50cnksPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzEuMzQ2NiIgeT0iLTE1LjY3MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+dmFyRXhpdDwvdGV4dD4KPC9nPgo8IS0tIF8wJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzAmIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTMzLjg4OTksLTE2MS42MjlDMzAuMjEyMSwtMTQyLjU0NDggMjcuMzMyMywtMTEyLjE5ODggMzkuMzQ2NiwtODkuNzQwMSA0OC45ODIzLC03MS43Mjc4IDY2LjMyMTUsLTU3Ljg3ODMgODMuMzY5OCwtNDcuODIyMSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iODUuMTc0NiwtNTAuODIzNCA5Mi4yMTYyLC00Mi45MDcxIDgxLjc3NDksLTQ0LjcwNDMgODUuMTc0NiwtNTAuODIzNCIvPgo8L2c+CjwhLS0gXzEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+XzE8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxNTkuMzQ2NiIgY3k9Ii0xNzkuNzQwMSIgcng9IjU1Ljc5MDMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNTkuMzQ2NiIgeT0iLTE3Ni4wNDAxIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnNldENvbnN0U3RtPC90ZXh0Pgo8L2c+CjwhLS0gXzEmIzQ1OyZndDtfMiAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5fMSYjNDU7Jmd0O18yPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTQzLjYxMTksLTE2Mi4zMTA5QzEzNS41NDgsLTE1My4zNzg2IDEyNS41ODc4LC0xNDIuMzQ1OCAxMTYuNzM4MSwtMTMyLjU0MyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTE5LjIzNTQsLTEzMC4wODYxIDEwOS45MzY0LC0xMjUuMDA4OCAxMTQuMDM5NSwtMTM0Ljc3NjkgMTE5LjIzNTQsLTEzMC4wODYxIi8+CjwvZz4KPCEtLSBfMSYjNDU7Jmd0O180IC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPl8xJiM0NTsmZ3Q7XzQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xNTguMjM2MiwtMTYxLjY3NDdDMTU2LjkwMzcsLTE0My40MDUxIDE1NC4yMTQ0LC0xMTQuNDE4NCAxNDkuMzQ2NiwtODkuNzQwMSAxNDcuNjQxMSwtODEuMDkzNiAxNDUuMzE0OCwtNzEuOTEwMiAxNDIuOTAxMiwtNjMuMzEwNSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTQ2LjIxNTUsLTYyLjE3MzMgMTQwLjA1OTUsLTUzLjU1MDQgMTM5LjQ5NDYsLTY0LjEzMDIgMTQ2LjIxNTUsLTYyLjE3MzMiLz4KPC9nPgo8IS0tIF8yJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzImIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTEwMi41NTgxLC04OS43OTI0QzEwNi4yNjI2LC04MS42OTU3IDExMC43NzQsLTcxLjgzNSAxMTUuMTE2MiwtNjIuMzQ0NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTE4LjM4NzksLTYzLjYwNjEgMTE5LjM2NTcsLTUzLjA1NjQgMTEyLjAyMjUsLTYwLjY5MzcgMTE4LjM4NzksLTYzLjYwNjEiLz4KPC9nPgo8IS0tIF8zIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPl8zPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjIzLjM0NjYiIGN5PSItMTA3Ljc0MDEiIHJ4PSIyNyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyMy4zNDY2IiB5PSItMTA0LjA0MDEiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+ZmxvdzwvdGV4dD4KPC9nPgo8IS0tIF8zJiM0NTsmZ3Q7XzQgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+XzMmIzQ1OyZndDtfNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTIwNi44OTg4LC05My4yODIyQzE5NS4yOTg5LC04My4wODU2IDE3OS4zNTEsLTY5LjA2NyAxNjUuMDk2MSwtNTYuNTM2NiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTY3LjIxMDcsLTUzLjczNTQgMTU3LjM4OTIsLTQ5Ljc2MjEgMTYyLjU4OTIsLTU4Ljk5MyAxNjcuMjEwNywtNTMuNzM1NCIvPgo8L2c+CjwvZz4KPC9zdmc+Cg=='><br/>
+<a href="javascript:toggleVisibility('ResolveAliasesTransformer-scc-graph-source')">(show dot source)</a>
+<div id='ResolveAliasesTransformer-scc-graph-source' style='display:none'>
+<pre>digraph {
+	_0[label = "addStm" ];
+	_1[label = "setConstStm" ];
+	_2[label = "assignVar" ];
+	_3[label = "flow" ];
+	_4[label = "varEntry,\nvarExit" ];
+	_0 -> _2;
+	_0 -> _4;
+	_1 -> _2;
+	_1 -> _4;
+	_2 -> _4;
+	_3 -> _4;
+}</pre>
+</div>
+
+</div>
+<a id="ResolveAliasesTransformer-topsort-scc-graph32"></a>
+<div class='headerdiv'>
+<h1>SCC Topological Sort Order</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>--- partial order of strata as list of pairs ---
+0 2
+0 4
+1 2
+1 4
+2 4
+3 4
+--- total order with relations of each strata ---
+0: [addStm]
+1: [setConstStm]
+2: [assignVar]
+3: [flow]
+4: [varEntry, varExit]
+
+--- statistics of topological order ---
+cost: 4
+</pre>
+
+</div>
+</div>
+<a id="RemoveRedundantRelationsTransformer34"></a>
+<div class='headerdiv'>
+<h1>After RemoveRedundantRelationsTransformer (0.000050s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer35"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000003s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveEmptyRelationsTransformer36"></a>
+<div class='headerdiv'>
+<h1>After RemoveEmptyRelationsTransformer (0.000000s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReplaceSingletonVariablesTransformer37"></a>
+<div class='headerdiv'>
+<h1>After ReplaceSingletonVariablesTransformer (0.000034s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReduceExistentialsTransformer38"></a>
+<div class='headerdiv'>
+<h1>After ReduceExistentialsTransformer (0.000044s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRedundantRelationsTransformer39"></a>
+<div class='headerdiv'>
+<h1>After RemoveRedundantRelationsTransformer (0.000000s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer40"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="PartitionBodyLiteralsTransformer41"></a>
+<div class='headerdiv'>
+<h1>After PartitionBodyLiteralsTransformer (0.000057s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="MinimiseProgramTransformer42"></a>
+<div class='headerdiv'>
+<h1>After MinimiseProgramTransformer (0.000029s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveRelationCopiesTransformer43"></a>
+<div class='headerdiv'>
+<h1>After RemoveRelationCopiesTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReorderLiteralsTransformer44"></a>
+<div class='headerdiv'>
+<h1>After ReorderLiteralsTransformer (0.000011s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="MaterializeAggregationQueriesTransformer45"></a>
+<div class='headerdiv'>
+<h1>After MaterializeAggregationQueriesTransformer (0.000020s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="RemoveEmptyRelationsTransformer46"></a>
+<div class='headerdiv'>
+<h1>After RemoveEmptyRelationsTransformer (0.000001s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ReorderLiteralsTransformer47"></a>
+<div class='headerdiv'>
+<h1>After ReorderLiteralsTransformer (0.000008s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="AstExecutionPlanChecker48"></a>
+<div class='headerdiv'>
+<h1>After AstExecutionPlanChecker (0.000032s) (unchanged)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+
+</div>
+<a id="ram-program49"></a>
+<div class='headerdiv'>
+<h1>RAM Program (0.000649s)</h1>
+<a href='#'>(return to top)</a>
+</div><div style='clear:both'></div>
+<div style='padding-left: 1em'>
+<pre>DECLARATION 
+@delta_varEntry(l,k,v) @delta_varExit(l,k,v) @lat_temp_addStm(l,r,x,y) @lat_temp_assignVar(l,r) @lat_temp_flow(l1,l2) @lat_temp_setConstStm(l,r,c) @lat_temp_varEntry(l,k,v) @lat_temp_varExit(l,k,v) @new_lat_varEntry(l,k,v) @new_lat_varExit(l,k,v) @new_varEntry(l,k,v) @new_varExit(l,k,v) @org_lat_varEntry(l,k,v) @org_lat_varExit(l,k,v) addStm(l,r,x,y) assignVar(l,r) flow(l1,l2) setConstStm(l,r,c) varEntry(l,k,v) varExit(l,k,v) LATTICE ASSOCIATION DEFINITION. 
+lub: 
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418112)), output:argument(1)
+match:(argument(1) = number(2147418112)), output:argument(0)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418111)
+glb: 
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418111)), output:argument(1)
+match:(argument(1) = number(2147418111)), output:argument(0)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418112)
+END DECLARATION 
+PROGRAM
+BEGIN_STRATUM_0
+	CREATE addStm(l,r,x,y) ;
+	BEGIN_DEBUG "addStm(3,\"a\",\"a\",\"b\").\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [49:1-49:26]"
+		INSERT (number(3),number(2),number(2),number(3)) INTO addStm
+	END_DEBUG
+END_STRATUM_0;
+BEGIN_STRATUM_1
+	CREATE setConstStm(l,r,c) ;
+	BEGIN_DEBUG "setConstStm(0,\"a\",1).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [47:1-47:24]"
+		INSERT (number(0),number(2),number(1)) INTO setConstStm
+	END_DEBUG;
+	BEGIN_DEBUG "setConstStm(1,\"b\",1).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [48:1-48:24]"
+		INSERT (number(1),number(3),number(1)) INTO setConstStm
+	END_DEBUG
+END_STRATUM_1;
+BEGIN_STRATUM_2
+	CREATE assignVar(l,r) ;
+	BEGIN_DEBUG "assignVar(l,r) :- \n   setConstStm(l,r,_).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [57:1-57:41]"
+		INSERT 
+			for t0 in setConstStm {
+					PROJECT (t0.l, t0.r) INTO assignVar			}
+
+	END_DEBUG;
+	BEGIN_DEBUG "assignVar(l,r) :- \n   addStm(l,r,_,_).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [58:1-58:39]"
+		INSERT 
+			for t0 in addStm {
+					PROJECT (t0.l, t0.r) INTO assignVar			}
+
+	END_DEBUG
+END_STRATUM_2;
+BEGIN_STRATUM_3
+	CREATE flow(l1,l2) ;
+	BEGIN_DEBUG "flow(0,1).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [50:1-50:12]"
+		INSERT (number(0),number(1)) INTO flow
+	END_DEBUG;
+	BEGIN_DEBUG "flow(1,2).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [51:1-51:12]"
+		INSERT (number(1),number(2)) INTO flow
+	END_DEBUG;
+	BEGIN_DEBUG "flow(2,3).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [52:1-52:12]"
+		INSERT (number(2),number(3)) INTO flow
+	END_DEBUG;
+	BEGIN_DEBUG "flow(3,2).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [53:1-53:12]"
+		INSERT (number(3),number(2)) INTO flow
+	END_DEBUG;
+	BEGIN_DEBUG "flow(2,4).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [54:1-54:12]"
+		INSERT (number(2),number(4)) INTO flow
+	END_DEBUG
+END_STRATUM_3;
+BEGIN_STRATUM_4
+	CREATE varEntry(l,k,v) ;
+	CREATE @delta_varEntry(l,k,v) ;
+	CREATE @new_varEntry(l,k,v) ;
+	CREATE @org_lat_varEntry(l,k,v) ;
+	CREATE @new_lat_varEntry(l,k,v) ;
+	CREATE varExit(l,k,v) ;
+	CREATE @delta_varExit(l,k,v) ;
+	CREATE @new_varExit(l,k,v) ;
+	CREATE @org_lat_varExit(l,k,v) ;
+	CREATE @new_lat_varExit(l,k,v) ;
+	MERGE @delta_varEntry WITH varEntry;
+	BEGIN_DEBUG "varExit(l,r,&lat_alpha(c)) :- \n   setConstStm(l,r,c).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [64:1-64:54]"
+		INSERT 
+			for t0 in setConstStm {
+					PROJECT (t0.l, t0.r, lat_alpha( t0.c )) INTO varExit			}
+
+	END_DEBUG;
+	CREATE @lat_temp_varExit(l,k,v) ;
+	LATNORM varExit INTO @lat_temp_varExit;
+	SWAP (varExit, @lat_temp_varExit);
+	DROP @lat_temp_varExit;
+	MERGE @delta_varExit WITH varExit;
+	LOOP
+		PARALLEL
+			BEGIN_DEBUG "varEntry(l2,k,v) :- \n   varExit(l1,k,v),\n   flow(l1,l2).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [61:1-61:55]"
+				INSERT 
+					for t0 in @delta_varExit {
+							for t1 in flow {
+									IF (not (t1.l2,t0.k,t0.v) ∈ varEntry) {
+											IF (t0.l = t1.l1) {
+													PROJECT (t1.l2, t0.k, t0.v) INTO @new_varEntry											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [68:1-70:48]"
+				INSERT 
+					for t0 in addStm {
+							for t1 in @delta_varEntry {
+									for t2 in varEntry {
+											IF (not (t0.l,t0.y,t2.v) ∈ @delta_varEntry) {
+													IF (not (t0.l,t0.r,lat_sum( t1.v, t2.v )) ∈ varExit) {
+															IF (t0.y = t2.k) {
+																	IF (t0.x = t1.k) {
+																			IF (t0.l = t2.l) {
+																					IF (t0.l = t1.l) {
+																							PROJECT (t0.l, t0.r, lat_sum( t1.v, t2.v )) INTO @new_varExit																					}
+																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,&lat_sum(v1,v2)) :- \n   addStm(l,r,x,y),\n   varEntry(l,x,v1),\n   varEntry(l,y,v2).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [68:1-70:48]"
+				INSERT 
+					for t0 in addStm {
+							for t1 in varEntry {
+									for t2 in @delta_varEntry {
+											IF (not (t0.l,t0.r,lat_sum( t1.v, t2.v )) ∈ varExit) {
+													IF (t0.y = t2.k) {
+															IF (t0.x = t1.k) {
+																	IF (t0.l = t2.l) {
+																			IF (t0.l = t1.l) {
+																					PROJECT (t0.l, t0.r, lat_sum( t1.v, t2.v )) INTO @new_varExit																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+
+			END_DEBUG;
+			BEGIN_DEBUG "varExit(l,r,v) :- \n   varEntry(l,r,v),\n   !assignVar(l,r).\nin file /home/gq/Programming/souffle/dataflowTest/Const_lattice_whileloop/const_prop.dl [73:1-73:57]"
+				INSERT 
+					for t0 in @delta_varEntry {
+							IF (not (t0.l,t0.k,t0.v) ∈ varExit) {
+									IF (not (t0.l,t0.k) ∈ assignVar) {
+											PROJECT (t0.l, t0.k, t0.v) INTO @new_varExit									}
+							}
+					}
+
+			END_DEBUG		END PARALLEL;
+		LATCLEAN @new_varEntry INTO @new_lat_varEntry USING varEntry;
+		SWAP (@new_varEntry, @new_lat_varEntry);
+		CLEAR @new_lat_varEntry;
+		LATCLEAN @new_varExit INTO @new_lat_varExit USING varExit;
+		SWAP (@new_varExit, @new_lat_varExit);
+		CLEAR @new_lat_varExit;
+		EXIT ((@new_varEntry = ∅) and (@new_varExit = ∅));
+		MERGE varEntry WITH @new_varEntry;
+		SWAP (@delta_varEntry, @new_varEntry);
+		CLEAR @new_varEntry;
+		MERGE varExit WITH @new_varExit;
+		SWAP (@delta_varExit, @new_varExit);
+		CLEAR @new_varExit
+	END LOOP;
+	LATNORM varEntry INTO @org_lat_varEntry;
+	SWAP (varEntry, @org_lat_varEntry);
+	DROP @delta_varEntry;
+	DROP @new_varEntry;
+	DROP @org_lat_varEntry;
+	DROP @new_lat_varEntry;
+	LATNORM varExit INTO @org_lat_varExit;
+	SWAP (varExit, @org_lat_varExit);
+	DROP @delta_varExit;
+	DROP @new_varExit;
+	DROP @org_lat_varExit;
+	DROP @new_lat_varExit;
+	STORE DATA FOR varEntry TO {{{"IO","file"},{"attributeNames","l\tk\tv"},{"filename","./varEntry.csv"},{"name","varEntry"}}};
+	STORE DATA FOR varExit TO {{{"IO","file"},{"attributeNames","l\tk\tv"},{"filename","./varExit.csv"},{"name","varExit"}}};
+	DROP setConstStm;
+	DROP addStm;
+	DROP assignVar;
+	DROP flow;
+	DROP varEntry;
+	DROP varExit
+END_STRATUM_4
+END PROGRAM
+</pre>
+
+</div>
+<a href='#'>(return to top)</a>
+</body>
+</html>

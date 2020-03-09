@@ -1,0 +1,74 @@
+.enum Constant = {
+	case "Top",
+	case "Bot"
+}
+// notice: enum must be decalred before any use of 
+// enum element (because of symbol table offset)
+
+.def lub(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => y,
+    case (_, "Bot")   => x,
+    case (_, _)	      => x=y ? x : "Top"
+}
+
+.def glb(x: Constant, y: Constant): Constant {
+    case ("Top", _)   => y,
+    case (_, "Top")   => x,
+    case (_, _)	      => x=y ? x : "Bot"
+}
+
+// use function to transfer number or symbol to enum type
+.def lat_alpha(x: number): Constant {
+    case (_)	      => x
+}
+
+.def lat_sum(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x+y
+}
+
+// assert lattice association
+.let Const<> = ("Bot", "Top", lub, glb)
+
+.decl setConstStm(l:number, r: symbol, c: number)         // r = c
+.decl addStm(l:number, r: symbol, x: symbol, y: symbol) // r = x + y
+.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
+
+.decl flow(l1: number, l2: number) // control flow from l1 to l2
+
+.lat varEntry(l:number, k: symbol, v: Constant)
+.output varEntry
+.lat varExit(l:number, k: symbol, v: Constant)
+.output varExit
+
+setConstStm(0, "a", 1).
+setConstStm(1, "b", 1).
+addStm(3, "a", "a", "b").
+flow(0, 1).
+flow(1, 2).
+flow(2, 3).
+flow(3, 2).
+flow(2, 4).
+
+// if the statement doesn't assign to r
+assignVar(l, r) :- setConstStm(l, r, _).
+assignVar(l, r) :- addStm(l, r, _, _).
+
+// varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
+varEntry(l2, k, v) :- varExit(l1, k, v), flow(l1, l2).
+
+// statement: set to constant number
+varExit(l, r, &lat_alpha(c)) :- setConstStm(l, r, c).
+
+// addition statement r = x+y, and the value of x is v1, the
+// value of y is v2
+varExit(l, r, &lat_sum(v1, v2)) :- addStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2).
+
+// r is not re-assigned
+varExit(l, r, v) :- varEntry(l, r, v), !assignVar(l, r).
+
