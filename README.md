@@ -28,7 +28,7 @@ see paper ["From Datalog to FLIX: A Declarative Language for Fixed Points on Lat
 
 ### To be added(Progress)
 
-*   Ram Synthesiser (in progress)
+*   Ram Synthesiser for all features added (in progress)
 
 ## How to get Soufflé
  
