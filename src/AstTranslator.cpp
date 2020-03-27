@@ -114,6 +114,11 @@ EnumTypeMask AstTranslator::getEnumTypeMask(const AstRelation& rel) {
 		const Type& t = typeEnv->getType(rel.getAttribute(i)->getTypeName());
 		bool isEnum = isEnumType(t);
 		res.setEnumType(i, isEnum);
+		if (isEnum) {
+			const auto& enum_t = static_cast<const EnumType&>(t);
+			bool hasNumber = enum_t.hasNumerType();
+			res.set_Enum_hasNUMBER(i, hasNumber);
+		}
 	}
 	return res;
 }

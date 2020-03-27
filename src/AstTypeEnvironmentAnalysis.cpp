@@ -117,6 +117,11 @@ void TypeEnvironmentAnalysis::updateTypeEnvironment(const AstProgram& program) {
 				}
 			}
 
+			// add number type
+			if (t->get_hasNumberType()) {
+				et->addNumberType();
+			}
+
 		} else {
 			std::cout << "Unsupported type construct: " << typeid(cur).name() << "\n";
 			assert(false && "Unsupported Type Construct!");

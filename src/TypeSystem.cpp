@@ -23,9 +23,11 @@ namespace souffle {
 /**
  * A special, internal type for the predefined symbolic and numeric types.
  */
-struct PredefinedType : public Type {
-	PredefinedType(const TypeEnvironment& environment, const AstTypeIdentifier& name)
-	: Type(environment, name) {}
+struct PredefinedType: public Type {
+	PredefinedType(const TypeEnvironment& environment,
+			const AstTypeIdentifier& name) :
+			Type(environment, name) {
+	}
 };
 
 void PrimitiveType::print(std::ostream& out) const {
@@ -39,12 +41,13 @@ void UnionType::add(const Type& type) {
 
 void UnionType::print(std::ostream& out) const {
 	out << getName() << " = "
-			<< join(elementTypes, " | ", [](std::ostream& out, const Type* type) { out << type->getName(); });
+			<< join(elementTypes, " | ",
+					[](std::ostream& out, const Type* type) {out << type->getName();});
 }
 
 void RecordType::add(const std::string& name, const Type& type) {
 	assert(environment.isType(type));
-	fields.push_back(Field({name, type}));
+	fields.push_back(Field( { name, type }));
 }
 
 void RecordType::print(std::ostream& out) const {
@@ -53,18 +56,20 @@ void RecordType::print(std::ostream& out) const {
 		out << "()";
 		return;
 	}
-	out << "( " << join(fields, " , ", [](std::ostream& out, const RecordType::Field& f) {
-		out << f.name << " : " << f.type.getName();
-	}) << " )";
+	out << "( "
+			<< join(fields, " , ",
+					[](std::ostream& out, const RecordType::Field& f) {
+						out << f.name << " : " << f.type.getName();
+					}) << " )";
 }
 
 void EnumType::add(const std::string& name, const Type& type) {
 	assert(environment.isType(type));
-	cases.push_back(Case{name, type});
+	cases.push_back(Case { name, type });
 }
 
 void EnumType::print(std::ostream& os) const {
-	os << ".type " << getName() << " = " << "{";
+	os << "enum_type " << getName() << " = " << "{";
 	for (unsigned i = 0; i < cases.size(); i++) {
 		if (i != 0) {
 			os << ",";
@@ -72,6 +77,13 @@ void EnumType::print(std::ostream& os) const {
 		os << cases[i].name;
 		os << ":";
 		os << cases[i].type;
+	}
+
+	if (hasNumber) {
+		if (cases.size()) {
+			os << ",";
+		}
+		os << ".number_type";
 	}
 	os << "}";
 }
@@ -127,7 +139,9 @@ TypeSet TypeEnvironment::getAllTypes() const {
 
 void TypeEnvironment::addType(Type& type) {
 	const identifier& name = type.getName();
-	assert(types.find(name) == types.end() && "Error: registering present type!");
+	assert(
+			types.find(name) == types.end()
+					&& "Error: registering present type!");
 	types[name] = &type;
 }
 
@@ -136,7 +150,7 @@ namespace {
 /**
  * A visitor for Types.
  */
-template <typename R>
+template<typename R>
 struct TypeVisitor {
 	virtual ~TypeVisitor() = default;
 
@@ -194,8 +208,8 @@ struct TypeVisitor {
  * A visitor for types visiting each type only once (effectively breaking
  * recursive cycles).
  */
-template <typename R>
-class VisitOnceTypeVisitor : public TypeVisitor<R> {
+template<typename R>
+class VisitOnceTypeVisitor: public TypeVisitor<R> {
 protected:
 	mutable std::map<const Type*, R> seen;
 
@@ -210,12 +224,12 @@ public:
 	}
 };
 
-template <typename T>
+template<typename T>
 bool isA(const Type& type) {
 	return dynamic_cast<const T*>(&type);
 }
 
-template <typename T>
+template<typename T>
 const T& as(const Type& type) {
 	return static_cast<const T&>(type);
 }
@@ -224,22 +238,25 @@ const T& as(const Type& type) {
  * Determines whether the given type is a sub-type of the given root type.
  */
 bool isOfRootType(const Type& type, const Type& root) {
-	struct visitor : public VisitOnceTypeVisitor<bool> {
+	struct visitor: public VisitOnceTypeVisitor<bool> {
 		const Type& root;
 
-		visitor(const Type& root) : root(root) {}
+		visitor(const Type& root) :
+				root(root) {
+		}
 
 		bool visitPredefinedType(const PredefinedType& type) const override {
 			return type == root;
 		}
 		bool visitPrimitiveType(const PrimitiveType& type) const override {
-			return type == root || type.getBaseType() == root || isOfRootType(type.getBaseType(), root);
+			return type == root || type.getBaseType() == root
+					|| isOfRootType(type.getBaseType(), root);
 		}
 		bool visitUnionType(const UnionType& type) const override {
 			if (type.getElementTypes().empty()) {
 				return false;
 			}
-			auto fit = [&](const Type* cur) { return visit(*cur); };
+			auto fit = [&](const Type* cur) {return visit(*cur);};
 			return all_of(type.getElementTypes(), fit);
 		}
 		bool visitType(const Type& /*unused*/) const override {
@@ -257,9 +274,11 @@ bool isUnion(const Type& type) {
 bool isSubType(const Type& a, const UnionType& b) {
 	// A is a subtype of b if it is in the transitive closure of b
 
-	struct visitor : public VisitOnceTypeVisitor<bool> {
+	struct visitor: public VisitOnceTypeVisitor<bool> {
 		const Type& trg;
-		visitor(const Type& trg) : trg(trg) {}
+		visitor(const Type& trg) :
+				trg(trg) {
+		}
 		bool visit(const Type& type) const override {
 			if (trg == type) {
 				return true;
@@ -267,7 +286,7 @@ bool isSubType(const Type& a, const UnionType& b) {
 			return VisitOnceTypeVisitor<bool>::visit(type);
 		}
 		bool visitUnionType(const UnionType& type) const override {
-			auto isSubType = [&](const Type* cur) { return visit(*cur); };
+			auto isSubType = [&](const Type* cur) {return visit(*cur);};
 			return any_of(type.getElementTypes(), isSubType);
 		}
 	};
@@ -278,7 +297,7 @@ bool isSubType(const Type& a, const UnionType& b) {
 
 /* generate unique type qualifier string for a type */
 std::string getTypeQualifier(const Type& type) {
-	struct visitor : public VisitOnceTypeVisitor<std::string> {
+	struct visitor: public VisitOnceTypeVisitor<std::string> {
 		std::string visitUnionType(const UnionType& type) const override {
 			std::string str = visitType(type);
 			str += "[";
@@ -357,7 +376,8 @@ bool isNumberType(const Type& type) {
 }
 
 bool isNumberType(const TypeSet& s) {
-	return !s.empty() && !s.isAll() && all_of(s, (bool (*)(const Type&)) & isNumberType);
+	return !s.empty() && !s.isAll()
+			&& all_of(s, (bool (*)(const Type&)) & isNumberType);
 }
 
 bool isSymbolType(const Type& type) {
@@ -365,7 +385,8 @@ bool isSymbolType(const Type& type) {
 }
 
 bool isSymbolType(const TypeSet& s) {
-	return !s.empty() && !s.isAll() && all_of(s, (bool (*)(const Type&)) & isSymbolType);
+	return !s.empty() && !s.isAll()
+			&& all_of(s, (bool (*)(const Type&)) & isSymbolType);
 }
 
 bool isRecordType(const Type& type) {
@@ -373,7 +394,8 @@ bool isRecordType(const Type& type) {
 }
 
 bool isRecordType(const TypeSet& s) {
-	return !s.empty() && !s.isAll() && all_of(s, (bool (*)(const Type&)) & isRecordType);
+	return !s.empty() && !s.isAll()
+			&& all_of(s, (bool (*)(const Type&)) & isRecordType);
 }
 
 bool isEnumType(const Type& type) {
@@ -381,13 +403,16 @@ bool isEnumType(const Type& type) {
 }
 
 bool isEnumType(const TypeSet& s) {
-	return !s.empty() && !s.isAll() && all_of(s, (bool (*)(const Type&)) & isEnumType);
+	return !s.empty() && !s.isAll()
+			&& all_of(s, (bool (*)(const Type&)) & isEnumType);
 }
 
 bool isRecursiveType(const Type& type) {
-	struct visitor : public VisitOnceTypeVisitor<bool> {
+	struct visitor: public VisitOnceTypeVisitor<bool> {
 		const Type& trg;
-		visitor(const Type& trg) : trg(trg) {}
+		visitor(const Type& trg) :
+				trg(trg) {
+		}
 		bool visit(const Type& type) const override {
 			if (trg == type) {
 				return true;
@@ -395,11 +420,12 @@ bool isRecursiveType(const Type& type) {
 			return VisitOnceTypeVisitor<bool>::visit(type);
 		}
 		bool visitUnionType(const UnionType& type) const override {
-			auto reachesTrg = [&](const Type* cur) { return this->visit(*cur); };
+			auto reachesTrg = [&](const Type* cur) {return this->visit(*cur);};
 			return any_of(type.getElementTypes(), reachesTrg);
 		}
 		bool visitRecordType(const RecordType& type) const override {
-			auto reachesTrg = [&](const RecordType::Field& cur) { return this->visit(cur.type); };
+			auto reachesTrg =
+					[&](const RecordType::Field& cur) {return this->visit(cur.type);};
 			return any_of(type.getFields(), reachesTrg);
 		}
 	};
@@ -408,7 +434,7 @@ bool isRecursiveType(const Type& type) {
 	if (const auto* r = dynamic_cast<const RecordType*>(&type)) {
 		auto reachesOrigin = visitor(type);
 		return any_of(r->getFields(),
-				[&](const RecordType::Field& field) -> bool { return reachesOrigin(field.type); });
+				[&](const RecordType::Field& field) -> bool {return reachesOrigin(field.type);});
 	}
 
 	return false;
@@ -449,7 +475,7 @@ bool isSubtypeOf(const Type& a, const Type& b) {
 }
 
 bool areSubtypesOf(const TypeSet& s, const Type& b) {
-	return all_of(s, [&](const Type& t) { return isSubtypeOf(t, b); });
+	return all_of(s, [&](const Type& t) {return isSubtypeOf(t, b);});
 }
 
 void TypeEnvironment::print(std::ostream& out) const {
@@ -461,7 +487,9 @@ void TypeEnvironment::print(std::ostream& out) const {
 
 TypeSet getLeastCommonSupertypes(const Type& a, const Type& b) {
 	// make sure they are in the same type environment
-	assert(a.getTypeEnvironment().isType(a) && a.getTypeEnvironment().isType(b));
+	assert(
+			a.getTypeEnvironment().isType(a)
+					&& a.getTypeEnvironment().isType(b));
 
 	// if they are equal it is easy
 	if (a == b) {
@@ -488,7 +516,9 @@ TypeSet getLeastCommonSupertypes(const Type& a, const Type& b) {
 	// filter out non-least super types
 	TypeSet res;
 	for (const Type& cur : superTypes) {
-		bool least = !any_of(superTypes, [&](const Type& t) { return t != cur && isSubtypeOf(t, cur); });
+		bool least =
+				!any_of(superTypes,
+						[&](const Type& t) {return t != cur && isSubtypeOf(t, cur);});
 		if (least) {
 			res.insert(cur);
 		}
@@ -555,7 +585,9 @@ TypeSet getLeastCommonSupertypes(const TypeSet& a, const TypeSet& b) {
 
 TypeSet getGreatestCommonSubtypes(const Type& a, const Type& b) {
 	// make sure they are in the same type environment
-	assert(a.getTypeEnvironment().isType(a) && a.getTypeEnvironment().isType(b));
+	assert(
+			a.getTypeEnvironment().isType(a)
+					&& a.getTypeEnvironment().isType(b));
 
 	// if they are equal it is easy
 	if (a == b) {
@@ -575,10 +607,12 @@ TypeSet getGreatestCommonSubtypes(const Type& a, const Type& b) {
 	if (isUnion(a) && isUnion(b)) {
 		// collect common sub-types of union types
 
-		struct collector : public TypeVisitor<void> {
+		struct collector: public TypeVisitor<void> {
 			const Type& b;
 			TypeSet& res;
-			collector(const Type& b, TypeSet& res) : b(b), res(res) {}
+			collector(const Type& b, TypeSet& res) :
+					b(b), res(res) {
+			}
 			void visit(const Type& type) const override {
 				if (isSubtypeOf(type, b)) {
 					res.insert(type);

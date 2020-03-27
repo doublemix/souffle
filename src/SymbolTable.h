@@ -291,8 +291,8 @@ public:
 
 	bool exist(const std::string& symbol) const {
 		// TODO: MPI
-		auto lease = access.acquire();
-		(void) lease;  // avoid warning;
+//		auto lease = access.acquire();
+//		(void) lease;  // avoid warning;
 		auto result = strToNum.find(symbol);
 		return result != strToNum.end();
 	}
@@ -342,7 +342,6 @@ public:
 		}
 	}
 
-
 	const std::string& unsafeResolve(const RamDomain index) const {
 #ifdef USE_MPI
 		if (mpi::commRank() != 0) {
@@ -363,7 +362,7 @@ public:
 		} else
 #endif
 
-		return (index >= MAX_RAM_DOMAIN - 65536 && index < MAX_RAM_DOMAIN - 5536) ?
+		return (index >= MAX_RAM_DOMAIN - ENUM_SYMBOL_OFFSET_1 && index < MAX_RAM_DOMAIN - ENUM_SYMBOL_OFFSET_2) ?
 				numToStr.at(static_cast<size_t>(index)) : std::to_string(index);
 	}
 
@@ -427,8 +426,9 @@ public:
 						&& "It's not in the symbol table when moving to the end!");
 		size_t org_index = it->second;
 		// move to the end, and avoid using the maximum value, which may be used in numeric variable
-		assert(org_index >= 0 && org_index < 60000);
-		it->second = MAX_RAM_DOMAIN - 65536 + org_index;
+		assert(
+				org_index >= 0 && org_index < (ENUM_SYMBOL_OFFSET_1 - ENUM_SYMBOL_OFFSET_2));
+		it->second = MAX_RAM_DOMAIN - ENUM_SYMBOL_OFFSET_1 + org_index;
 
 		auto it2 = numToStr.find(org_index);
 		assert(

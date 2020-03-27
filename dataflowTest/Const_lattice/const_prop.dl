@@ -1,6 +1,7 @@
 .enum Constant = {
 	case "Top",
-	case "Bot"
+	case .number_type,
+	case "Bot"	
 }
 // notice: enum must be decalred before any use of 
 // enum element (because of symbol table offset)
@@ -74,6 +75,7 @@
 
 .lat varEntry(l:number, k: symbol, v: Constant)
 .output varEntry
+.input varEntry
 .lat varExit(l:number, k: symbol, v: Constant)
 .output varExit
 

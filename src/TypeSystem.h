@@ -181,6 +181,15 @@ public:
 		return cases;
 	}
 
+	void addNumberType() {
+		assert(hasNumber == false && "EnumType: number type is already set.");
+		hasNumber = true;
+	}
+
+	bool hasNumerType() const {
+		return hasNumber;
+	}
+
 	void print(std::ostream& out) const override;
 
 private:
@@ -189,7 +198,9 @@ private:
 
 	std::vector<Case> cases;
 
-	EnumType(const TypeEnvironment& environment, const AstTypeIdentifier& name) : Type(environment, name) {}
+	bool hasNumber;
+
+	EnumType(const TypeEnvironment& environment, const AstTypeIdentifier& name) : Type(environment, name), hasNumber(false) {}
 };
 
 

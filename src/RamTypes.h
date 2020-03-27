@@ -43,6 +43,14 @@ using RamDomain = int32_t;
 #define MIN_RAM_DOMAIN (std::numeric_limits<RamDomain>::min())
 #define MAX_RAM_DOMAIN (std::numeric_limits<RamDomain>::max())
 
+/** added by Qing Gong: reserved region for symbols in enum type,
+ * from MAX_RAM_DOMAIN - ENUM_SYMBOL_OFFSET_1,
+ * to MAX_RAM_DOMAIN - ENUM_SYMBOL_OFFSET_2
+ */
+#define ENUM_SYMBOL_OFFSET_1 65536
+#define ENUM_SYMBOL_OFFSET_2 5536
+
+
 /** type of an index key; each bit represents a column of a table */
 using SearchColumns = uint64_t;
 

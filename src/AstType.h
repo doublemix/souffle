@@ -37,11 +37,17 @@ class AstTypeIdentifier {
 public:
 	// -- constructors --
 
-	AstTypeIdentifier() : names() {}
+	AstTypeIdentifier() :
+			names() {
+	}
 
-	AstTypeIdentifier(const std::string& name) : names({name}) {}
+	AstTypeIdentifier(const std::string& name) :
+			names( { name }) {
+	}
 
-	AstTypeIdentifier(const char* name) : AstTypeIdentifier(std::string(name)) {}
+	AstTypeIdentifier(const char* name) :
+			AstTypeIdentifier(std::string(name)) {
+	}
 
 	AstTypeIdentifier(const AstTypeIdentifier&) = default;
 	AstTypeIdentifier(AstTypeIdentifier&&) = default;
@@ -82,15 +88,16 @@ public:
 	}
 
 	bool operator<(const AstTypeIdentifier& other) const {
-		return std::lexicographical_compare(
-				names.begin(), names.end(), other.names.begin(), other.names.end());
+		return std::lexicographical_compare(names.begin(), names.end(),
+				other.names.begin(), other.names.end());
 	}
 
 	void print(std::ostream& out) const {
 		out << join(names, ".");
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, const AstTypeIdentifier& id) {
+	friend std::ostream& operator<<(std::ostream& out,
+			const AstTypeIdentifier& id) {
 		id.print(out);
 		return out;
 	}
@@ -103,7 +110,8 @@ private:
 /**
  * A overloaded operator to add a new prefix to a given relation identifier.
  */
-inline AstTypeIdentifier operator+(const std::string& name, const AstTypeIdentifier& id) {
+inline AstTypeIdentifier operator+(const std::string& name,
+		const AstTypeIdentifier& id) {
 	AstTypeIdentifier res = id;
 	res.prepend(name);
 	return res;
@@ -114,10 +122,12 @@ inline AstTypeIdentifier operator+(const std::string& name, const AstTypeIdentif
  *  @brief An abstract base class for types within the AST.
  *
  */
-class AstType : public AstNode {
+class AstType: public AstNode {
 public:
 	/** Creates a new type */
-	AstType(AstTypeIdentifier name = {""}) : name(std::move(name)) {}
+	AstType(AstTypeIdentifier name = { "" }) :
+			name(std::move(name)) {
+	}
 
 	/** Obtains the name of this type */
 	const AstTypeIdentifier& getName() const {
@@ -152,10 +162,12 @@ private:
  * the build-in number or symbol type. Primitive types are the most
  * basic building blocks of souffle's type system.
  */
-class AstPrimitiveType : public AstType {
+class AstPrimitiveType: public AstType {
 public:
 	/** Creates a new primitive type */
-	AstPrimitiveType(const AstTypeIdentifier& name, bool num = false) : AstType(name), num(num) {}
+	AstPrimitiveType(const AstTypeIdentifier& name, bool num = false) :
+			AstType(name), num(num) {
+	}
 
 	/** Tests whether this type is a numeric type */
 	bool isNumeric() const {
@@ -197,7 +209,7 @@ private:
  * Each of the enumerated types become a sub-type of the new
  * union type.
  */
-class AstUnionType : public AstType {
+class AstUnionType: public AstType {
 public:
 	/** Creates a new union type */
 	AstUnionType() = default;
@@ -250,7 +262,7 @@ private:
  * types are unrelated to all other types (they do not have
  * any super or sub types).
  */
-class AstRecordType : public AstType {
+class AstRecordType: public AstType {
 public:
 	/** The type utilized to model a field */
 	struct Field {
@@ -267,7 +279,7 @@ public:
 
 	/** Adds a new field to this record type */
 	void add(const std::string& name, const AstTypeIdentifier& type) {
-		fields.push_back(Field({name, type}));
+		fields.push_back(Field( { name, type }));
 	}
 
 	/** Obtains the list of field constituting this record type */
@@ -282,8 +294,7 @@ public:
 
 	/** Prints a summary of this type to the given stream */
 	void print(std::ostream& os) const override {
-		os << ".type " << getName() << " = "
-				<< "[";
+		os << ".type " << getName() << " = " << "[";
 		for (unsigned i = 0; i < fields.size(); i++) {
 			if (i != 0) {
 				os << ",";
@@ -317,13 +328,12 @@ private:
 	std::vector<Field> fields;
 };
 
-
 /**
  * An Enumerator type combines multiple cases (possible \
  * different types) into a new super type. Each of the
  * enumerated case become an element of the new Enum type.
  */
-class AstEnumType : public AstType {
+class AstEnumType: public AstType {
 public:
 	/** The type utilized to model a case */
 	struct Case {
@@ -335,7 +345,9 @@ public:
 		}
 	};
 	/** Creates a new Enum type */
-	AstEnumType() = default;
+	AstEnumType() :
+			AstType(), hasNumber(false) {
+	}
 
 	/** Obtains a reference to the list element types */
 	const std::vector<Case>& getCases() const {
@@ -343,12 +355,12 @@ public:
 	}
 
 	/** Adds another element type */
-	void add(const std::string& name, const AstTypeIdentifier& type) {
-		cases.push_back(Case{name, type});
-	}
+//	void add(const std::string& name, const AstTypeIdentifier& type) {
+//		cases.push_back(Case { name, type });
+//	}
 
 	void add(const std::string& name) {
-		cases.push_back(Case{name, AstTypeIdentifier("symbol")});
+		cases.push_back(Case { name, AstTypeIdentifier("symbol") });
 	}
 
 	void setCaseType(size_t idx, const AstTypeIdentifier& type) {
@@ -356,10 +368,20 @@ public:
 		cases[idx].type = type;
 	}
 
+	// special case: add primitive number type
+	void add_hasNumberType() {
+		assert(hasNumber == false && "number type is already included.");
+		hasNumber = true;
+	}
+
+	bool get_hasNumberType() const {
+		return hasNumber;
+	}
+
 	/** Prints a summary of this type to the given stream */
 	void print(std::ostream& os) const override {
-		os << ".enum_type " << getName() << " = "
-				<< "{";
+		os << ".enum_type " << getName() << " = " << "{";
+
 		for (unsigned i = 0; i < cases.size(); i++) {
 			if (i != 0) {
 				os << ",";
@@ -367,6 +389,13 @@ public:
 			os << cases[i].name;
 			os << ":";
 			os << cases[i].type;
+		}
+
+		if (hasNumber) {
+			if (cases.size()) {
+				os << ",";
+			}
+			os << ".number_type";
 		}
 		os << "}";
 	}
@@ -391,7 +420,9 @@ protected:
 private:
 	/** The list of types aggregated by this enumerator type */
 	std::vector<Case> cases;
-};
 
+	/** If this enumerator type includes the primitive type: number **/
+	bool hasNumber;
+};
 
 }  // end of namespace souffle

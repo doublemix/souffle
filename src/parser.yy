@@ -381,17 +381,25 @@ uniontype
     }
 
 enumtype
-  :  CASE STRING {
+  : CASE STRING {
   		$$ = new AstEnumType();
   		driver.getSymbolTable().lookup($2); // add to symbol table
   		driver.getSymbolTable().moveToEnd($2); // change symbol table
   		$$->add($2); // regard lattice enum as symbol
   	}
+  | CASE NUMBER_TYPE {
+  		$$ = new AstEnumType();
+  		$$->add_hasNumberType();
+    }
   | enumtype COMMA CASE STRING {
   		$$ = $1;
   		driver.getSymbolTable().lookup($4); // add to symbol table
   		driver.getSymbolTable().moveToEnd($4); // change symbol table
   		$1->add($4); // regard lattice enum as symbol
+  	}
+  | enumtype COMMA CASE NUMBER_TYPE {
+  		$$ = $1;
+  		$1->add_hasNumberType();
   	}
 
 
