@@ -195,6 +195,7 @@ int main(int argc, char** argv) {
                         "execution engine."},
                 {"verbose", 'v', "", "", false, "Verbose output."},
                 {"version", '\2', "", "", false, "Version."},
+                {"ram", '\3', "", "", false, "Print the ram program"},
                 {"help", 'h', "", "", false, "Display this help message."}};
         Global::config().processArgs(argc, argv, header.str(), footer.str(), options);
 
@@ -511,6 +512,12 @@ int main(int argc, char** argv) {
         return 0;
     };
 //    std::cout << "RAM construction -- phase 2 completed.\n";
+
+    if (Global::config().has("ram")) {
+        ramTranslationUnit->getProgram()->print(std::cout);
+        return 0;
+    }
+    
 
     if (!Global::config().has("compile") && !Global::config().has("dl-program") &&
             !Global::config().has("generate")) {
