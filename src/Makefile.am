@@ -188,6 +188,7 @@ soufflepublic_HEADERS = \
                         CompiledRelation.h      \
                         CompiledSouffle.h       \
                         CompiledTuple.h         \
+                        EnumTypeMask.h          \
                         EventProcessor.h        \
                         Explain.h               \
                         ExplainProvenance.h     \
