@@ -77,7 +77,7 @@ protected:
     std::set<RamRelationReference> getReferencedRelations(const RamOperation& op);
 
     /** Generate code */
-    void emitCode(std::ostream& out, const RamStatement& stmt);
+    void emitCode(std::ostream& out, const RamNode& stmt);
 
     /** Lookup frequency counter */
     unsigned lookupFreqIdx(const std::string& txt);

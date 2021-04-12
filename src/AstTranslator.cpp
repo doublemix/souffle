@@ -430,8 +430,6 @@ std::unique_ptr<RamValue> AstTranslator::translateValue(const AstArgument* arg,
 				assert(AstLUF != nullptr);
 				RamLUF = std::move(
 						translator.translateLatticeUnaryFunction(AstLUF));
-				// add to Ram Program
-				translator.ramProg->addLUF(luf.getName(), RamLUF);
 			}
 
 			ret->setFunc(RamLUF);
@@ -744,8 +742,10 @@ std::unique_ptr<RamLatticeAssociation> AstTranslator::translateLatticeAssoc(
 
 std::unique_ptr<RamLatticeUnaryFunction> AstTranslator::translateLatticeUnaryFunction(
 		const AstLatticeUnaryFunction* AstUnary) {
+
 	AstTranslator& translator = *this;
-	RamLatticeUnaryFunction* RamLatUnary = new RamLatticeUnaryFunction();
+
+	RamLatticeUnaryFunction* RamLatUnary = new RamLatticeUnaryFunction(AstUnary->getName());
 	ValueIndex index;
 	const std::string& arg = AstUnary->getArgument();
 	index.setLatArguments(arg, 0);
@@ -777,13 +777,19 @@ std::unique_ptr<RamLatticeUnaryFunction> AstTranslator::translateLatticeUnaryFun
 			ramLatCases.back().constraint == nullptr
 					&& "The last match constraint of lattice unary function must be NULL!");
 
+	std::shared_ptr<RamLatticeUnaryFunction> Cached = translator.ramProg->getLUF(AstUnary->getName());
+	if (Cached == nullptr) {
+		// add to Ram Program
+		translator.ramProg->addLUF(AstUnary->getName(), std::shared_ptr<RamLatticeUnaryFunction>(RamLatUnary->clone()));
+	}
+
 	return std::unique_ptr<RamLatticeUnaryFunction>(RamLatUnary);
 }
 
 std::unique_ptr<RamLatticeBinaryFunction> AstTranslator::translateLatticeBinaryFunction(
 		const AstLatticeBinaryFunction* AstBinary) {
 	AstTranslator& translator = *this;
-	RamLatticeBinaryFunction* RamLatBinary = new RamLatticeBinaryFunction();
+	RamLatticeBinaryFunction* RamLatBinary = new RamLatticeBinaryFunction(AstBinary->getName());
 	ValueIndex index;
 	const std::vector<std::string>& args = AstBinary->getArguments();
 	index.setLatArguments(args[0], 0);
@@ -842,6 +848,12 @@ std::unique_ptr<RamLatticeBinaryFunction> AstTranslator::translateLatticeBinaryF
 	assert(
 			ramLatCases.back().match == nullptr
 					&& "The last match constraint of lattice binary function must be NULL!");
+
+	std::shared_ptr<RamLatticeBinaryFunction> Cached = translator.ramProg->getLBF(AstBinary->getName());
+	if (Cached == nullptr) {
+		// add to Ram Program
+		translator.ramProg->addLBF(AstBinary->getName(), std::shared_ptr<RamLatticeBinaryFunction>(RamLatBinary->clone()));
+	}
 
 	return std::unique_ptr<RamLatticeBinaryFunction>(RamLatBinary);
 }

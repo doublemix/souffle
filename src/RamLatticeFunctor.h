@@ -44,6 +44,10 @@ public:
 					std::move(r)) {
 	}
 
+	const std::string getName() const {
+		return name;
+	}
+
 	/** Print */
 	void print(std::ostream& os) const override {
 		os << name << "( ";
@@ -152,6 +156,10 @@ public:
 			std::unique_ptr<RamValue> r2) :
 			RamLatticeFunctor(RN_LatticeBinaryFunctor), name(n), ref1(
 					std::move(r1)), ref2(std::move(r2)) {
+	}
+	
+	const std::string getName() const {
+		return name;
 	}
 
 	/** Print */

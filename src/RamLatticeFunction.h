@@ -29,8 +29,11 @@
 namespace souffle {
 
 class RamLatticeFunction: public RamNode {
+	std::string name;
 public:
-	RamLatticeFunction(RamNodeType type): RamNode(type) {}
+	RamLatticeFunction(RamNodeType type, const std::string& name): RamNode(type), name(name) {}
+
+	std::string getName() const { return name; }
 };
 
 /**
@@ -52,8 +55,8 @@ public:
 		}
 	};
 
-	RamLatticeUnaryFunction():
-		RamLatticeFunction(RN_LatticeUnaryFunction) {
+	RamLatticeUnaryFunction(const std::string& name):
+		RamLatticeFunction(RN_LatticeUnaryFunction, name) {
 	}
 
 	/** Obtain child nodes */
@@ -89,8 +92,12 @@ public:
 
 	/** Create clone */
 	RamLatticeUnaryFunction* clone() const override {
-		RamLatticeUnaryFunction* res = new RamLatticeUnaryFunction();
-		//TODO
+		RamLatticeUnaryFunction* res = new RamLatticeUnaryFunction(getName());
+		for (auto& unarycase : Unarycases) {
+			res->Unarycases.emplace_back(
+				std::unique_ptr<RamConstraint>(unarycase.constraint == nullptr ? nullptr : unarycase.constraint->clone()),
+				std::unique_ptr<RamValue>(unarycase.output->clone()));
+		}
 		return res;
 	}
 
@@ -132,8 +139,8 @@ public:
 		}
 	};
 
-	RamLatticeBinaryFunction():
-		RamLatticeFunction(RN_LatticeBinaryFunction) {
+	RamLatticeBinaryFunction(const std::string& name):
+		RamLatticeFunction(RN_LatticeBinaryFunction, name) {
 	}
 
 	/** Obtain child nodes */
@@ -169,8 +176,12 @@ public:
 
 	/** Create clone */
 	RamLatticeBinaryFunction* clone() const override {
-		RamLatticeBinaryFunction* res = new RamLatticeBinaryFunction();
-		//TODO
+		RamLatticeBinaryFunction* res = new RamLatticeBinaryFunction(getName());
+		for (auto& bincase : cases) {
+			res->cases.emplace_back(
+				std::unique_ptr<RamCondition>(bincase.match == nullptr ? nullptr : bincase.match->clone()),
+				std::unique_ptr<RamValue>(bincase.output->clone()));
+		}
 		return res;
 	}
 

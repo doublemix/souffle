@@ -76,6 +76,14 @@ public:
 		if (lattice != nullptr) {
 			lattice->print(out);
 		}
+		for (const auto& luf : LUFs) {
+			out << "function " << luf.first << ":" << std::endl;
+			luf.second->print(out);
+		}
+		for (const auto& lbf : LBFs) {
+			out << "function " << lbf.first << ":" << std::endl;
+			lbf.second->print(out);
+		}
 		out << "END DECLARATION " << std::endl;
 		out << "PROGRAM" << std::endl;
 		out << *main;
@@ -151,6 +159,10 @@ public:
 		LUFs.insert( { name, luf });
 	}
 
+	std::map<std::string, std::shared_ptr<souffle::RamLatticeUnaryFunction>> getLUFs () const {
+		return LUFs;
+	}
+
 	/** get a pointer to a lattice unary function from its name **/
 	std::shared_ptr<RamLatticeUnaryFunction> getLUF(std::string name) {
 		auto it = LUFs.find(name);
@@ -162,6 +174,10 @@ public:
 			std::shared_ptr<RamLatticeBinaryFunction> lbf) {
 		assert(LBFs.find(name) == LBFs.end());
 		LBFs.insert( { name, lbf });
+	}
+
+	std::map<std::string, std::shared_ptr<souffle::RamLatticeBinaryFunction>> getLBFs () const {
+		return LBFs;
 	}
 
 	/** get a pointer to a lattice binary function from its name **/

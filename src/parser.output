@@ -261,232 +261,275 @@ Grammar
 
 Terminals, with rules where they appear
 
-"end of file" (0) 0
-error (256)
-"reserved keyword" (258) 129
-"symbol" (259) 17 18 32 34 61 68 69 85
-"identifier" (260) 19 20 21 22 23 24 25 26 27 28 29 36 37 38 39 51
-    52 53 58 59 61 62 65 68 69 70 71 72 73 74 75 82 88 89 90 91 114
-    177 181 196 197
-"number" (261) 92 167 168 170 171
-"relational operator" (262) 147
-"pragma directive" (263) 17 18
-"relation qualifier output" (264) 42
-"relation qualifier input" (265) 43
-"relation qualifier printsize" (266) 44
-"BRIE datastructure qualifier" (267) 47
-"BTREE datastructure qualifier" (268) 48
-"equivalence relation qualifier" (269) 49
-"relation qualifier overidable" (270) 45
-"relation qualifier inline" (271) 46
-"match predicate" (272) 152
-"checks whether substring is contained in a string" (273) 153
-"concatenation of two strings" (274) 108
-"ordinal number of a string" (275) 109
-"length of a string" (276) 110
-"sub-string of a string" (277) 113
-"min aggregator" (278) 107 125 126
-"max aggregator" (279) 106 127 128
-"count aggregator" (280) 121 122
-"sum aggregator" (281) 123 124
-"true literal constraint" (282) 72 73 154
-"false literal constraint" (283) 74 75 155
-"strict marker" (284) 175
-"plan keyword" (285) 172
-":-" (286) 173
-"relation declaration" (287) 56
-"lattice declaration" (288) 60
-"lattice components type declaration" (289) 61
-"lattice binary function definition" (290) 62 65
-"functor declaration" (291) 51 52
-"input directives declaration" (292) 78
-"output directives declaration" (293) 79
-"printsize directives declaration" (294) 80
-"override rules of super-component" (295) 197
-"type declaration" (296) 23 24 25 26
-"enum declaration" (297) 27
-"component declaration" (298) 182
-"component instantiation" (299) 196
-"numeric type declaration" (300) 21 33 35
-"symbolic type declaration" (301) 22
-"convert string to number" (302) 111
-"convert number to string" (303) 112
-"type cast" (304) 114
-"nil reference" (305) 120
-"|" (306) 31
-"[" (307) 25 26 118 119
-"]" (308) 25 26 118 119
-"_" (309) 86
-"$" (310) 87
-"+" (311) 100
-"-" (312) 101 115
-"!" (313) 131 160
-"?" (314) 94
-"(" (315) 51 52 59 61 62 63 64 65 66 67 83 89 90 93 106 107 108 109
-    110 111 112 113 129 136 137 146 152 153 161 169
-")" (316) 51 52 59 61 62 63 64 65 66 67 83 89 90 93 106 107 108 109
-    110 111 112 113 129 136 137 146 152 153 161 169
-"," (317) 29 34 35 39 54 58 61 64 65 66 67 69 71 73 75 82 90 106 107
-    108 113 139 141 143 152 153 158 163 168 171 178 184
-":" (318) 28 29 38 39 51 52 62 65 94 121 122 123 124 125 126 127 128
-    170 171 183
-";" (319) 165
-"." (320) 20 37 156 173
-"=>" (321) 63 64 66 67
-"=" (322) 24 25 26 27 61 68 69 70 71 72 73 74 75 130 131 133 135 150
-    196
-"*" (323) 102
-"@" (324) 88
-"&" (325) 89 90
-"/" (326) 103
-"^" (327) 105
-"%" (328) 104
-"{" (329) 27 62 65 122 124 126 128 195
-"}" (330) 27 62 65 122 124 126 128 195
-"<" (331) 61 132 133 148 180
-">" (332) 61 134 135 149 180
-"band" (333) 97
-"bor" (334) 95
-"bxor" (335) 96
-"bnot" (336) 116
-"land" (337) 99
-"lor" (338) 98
-"lnot" (339) 117
-"case" (340) 32 33 34 35 63 64 66 67
-NEG (341)
+    "end of file" (0) 0
+    error (256)
+    "reserved keyword" <std::string> (258) 129
+    "symbol" <std::string> (259) 17 18 32 34 61 68 69 85
+    "identifier" <std::string> (260) 19 20 21 22 23 24 25 26 27 28 29 36 37 38 39 51 52 53 58 59 61 62 65 68 69 70 71 72 73 74 75 82 88 89 90 91 114 177 181 196 197
+    "number" <AstDomain> (261) 92 167 168 170 171
+    "relational operator" <std::string> (262) 147
+    "pragma directive" (263) 17 18
+    "relation qualifier output" (264) 42
+    "relation qualifier input" (265) 43
+    "relation qualifier printsize" (266) 44
+    "BRIE datastructure qualifier" (267) 47
+    "BTREE datastructure qualifier" (268) 48
+    "equivalence relation qualifier" (269) 49
+    "relation qualifier overidable" (270) 45
+    "relation qualifier inline" (271) 46
+    "match predicate" (272) 152
+    "checks whether substring is contained in a string" (273) 153
+    "concatenation of two strings" (274) 108
+    "ordinal number of a string" (275) 109
+    "length of a string" (276) 110
+    "sub-string of a string" (277) 113
+    "min aggregator" (278) 107 125 126
+    "max aggregator" (279) 106 127 128
+    "count aggregator" (280) 121 122
+    "sum aggregator" (281) 123 124
+    "true literal constraint" (282) 72 73 154
+    "false literal constraint" (283) 74 75 155
+    "strict marker" (284) 175
+    "plan keyword" (285) 172
+    ":-" (286) 173
+    "relation declaration" (287) 56
+    "lattice declaration" (288) 60
+    "lattice components type declaration" (289) 61
+    "lattice binary function definition" (290) 62 65
+    "functor declaration" (291) 51 52
+    "input directives declaration" (292) 78
+    "output directives declaration" (293) 79
+    "printsize directives declaration" (294) 80
+    "override rules of super-component" (295) 197
+    "type declaration" (296) 23 24 25 26
+    "enum declaration" (297) 27
+    "component declaration" (298) 182
+    "component instantiation" (299) 196
+    "numeric type declaration" (300) 21 33 35
+    "symbolic type declaration" (301) 22
+    "convert string to number" (302) 111
+    "convert number to string" (303) 112
+    "type cast" (304) 114
+    "nil reference" (305) 120
+    "|" (306) 31
+    "[" (307) 25 26 118 119
+    "]" (308) 25 26 118 119
+    "_" (309) 86
+    "$" (310) 87
+    "+" (311) 100
+    "-" (312) 101 115
+    "!" (313) 131 160
+    "?" (314) 94
+    "(" (315) 51 52 59 61 62 63 64 65 66 67 83 89 90 93 106 107 108 109 110 111 112 113 129 136 137 146 152 153 161 169
+    ")" (316) 51 52 59 61 62 63 64 65 66 67 83 89 90 93 106 107 108 109 110 111 112 113 129 136 137 146 152 153 161 169
+    "," (317) 29 34 35 39 54 58 61 64 65 66 67 69 71 73 75 82 90 106 107 108 113 139 141 143 152 153 158 163 168 171 178 184
+    ":" (318) 28 29 38 39 51 52 62 65 94 121 122 123 124 125 126 127 128 170 171 183
+    ";" (319) 165
+    "." (320) 20 37 156 173
+    "=>" (321) 63 64 66 67
+    "=" (322) 24 25 26 27 61 68 69 70 71 72 73 74 75 130 131 133 135 150 196
+    "*" (323) 102
+    "@" (324) 88
+    "&" (325) 89 90
+    "/" (326) 103
+    "^" (327) 105
+    "%" (328) 104
+    "{" (329) 27 62 65 122 124 126 128 195
+    "}" (330) 27 62 65 122 124 126 128 195
+    "<" (331) 61 132 133 148 180
+    ">" (332) 61 134 135 149 180
+    "band" (333) 97
+    "bor" (334) 95
+    "bxor" (335) 96
+    "bnot" (336) 116
+    "land" (337) 99
+    "lor" (338) 98
+    "lnot" (339) 117
+    "case" (340) 32 33 34 35 63 64 66 67
+    NEG (341)
 
 
 Nonterminals, with rules where they appear
 
-$accept (87)
-    on left: 0
-program (88)
-    on left: 1, on right: 0
-unit (89)
-    on left: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16, on right: 1 2 3
-    4 5 6 7 8 9 10 11 12 13 14 15
-pragma (90)
-    on left: 17 18, on right: 15
-type_id (91)
-    on left: 19 20, on right: 20 28 29 30 31 38 39 178
-type (92)
-    on left: 21 22 23 24 25 26 27, on right: 2 185
-recordtype (93)
-    on left: 28 29, on right: 25 29
-uniontype (94)
-    on left: 30 31, on right: 24 31
-enumtype (95)
-    on left: 32 33 34 35, on right: 27 34 35
-rel_id (96)
-    on left: 36 37, on right: 37 83 84 146
-non_empty_attributes (97)
-    on left: 38 39, on right: 40
-attributes (98)
-    on left: 40 41, on right: 39 59
-qualifiers (99)
-    on left: 42 43 44 45 46 47 48 49 50, on right: 42 43 44 45 46 47
-    48 49 59
-functor_decl (100)
-    on left: 51 52, on right: 3
-functor_type (101)
-    on left: 53, on right: 51 52 54 55
-functor_typeargs (102)
-    on left: 54 55, on right: 51 54
-relation_decl (103)
-    on left: 56, on right: 4 186
-relation_list (104)
-    on left: 57 58, on right: 56 58 60
-relation_body (105)
-    on left: 59, on right: 57
-lattice_decl (106)
-    on left: 60, on right: 5
-lattice_asscoiation (107)
-    on left: 61, on right: 6
-lattice_unary_def (108)
-    on left: 62, on right: 7
-lattice_unary_def_type (109)
-    on left: 63 64, on right: 62 64
-lattice_binary_def (110)
-    on left: 65, on right: 8
-lattice_binary_def_type (111)
-    on left: 66 67, on right: 65 67
-non_empty_key_value_pairs (112)
-    on left: 68 69 70 71 72 73 74 75, on right: 76
-key_value_pairs (113)
-    on left: 76 77, on right: 69 71 73 75 83
-load_head (114)
-    on left: 78, on right: 9 187
-store_head (115)
-    on left: 79 80, on right: 10 188
-iodirective_list (116)
-    on left: 81 82, on right: 78 79 80 82
-iodirective_body (117)
-    on left: 83 84, on right: 81
-arg (118)
-    on left: 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102
-    103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118
-    119 120 121 122 123 124 125 126 127 128 129, on right: 63 64 66
-    67 89 90 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108
-    109 110 111 112 113 114 115 116 117 123 124 125 126 127 128 129
-    130 131 132 133 134 135 138 139 140 141 142 143 147 148 149 150
-    152 153
-condition (119)
-    on left: 130 131 132 133 134 135, on right: 94
-functor_list (120)
-    on left: 136 137, on right: 88
-functor_args (121)
-    on left: 138 139, on right: 137 139
-recordlist (122)
-    on left: 140 141, on right: 119 141
-non_empty_arg_list (123)
-    on left: 142 143, on right: 144
-arg_list (124)
-    on left: 144 145, on right: 143 146
-atom (125)
-    on left: 146, on right: 121 123 125 127 151 156 157 158
-literal (126)
-    on left: 147 148 149 150 151 152 153 154 155, on right: 159
-fact (127)
-    on left: 156, on right: 11 189
-head (128)
-    on left: 157 158, on right: 158 173
-term (129)
-    on left: 159 160 161, on right: 160 162 163
-conjunction (130)
-    on left: 162 163, on right: 163 164 165
-disjunction (131)
-    on left: 164 165, on right: 161 165 166
-body (132)
-    on left: 166, on right: 122 124 126 128 173
-exec_order_list (133)
-    on left: 167 168, on right: 168 169
-exec_order (134)
-    on left: 169, on right: 170 171
-exec_plan_list (135)
-    on left: 170 171, on right: 171 172
-exec_plan (136)
-    on left: 172, on right: 176
-rule_def (137)
-    on left: 173, on right: 174
-rule (138)
-    on left: 174 175 176, on right: 12 175 176 190
-type_param_list (139)
-    on left: 177 178, on right: 178 180
-type_params (140)
-    on left: 179 180, on right: 181
-comp_type (141)
-    on left: 181, on right: 182 183 184 196
-component_head (142)
-    on left: 182 183 184, on right: 183 184 195
-component_body (143)
-    on left: 185 186 187 188 189 190 191 192 193 194, on right: 185
-    186 187 188 189 190 191 192 193 195
-component (144)
-    on left: 195, on right: 13 192
-comp_init (145)
-    on left: 196, on right: 14 193
-comp_override (146)
-    on left: 197, on right: 191
+    $accept (87)
+        on left: 0
+    program (88)
+        on left: 1
+        on right: 0
+    unit (89)
+        on left: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+        on right: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+    pragma <AstPragma *> (90)
+        on left: 17 18
+        on right: 15
+    type_id <AstTypeIdentifier *> (91)
+        on left: 19 20
+        on right: 20 28 29 30 31 38 39 178
+    type <AstType *> (92)
+        on left: 21 22 23 24 25 26 27
+        on right: 2 185
+    recordtype <AstRecordType *> (93)
+        on left: 28 29
+        on right: 25 29
+    uniontype <AstUnionType *> (94)
+        on left: 30 31
+        on right: 24 31
+    enumtype <AstEnumType *> (95)
+        on left: 32 33 34 35
+        on right: 27 34 35
+    rel_id <AstRelationIdentifier *> (96)
+        on left: 36 37
+        on right: 37 83 84 146
+    non_empty_attributes <AstRelation *> (97)
+        on left: 38 39
+        on right: 40
+    attributes <AstRelation *> (98)
+        on left: 40 41
+        on right: 39 59
+    qualifiers <uint32_t> (99)
+        on left: 42 43 44 45 46 47 48 49 50
+        on right: 42 43 44 45 46 47 48 49 59
+    functor_decl <AstFunctorDeclaration *> (100)
+        on left: 51 52
+        on right: 3
+    functor_type <std::string> (101)
+        on left: 53
+        on right: 51 52 54 55
+    functor_typeargs <std::string> (102)
+        on left: 54 55
+        on right: 51 54
+    relation_decl <std::vector<AstRelation *>> (103)
+        on left: 56
+        on right: 4 186
+    relation_list <std::vector<AstRelation *>> (104)
+        on left: 57 58
+        on right: 56 58 60
+    relation_body <AstRelation *> (105)
+        on left: 59
+        on right: 57
+    lattice_decl <std::vector<AstRelation *>> (106)
+        on left: 60
+        on right: 5
+    lattice_asscoiation <AstLatticeAssociation *> (107)
+        on left: 61
+        on right: 6
+    lattice_unary_def <AstLatticeUnaryFunction *> (108)
+        on left: 62
+        on right: 7
+    lattice_unary_def_type <AstLatticeUnaryFunction *> (109)
+        on left: 63 64
+        on right: 62 64
+    lattice_binary_def <AstLatticeBinaryFunction *> (110)
+        on left: 65
+        on right: 8
+    lattice_binary_def_type <AstLatticeBinaryFunction *> (111)
+        on left: 66 67
+        on right: 65 67
+    non_empty_key_value_pairs <AstIO *> (112)
+        on left: 68 69 70 71 72 73 74 75
+        on right: 76
+    key_value_pairs <AstIO *> (113)
+        on left: 76 77
+        on right: 69 71 73 75 83
+    load_head <std::vector<AstLoad *>> (114)
+        on left: 78
+        on right: 9 187
+    store_head <std::vector<AstStore *>> (115)
+        on left: 79 80
+        on right: 10 188
+    iodirective_list <std::vector<AstIO *>> (116)
+        on left: 81 82
+        on right: 78 79 80 82
+    iodirective_body <AstIO *> (117)
+        on left: 83 84
+        on right: 81
+    arg <AstArgument *> (118)
+        on left: 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129
+        on right: 63 64 66 67 89 90 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 123 124 125 126 127 128 129 130 131 132 133 134 135 138 139 140 141 142 143 147 148 149 150 152 153
+    condition <AstQuestionMark *> (119)
+        on left: 130 131 132 133 134 135
+        on right: 94
+    functor_list <AstUserDefinedFunctor *> (120)
+        on left: 136 137
+        on right: 88
+    functor_args <AstUserDefinedFunctor *> (121)
+        on left: 138 139
+        on right: 137 139
+    recordlist <AstRecordInit *> (122)
+        on left: 140 141
+        on right: 119 141
+    non_empty_arg_list <AstAtom *> (123)
+        on left: 142 143
+        on right: 144
+    arg_list <AstAtom *> (124)
+        on left: 144 145
+        on right: 143 146
+    atom <AstAtom *> (125)
+        on left: 146
+        on right: 121 123 125 127 151 156 157 158
+    literal <RuleBody *> (126)
+        on left: 147 148 149 150 151 152 153 154 155
+        on right: 159
+    fact <AstClause *> (127)
+        on left: 156
+        on right: 11 189
+    head <std::vector<AstAtom*>> (128)
+        on left: 157 158
+        on right: 158 173
+    term <RuleBody *> (129)
+        on left: 159 160 161
+        on right: 160 162 163
+    conjunction <RuleBody *> (130)
+        on left: 162 163
+        on right: 163 164 165
+    disjunction <RuleBody *> (131)
+        on left: 164 165
+        on right: 161 165 166
+    body <RuleBody *> (132)
+        on left: 166
+        on right: 122 124 126 128 173
+    exec_order_list <AstExecutionOrder *> (133)
+        on left: 167 168
+        on right: 168 169
+    exec_order <AstExecutionOrder *> (134)
+        on left: 169
+        on right: 170 171
+    exec_plan_list <AstExecutionPlan *> (135)
+        on left: 170 171
+        on right: 171 172
+    exec_plan <AstExecutionPlan *> (136)
+        on left: 172
+        on right: 176
+    rule_def <std::vector<AstClause*>> (137)
+        on left: 173
+        on right: 174
+    rule <std::vector<AstClause*>> (138)
+        on left: 174 175 176
+        on right: 12 175 176 190
+    type_param_list <std::vector<AstTypeIdentifier>> (139)
+        on left: 177 178
+        on right: 178 180
+    type_params <std::vector<AstTypeIdentifier>> (140)
+        on left: 179 180
+        on right: 181
+    comp_type <AstComponentType *> (141)
+        on left: 181
+        on right: 182 183 184 196
+    component_head <AstComponent *> (142)
+        on left: 182 183 184
+        on right: 183 184 195
+    component_body <AstComponent *> (143)
+        on left: 185 186 187 188 189 190 191 192 193 194
+        on right: 185 186 187 188 189 190 191 192 193 195
+    component <AstComponent *> (144)
+        on left: 195
+        on right: 13 192
+    comp_init <AstComponentInit *> (145)
+        on left: 196
+        on right: 14 193
+    comp_override <std::string> (146)
+        on left: 197
+        on right: 191
 
 
 State 0

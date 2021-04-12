@@ -48,6 +48,13 @@
 
 namespace souffle {
 
+const std::string convertLBFName (const std::string& baseName) {
+	return "lbf_" + baseName;
+}
+const std::string convertLUFName (const std::string& baseName) {
+	return "luf_" + baseName;
+}
+
 /** Lookup frequency counter */
 unsigned Synthesiser::lookupFreqIdx(const std::string& txt) {
 	static unsigned ctr;
@@ -191,7 +198,7 @@ std::set<RamRelationReference> Synthesiser::getReferencedRelations(
 	return res;
 }
 
-void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
+void Synthesiser::emitCode(std::ostream& out, const RamNode& stmt) {
 	class CodeEmitter: public RamVisitor<void, std::ostream&> {
 	private:
 		Synthesiser& synthesiser;
@@ -291,6 +298,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 				out << "IOSystem::getInstance().getWriter(";
 				out << "SymbolMask({" << store.getRelation().getSymbolMask()
 						<< "})";
+				out << ", EnumTypeMask({" << store.getRelation().getEnumTypeMask() << "})";
 				out << ", symTable, ioDirectives";
 				out << ", " << Global::config().has("provenance");
 				out << ")->writeAll(*"
@@ -460,11 +468,17 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 			PRINT_END_COMMENT(out);
 		}
 
-		//added by Qing Gong
+		//added by Qing Gong TODO(mmyers)
 		void visitLatNorm(const RamLatNorm& latNorm, std::ostream& out)
 				override {
 			PRINT_BEGIN_COMMENT(out);
 			out << "//TODO: visitLatNorm\n";
+			PRINT_END_COMMENT(out);
+		}
+
+		void visitLatClean(const RamLatClean& latClean, std::ostream& out) override {
+			PRINT_BEGIN_COMMENT(out);
+			out << "//TODO: visitLatClean\n";
 			PRINT_END_COMMENT(out);
 		}
 
@@ -1099,6 +1113,8 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 			PRINT_END_COMMENT(out);
 		}
 
+		// TODO(mmyers) maybe location of vistQuestionMark
+
 		void visitEmptinessCheck(const RamEmptinessCheck& emptiness,
 				std::ostream& out) override {
 			PRINT_BEGIN_COMMENT(out);
@@ -1191,11 +1207,26 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 
 		// -- values --
 
-		//added by Qing Gong
+		//added by Qing Gong TODO(mmyers)
 		void visitLatticeGLB(const RamLatticeGLB& rGLB, std::ostream& out)
 				override {
 			PRINT_BEGIN_COMMENT(out);
-			out << "//TODO: visitLatticeGLB\n";
+			auto lattice = synthesiser.getTranslationUnit().getProgram()->getLattice();
+			auto name = lattice->getGLB().getName();
+			out << convertLBFName(name) << "(";
+			auto& refs = *rGLB.getRefs();
+			bool first = true;
+			for (auto& ref : refs) {
+				// we have to do an element access here (don't know why they didn't just use the RamElementAccess)
+				if (first) {
+					first = false;
+				} else {
+					out << ",";
+				}
+				RamElementAccess ram(ref.identifier, ref.element, std::unique_ptr<souffle::RamRelationReference>(ref.relation->clone()));
+				visit(ram, out);
+			}
+			out << ")";
 			PRINT_END_COMMENT(out);
 		}
 
@@ -1440,11 +1471,38 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 			}
 		}
 
-		//added by Qing Gong
+		//added by Qing Gong TODO(mmyers)
 		void visitQuestionMark(const RamQuestionMark& qmark, std::ostream& out)
 				override {
 			PRINT_BEGIN_COMMENT(out);
-			out << "//TODO: visitQuestionMark\n";
+			// out << "//TODO: visitQuestionMark\n";
+			out << "(";
+			visit(qmark.getCondition(), out);
+			out << ") ? (";
+			visit(qmark.getFirstRet(), out);
+			out << ") : (";
+			visit(qmark.getSecondRet(), out);
+			out << ")";
+			PRINT_END_COMMENT(out);
+		}
+
+		void visitLatticeUnaryFunctor(const RamLatticeUnaryFunctor& functor, std::ostream& out) override {
+			PRINT_BEGIN_COMMENT(out);
+			auto& name = functor.getName();
+			out << convertLUFName(name) << "(";
+			visit(functor.getRef(), out);
+			out << ")";
+			PRINT_END_COMMENT(out);
+		}
+
+		void visitLatticeBinaryFunctor(const RamLatticeBinaryFunctor& functor, std::ostream& out) override {
+			PRINT_BEGIN_COMMENT(out);
+			auto& name = functor.getName();
+			out << convertLBFName(name) << "(";
+			visit(functor.getRef1(), out);
+			out << ",";
+			visit(functor.getRef2(), out);
+			out << ")";
 			PRINT_END_COMMENT(out);
 		}
 
@@ -1631,6 +1689,8 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 	}
 	os << "}\n";
 	os << "\n";
+	
+	
 	os << "namespace souffle {\n";
 	os << "using namespace ram;\n";
 
@@ -1646,6 +1706,56 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 			generateRelationTypeStruct(os, std::move(relationType));
 		});
 	os << '\n';
+
+	// forward declarations for LUFs and LBFs
+	for (const auto& luf : prog.getLUFs()) {
+		os << "RamDomain " << convertLUFName(luf.first) << "(RamDomain);\n";
+	}
+	for (const auto& luf : prog.getLBFs()) {
+		os << "RamDomain " << convertLBFName(luf.first) << "(RamDomain, RamDomain);\n";
+	}
+	os << "\n";
+
+	for (const auto& lufPair : prog.getLUFs()) {
+		auto& luf = lufPair.second;
+		os << "RamDomain " << convertLUFName(lufPair.first) << "(RamDomain arg0) {\n";
+		os << "  RamDomain args[1] = { arg0 };\n";
+		for (const auto& lufCase : luf->getLatCase()) {
+			bool hasCondition = lufCase.constraint != nullptr;
+			if (hasCondition) {
+				os << "if (";
+				emitCode(os, *lufCase.constraint);
+				os << ") {\n";
+			}
+			os << "return (";
+			emitCode(os, *lufCase.output);
+			os << ");\n";
+			if (hasCondition) {
+				os << "}\n";
+			}
+		}
+		os << "}\n";
+	}
+	for (const auto& lbfPair : prog.getLBFs()) {
+		auto& lbf = lbfPair.second;
+		os << "RamDomain " << convertLBFName(lbfPair.first) << "(RamDomain arg0, RamDomain arg1) {\n";
+		os << "  RamDomain args[2] = { arg0, arg1 };\n";
+		for (const auto& lbfCase : lbf->getLatCase()) {
+			bool hasCondition = lbfCase.match != nullptr;
+			if (hasCondition) {
+				os << "if (";
+				emitCode(os, *lbfCase.match);
+				os << ") {\n";
+			}
+			os << "return (";
+			emitCode(os, *lbfCase.output);
+			os << ");\n";
+			if (hasCondition) {
+				os << "}\n";
+			}
+		}
+		os << "}\n";
+	}
 
 	os << "class " << classname << " : public SouffleProgram {\n";
 
@@ -1772,11 +1882,13 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 			// TODO: make this correct
 			// ensure that the type of the new knowledge is the same as that of the delta knowledge
 			bool isDelta = rel.isTemp() && raw_name.find("@delta") != std::string::npos;
+			bool isLat = rel.isTemp() && raw_name.find("@lat") != std::string::npos;
 			bool isProvInfo = raw_name.find("@info") != std::string::npos;
 			auto relationType = SynthesiserRelation::getSynthesiserRelation(
 					rel, idxAnalysis->getIndexes(rel), Global::config().has("provenance") && !isProvInfo);
-			tempType = isDelta ? relationType->getTypeName() : tempType;
+			tempType = isDelta || isLat ? relationType->getTypeName() : tempType;
 			const std::string& type = (rel.isTemp()) ? tempType : relationType->getTypeName();
+			
 
 			// defining table
 			os << "// -- Table: " << raw_name << "\n";
@@ -2015,6 +2127,7 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 						os << "IODirectives ioDirectives(directiveMap);\n";
 						os << "IOSystem::getInstance().getWriter(";
 						os << "SymbolMask({" << store->getRelation().getSymbolMask() << "})";
+						os << ", EnumTypeMask({" << store->getRelation().getEnumTypeMask() << "})";
 						os << ", symTable, ioDirectives, " << Global::config().has("provenance");
 						os << ")->writeAll(*" << getRelationName(store->getRelation()) << ");\n";
 
@@ -2077,6 +2190,7 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 				os << "ioDirectives.setRelationName(\"" << name << "\");\n";
 				os << "IOSystem::getInstance().getWriter(";
 				os << "SymbolMask({" << mask << "})";
+				os << ",EnumTypeMask({" << mask << "})";
 				os << ", symTable, ioDirectives, " << Global::config().has("provenance");
 				os << ")->writeAll(*" << relName << ");\n";
 				os << "} catch (std::exception& e) {std::cerr << e.what();exit(1);}\n";

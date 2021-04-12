@@ -81,6 +81,7 @@ ADD_EXECUTABLE(souffle
         ./src/DebugReport.h
         ./src/AstNode.h
         ./src/CompiledSouffle.h
+        ./src/EnumTypeMask.h
         ./src/ExplainTree.h
         ./src/IOSystem.h
         ./src/AstUtils.h
