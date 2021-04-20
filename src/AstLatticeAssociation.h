@@ -79,7 +79,7 @@ public:
 
 	AstLatticeAssociation* clone() const override {
 		auto res = new AstLatticeAssociation(name);
-		res->setALL(top, bottom, lub, glb);
+		res->setALL(bottom, top, lub, glb);
 		return res;
 	}
 
