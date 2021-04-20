@@ -1410,11 +1410,22 @@ std::unique_ptr<RamStatement> AstTranslator::translateNonRecursiveRelation(
 						std::unique_ptr<RamRelationReference>(
 								rrel_temp->clone())));
 		// add swaps for them
+		// TODO see if we can restore swap, for now empty and move (because of type issue in the Synthesiser)
+		// appendStmt(res,
+		// 		std::make_unique<RamSwap>(
+		// 				std::unique_ptr<RamRelationReference>(rrel->clone()),
+		// 				std::unique_ptr<RamRelationReference>(
+		// 						rrel_temp->clone())));
+
 		appendStmt(res,
-				std::make_unique<RamSwap>(
-						std::unique_ptr<RamRelationReference>(rrel->clone()),
-						std::unique_ptr<RamRelationReference>(
-								rrel_temp->clone())));
+			std::make_unique<RamClear>(
+				std::unique_ptr<RamRelationReference>(rrel->clone())));
+
+		appendStmt(res,
+			std::make_unique<RamMerge>(
+				std::unique_ptr<RamRelationReference>(rrel->clone()),
+				std::unique_ptr<RamRelationReference>(rrel_temp->clone())));
+
 		// add drop
 		appendStmt(res,
 				std::make_unique<RamDrop>(
@@ -1603,12 +1614,27 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 							std::unique_ptr<RamRelationReference>(
 									rrel_lat[rel]->clone())));
 			// add swaps for them
+			// appendStmt(postamble,
+			// 		std::make_unique<RamSwap>(
+			// 				std::unique_ptr<RamRelationReference>(
+			// 						rrel[rel]->clone()),
+			// 				std::unique_ptr<RamRelationReference>(
+			// 						rrel_lat[rel]->clone())));
+
+			// TODO see if can restore swap
+			// for now clear main table, and add new computed rows
+
 			appendStmt(postamble,
-					std::make_unique<RamSwap>(
-							std::unique_ptr<RamRelationReference>(
-									rrel[rel]->clone()),
-							std::unique_ptr<RamRelationReference>(
-									rrel_lat[rel]->clone())));
+				std::make_unique<RamClear>(
+					std::unique_ptr<RamRelationReference>(
+						rrel[rel]->clone())));
+			
+			appendStmt(postamble,
+				std::make_unique<RamMerge>(
+					std::unique_ptr<RamRelationReference>(
+						rrel[rel]->clone()),
+					std::unique_ptr<RamRelationReference>(
+						rrel_lat[rel]->clone())));
 		}
 
 		/* drop temporary tables after recursion */
