@@ -472,13 +472,122 @@ void Synthesiser::emitCode(std::ostream& out, const RamNode& stmt) {
 		void visitLatNorm(const RamLatNorm& latNorm, std::ostream& out)
 				override {
 			PRINT_BEGIN_COMMENT(out);
-			out << "//TODO: visitLatNorm\n";
+			out << "// LatNorm\n";
+			auto input = latNorm.getRelation_IN_Rel();
+			auto output = latNorm.getRelation_OUT_Rel();
+
+			auto inputRelName = synthesiser.getRelationName(input);
+			auto outputRelName = synthesiser.getRelationName(output);
+
+			auto lattice = synthesiser.getTranslationUnit().getProgram()->getLattice();
+			auto bot = lattice->getBot();
+			auto& lub = lattice->getLUB();
+			std::string lubName = convertLBFName(lub.getName());
+
+			const int arity = input.getArity();
+
+			out << "if (!" << inputRelName << "->empty()) {\n";
+				out << "Tuple<RamDomain, " << arity << "> latti_cell;\n";
+				out << "bool latti_first = true;\n";
+				out << "RamDomain latti_lub;\n";
+				out << "for(auto it = " << inputRelName << "->begin(); it != " << inputRelName << "->end();) {\n";
+					out << "const auto& entry = *it;\n";
+					out << "bool latti_newcell = latti_first;\n";
+					out << "for(int i = 0; i < " << (arity - 1) << "; i++){\n";
+						out << "if (latti_cell[i] != entry[i]) {\n";
+							out << "latti_cell[i] = entry[i]; latti_newcell=true;\n";
+						out << "}\n";
+					out << "}\n";
+					out << "if (latti_newcell) {\n";
+						// now consider rows in new relation
+						out << "latti_lub = RamDomain(" << bot << ");\n";
+						out << "for (; it != " << inputRelName << "->end(); ++it) {\n";
+							out << "const auto& entry2 = *it;\n";
+							out << "latti_newcell = false;\n";
+							out << "for(int i = 0; i < " << (arity - 1) << "; i++){\n";
+								out << "if (latti_cell[i] != entry2[i]) {\n";
+									out << "latti_newcell=true;\n";
+								out << "}\n";
+							out << "}\n";
+							out << "if (!latti_newcell) {\n";
+								out << "latti_lub = " << lubName << "(latti_lub, entry2[" << (arity - 1) << "]);\n";
+							out << "} else {\n";
+								out << "break;\n";
+							out << "}\n";
+						out << "}\n";
+						out << "latti_cell[" << (arity - 1) << "] = latti_lub;\n";
+						out << outputRelName << "->insert(latti_cell);\n";
+					out << "} else {\n";
+						out << "++it;\n";
+					out << "}\n";
+					out << "latti_first = false;\n";
+				out << "}\n";
+			out << "}\n";
 			PRINT_END_COMMENT(out);
 		}
 
 		void visitLatClean(const RamLatClean& latClean, std::ostream& out) override {
 			PRINT_BEGIN_COMMENT(out);
-			out << "//TODO: visitLatClean\n";
+			out << "// LatClean\n";
+			auto input = latClean.getRelation_IN_Origin();
+			auto inputNew = latClean.getRelation_IN_New();
+			auto output = latClean.getRelation_OUT_New();
+
+			auto inputRelName = synthesiser.getRelationName(input);
+			auto inputNewRelName = synthesiser.getRelationName(inputNew);
+			auto outputRelName = synthesiser.getRelationName(output);
+
+			auto lattice = synthesiser.getTranslationUnit().getProgram()->getLattice();
+			auto bot = lattice->getBot();
+			auto& lub = lattice->getLUB();
+			std::string lubName = convertLBFName(lub.getName());
+
+			const int arity = input.getArity();
+
+			out << "if (!" << inputNewRelName << "->empty()) {\n";
+				out << "Tuple<RamDomain, " << arity << "> latti_cell;\n";
+				out << "bool latti_first = true;\n";
+				out << "RamDomain latti_lub;\n";
+				out << "for(auto it = " << inputNewRelName << "->begin(); it != " << inputNewRelName << "->end();) {\n";
+					out << "const auto& entry = *it;\n";
+					out << "bool latti_newcell = latti_first;\n";
+					out << "for(int i = 0; i < " << (arity - 1) << "; i++){\n";
+						out << "if (latti_cell[i] != entry[i]) {\n";
+							out << "latti_cell[i] = entry[i]; latti_newcell=true;\n";
+						out << "}\n";
+					out << "}\n";
+					out << "if (latti_newcell) {\n";
+						// compute lub from original relation first
+						out << "latti_lub = RamDomain(" << bot << ");\n";
+						out << "auto latti_range = " << inputRelName << "->lattice_range(latti_cell);\n";
+						out << "for(auto idx = latti_range.begin(); idx != latti_range.end(); ++idx) {\n";
+							out << "latti_lub = " << lubName << "(latti_lub, (*idx)[" << (arity - 1) << "]);\n";
+						out << "}\n";
+						// now consider rows in new relation
+						out << "for (; it != " << inputNewRelName << "->end(); ++it) {\n";
+							out << "const auto& entry2 = *it;\n";
+							out << "latti_newcell = false;\n";
+							out << "for(int i = 0; i < " << (arity - 1) << "; i++){\n";
+								out << "if (latti_cell[i] != entry2[i]) {\n";
+									out << "latti_newcell=true;\n";
+								out << "}\n";
+							out << "}\n";
+							out << "if (!latti_newcell) {\n";
+								out << "latti_lub = " << lubName << "(latti_lub, entry2[" << (arity - 1) << "]);\n";
+							out << "} else {\n";
+								out << "break;\n";
+							out << "}\n";
+						out << "}\n";
+						out << "latti_cell[" << (arity - 1) << "] = latti_lub;\n";
+						out << "if (!" << inputRelName << "->contains(latti_cell)) {\n";
+							out << outputRelName << "->insert(latti_cell);\n";
+						out << "}\n";
+					out << "} else {\n";
+						out << "++it;\n";
+					out << "}\n";
+					out << "latti_first = false;\n";
+				out << "}\n";
+			out << "}\n";
 			PRINT_END_COMMENT(out);
 		}
 
@@ -1839,7 +1948,7 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 		if (symTable.size() > 0) {
 			os << "{\n";
 			for (size_t i : symTable.getIndices()) {
-				os << "\tR\"_(" << symTable.resolve(i) << ")_\",\n";
+				os << "\tstd::make_pair(R\"_(" << symTable.resolve(i) << ")_\"," << i << "),\n";
 			}
 //            for (size_t i = 0; i < symTable.size(); i++) {
 //                os << "\tR\"_(" << symTable.resolve(i) << ")_\",\n";

@@ -212,6 +212,11 @@ private:
 		}
 	}
 
+	inline void newSymbolAt(const std::string& symbol, const size_t index) {
+		strToNum[symbol] = index;
+		numToStr[index] = symbol;
+	}
+
 public:
 	/** Empty constructor. */
 	SymbolTable() = default;
@@ -231,6 +236,13 @@ public:
 		strToNum.reserve(symbols.size());
 		for (const auto& symbol : symbols) {
 			newSymbol(symbol);
+		}
+	}
+
+	SymbolTable(std::initializer_list<std::pair<std::string, size_t>> symbolMap) {
+		strToNum.reserve(symbolMap.size());
+		for (const auto& symbolPair : symbolMap) {
+			newSymbolAt(symbolPair.first, symbolPair.second);
 		}
 	}
 

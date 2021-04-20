@@ -356,6 +356,16 @@ void SynthesiserDirectRelation::generateTypeStruct(std::ostream& out) {
     out << "return ind_" << masterIndex << ".end();\n";
     out << "}\n";
 
+    // add lattice range method
+    out << "range<iterator> lattice_range(const t_tuple& _cell) const {\n";
+    out << "t_tuple cell = _cell;\n";
+    out << "cell[" << (arity - 1) << "] = MIN_RAM_DOMAIN;\n";
+    out << "auto lower = ind_" << masterIndex << ".lower_bound(cell);\n";
+    out << "cell[" << (arity - 1) << "] = MAX_RAM_DOMAIN;\n";
+    out << "auto upper = ind_" << masterIndex << ".upper_bound(cell);\n";
+    out << "return make_range(lower, upper);\n";
+    out << "}\n";
+
     // printHintStatistics method
     out << "void printHintStatistics(std::ostream& o, const std::string prefix) const {\n";
     for (size_t i = 0; i < numIndexes; i++) {
