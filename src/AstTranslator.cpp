@@ -467,8 +467,6 @@ std::unique_ptr<RamValue> AstTranslator::translateValue(const AstArgument* arg,
 				assert(AstLBF != nullptr);
 				RamLBF = std::move(
 						translator.translateLatticeBinaryFunction(AstLBF));
-				// add to Ram Program
-				translator.ramProg->addLBF(lbf.getName(), RamLBF);
 			}
 			ret->setFunc(RamLBF);
 
