@@ -267,6 +267,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamNode& stmt) {
 				out << "IOSystem::getInstance().getReader(";
 				out << "SymbolMask({" << load.getRelation().getSymbolMask()
 						<< "})";
+				out << ", EnumTypeMask({" << load.getRelation().getEnumTypeMask() << "})";
 				out << ", symTable, ioDirectives";
 				out << ", " << Global::config().has("provenance");
 				out << ")->readAll(*"
@@ -2278,6 +2279,7 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 				os << "IODirectives ioDirectives(directiveMap);\n";
 				os << "IOSystem::getInstance().getReader(";
 				os << "SymbolMask({" << load.getRelation().getSymbolMask() << "})";
+				os << ", EnumTypeMask({" << load.getRelation().getEnumTypeMask() << "})";
 				os << ", symTable, ioDirectives";
 				os << ", " << Global::config().has("provenance");
 				os << ")->readAll(*" << getRelationName(load.getRelation());
