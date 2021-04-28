@@ -1,4 +1,3 @@
-import numpy as np
 import random
 
 VarMap='abcdefghijklmnopqrstuvwxyz'
@@ -157,7 +156,7 @@ class Program :
 			f.write(str(elt[0]) + '\t' + elt[1] + '\t' + elt[2] + '\t' + elt[3] + '\n')
 		f.close()
 		f = open("facts/flow.facts", "w")
-		for elt in self.AddFacts:
+		for elt in self.Flow:
 			f.write(str(elt[0]) + '\t' + str(elt[1]) + '\n')
 		f.close()
 
@@ -168,10 +167,8 @@ class Program :
 		f.close()
 
 		f = open("facts/code.txt", "w")
-		for elt in self.Code:
-			f.write(elt)
+		f.write(self.Code)
 		f.close()
-
 
 # t o tV a r : t o t a l number o f v a r i a b l e s
 # minL : l e a s t l i n e s r e q u r i e d
