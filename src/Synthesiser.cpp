@@ -1992,12 +1992,13 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 			// TODO: make this correct
 			// ensure that the type of the new knowledge is the same as that of the delta knowledge
 			bool isDelta = rel.isTemp() && raw_name.find("@delta") != std::string::npos;
-			bool isLat = rel.isTemp() && raw_name.find("@lat") != std::string::npos;
 			bool isProvInfo = raw_name.find("@info") != std::string::npos;
+			bool hasTargetRel = rel.getTempForRelation() != nullptr;
+			auto targetRelIdx = hasTargetRel ? *rel.getTempForRelation() : rel;
 			auto relationType = SynthesiserRelation::getSynthesiserRelation(
-					rel, idxAnalysis->getIndexes(rel), Global::config().has("provenance") && !isProvInfo);
-			tempType = isDelta || isLat ? relationType->getTypeName() : tempType;
-			const std::string& type = (rel.isTemp()) ? tempType : relationType->getTypeName();
+					rel, idxAnalysis->getIndexes(targetRelIdx), Global::config().has("provenance") && !isProvInfo);
+			tempType = isDelta ? relationType->getTypeName() : tempType;
+			const std::string& type = (rel.isTemp()) && !hasTargetRel ? tempType : relationType->getTypeName();
 			
 
 			// defining table

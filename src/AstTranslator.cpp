@@ -1354,6 +1354,7 @@ std::unique_ptr<RamStatement> AstTranslator::translateNonRecursiveRelation(
 	// mappings for temporary relations
 	std::unique_ptr<RamRelationReference> rrel_temp = translateLatTempRelation(
 			&rel);
+	rrel_temp->setTempForRelation(rrel->clone());
 
 	/* iterate over all clauses that belong to the relation */
 	for (AstClause* clause : rel.getClauses()) {
@@ -1410,21 +1411,20 @@ std::unique_ptr<RamStatement> AstTranslator::translateNonRecursiveRelation(
 						std::unique_ptr<RamRelationReference>(
 								rrel_temp->clone())));
 		// add swaps for them
-		// TODO see if we can restore swap, for now empty and move (because of type issue in the Synthesiser)
+		appendStmt(res,
+				std::make_unique<RamSwap>(
+						std::unique_ptr<RamRelationReference>(rrel->clone()),
+						std::unique_ptr<RamRelationReference>(
+								rrel_temp->clone())));
+
 		// appendStmt(res,
-		// 		std::make_unique<RamSwap>(
-		// 				std::unique_ptr<RamRelationReference>(rrel->clone()),
-		// 				std::unique_ptr<RamRelationReference>(
-		// 						rrel_temp->clone())));
+		// 	std::make_unique<RamClear>(
+		// 		std::unique_ptr<RamRelationReference>(rrel->clone())));
 
-		appendStmt(res,
-			std::make_unique<RamClear>(
-				std::unique_ptr<RamRelationReference>(rrel->clone())));
-
-		appendStmt(res,
-			std::make_unique<RamMerge>(
-				std::unique_ptr<RamRelationReference>(rrel->clone()),
-				std::unique_ptr<RamRelationReference>(rrel_temp->clone())));
+		// appendStmt(res,
+		// 	std::make_unique<RamMerge>(
+		// 		std::unique_ptr<RamRelationReference>(rrel->clone()),
+		// 		std::unique_ptr<RamRelationReference>(rrel_temp->clone())));
 
 		// add drop
 		appendStmt(res,
@@ -1614,27 +1614,26 @@ std::unique_ptr<RamStatement> AstTranslator::translateRecursiveRelation(
 							std::unique_ptr<RamRelationReference>(
 									rrel_lat[rel]->clone())));
 			// add swaps for them
-			// appendStmt(postamble,
-			// 		std::make_unique<RamSwap>(
-			// 				std::unique_ptr<RamRelationReference>(
-			// 						rrel[rel]->clone()),
-			// 				std::unique_ptr<RamRelationReference>(
-			// 						rrel_lat[rel]->clone())));
+			appendStmt(postamble,
+					std::make_unique<RamSwap>(
+							std::unique_ptr<RamRelationReference>(
+									rrel[rel]->clone()),
+							std::unique_ptr<RamRelationReference>(
+									rrel_lat[rel]->clone())));
 
-			// TODO see if can restore swap
 			// for now clear main table, and add new computed rows
 
-			appendStmt(postamble,
-				std::make_unique<RamClear>(
-					std::unique_ptr<RamRelationReference>(
-						rrel[rel]->clone())));
+			// appendStmt(postamble,
+			// 	std::make_unique<RamClear>(
+			// 		std::unique_ptr<RamRelationReference>(
+			// 			rrel[rel]->clone())));
 			
-			appendStmt(postamble,
-				std::make_unique<RamMerge>(
-					std::unique_ptr<RamRelationReference>(
-						rrel[rel]->clone()),
-					std::unique_ptr<RamRelationReference>(
-						rrel_lat[rel]->clone())));
+			// appendStmt(postamble,
+			// 	std::make_unique<RamMerge>(
+			// 		std::unique_ptr<RamRelationReference>(
+			// 			rrel[rel]->clone()),
+			// 		std::unique_ptr<RamRelationReference>(
+			// 			rrel_lat[rel]->clone())));
 		}
 
 		/* drop temporary tables after recursion */
@@ -2056,10 +2055,12 @@ void AstTranslator::translateProgram(
 
 		// create all internal relations of the current scc
 		for (const auto& relation : allInterns) {
+			auto rrel = std::unique_ptr<RamRelationReference>(
+									translateRelation(relation));
+			auto* rrelRef = rrel->clone();
 			appendStmt(current,
 					std::make_unique<RamCreate>(
-							std::unique_ptr<RamRelationReference>(
-									translateRelation(relation))));
+							std::move(rrel)));
 			// create new and delta relations if required
 			if (isRecursive) {
 				appendStmt(current,
@@ -2072,11 +2073,12 @@ void AstTranslator::translateProgram(
 										translateNewRelation(relation))));
 
 				if (relation->isLattice()) {
+					auto orgLatRel = std::unique_ptr<RamRelationReference>(translateOrgLatRelation(relation));
+					orgLatRel->setTempForRelation(rrelRef);
 					appendStmt(current,
 							std::make_unique<RamCreate>(
-									std::unique_ptr<RamRelationReference>(
-											translateOrgLatRelation(
-													relation))));
+								std::move(orgLatRel)));
+
 					appendStmt(current,
 							std::make_unique<RamCreate>(
 									std::unique_ptr<RamRelationReference>(

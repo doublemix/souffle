@@ -199,10 +199,12 @@ class RamRelationReference: public RamNode {
 protected:
 	/** Name of relation */
 	const RamRelation* relation;
+	// use this to enforce same type for lat temp table as base relation (so we can swap them)
+	const RamRelationReference* tempForRelation = nullptr;
 
 public:
-	RamRelationReference(const RamRelation* relation) :
-			RamNode(RN_RelationReference), relation(relation) {
+	RamRelationReference(const RamRelation* relation, const RamRelationReference* tempForRelation = nullptr) :
+			RamNode(RN_RelationReference), relation(relation), tempForRelation(tempForRelation) {
 	}
 
 	/** Get name */
@@ -213,6 +215,15 @@ public:
 	/** Get relation */
 	const RamRelation* getRelation() const {
 		return relation;
+	}
+	
+	/** Get relation this is a temp for */
+	const RamRelationReference* getTempForRelation () const {
+		return tempForRelation;
+	}
+
+	void setTempForRelation (RamRelationReference* tmp) {
+		tempForRelation = tmp;
 	}
 
 	/** Get arity */
@@ -277,7 +288,7 @@ public:
 
 	/** Create clone */
 	RamRelationReference* clone() const override {
-		auto* res = new RamRelationReference(relation);
+		auto* res = new RamRelationReference(relation, tempForRelation);
 		return res;
 	}
 
