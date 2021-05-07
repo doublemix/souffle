@@ -135,38 +135,38 @@ class Program :
 		print(self.Code)
 
 	def makeFactFiles(self):
-		f = open("facts/setConstStm.facts", "w")
+		f = open(targetDir + "/setConstStm.facts", "w")
 		for elt in self.setFacts:
 			f.write(str(elt[0]) + '\t' + elt[1] + '\t' + str(elt[2]) + '\n')
 		f.close()
-		f = open("facts/addStm.facts", "w")
+		f = open(targetDir + "/addStm.facts", "w")
 		for elt in self.AddFacts:
 			f.write(str(elt[0]) + '\t' + elt[1] + '\t' + elt[2] + '\t' + elt[3] + '\n')
 		f.close()
-		f = open("facts/minusStm.facts", "w")
+		f = open(targetDir + "/minusStm.facts", "w")
 		for elt in self.MinusFacts:
 			f.write(str(elt[0]) + '\t' + elt[1] + '\t' + elt[2] + '\t' + elt[3] + '\n')
 		f.close()
-		f = open("facts/multStm.facts", "w")
+		f = open(targetDir + "/multStm.facts", "w")
 		for elt in self.MultFacts:
 			f.write(str(elt[0]) + '\t' + elt[1] + '\t' + elt[2] + '\t' + elt[3] + '\n')
 		f.close()
-		f = open("facts/divStm.facts", "w")
+		f = open(targetDir + "/divStm.facts", "w")
 		for elt in self.DivFacts:
 			f.write(str(elt[0]) + '\t' + elt[1] + '\t' + elt[2] + '\t' + elt[3] + '\n')
 		f.close()
-		f = open("facts/flow.facts", "w")
+		f = open(targetDir + "/flow.facts", "w")
 		for elt in self.Flow:
 			f.write(str(elt[0]) + '\t' + str(elt[1]) + '\n')
 		f.close()
 
 
-		f = open("facts/varEntry.facts", "w")
+		f = open(targetDir + "/varEntry.facts", "w")
 		fact = self.setFacts[0]
 		f.write(str(fact[0]) + '\t' + fact[1] + '\t' + "Bot" + '\n')
 		f.close()
 
-		f = open("facts/code.txt", "w")
+		f = open(targetDir + "/code.txt", "w")
 		f.write(self.Code)
 		f.close()
 
@@ -282,9 +282,19 @@ def buildStatement(prog, minL, level):
 # p0 : x=c , p1 : x=y+z , p2 : x=y−z , p3 : x=y∗z , p4 : x=y / z
 # p5 : i f [ cond ] t hen S1 e l s e S2 , p6 : w h i l e [ cond ] do S
 # N o t ice : t o t e s t no−l a t t i c e s o u f f l e , must p6 t o z e r o
-myProg = Program(4837 , [ 0.2, 0.15, 0.15, 0.15, 0.15, 0.1, 0.1] , 5, 50)
+import sys
+import os
+lines = int(sys.argv[1]) if len(sys.argv) > 1 else 4837
+seed = int(sys.argv[2]) if len(sys.argv) > 2 else 50
+
+targetDir = 'facts/prog-%dL-%d' % (lines, seed)
+try:
+	os.makedirs(targetDir)
+except:
+	pass
+myProg = Program(seed , [ 0.2, 0.15, 0.15, 0.15, 0.15, 0.1, 0.1] , 5, lines)
 myProg.initVars()
 #while (myProg.curLine < myProg.minLines):
 buildStatement(myProg, myProg.minLines - myProg.curLine, 0)
-myProg.printAll()
+#myProg.printAll()
 myProg.makeFactFiles()
