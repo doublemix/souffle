@@ -212,7 +212,7 @@ CPPFLAGS =
 CXX = g++
 CXXCPP = g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS =  -Wall -std=c++11 -DUSE_PROVENANCE  -O0 -g3 -DUSE_LIBZ  -DUSE_SQLITE  -fopenmp  
+CXXFLAGS =  -Wall -std=c++11 -DUSE_PROVENANCE  -O3 -DUSE_LIBZ  -DUSE_SQLITE  -fopenmp  
 CYGPATH_W = echo
 DEBUILD = 
 DEFS = -DHAVE_CONFIG_H
@@ -295,7 +295,7 @@ RANLIB = ranlib
 SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/bash
-SOUFFLE_CXXFLAGS =  -Wall -std=c++11 -DUSE_PROVENANCE  -O0 -g3 -DUSE_LIBZ  -DUSE_SQLITE  -fopenmp 
+SOUFFLE_CXXFLAGS =  -Wall -std=c++11 -DUSE_PROVENANCE  -O3 -DUSE_LIBZ  -DUSE_SQLITE  -fopenmp 
 STRIP = strip
 VERSION = origin-source-66-gda00c80
 YACC = bison -y

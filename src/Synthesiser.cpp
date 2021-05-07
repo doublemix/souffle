@@ -469,7 +469,6 @@ void Synthesiser::emitCode(std::ostream& out, const RamNode& stmt) {
 			PRINT_END_COMMENT(out);
 		}
 
-		//added by Qing Gong TODO(mmyers)
 		void visitLatNorm(const RamLatNorm& latNorm, std::ostream& out)
 				override {
 			PRINT_BEGIN_COMMENT(out);
@@ -1223,8 +1222,6 @@ void Synthesiser::emitCode(std::ostream& out, const RamNode& stmt) {
 			PRINT_END_COMMENT(out);
 		}
 
-		// TODO(mmyers) maybe location of vistQuestionMark
-
 		void visitEmptinessCheck(const RamEmptinessCheck& emptiness,
 				std::ostream& out) override {
 			PRINT_BEGIN_COMMENT(out);
@@ -1317,7 +1314,6 @@ void Synthesiser::emitCode(std::ostream& out, const RamNode& stmt) {
 
 		// -- values --
 
-		//added by Qing Gong TODO(mmyers)
 		void visitLatticeGLB(const RamLatticeGLB& rGLB, std::ostream& out)
 				override {
 			PRINT_BEGIN_COMMENT(out);
@@ -1581,11 +1577,9 @@ void Synthesiser::emitCode(std::ostream& out, const RamNode& stmt) {
 			}
 		}
 
-		//added by Qing Gong TODO(mmyers)
 		void visitQuestionMark(const RamQuestionMark& qmark, std::ostream& out)
 				override {
 			PRINT_BEGIN_COMMENT(out);
-			// out << "//TODO: visitQuestionMark\n";
 			out << "(";
 			visit(qmark.getCondition(), out);
 			out << ") ? (";
@@ -1941,7 +1935,6 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id,
 
 	os << "public:\n";
 
-	// TODO: Qing Gong, avoid conflict in Symbol Table!
 	// declare symbol table
 	os << "// -- initialize symbol table --\n";
 	{
