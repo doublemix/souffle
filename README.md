@@ -1,51 +1,65 @@
+# Souffle with Lattices
 
-# Soufflé
+Project by Mitchel Myers and Ryan Pasculano
 
-[![Build Status](https://travis-ci.org/souffle-lang/souffle.svg?branch=master)](https://travis-ci.org/souffle-lang/souffle)
+## Steps to Build
 
-Soufflé is a translator of Horn clauses into parallel C++. Soufflé language has similarities to Datalog, and is used as a domain-specific language for analysis problems. 
+*These steps are the same as standard souffle. The same prerequisites are expected as listed on the [build page](https://souffle-lang.github.io/build). We present the Ubuntu/Debian build steps, refer to the build page for other options.*
 
-## Features of Soufflé
+In a terminal, open in the root directory of this project run the following commands
 
-*   Efficient translation to parallel C++ of Datalog programs
-*   Extended semantics of Pure Datalog, e.g., permitting unbounded recursions with numbers 
-*   Simple component model for Datalog specifications 
-*   Recursively defined record types (aka. constructors) for tuples 
+```
+ sh ./bootstrap
+./configure
+make
+```
 
-### Added feature by Qing Gong
+This may take a while, especially `make`.
 
-*   Conditional Operator (cond ? a : b)
-*   Unary and Binary Case Function
-*   Lattice Declaration
-    *    Enum Type
-    *    Lattice Association
-    *    Lattice Relation
-*   Modification in RAM
-    *    LATCLEAN
-    *    LATNORM
-    
-see paper ["From Datalog to FLIX: A Declarative Language for Fixed Points on Lattices"](https://plg.uwaterloo.ca/~olhotak/pubs/pldi16.pdf)
+## Running tests
 
-### To be added(Progress)
+To run tests, first switch to the `project-tests` directory
 
-*   Ram Synthesiser for all features added (in progress)
+```
+cd project-tests
+```
 
-## How to get Soufflé
- 
-Use git to obtain the source code of Soufflé. 
+### Compiled
 
-    $ git clone git@github.com:QXG2/souffle.git
-    
-Build instructions can be found [here](https://souffle-lang.github.io/build).     
-basic: 
-*   use "make -j8" for faster build. 
-*   use "make doxygen-doc" to create the directory doc/html which will contain the file index.html to view the documentation.
-*   In folder "souffle/dataflowTest", there are different sample programs involving lattice. Example: in foler "souffle/dataflowTest/Const_lattice/", try "make" to test the lattice feature.
+From here, you can run compile and run programs using the following command.
 
-# Original Soufflé
+```
+make run-compiled PROG=<prog> TESTCASE=<testcase> THREADS=<nthreads>
+```
 
-## [Home Page](https://souffle-lang.github.io/)
+`<prog>` can be replaced by either `const_prop` or `sign` depending on the analysis you want to do.
 
-## [Documentation](https://souffle-lang.github.io/docs.html)
+`<testcase>` can be replaced by the name of one of the fact file directories in `project-tests/facts`. For example, to run the `prog-50L-3000` test, use `TESTCASE=prog-50L-3000`
 
-## [Github](https://github.com/souffle-lang/souffle)
+`<nthreads>` is the number of threads to use. Defaults to 1 if omitted.
+
+Here's an concrete example (run from `project-tests`):
+
+```
+make run-compiled PROG=const_prop TESTCASE=prog-200L-5000 THREADS=2
+```
+
+This creates an output directory at `project-tests/<prog>/out/<testcase>/compiled-<nthreads>`
+
+### Interpreted
+
+For comparison, you can also use
+
+```
+make run-interpreted PROG=<prog> TESTCASE=<testcase>
+```
+
+The arguments are the same, except threads is ignored, because the interpreted does not appear to be parallelized (Note, a future version of Souffle parallelized the interpreter).
+
+Example (run from `project-tests`):
+
+```
+make run-interpreted PROG=const_prop TESTCASE=prog-200L-5000
+```
+
+This creates an output directory at `project-tests/<prog>/out/<testcase>/interpreted`

@@ -1,0 +1,106 @@
+ 0    a=1
+1    b=0
+2    c=2
+3    d=-2
+4    e=0
+5    While (condition):
+6    	e=a−b
+7    	b=d/e
+8    	e=c−e
+9    	b=d+a
+10   	b=c−a
+11   	c=b−b
+12   	d=e−e
+13   	e=1
+14   	b=0
+15   End While
+16   e=d/b
+17   d=d/c
+18   a=b+a
+19   b=b/b
+20   d=d+d
+21   c=e−d
+22   IF (condition):
+23   	a=c/a
+24   	d=-2
+25   	a=e−c
+26   	While (condition):
+27   		While (condition):
+28   			c=b*d
+29   			c=d−c
+30   			c=2
+31   		End While
+32   		c=d/a
+33   	End While
+34   	e=d−e
+35   	c=d/c
+36   	b=0
+     ELSE: 
+37   	b=b−c
+38   End IF 
+39   e=b+c
+40   e=a+a
+41   c=b+a
+42   c=1
+43   While (condition):
+44   	b=-1
+45   	a=e*c
+46   	IF (condition):
+47   		b=c*d
+48   		While (condition):
+49   			e=1
+50   			c=c−a
+51   		End While
+52   		IF (condition):
+53   			c=b/e
+54   			a=b−d
+     		ELSE: 
+55   			
+56   		End IF 
+     	ELSE: 
+57   		c=b+c
+58   		c=c*b
+59   		d=c/d
+60   		e=a*b
+61   		a=1
+62   		c=0
+63   		e=1
+64   		b=-2
+65   	End IF 
+66   End While
+67   While (condition):
+68   	IF (condition):
+69   		
+     	ELSE: 
+70   		a=1
+71   		e=e/e
+72   		IF (condition):
+73   			
+     		ELSE: 
+74   			d=b/d
+75   			c=e/b
+76   		End IF 
+77   		IF (condition):
+78   			d=d+a
+79   			d=d−e
+     		ELSE: 
+80   			
+81   		End IF 
+82   	End IF 
+83   	b=c−d
+84   	c=0
+85   	e=e/c
+86   	b=e+d
+87   	b=d/d
+88   End While
+89   a=b/d
+90   a=0
+91   e=c+e
+92   a=d/a
+93   d=d−c
+94   a=1
+95   e=d−c
+96   While (condition):
+97   	c=-1
+98   	e=c−e
+99   End While
