@@ -9,7 +9,7 @@ Project by Mitchel Myers and Ryan Pasculano
 In a terminal, open in the root directory of this project run the following commands
 
 ```
- sh ./bootstrap
+sh ./bootstrap
 ./configure
 make
 ```

@@ -16,6 +16,7 @@ run-compiled: souffle
 	mkdir -p $(COMPILED_OUTPUT_DIR)
 	../src/souffle $(COMMON_SF_ARGS) $(COMPILED_SF_ARGS)  $(DL_FILE)
 	../src/souffle-compile $(CPP_FILE)
+	./$(EXE_FILE)
 	find $(COMPILED_OUTPUT_DIR) -type f -exec sort -o {} {} \;
 
 run-interpreted: souffle
