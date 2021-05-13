@@ -1,0 +1,103 @@
+DECLARATION 
+@delta_a(x,l) @lat_temp_a(x,l) @lat_temp_b(n,l) @lat_temp_c(n,l) @new_a(x,l) @new_lat_a(x,l) @org_lat_a(x,l) a(x,l) b(n,l) c(n,l) LATTICE ASSOCIATION DEFINITION. 
+lub: 
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418114)), output:number(2147418114)
+match:(argument(1) = number(2147418114)), output:number(2147418114)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418111)
+glb: 
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418111)), output:number(2147418111)
+match:(argument(1) = number(2147418111)), output:number(2147418111)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418114)
+function glb:
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418111)), output:number(2147418111)
+match:(argument(1) = number(2147418111)), output:number(2147418111)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418114)
+function lub:
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418114)), output:number(2147418114)
+match:(argument(1) = number(2147418114)), output:number(2147418114)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418111)
+END DECLARATION 
+PROGRAM
+BEGIN_STRATUM_0
+	CREATE b(n,l) ;
+	BEGIN_DEBUG "b(1,\"Bot\").\nin file /home/doublemix/workspace/souffle-qxg2/mitch/test3.dl [23:1-23:13]"
+		INSERT (number(1),number(2147418114)) INTO b
+	END_DEBUG;
+	CREATE @lat_temp_b(n,l) ;
+	LATNORM b INTO @lat_temp_b;
+	CLEAR b;
+	MERGE b WITH @lat_temp_b;
+	DROP @lat_temp_b
+END_STRATUM_0;
+BEGIN_STRATUM_1
+	CREATE c(n,l) ;
+	BEGIN_DEBUG "c(1,\"Top\").\nin file /home/doublemix/workspace/souffle-qxg2/mitch/test3.dl [24:1-24:13]"
+		INSERT (number(1),number(2147418111)) INTO c
+	END_DEBUG;
+	CREATE @lat_temp_c(n,l) ;
+	LATNORM c INTO @lat_temp_c;
+	CLEAR c;
+	MERGE c WITH @lat_temp_c;
+	DROP @lat_temp_c
+END_STRATUM_1;
+BEGIN_STRATUM_2
+	CREATE a(x,l) ;
+	CREATE @delta_a(x,l) ;
+	CREATE @new_a(x,l) ;
+	CREATE @org_lat_a(x,l) ;
+	CREATE @new_lat_a(x,l) ;
+	BEGIN_DEBUG "a(n,l) :- \n   b(n,l),\n   c(n,l).\nin file /home/doublemix/workspace/souffle-qxg2/mitch/test3.dl [26:1-26:29]"
+		INSERT 
+			for t0 in b {
+					for t1 in c {
+							IF (t0.n = t1.n) {
+									PROJECT (t0.n, glb( t0.l, t1.l )) INTO a							}
+					}
+			}
+
+	END_DEBUG;
+	CREATE @lat_temp_a(x,l) ;
+	LATNORM a INTO @lat_temp_a;
+	CLEAR a;
+	MERGE a WITH @lat_temp_a;
+	DROP @lat_temp_a;
+	MERGE @delta_a WITH a;
+	LOOP
+		PARALLEL
+			BEGIN_DEBUG "a(Intrsc(n + 1),l) :- \n   a(n,l).\nin file /home/doublemix/workspace/souffle-qxg2/mitch/test3.dl [27:1-27:24]"
+				INSERT 
+					for t0 in @delta_a {
+							IF (not ((t0.x+number(1)),t0.l) ∈ a) {
+									PROJECT ((t0.x+number(1)), t0.l) INTO @new_a							}
+					}
+
+			END_DEBUG		END PARALLEL;
+		LATCLEAN @new_a INTO @new_lat_a USING a;
+		SWAP (@new_a, @new_lat_a);
+		CLEAR @new_lat_a;
+		EXIT (@new_a = ∅);
+		MERGE a WITH @new_a;
+		SWAP (@delta_a, @new_a);
+		CLEAR @new_a
+	END LOOP;
+	LATNORM a INTO @org_lat_a;
+	CLEAR a;
+	MERGE a WITH @org_lat_a;
+	DROP @delta_a;
+	DROP @new_a;
+	DROP @org_lat_a;
+	DROP @new_lat_a;
+	STORE DATA FOR a TO {{{"IO","file"},{"attributeNames","x\tl"},{"filename","./mitch/out/a.csv"},{"name","a"}}};
+	DROP a;
+	DROP b;
+	DROP c
+END_STRATUM_2
+END PROGRAM

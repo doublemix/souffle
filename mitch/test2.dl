@@ -1,0 +1,15 @@
+.decl a(n: number, type: symbol)
+.decl b(n: number)
+.decl c(n: number, type: symbol)
+.output a
+b(0).
+b(n + 1) :- b(n), n < 10.
+a(n, n > 5 ? "big" : "small") :- b(n).
+
+.def next(m: number, s: symbol): number {
+    case (_, "big") => m + 10,
+    case (_, _) => m + 1
+}
+c(0, "small").
+c(&next(n, c), n > 10 ? "big" : "small") :- c(n, c), n < 30.
+.output c

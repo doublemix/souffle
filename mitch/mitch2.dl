@@ -1,0 +1,7 @@
+.decl edge(a: symbol, b: symbol)
+.input edge
+.decl reaches(a: symbol, b: symbol)
+.output reaches
+
+reaches(a, b) :- edge(a, b).
+reaches(a, b) :- reaches(a, c), reaches(c, b).

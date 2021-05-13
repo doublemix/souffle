@@ -1,0 +1,72 @@
+DECLARATION 
+@delta_node(a,s) @lat_temp_edge(a,b) @lat_temp_node(a,s) @new_lat_node(a,s) @new_node(a,s) @org_lat_node(a,s) edge(a,b) node(a,s) LATTICE ASSOCIATION DEFINITION. 
+lub: 
+LATTICE BINARY FUNCTION 
+size: 5
+match:(argument(0) = number(2147418114)), output:argument(1)
+match:(argument(1) = number(2147418114)), output:argument(0)
+match:((argument(0) = number(2147418112)) and (argument(1) = number(2147418112))), output:number(2147418112)
+match:((argument(0) = number(2147418113)) and (argument(1) = number(2147418113))), output:number(2147418113)
+match:True, output:number(2147418111)
+glb: 
+LATTICE BINARY FUNCTION 
+size: 5
+match:(argument(0) = number(2147418111)), output:argument(1)
+match:(argument(1) = number(2147418111)), output:argument(0)
+match:((argument(0) = number(2147418112)) and (argument(1) = number(2147418112))), output:number(2147418112)
+match:((argument(0) = number(2147418113)) and (argument(1) = number(2147418113))), output:number(2147418113)
+match:True, output:number(2147418114)
+function next:
+LATTICE UNARY FUNCTION 
+size: 4
+match:(argument(0) = number(2147418111)), output:number(2147418111)
+match:(argument(0) = number(2147418113)), output:number(2147418112)
+match:(argument(0) = number(2147418112)), output:number(2147418113)
+match:True, output:number(2147418114)
+END DECLARATION 
+PROGRAM
+BEGIN_STRATUM_0
+	CREATE edge(a,b) ;
+	LOAD DATA FOR edge FROM {{{"IO","file"},{"filename","./edge.facts"},{"name","edge"}}[{{"IO","file"},{"filename","./edge.facts"},{"name","edge"}}]}
+END_STRATUM_0;
+BEGIN_STRATUM_1
+	CREATE node(a,s) ;
+	CREATE @delta_node(a,s) ;
+	CREATE @new_node(a,s) ;
+	CREATE @org_lat_node(a,s) ;
+	CREATE @new_lat_node(a,s) ;
+	LOAD DATA FOR node FROM {{{"IO","file"},{"filename","./node.facts"},{"name","node"}}[{{"IO","file"},{"filename","./node.facts"},{"name","node"}}]};
+	MERGE @delta_node WITH node;
+	LOOP
+		PARALLEL
+			BEGIN_DEBUG "node(a,&next(s)) :- \n   edge(b,a),\n   node(b,s).\nin file /home/doublemix/workspace/souffle-qxg2/dataflowTest/mitch/mitch.dl [47:1-47:45]"
+				INSERT 
+					for t0 in edge {
+							for t1 in @delta_node {
+									IF (not (t0.b,next( t1.s )) ∈ node) {
+											IF (t0.a = t1.a) {
+													PROJECT (t0.b, next( t1.s )) INTO @new_node											}
+									}
+							}
+					}
+
+			END_DEBUG		END PARALLEL;
+		LATCLEAN @new_node INTO @new_lat_node USING node;
+		SWAP (@new_node, @new_lat_node);
+		CLEAR @new_lat_node;
+		EXIT (@new_node = ∅);
+		MERGE node WITH @new_node;
+		SWAP (@delta_node, @new_node);
+		CLEAR @new_node
+	END LOOP;
+	LATNORM node INTO @org_lat_node;
+	SWAP (node, @org_lat_node);
+	DROP @delta_node;
+	DROP @new_node;
+	DROP @org_lat_node;
+	DROP @new_lat_node;
+	STORE DATA FOR node TO {{{"IO","file"},{"attributeNames","a\ts"},{"filename","./node.csv"},{"name","node"}}};
+	DROP node;
+	DROP edge
+END_STRATUM_1
+END PROGRAM

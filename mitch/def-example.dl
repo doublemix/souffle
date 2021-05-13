@@ -1,0 +1,34 @@
+.enum Sign = {
+    case "Top",
+    case "Neg", case "Zero", case "Pos",
+    case "Bot"
+}
+.def lub (a: Sign, b: Sign): Sign {
+    case ("Bot", _) => "Bot",
+    case (_, "Bot") => "Bot",
+    case (_, _) => a = b ? a : "Top"
+}
+.def glb (a: Sign, b: Sign): Sign {
+    case ("Neg", "Pos") => "Bot",
+    case ("Top", _) => "Top",
+    case (_, "Top") => "Top",
+    case (_, _) => a = b ? a : "Bot"
+}
+.def lat_negate (a: Sign): Sign {
+    case ("Neg") => "Pos",
+    case ("Pos") => "Neg",
+    case ("Zero") => "Zero",
+    case ("Top") => "Top",
+    case (_) => "Bot"
+}
+.let Sign<> = ("Top", "Bot", lub, glb)
+
+.lat a(n: number, s: Sign)
+.lat b(n: number, s: Sign)
+.lat c(n: number, s: Sign)
+
+.input b, c
+
+a(n, &lat_negate(s)) :- b(n, s), c(n, s).
+
+.output a

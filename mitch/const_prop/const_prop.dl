@@ -1,0 +1,118 @@
+.enum Constant = {
+	case "Top",
+	case .number_type,
+	case "Bot"	
+}
+// notice: enum must be decalred before any use of 
+// enum element (because of symbol table offset)
+
+.def lub(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => y,
+    case (_, "Bot")   => x,
+    case (_, _)	      => x=y ? x : "Top"
+}
+
+.def glb(x: Constant, y: Constant): Constant {
+    case ("Top", _)   => y,
+    case (_, "Top")   => x,
+    case (_, _)	      => x=y ? x : "Bot"
+}
+
+// use function to transfer number or symbol to enum type
+.def lat_alpha(x: number): Constant {
+    case (_)	      => x
+}
+
+.def lat_sum(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x+y
+}
+
+.def lat_minus(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x-y
+}
+
+.def lat_mult(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x*y
+}
+
+.def lat_div(x: Constant, y: Constant): Constant {
+    case ("Bot", _)   => "Bot",
+    case (_, "Bot")   => "Bot",
+    case ("Top", _)   => "Top",
+    case (_, "Top")   => "Top",
+    case (_, _)	      => x/y	//y=0 ? "Bot" : 
+}
+
+// assert lattice association
+.let Const<> = ("Bot", "Top", lub, glb)
+
+.decl setConstStm(l:number, r: symbol, c: number)         // r = c
+.input setConstStm
+.decl addStm(l:number, r: symbol, x: symbol, y: symbol) // r = x + y
+.input addStm
+.decl minusStm(l:number, r: symbol, x: symbol, y: symbol) // r = x - y
+.input minusStm
+.decl multStm(l:number, r: symbol, x: symbol, y: symbol) // r = x * y
+.input multStm
+.decl divStm(l:number, r: symbol, x: symbol, y: symbol) // r = x / y
+.input divStm
+.decl assignVar(l:number, r: symbol) // this statement assign r to a new value
+
+.decl flow(l1: number, l2: number) // control flow from l1 to l2
+.input flow
+
+.lat varEntry(l:number, k: symbol, v: Constant)
+.output varEntry
+.input varEntry
+.lat varExit(l:number, k: symbol, v: Constant)
+.output varExit
+
+// if the statement doesn't assign to r
+assignVar(l, r) :- setConstStm(l, r, _).
+assignVar(l, r) :- addStm(l, r, _, _).
+assignVar(l, r) :- minusStm(l, r, _, _).
+assignVar(l, r) :- multStm(l, r, _, _).
+assignVar(l, r) :- divStm(l, r, _, _).
+
+// initialize all variables to Bottom
+//varEntry(0, k, "Bot") :- assignVar(_, k).
+
+// varEntry of l2 is the union of {varExit(l1) | flow(l1,l2)}
+varEntry(l2, k, v) :- varExit(l1, k, v), flow(l1, l2).
+
+// statement: set to constant number
+varExit(l, r, &lat_alpha(c)) :- setConstStm(l, r, c).
+
+// addition statement r = x+y, and the value of x is v1, the
+// value of y is v2
+varExit(l, r, &lat_sum(v1, v2)) :- addStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2).
+// division statement: r = x - y
+varExit(l, r, &lat_minus(v1, v2)) :- minusStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2).
+// multiplication statement: r = x * y
+varExit(l, r, &lat_mult(v1, v2)) :- multStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2).
+// division statement: r = x / y
+varExit(l, r, &lat_div(v1, v2)) :- divStm(l, r, x, y),
+                            varEntry(l, x, v1),
+                            varEntry(l, y, v2), v2!=&lat_alpha(0).
+
+// r is not re-assigned
+varExit(l, r, v) :- varEntry(l, r, v), !assignVar(l, r).
+

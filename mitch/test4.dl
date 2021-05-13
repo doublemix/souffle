@@ -1,0 +1,9 @@
+.decl a(s: symbol, n: number)
+.decl b(s: symbol, n: number)
+
+a("s", 1).
+a("d", 50).
+a(s, n + 1) :- n < 100, a(s, n).
+
+b(s, n * 2) :- a(s, n).
+.output b

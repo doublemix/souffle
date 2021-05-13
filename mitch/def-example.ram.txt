@@ -1,0 +1,67 @@
+DECLARATION 
+@lat_temp_a(n,s) @lat_temp_b(n,s) @lat_temp_c(n,s) a(n,s) b(n,s) c(n,s) LATTICE ASSOCIATION DEFINITION. 
+lub: 
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418115)), output:number(2147418115)
+match:(argument(1) = number(2147418115)), output:number(2147418115)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418111)
+glb: 
+LATTICE BINARY FUNCTION 
+size: 4
+match:((argument(0) = number(2147418112)) and (argument(1) = number(2147418114))), output:number(2147418115)
+match:(argument(0) = number(2147418111)), output:number(2147418111)
+match:(argument(1) = number(2147418111)), output:number(2147418111)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418115)
+function lat_negate:
+LATTICE UNARY FUNCTION 
+size: 5
+match:(argument(0) = number(2147418112)), output:number(2147418114)
+match:(argument(0) = number(2147418114)), output:number(2147418112)
+match:(argument(0) = number(2147418113)), output:number(2147418113)
+match:(argument(0) = number(2147418111)), output:number(2147418111)
+match:True, output:number(2147418115)
+function glb:
+LATTICE BINARY FUNCTION 
+size: 4
+match:((argument(0) = number(2147418112)) and (argument(1) = number(2147418114))), output:number(2147418115)
+match:(argument(0) = number(2147418111)), output:number(2147418111)
+match:(argument(1) = number(2147418111)), output:number(2147418111)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418115)
+function lub:
+LATTICE BINARY FUNCTION 
+size: 3
+match:(argument(0) = number(2147418115)), output:number(2147418115)
+match:(argument(1) = number(2147418115)), output:number(2147418115)
+match:True, output:(argument(0) = argument(1)) ? argument(0) : number(2147418111)
+END DECLARATION 
+PROGRAM
+BEGIN_STRATUM_0
+	CREATE b(n,s) ;
+	LOAD DATA FOR b FROM {{{"IO","file"},{"filename","./b.facts"},{"name","b"}}[{{"IO","file"},{"filename","./b.facts"},{"name","b"}}]}
+END_STRATUM_0;
+BEGIN_STRATUM_1
+	CREATE c(n,s) ;
+	LOAD DATA FOR c FROM {{{"IO","file"},{"filename","./c.facts"},{"name","c"}}[{{"IO","file"},{"filename","./c.facts"},{"name","c"}}]}
+END_STRATUM_1;
+BEGIN_STRATUM_2
+	CREATE a(n,s) ;
+	BEGIN_DEBUG "a(n,&lat_negate(s)) :- \n   b(n,s),\n   c(n,s).\nin file /home/doublemix/workspace/souffle-qxg2/mitch/def-example.dl [32:1-32:42]"
+		INSERT 
+			for t0 in b {
+					for t1 in c {
+							IF (t0.n = t1.n) {
+									PROJECT (t0.n, lat_negate( glb( t0.s, t1.s ) )) INTO a							}
+					}
+			}
+
+	END_DEBUG;
+	CREATE @lat_temp_a(n,s) ;
+	LATNORM a INTO @lat_temp_a;
+	SWAP (a, @lat_temp_a);
+	DROP @lat_temp_a;
+	STORE DATA FOR a TO {{{"IO","file"},{"attributeNames","n\ts"},{"filename","./a.csv"},{"name","a"}}};
+	DROP b;
+	DROP c
+END_STRATUM_2
+END PROGRAM

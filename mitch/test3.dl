@@ -1,0 +1,34 @@
+.enum Lattice = {
+    case "Top",
+    case "Neg", case "Pos",
+    case "Bot"
+}
+.def glb (a: Lattice, b: Lattice): Lattice {
+    case ("Bot", _) => "Bot",
+    case (_, "Bot") => "Bot",
+    case (_, _) => a = b ? a : "Top"
+}
+.def lub (a: Lattice, b: Lattice): Lattice {
+    case ("Top", _) => "Top",
+    case (_, "Top") => "Top",
+    case (_, _) => a = b ? a : "Bot"
+}
+.let Lattice<> = ("Bot", "Top", lub, glb)
+
+.lat a(x:number, l:Lattice)
+.output a
+.lat b(n:number, l:Lattice)
+.lat c(n: number, l:Lattice)
+.def next(l:Lattice): Lattice {
+    case ("Bot") => "Pos",
+    case ("Pos") => "Neg",
+    case ("Neg") => "Top",
+    case (_) => "Bot"
+}
+
+b(1, "Pos").
+c(1, "Pos").
+
+a(n, l) :- b(n, l), c(n, l).
+a(n + 1, &next(l)) :- a(n, l), n < 10.
+a(n + 1, &next(&next(l))) :- a(n, l), n < 10.
